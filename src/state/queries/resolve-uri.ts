@@ -8,6 +8,7 @@ import {
 
 import {STALE} from '#/state/queries'
 import {useAgent} from '#/state/session'
+import {IS_DEV} from '#/env'
 import {profileBasicQueryKey as RQKEY_PROFILE_BASIC} from './profile'
 
 const RQKEY_ROOT = 'resolved-did'
@@ -65,7 +66,7 @@ export function useResolveDidDocQuery(did: any | undefined) {
     queryFn: async () => {
       if (!did) return ''
 
-      const url = 'https://plc.directory/'
+      const url = IS_DEV ? 'http://localhost:2583/' : 'https://plc.directory/'
       try {
         const response = await fetch(url + did)
         if (!response.ok) {

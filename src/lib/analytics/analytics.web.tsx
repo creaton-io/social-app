@@ -20,7 +20,7 @@ function getClient(): SegmentClient {
       {
         integrations: {
           'Segment.io': {
-            apiHost: 'api.events.bsky.app/v1',
+            apiHost: 'api.events.creaton.io/v1',
           },
         },
       },

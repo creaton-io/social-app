@@ -35,13 +35,13 @@ import {RouteParams, State} from '#/lib/routes/types'
 import {attachRouteToLogEvents, logEvent} from '#/lib/statsig/statsig'
 import {bskyTitle} from '#/lib/strings/headings'
 import {isAndroid, isNative, isWeb} from '#/platform/detection'
-import {useModalControls} from '#/state/modals'
+//import {useModalControls} from '#/state/modals'
 import {useUnreadNotifications} from '#/state/queries/notifications/unread'
 import {useSession} from '#/state/session'
-import {
-  shouldRequestEmailConfirmation,
-  snoozeEmailConfirmationPrompt,
-} from '#/state/shell/reminders'
+// import {
+//   shouldRequestEmailConfirmation,
+//   snoozeEmailConfirmationPrompt,
+// } from '#/state/shell/reminders'
 import {AccessibilitySettingsScreen} from '#/view/screens/AccessibilitySettings'
 import {AppPasswords} from '#/view/screens/AppPasswords'
 import {CommunityGuidelinesScreen} from '#/view/screens/CommunityGuidelines'
@@ -642,17 +642,17 @@ const LINKING = {
 function RoutesContainer({children}: React.PropsWithChildren<{}>) {
   const theme = useColorSchemeStyle(DefaultTheme, DarkTheme)
   const {currentAccount} = useSession()
-  const {openModal} = useModalControls()
+  //const {openModal} = useModalControls()
   const prevLoggedRouteName = React.useRef<string | undefined>(undefined)
 
   function onReady() {
     prevLoggedRouteName.current = getCurrentRouteName()
     initAnalytics(currentAccount)
 
-    if (currentAccount && shouldRequestEmailConfirmation(currentAccount)) {
-      openModal({name: 'verify-email', showReminder: true})
-      snoozeEmailConfirmationPrompt()
-    }
+    // if (currentAccount && shouldRequestEmailConfirmation(currentAccount)) {
+    //   openModal({name: 'verify-email', showReminder: true})
+    //   snoozeEmailConfirmationPrompt()
+    // }
   }
 
   return (

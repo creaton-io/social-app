@@ -26,15 +26,18 @@ export function ProfileHeaderHandle({
   let ethAddress = ''
   if (
     useResolveDidQueryResult.data &&
-    useResolveDidQueryResult.data.alsoKnownAs[1] !== undefined
+    Array.isArray(useResolveDidQueryResult.data.alsoKnownAs) &&
+    useResolveDidQueryResult.data.alsoKnownAs.length > 1
   ) {
     const parts = useResolveDidQueryResult.data.alsoKnownAs[1].split(':')
-    const ethereumAddress = parts[2]
-    const formattedEthAddress = ethereumAddress.slice(0, 6)
+    if (parts.length > 2) {
+      const ethereumAddress = parts[2]
+      const formattedEthAddress = ethereumAddress.slice(0, 6)
 
-    const lastChars = ethereumAddress.slice(-4)
+      const lastChars = ethereumAddress.slice(-4)
 
-    ethAddress = formattedEthAddress + '...' + lastChars
+      ethAddress = formattedEthAddress + '...' + lastChars
+    }
   }
 
   return (

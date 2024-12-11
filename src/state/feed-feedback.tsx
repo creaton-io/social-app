@@ -156,6 +156,8 @@ export function useFeedFeedbackContext() {
 // -prf
 function isDiscoverFeed(feed: FeedDescriptor) {
   return feed === `feedgen|${PROD_DEFAULT_FEED('whats-hot')}`
+
+  //return feed === `feedgen|${PROD_DEFAULT_FEED('aaactgbfpm2iy')}`
 }
 
 function toString(interaction: AppBskyFeedDefs.Interaction): string {

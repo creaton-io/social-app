@@ -93,11 +93,14 @@ let ProfileHeaderStandard = ({
   let fullEthAddress = ''
   if (
     useResolveDidQueryResult.data &&
-    useResolveDidQueryResult.data.alsoKnownAs[1] !== undefined
+    Array.isArray(useResolveDidQueryResult.data.alsoKnownAs) &&
+    useResolveDidQueryResult.data.alsoKnownAs.length > 1
   ) {
     const parts = useResolveDidQueryResult.data.alsoKnownAs[1].split(':')
-    const ethereumAddress = parts[2]
-    fullEthAddress = ethereumAddress
+    if (parts.length > 2) {
+      const ethereumAddress = parts[2]
+      fullEthAddress = ethereumAddress
+    }
   }
 
   const onPressFollow = () => {

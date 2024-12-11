@@ -23,7 +23,7 @@ function getClient(): SegmentClient {
     segmentClient = createClient({
       writeKey: '8I6DsgfiSLuoONyaunGoiQM7A6y2ybdI',
       trackAppLifecycleEvents: false,
-      proxy: 'https://api.events.bsky.app/v1',
+      proxy: 'https://api.events.creaton.io/v1',
     })
   }
   return segmentClient

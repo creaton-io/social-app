@@ -147,7 +147,9 @@ export function StepInfo({
             }
           />
         </View>
-        {state.isLoading || isLoadingStarterPack ? (
+        {(state.isLoading || isLoadingStarterPack) &&
+        !inviteCodeValueRef.current &&
+        !emailValueRef.current ? (
           <View style={[a.align_center]}>
             <Loader size="xl" />
           </View>
@@ -156,7 +158,7 @@ export function StepInfo({
             {state.serviceDescription.inviteCodeRequired && (
               <View>
                 <TextField.LabelText>
-                  <Trans>Invite code needed, DM @Aer0xander</Trans> on
+                  Invite code needed, DM @Aer0xander on
                   <TextLink
                     style={pal.link}
                     href="https://x.com/aer0xander"
