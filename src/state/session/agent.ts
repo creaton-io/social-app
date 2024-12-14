@@ -3,6 +3,7 @@ import {TID} from '@atproto/common-web'
 
 import {networkRetry} from '#/lib/async/retry'
 import {
+  BSKY_SERVICE,
   DISCOVER_SAVED_FEED,
   IS_PROD_SERVICE,
   PUBLIC_CREATON_SERVICE,
@@ -211,6 +212,7 @@ export function agentToSessionAccount(
     active: agent.session.active,
     status: agent.session.status as SessionAccount['status'],
     pdsUrl: agent.pdsUrl?.toString(),
+    isSelfHosted: !agent.serviceUrl.toString().startsWith(BSKY_SERVICE),
   }
 }
 

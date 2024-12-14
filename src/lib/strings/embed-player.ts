@@ -1,7 +1,7 @@
 import {Dimensions} from 'react-native'
 
-import {isSafari} from 'lib/browser'
-import {isWeb} from 'platform/detection'
+import {isSafari} from '#/lib/browser'
+import {isWeb} from '#/platform/detection'
 
 const {height: SCREEN_HEIGHT} = Dimensions.get('window')
 
@@ -88,7 +88,9 @@ export function parseEmbedPlayerFromUrl(
   // youtube
   if (urlp.hostname === 'youtu.be') {
     const videoId = urlp.pathname.split('/')[1]
-    const seek = encodeURIComponent(urlp.searchParams.get('t') ?? 0)
+    const t = urlp.searchParams.get('t') ?? '0'
+    const seek = encodeURIComponent(t.replace(/s$/, ''))
+
     if (videoId) {
       return {
         type: 'youtube_video',
@@ -111,7 +113,8 @@ export function parseEmbedPlayerFromUrl(
       isShorts || isLive
         ? shortOrLiveVideoId
         : (urlp.searchParams.get('v') as string)
-    const seek = encodeURIComponent(urlp.searchParams.get('t') ?? 0)
+    const t = urlp.searchParams.get('t') ?? '0'
+    const seek = encodeURIComponent(t.replace(/s$/, ''))
 
     if (videoId) {
       return {
@@ -183,6 +186,20 @@ export function parseEmbedPlayerFromUrl(
           type: 'spotify_song',
           source: 'spotify',
           playerUri: `https://open.spotify.com/embed/track/${id ?? idOrType}`,
+        }
+      }
+      if (typeOrLocale === 'episode' || idOrType === 'episode') {
+        return {
+          type: 'spotify_song',
+          source: 'spotify',
+          playerUri: `https://open.spotify.com/embed/episode/${id ?? idOrType}`,
+        }
+      }
+      if (typeOrLocale === 'show' || idOrType === 'show') {
+        return {
+          type: 'spotify_song',
+          source: 'spotify',
+          playerUri: `https://open.spotify.com/embed/show/${id ?? idOrType}`,
         }
       }
     }

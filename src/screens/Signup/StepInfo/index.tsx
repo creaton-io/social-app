@@ -63,6 +63,9 @@ export function StepInfo({
     import('tldts/dist/index.cjs.min.js').then(tldts => {
       tldtsRef.current = tldts
     })
+    // This will get used in the avatar creator a few steps later, so lets preload it now
+    // @ts-expect-error - valid path
+    import('react-native-view-shot/src/index')
   }, [])
 
   const onNextPress = () => {
@@ -70,6 +73,22 @@ export function StepInfo({
     const email = emailValueRef.current
     const emailChanged = prevEmailValueRef.current !== email
     const ethAddress = account.address
+
+    if (emailChanged && tldtsRef.current) {
+      if (isEmailMaybeInvalid(email, tldtsRef.current)) {
+        prevEmailValueRef.current = email
+        setHasWarnedEmail(true)
+        return dispatch({
+          type: 'setError',
+          value: _(
+            msg`It looks like you may have entered your email address incorrectly. Are you sure it's right?`,
+          ),
+        })
+      }
+    } else if (hasWarnedEmail) {
+      setHasWarnedEmail(false)
+    }
+    prevEmailValueRef.current = email
 
     if (emailChanged && tldtsRef.current) {
       if (isEmailMaybeInvalid(email, tldtsRef.current)) {

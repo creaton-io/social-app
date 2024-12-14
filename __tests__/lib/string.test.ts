@@ -1,11 +1,11 @@
 import {RichText} from '@atproto/api'
 
-import {parseEmbedPlayerFromUrl} from 'lib/strings/embed-player'
+import {parseEmbedPlayerFromUrl} from '#/lib/strings/embed-player'
 import {
   createStarterPackGooglePlayUri,
   createStarterPackLinkFromAndroidReferrer,
   parseStarterPackUri,
-} from 'lib/strings/starter-pack'
+} from '#/lib/strings/starter-pack'
 import {cleanError} from '../../src/lib/strings/errors'
 import {createFullHandle, makeValidHandle} from '../../src/lib/strings/handles'
 import {enforceLen} from '../../src/lib/strings/helpers'
@@ -335,8 +335,10 @@ describe('shortenLinks', () => {
 describe('parseEmbedPlayerFromUrl', () => {
   const inputs = [
     'https://youtu.be/videoId',
+    'https://youtu.be/videoId?t=1s',
     'https://www.youtube.com/watch?v=videoId',
     'https://www.youtube.com/watch?v=videoId&feature=share',
+    'https://www.youtube.com/watch?v=videoId&t=1s',
     'https://youtube.com/watch?v=videoId',
     'https://youtube.com/watch?v=videoId&feature=share',
     'https://youtube.com/shorts/videoId',
@@ -444,12 +446,22 @@ describe('parseEmbedPlayerFromUrl', () => {
     {
       type: 'youtube_video',
       source: 'youtube',
+      playerUri: 'https://bsky.app/iframe/youtube.html?videoId=videoId&start=1',
+    },
+    {
+      type: 'youtube_video',
+      source: 'youtube',
       playerUri: 'https://bsky.app/iframe/youtube.html?videoId=videoId&start=0',
     },
     {
       type: 'youtube_video',
       source: 'youtube',
       playerUri: 'https://bsky.app/iframe/youtube.html?videoId=videoId&start=0',
+    },
+    {
+      type: 'youtube_video',
+      source: 'youtube',
+      playerUri: 'https://bsky.app/iframe/youtube.html?videoId=videoId&start=1',
     },
     {
       type: 'youtube_video',

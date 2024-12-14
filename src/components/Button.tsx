@@ -14,7 +14,7 @@ import {
 } from 'react-native'
 import {LinearGradient} from 'expo-linear-gradient'
 
-import {atoms as a, flatten, select, tokens, useTheme, web} from '#/alf'
+import {atoms as a, flatten, select, tokens, useTheme} from '#/alf'
 import {Props as SVGIconProps} from '#/components/icons/common'
 import {Text} from '#/components/Typography'
 
@@ -24,6 +24,7 @@ export type ButtonColor =
   | 'secondary'
   | 'secondary_inverted'
   | 'negative'
+  | 'gradient_primary'
   | 'gradient_sky'
   | 'gradient_midnight'
   | 'gradient_sunrise'
@@ -86,6 +87,7 @@ export type ButtonProps = Pick<
     style?: StyleProp<ViewStyle>
     hoverStyle?: StyleProp<ViewStyle>
     children: NonTextElements | ((context: ButtonContext) => NonTextElements)
+    PressableComponent?: React.ComponentType<PressableProps>
   }
 
 export type ButtonTextProps = TextProps & VariantProps & {disabled?: boolean}
@@ -113,6 +115,7 @@ export const Button = React.forwardRef<View, ButtonProps>(
       disabled = false,
       style,
       hoverStyle: hoverStyleProp,
+      PressableComponent = Pressable,
       ...rest
     },
     ref,
@@ -351,7 +354,7 @@ export const Button = React.forwardRef<View, ButtonProps>(
           })
         } else if (size === 'small') {
           baseStyles.push({
-            paddingVertical: 8,
+            paddingVertical: 9,
             paddingHorizontal: 12,
             borderRadius: 6,
             gap: 6,
@@ -373,7 +376,7 @@ export const Button = React.forwardRef<View, ButtonProps>(
           }
         } else if (size === 'small') {
           if (shape === 'round') {
-            baseStyles.push({height: 36, width: 36})
+            baseStyles.push({height: 34, width: 34})
           } else {
             baseStyles.push({height: 34, width: 34})
           }
@@ -402,36 +405,47 @@ export const Button = React.forwardRef<View, ButtonProps>(
       }
     }, [t, variant, color, size, shape, disabled])
 
-    const {gradientColors, gradientHoverColors, gradientLocations} =
-      React.useMemo(() => {
-        const colors: string[] = []
-        const hoverColors: string[] = []
-        const locations: number[] = []
-        const gradient = {
-          primary: tokens.gradients.sky,
-          secondary: tokens.gradients.sky,
-          secondary_inverted: tokens.gradients.sky,
-          negative: tokens.gradients.sky,
-          gradient_sky: tokens.gradients.sky,
-          gradient_midnight: tokens.gradients.midnight,
-          gradient_sunrise: tokens.gradients.sunrise,
-          gradient_sunset: tokens.gradients.sunset,
-          gradient_nordic: tokens.gradients.nordic,
-          gradient_bonfire: tokens.gradients.bonfire,
-        }[color || 'primary']
+    const gradientValues = React.useMemo(() => {
+      const gradient = {
+        primary: tokens.gradients.sky,
+        secondary: tokens.gradients.sky,
+        secondary_inverted: tokens.gradients.sky,
+        negative: tokens.gradients.sky,
+        gradient_primary: tokens.gradients.primary,
+        gradient_sky: tokens.gradients.sky,
+        gradient_midnight: tokens.gradients.midnight,
+        gradient_sunrise: tokens.gradients.sunrise,
+        gradient_sunset: tokens.gradients.sunset,
+        gradient_nordic: tokens.gradients.nordic,
+        gradient_bonfire: tokens.gradients.bonfire,
+      }[color || 'primary']
 
-        if (variant === 'gradient') {
-          colors.push(...gradient.values.map(([_, color]) => color))
-          hoverColors.push(...gradient.values.map(_ => gradient.hover_value))
-          locations.push(...gradient.values.map(([location, _]) => location))
+      if (variant === 'gradient') {
+        if (gradient.values.length < 2) {
+          throw new Error(
+            'Gradient buttons must have at least two colors in the gradient',
+          )
         }
 
         return {
-          gradientColors: colors,
-          gradientHoverColors: hoverColors,
-          gradientLocations: locations,
+          colors: gradient.values.map(([_, color]) => color) as [
+            string,
+            string,
+            ...string[],
+          ],
+          hoverColors: gradient.values.map(_ => gradient.hover_value) as [
+            string,
+            string,
+            ...string[],
+          ],
+          locations: gradient.values.map(([location, _]) => location) as [
+            number,
+            number,
+            ...number[],
+          ],
         }
-      }, [variant, color])
+      }
+    }, [variant, color])
 
     const context = React.useMemo<ButtonContext>(
       () => ({
@@ -444,13 +458,14 @@ export const Button = React.forwardRef<View, ButtonProps>(
       [state, variant, color, size, disabled],
     )
 
-    const flattenedBaseStyles = flatten(baseStyles)
+    const flattenedBaseStyles = flatten([baseStyles, style])
 
     return (
-      <Pressable
+      <PressableComponent
         role="button"
         accessibilityHint={undefined} // optional
         {...rest}
+        // @ts-ignore - this will always be a pressable
         ref={ref}
         aria-label={label}
         aria-pressed={state.pressed}
@@ -464,7 +479,6 @@ export const Button = React.forwardRef<View, ButtonProps>(
           a.align_center,
           a.justify_center,
           flattenedBaseStyles,
-          flatten(style),
           ...(state.hovered || state.pressed
             ? [hoverStyles, flatten(hoverStyleProp)]
             : []),
@@ -475,7 +489,7 @@ export const Button = React.forwardRef<View, ButtonProps>(
         onHoverOut={onHoverOut}
         onFocus={onFocus}
         onBlur={onBlur}>
-        {variant === 'gradient' && (
+        {variant === 'gradient' && gradientValues && (
           <View
             style={[
               a.absolute,
@@ -486,10 +500,10 @@ export const Button = React.forwardRef<View, ButtonProps>(
             <LinearGradient
               colors={
                 state.hovered || state.pressed
-                  ? gradientHoverColors
-                  : gradientColors
+                  ? gradientValues.hoverColors
+                  : gradientValues.colors
               }
-              locations={gradientLocations}
+              locations={gradientValues.locations}
               start={{x: 0, y: 0}}
               end={{x: 1, y: 1}}
               style={[a.absolute, a.inset_0]}
@@ -499,7 +513,7 @@ export const Button = React.forwardRef<View, ButtonProps>(
         <Context.Provider value={context}>
           {typeof children === 'function' ? children(context) : children}
         </Context.Provider>
-      </Pressable>
+      </PressableComponent>
     )
   },
 )
@@ -626,9 +640,9 @@ export function useSharedButtonTextStyles() {
     }
 
     if (size === 'large') {
-      baseStyles.push(a.text_md, a.leading_tight, web({paddingTop: 1}))
+      baseStyles.push(a.text_md, a.leading_tight)
     } else if (size === 'small') {
-      baseStyles.push(a.text_sm, a.leading_tight, web({paddingTop: 1}))
+      baseStyles.push(a.text_sm, a.leading_tight)
     } else if (size === 'tiny') {
       baseStyles.push(a.text_xs, a.leading_tight)
     }
@@ -666,7 +680,7 @@ export function ButtonIcon({
       size ??
       (({
         large: 'sm',
-        small: 'xs',
+        small: 'sm',
         tiny: 'xs',
       }[buttonSize || 'small'] || 'sm') as Exclude<
         SVGIconProps['size'],

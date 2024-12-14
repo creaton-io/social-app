@@ -9,6 +9,10 @@ import {useKawaiiMode} from '#/state/preferences/kawaii'
 import {ErrorBoundary} from '#/view/com/util/ErrorBoundary'
 import {Logo} from '#/view/icons/Logo'
 import {Logotype} from '#/view/icons/Logotype'
+import {
+  AppClipOverlay,
+  postAppClipMessage,
+} from '#/screens/StarterPack/StarterPackLandingScreen'
 import {atoms as a, useTheme} from '#/alf'
 import {AppLanguageDropdown} from '#/components/AppLanguageDropdown'
 import {Button, ButtonText} from '#/components/Button'
@@ -28,6 +32,18 @@ export const SplashScreen = ({
   const {_} = useLingui()
   const t = useTheme()
   const {isTabletOrMobile: isMobileWeb} = useWebMediaQueries()
+  const [showClipOverlay, setShowClipOverlay] = React.useState(false)
+
+  React.useEffect(() => {
+    const getParams = new URLSearchParams(window.location.search)
+    const clip = getParams.get('clip')
+    if (clip === 'true') {
+      setShowClipOverlay(true)
+      postAppClipMessage({
+        action: 'present',
+      })
+    }
+  }, [])
 
   const kawaii = useKawaiiMode()
 
@@ -66,6 +82,7 @@ export const SplashScreen = ({
             t.atoms.border_contrast_medium,
             a.align_center,
             a.gap_5xl,
+            a.flex_1,
           ]}>
           <ErrorBoundary>
             <View style={[a.justify_center, a.align_center]}>
@@ -78,32 +95,26 @@ export const SplashScreen = ({
               )}
 
               <Text
-                style={[
-                  a.text_md,
-                  a.font_semibold,
-                  t.atoms.text_contrast_medium,
-                ]}>
+                style={[a.text_md, a.font_bold, t.atoms.text_contrast_medium]}>
                 <Trans>ℂ𝕣𝕖𝕒𝕥𝕖 𝕠𝕟𝕔𝕙𝕒𝕚𝕟 - 𝕋𝕖𝕤𝕥 𝕧𝕖𝕣𝕤𝕚𝕠𝕟</Trans>
               </Text>
             </View>
 
             <View
               testID="signinOrCreateAccount"
-              style={[a.w_full, {maxWidth: 320}]}>
+              style={[a.w_full, a.px_xl, a.gap_md, a.pb_2xl, {maxWidth: 320}]}>
               <Button
                 testID="createAccountButton"
                 onPress={onPressCreateAccount}
-                accessibilityRole="button"
                 label={_(msg`Create new account`)}
                 accessibilityHint={_(
                   msg`Opens flow to create a new Bluesky account`,
                 )}
-                style={[a.mx_xl, a.mb_xl]}
                 size="large"
                 variant="solid"
                 color="primary">
                 <ButtonText>
-                  <Trans>Create a new account</Trans>
+                  <Trans>Create account</Trans>
                 </ButtonText>
               </Button>
               <Button
@@ -113,7 +124,6 @@ export const SplashScreen = ({
                 accessibilityHint={_(
                   msg`Opens flow to sign into your existing Bluesky account`,
                 )}
-                style={[a.mx_xl, a.mb_xl]}
                 size="large"
                 variant="solid"
                 color="secondary">
@@ -126,6 +136,10 @@ export const SplashScreen = ({
         </View>
         <Footer />
       </CenteredView>
+      <AppClipOverlay
+        visible={showClipOverlay}
+        setIsVisible={setShowClipOverlay}
+      />
     </>
   )
 }

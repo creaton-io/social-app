@@ -6,8 +6,11 @@ import {useLingui} from '@lingui/react'
 import {NavigationProp, useNavigation} from '@react-navigation/native'
 import {useQueryClient} from '@tanstack/react-query'
 
+import {ComposeIcon2} from '#/lib/icons'
 import {getRootNavigation, getTabState, TabState} from '#/lib/routes/helpers'
+import {AllNavigatorParams} from '#/lib/routes/types'
 import {logEvent} from '#/lib/statsig/statsig'
+import {s} from '#/lib/styles'
 import {isNative} from '#/platform/detection'
 import {listenSoftReset} from '#/state/events'
 import {FeedFeedbackProvider, useFeedFeedback} from '#/state/feed-feedback'
@@ -17,12 +20,8 @@ import {truncateAndInvalidate} from '#/state/queries/util'
 import {useSession} from '#/state/session'
 import {useSetMinimalShellMode} from '#/state/shell'
 import {useComposerControls} from '#/state/shell/composer'
-import {useAnalytics} from 'lib/analytics/analytics'
-import {ComposeIcon2} from 'lib/icons'
-import {AllNavigatorParams} from 'lib/routes/types'
-import {s} from 'lib/styles'
 import {useHeaderOffset} from '#/components/hooks/useHeaderOffset'
-import {Feed} from '../posts/Feed'
+import {PostFeed} from '../posts/PostFeed'
 import {FAB} from '../util/fab/FAB'
 import {ListMethods} from '../util/List'
 import {LoadLatestBtn} from '../util/load-latest/LoadLatestBtn'
@@ -33,6 +32,7 @@ const POLL_FREQ = 60e3 // 60sec
 export function FeedPage({
   testID,
   isPageFocused,
+  isPageAdjacent,
   feed,
   feedParams,
   renderEmptyState,
@@ -43,6 +43,7 @@ export function FeedPage({
   feed: FeedDescriptor
   feedParams?: FeedParams
   isPageFocused: boolean
+  isPageAdjacent: boolean
   renderEmptyState: () => JSX.Element
   renderEndOfFeed?: () => JSX.Element
   savedFeedConfig?: AppBskyActorDefs.SavedFeed
@@ -54,7 +55,6 @@ export function FeedPage({
   const {openComposer} = useComposerControls()
   const [isScrolledDown, setIsScrolledDown] = React.useState(false)
   const setMinimalShellMode = useSetMinimalShellMode()
-  const {screen, track} = useAnalytics()
   const headerOffset = useHeaderOffset()
   const feedFeedback = useFeedFeedback(feed, hasSession)
   const scrollElRef = React.useRef<ListMethods>(null)
@@ -76,7 +76,7 @@ export function FeedPage({
       scrollToTop()
       truncateAndInvalidate(queryClient, FEED_RQKEY(feed))
       setHasNew(false)
-      logEvent('feed:refresh:sampled', {
+      logEvent('feed:refresh', {
         feedType: feed.split('|')[0],
         feedUrl: feed,
         reason: 'soft-reset',
@@ -89,37 +89,36 @@ export function FeedPage({
     if (!isPageFocused) {
       return
     }
-    screen('Feed')
     return listenSoftReset(onSoftReset)
-  }, [onSoftReset, screen, isPageFocused])
+  }, [onSoftReset, isPageFocused])
 
   const onPressCompose = React.useCallback(() => {
-    track('HomeScreen:PressCompose')
     openComposer({})
-  }, [openComposer, track])
+  }, [openComposer])
 
   const onPressLoadLatest = React.useCallback(() => {
     scrollToTop()
     truncateAndInvalidate(queryClient, FEED_RQKEY(feed))
     setHasNew(false)
-    logEvent('feed:refresh:sampled', {
+    logEvent('feed:refresh', {
       feedType: feed.split('|')[0],
       feedUrl: feed,
       reason: 'load-latest',
     })
   }, [scrollToTop, feed, queryClient, setHasNew])
 
+  const shouldPrefetch = isNative && isPageAdjacent
   return (
-    <View testID={testID} style={s.h100pct}>
+    <View testID={testID}>
       <MainScrollProvider>
         <FeedFeedbackProvider value={feedFeedback}>
-          <Feed
+          <PostFeed
             testID={testID ? `${testID}-feed` : undefined}
-            enabled={isPageFocused}
+            enabled={isPageFocused || shouldPrefetch}
             feed={feed}
             feedParams={feedParams}
             pollInterval={POLL_FREQ}
-            disablePoll={hasNew}
+            disablePoll={hasNew || !isPageFocused}
             scrollElRef={scrollElRef}
             onScrolledDownChange={setIsScrolledDown}
             onHasNew={setHasNew}

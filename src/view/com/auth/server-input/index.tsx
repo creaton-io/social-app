@@ -11,6 +11,7 @@ import * as Dialog from '#/components/Dialog'
 import * as TextField from '#/components/forms/TextField'
 import * as ToggleButton from '#/components/forms/ToggleButton'
 import {Globe_Stroke2_Corner0_Rounded as Globe} from '#/components/icons/Globe'
+import {InlineLinkText} from '#/components/Link'
 import {P, Text} from '#/components/Typography'
 
 export function ServerInputDialog({
@@ -65,12 +66,8 @@ export function ServerInputDialog({
   ])
 
   return (
-    <Dialog.Outer
-      control={control}
-      nativeOptions={{sheet: {snapPoints: ['100%']}}}
-      onClose={onClose}>
+    <Dialog.Outer control={control} onClose={onClose}>
       <Dialog.Handle />
-
       <Dialog.ScrollableInner
         accessibilityDescribedBy="dialog-description"
         accessibilityLabelledBy="dialog-title">
@@ -153,9 +150,13 @@ export function ServerInputDialog({
               ]}>
               <Trans>
                 Bluesky is an open network where you can choose your hosting
-                provider. Custom hosting is now available in beta for
-                developers.
-              </Trans>
+                provider. If you're a developer, you can host your own server.
+              </Trans>{' '}
+              <InlineLinkText
+                label={_(msg`Learn more about self hosting your PDS.`)}
+                to="https://atproto.com/guides/self-hosting">
+                <Trans>Learn more.</Trans>
+              </InlineLinkText>
             </P>
           </View>
 

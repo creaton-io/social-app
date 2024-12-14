@@ -27,6 +27,7 @@ import {AviFollowButton} from '#/view/com/posts/AviFollowButton'
 import {atoms as a} from '#/alf'
 import {ProfileHoverCard} from '#/components/ProfileHoverCard'
 import {RichText} from '#/components/RichText'
+import {SubtleWebHover} from '#/components/SubtleWebHover'
 import {ContentHider} from '../../../components/moderation/ContentHider'
 import {LabelsOnMyPost} from '../../../components/moderation/LabelsOnMe'
 import {PostAlerts} from '../../../components/moderation/PostAlerts'
@@ -148,6 +149,7 @@ function PostInner({
   const {currentAccount} = useSession()
   const isMe = replyAuthorDid === currentAccount?.did
 
+  const [hover, setHover] = React.useState(false)
   return (
     <Link
       href={itemHref}
@@ -157,13 +159,20 @@ function PostInner({
         !hideTopBorder && {borderTopWidth: StyleSheet.hairlineWidth},
         style,
       ]}
-      onBeforePress={onBeforePress}>
+      onBeforePress={onBeforePress}
+      onPointerEnter={() => {
+        setHover(true)
+      }}
+      onPointerLeave={() => {
+        setHover(false)
+      }}>
+      <SubtleWebHover hover={hover} />
       {showReplyLine && <View style={styles.replyLine} />}
       <View style={styles.layout}>
         <View style={styles.layoutAvi}>
           <AviFollowButton author={post.author} moderation={moderation}>
             <PreviewableUserAvatar
-              size={52}
+              size={42}
               profile={post.author}
               moderation={moderation.ui('avatar')}
               type={post.author.associated?.labeler ? 'labeler' : 'user'}
@@ -174,7 +183,6 @@ function PostInner({
           <PostMeta
             author={post.author}
             moderation={moderation}
-            authorHasWarning={!!post.author.labels?.length}
             timestamp={post.indexedAt}
             postHref={itemHref}
           />

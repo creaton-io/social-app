@@ -3,12 +3,7 @@ import {AppBskyActorDefs} from '@atproto/api'
 
 import {useGate} from '#/lib/statsig/statsig'
 import {logger} from '#/logger'
-import {
-  Nux,
-  useNuxs,
-  useRemoveNuxsMutation,
-  useUpsertNuxMutation,
-} from '#/state/queries/nuxs'
+import {Nux, useNuxs, useResetNuxs, useSaveNux} from '#/state/queries/nuxs'
 import {
   usePreferencesQuery,
   UsePreferencesQueryResponse,
@@ -16,10 +11,10 @@ import {
 import {useProfileQuery} from '#/state/queries/profile'
 import {SessionAccount, useSession} from '#/state/session'
 import {useOnboardingState} from '#/state/shell'
-import {NeueTypography} from '#/components/dialogs/nuxs/NeueTypography'
+/*
+ * NUXs
+ */
 import {isSnoozed, snooze, unsnooze} from '#/components/dialogs/nuxs/snoozing'
-// NUXs
-import {TenMillion} from '#/components/dialogs/nuxs/TenMillion'
 import {IS_DEV} from '#/env'
 
 type Context = {
@@ -35,22 +30,7 @@ const queuedNuxs: {
     currentProfile: AppBskyActorDefs.ProfileViewDetailed
     preferences: UsePreferencesQueryResponse
   }) => boolean
-}[] = [
-  {
-    id: Nux.TenMillionDialog,
-  },
-  {
-    id: Nux.NeueTypography,
-    enabled(props) {
-      if (props.currentProfile.createdAt) {
-        if (new Date(props.currentProfile.createdAt) < new Date('2024-09-25')) {
-          return true
-        }
-      }
-      return false
-    },
-  },
-]
+}[] = []
 
 const Context = React.createContext<Context>({
   activeNux: undefined,
@@ -68,7 +48,14 @@ export function NuxDialogs() {
   const onboardingActive = useOnboardingState().isActive
 
   const isLoading =
-    !currentAccount || !preferences || !profile || onboardingActive
+    onboardingActive ||
+    !currentAccount ||
+    !preferences ||
+    !profile ||
+    // Profile isn't legit ready until createdAt is a real date.
+    !profile.createdAt ||
+    profile.createdAt === '0001-01-01T00:00:00.000Z' // TODO: Fix this in AppView.
+
   return !isLoading ? (
     <Inner
       currentAccount={currentAccount}
@@ -93,8 +80,8 @@ function Inner({
     return isSnoozed()
   })
   const [activeNux, setActiveNux] = React.useState<Nux | undefined>()
-  const {mutateAsync: upsertNux} = useUpsertNuxMutation()
-  const {mutate: removeNuxs} = useRemoveNuxsMutation()
+  const {mutateAsync: saveNux} = useSaveNux()
+  const {mutate: resetNuxs} = useResetNuxs()
 
   const snoozeNuxDialog = React.useCallback(() => {
     snooze()
@@ -110,7 +97,7 @@ function Inner({
     // @ts-ignore
     window.clearNuxDialog = (id: Nux) => {
       if (!IS_DEV || !id) return
-      removeNuxs([id])
+      resetNuxs([id])
       unsnooze()
     }
   }
@@ -144,7 +131,7 @@ function Inner({
       snoozeNuxDialog()
 
       // immediately update remote data (affects next reload)
-      upsertNux({
+      saveNux({
         id,
         completed: true,
         data: undefined,
@@ -160,7 +147,7 @@ function Inner({
     nuxs,
     snoozed,
     snoozeNuxDialog,
-    upsertNux,
+    saveNux,
     gate,
     currentAccount,
     currentProfile,
@@ -176,8 +163,7 @@ function Inner({
 
   return (
     <Context.Provider value={ctx}>
-      {activeNux === Nux.TenMillionDialog && <TenMillion />}
-      {activeNux === Nux.NeueTypography && <NeueTypography />}
+      {/*For example, activeNux === Nux.NeueTypography && <NeueTypography />*/}
     </Context.Provider>
   )
 }

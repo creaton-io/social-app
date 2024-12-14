@@ -7,27 +7,26 @@ import {msg, Trans} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
 import {useQueryClient} from '@tanstack/react-query'
 
-import {useAnalytics} from '#/lib/analytics/analytics'
+import {uploadBlob} from '#/lib/api'
 import {
   BSKY_APP_ACCOUNT_DID,
   DISCOVER_SAVED_FEED,
   TIMELINE_SAVED_FEED,
 } from '#/lib/constants'
+import {useRequestNotificationsPermission} from '#/lib/notifications/notifications'
 import {logEvent} from '#/lib/statsig/statsig'
 import {logger} from '#/logger'
+import {useSetHasCheckedForStarterPack} from '#/state/preferences/used-starter-packs'
+import {getAllListMembers} from '#/state/queries/list-members'
 import {preferencesQueryKey} from '#/state/queries/preferences'
 import {RQKEY as profileRQKey} from '#/state/queries/profile'
 import {useAgent} from '#/state/session'
 import {useOnboardingDispatch} from '#/state/shell'
 import {useProgressGuideControls} from '#/state/shell/progress-guide'
-import {uploadBlob} from 'lib/api'
-import {useRequestNotificationsPermission} from 'lib/notifications/notifications'
-import {useSetHasCheckedForStarterPack} from 'state/preferences/used-starter-packs'
-import {getAllListMembers} from 'state/queries/list-members'
 import {
   useActiveStarterPack,
   useSetActiveStarterPack,
-} from 'state/shell/starter-pack'
+} from '#/state/shell/starter-pack'
 import {
   DescriptionText,
   OnboardingControls,
@@ -48,7 +47,6 @@ import {Text} from '#/components/Typography'
 export function StepFinished() {
   const {_} = useLingui()
   const t = useTheme()
-  const {track} = useAnalytics()
   const {state, dispatch} = React.useContext(Context)
   const onboardDispatch = useOnboardingDispatch()
   const [saving, setSaving] = React.useState(false)
@@ -129,31 +127,36 @@ export function StepFinished() {
         })(),
         (async () => {
           const {imageUri, imageMime} = profileStepResults
-          if (imageUri && imageMime) {
-            const blobPromise = uploadBlob(agent, imageUri, imageMime)
-            await agent.upsertProfile(async existing => {
-              existing = existing ?? {}
+          const blobPromise =
+            imageUri && imageMime
+              ? uploadBlob(agent, imageUri, imageMime)
+              : undefined
+
+          await agent.upsertProfile(async existing => {
+            existing = existing ?? {}
+
+            if (blobPromise) {
               const res = await blobPromise
               if (res.data.blob) {
                 existing.avatar = res.data.blob
               }
+            }
 
-              if (starterPack) {
-                existing.joinedViaStarterPack = {
-                  uri: starterPack.uri,
-                  cid: starterPack.cid,
-                }
+            if (starterPack) {
+              existing.joinedViaStarterPack = {
+                uri: starterPack.uri,
+                cid: starterPack.cid,
               }
+            }
 
-              existing.displayName = ''
-              // HACKFIX
-              // creating a bunch of identical profile objects is breaking the relay
-              // tossing this unspecced field onto it to reduce the size of the problem
-              // -prf
-              existing.createdAt = new Date().toISOString()
-              return existing
-            })
-          }
+            existing.displayName = ''
+            // HACKFIX
+            // creating a bunch of identical profile objects is breaking the relay
+            // tossing this unspecced field onto it to reduce the size of the problem
+            // -prf
+            existing.createdAt = new Date().toISOString()
+            return existing
+          })
 
           logEvent('onboarding:finished:avatarResult', {
             avatarResult: profileStepResults.isCreatedAvatar
@@ -190,8 +193,6 @@ export function StepFinished() {
     startProgressGuide('like-10-and-follow-7')
     dispatch({type: 'finish'})
     onboardDispatch({type: 'finish'})
-    track('OnboardingV2:StepFinished:End')
-    track('OnboardingV2:Complete')
     logEvent('onboarding:finished:nextPressed', {
       usedStarterPack: Boolean(starterPack),
       starterPackName: AppBskyGraphStarterpack.isRecord(starterPack?.record)
@@ -214,7 +215,6 @@ export function StepFinished() {
     agent,
     dispatch,
     onboardDispatch,
-    track,
     activeStarterPack,
     state,
     requestNotificationsPermission,
@@ -222,10 +222,6 @@ export function StepFinished() {
     setHasCheckedForStarterPack,
     startProgressGuide,
   ])
-
-  React.useEffect(() => {
-    track('OnboardingV2:StepFinished:Start')
-  }, [track])
 
   return (
     <View style={[a.align_start]}>

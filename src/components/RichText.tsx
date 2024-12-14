@@ -9,6 +9,7 @@ import {NavigationProp} from '#/lib/routes/types'
 import {toShortUrl} from '#/lib/strings/url-helpers'
 import {isNative} from '#/platform/detection'
 import {atoms as a, flatten, native, TextStyleProp, useTheme, web} from '#/alf'
+import {isOnlyEmoji} from '#/alf/typography'
 import {useInteractionState} from '#/components/hooks/useInteractionState'
 import {InlineLinkText, LinkProps} from '#/components/Link'
 import {ProfileHoverCard} from '#/components/ProfileHoverCard'
@@ -53,7 +54,6 @@ export function RichText({
   const plainStyles = [a.leading_snug, flattenedStyle]
   const interactiveStyles = [
     a.leading_snug,
-    a.pointer_events_auto,
     flatten(interactiveStyle),
     flattenedStyle,
   ]
@@ -66,6 +66,7 @@ export function RichText({
         (flattenedStyle.fontSize ?? a.text_sm.fontSize) * emojiMultiplier
       return (
         <Text
+          emoji
           selectable={selectable}
           testID={testID}
           style={[plainStyles, {fontSize}]}
@@ -77,6 +78,7 @@ export function RichText({
     }
     return (
       <Text
+        emoji
         selectable={selectable}
         testID={testID}
         style={plainStyles}
@@ -126,7 +128,8 @@ export function RichText({
             // @ts-ignore TODO
             dataSet={WORD_WRAP}
             shareOnLongPress
-            onPress={onLinkPress}>
+            onPress={onLinkPress}
+            emoji>
             {toShortUrl(segment.text)}
           </InlineLinkText>,
         )
@@ -155,6 +158,7 @@ export function RichText({
 
   return (
     <Text
+      emoji
       selectable={selectable}
       testID={testID}
       style={plainStyles}
@@ -187,11 +191,6 @@ function RichTextTag({
     onOut: onHoverOut,
   } = useInteractionState()
   const {state: focused, onIn: onFocus, onOut: onBlur} = useInteractionState()
-  const {
-    state: pressed,
-    onIn: onPressIn,
-    onOut: onPressOut,
-  } = useInteractionState()
   const navigation = useNavigation<NavigationProp>()
 
   const navigateToPage = React.useCallback(() => {
@@ -213,6 +212,7 @@ function RichTextTag({
     <React.Fragment>
       <TagMenu control={control} tag={tag} authorHandle={authorHandle}>
         <Text
+          emoji
           selectable={selectable}
           {...native({
             accessibilityLabel: _(msg`Hashtag: #${tag}`),
@@ -220,8 +220,6 @@ function RichTextTag({
             accessibilityRole: isNative ? 'button' : undefined,
             onPress: navigateToPage,
             onLongPress: openDialog,
-            onPressIn: onPressIn,
-            onPressOut: onPressOut,
           })}
           {...web({
             onMouseEnter: onHoverIn,
@@ -235,10 +233,12 @@ function RichTextTag({
               cursor: 'pointer',
             }),
             {color: t.palette.primary_500},
-            (hovered || focused || pressed) && {
-              ...web({outline: 0}),
-              textDecorationLine: 'underline',
-              textDecorationColor: t.palette.primary_500,
+            (hovered || focused) && {
+              ...web({
+                outline: 0,
+                textDecorationLine: 'underline',
+                textDecorationColor: t.palette.primary_500,
+              }),
             },
             style,
           ]}>
@@ -246,12 +246,5 @@ function RichTextTag({
         </Text>
       </TagMenu>
     </React.Fragment>
-  )
-}
-
-export function isOnlyEmoji(text: string) {
-  return (
-    text.length <= 15 &&
-    /^[\p{Emoji_Presentation}\p{Extended_Pictographic}]+$/u.test(text)
   )
 }

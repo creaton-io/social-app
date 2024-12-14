@@ -1,5 +1,4 @@
-import React from 'react'
-import Svg, {Path} from 'react-native-svg'
+import Svg, {Path, PathProps, SvgProps} from 'react-native-svg'
 
 export function Logotype() {
   // @ts-ignore it's fiiiiine

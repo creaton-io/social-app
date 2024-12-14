@@ -1,9 +1,7 @@
-import React, {useEffect} from 'react'
 import {View} from 'react-native'
 import {msg, Trans} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
 
-import {useAnalytics} from '#/lib/analytics/analytics'
 import {atoms as a, useBreakpoints} from '#/alf'
 import {Button, ButtonText} from '#/components/Button'
 import {Text} from '#/components/Typography'
@@ -14,13 +12,8 @@ export const PasswordUpdatedForm = ({
 }: {
   onPressNext: () => void
 }) => {
-  const {screen} = useAnalytics()
   const {_} = useLingui()
   const {gtMobile} = useBreakpoints()
-
-  useEffect(() => {
-    screen('Signin:PasswordUpdatedForm')
-  }, [screen])
 
   return (
     <FormContainer

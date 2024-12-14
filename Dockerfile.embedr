@@ -5,7 +5,7 @@ WORKDIR /usr/src/social-app
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Node
-ENV NODE_VERSION=18
+ENV NODE_VERSION=20
 ENV NVM_DIR=/usr/share/nvm
 
 # Go
@@ -40,6 +40,7 @@ RUN find ./bskyweb/embedr-static && find ./bskyweb/embedr-templates && find ./bs
 
 # hack around issue with empty directory and go:embed
 RUN touch bskyweb/static/js/empty.txt
+RUN touch bskyweb/static/css/empty.txt
 RUN touch bskyweb/static/media/empty.txt
 
 #

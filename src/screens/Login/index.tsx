@@ -10,7 +10,6 @@ import {baseSepolia} from 'viem/chains'
 import {parseErc6492Signature} from 'viem/experimental'
 import {createConfig} from 'wagmi'
 
-//import {useAnalytics} from '#/lib/analytics/analytics'
 import {DEFAULT_SERVICE} from '#/lib/constants'
 import {logger} from '#/logger'
 import {useServiceQuery} from '#/state/queries/service'
@@ -40,7 +39,6 @@ export const Login = ({onPressBack}: {onPressBack: () => void}) => {
   const agent = useAgent()
 
   const {accounts} = useSession()
-  //const {track} = useAnalytics()
   const {requestedAccountSwitchTo} = useLoggedOutView()
   const requestedAccount = accounts.find(
     acc => acc.did === requestedAccountSwitchTo,

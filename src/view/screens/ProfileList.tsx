@@ -14,8 +14,19 @@ import {useFocusEffect, useIsFocused} from '@react-navigation/native'
 import {useNavigation} from '@react-navigation/native'
 import {useQueryClient} from '@tanstack/react-query'
 
-import {useAnalytics} from '#/lib/analytics/analytics'
+import {useHaptics} from '#/lib/haptics'
+import {usePalette} from '#/lib/hooks/usePalette'
+import {useSetTitle} from '#/lib/hooks/useSetTitle'
+import {useWebMediaQueries} from '#/lib/hooks/useWebMediaQueries'
+import {ComposeIcon2} from '#/lib/icons'
+import {makeListLink, makeProfileLink} from '#/lib/routes/links'
+import {CommonNavigatorParams, NativeStackScreenProps} from '#/lib/routes/types'
+import {NavigationProp} from '#/lib/routes/types'
+import {shareUrl} from '#/lib/sharing'
 import {cleanError} from '#/lib/strings/errors'
+import {sanitizeHandle} from '#/lib/strings/handles'
+import {toShareUrl} from '#/lib/strings/url-helpers'
+import {s} from '#/lib/styles'
 import {logger} from '#/logger'
 import {isNative, isWeb} from '#/platform/detection'
 import {listenSoftReset} from '#/state/events'
@@ -41,36 +52,27 @@ import {truncateAndInvalidate} from '#/state/queries/util'
 import {useSession} from '#/state/session'
 import {useSetMinimalShellMode} from '#/state/shell'
 import {useComposerControls} from '#/state/shell/composer'
-import {useHaptics} from 'lib/haptics'
-import {usePalette} from 'lib/hooks/usePalette'
-import {useSetTitle} from 'lib/hooks/useSetTitle'
-import {useWebMediaQueries} from 'lib/hooks/useWebMediaQueries'
-import {ComposeIcon2} from 'lib/icons'
-import {makeListLink, makeProfileLink} from 'lib/routes/links'
-import {CommonNavigatorParams, NativeStackScreenProps} from 'lib/routes/types'
-import {NavigationProp} from 'lib/routes/types'
-import {shareUrl} from 'lib/sharing'
-import {sanitizeHandle} from 'lib/strings/handles'
-import {toShareUrl} from 'lib/strings/url-helpers'
-import {s} from 'lib/styles'
 import {ListMembers} from '#/view/com/lists/ListMembers'
-import {PagerWithHeader} from 'view/com/pager/PagerWithHeader'
-import {Feed} from 'view/com/posts/Feed'
-import {ProfileSubpageHeader} from 'view/com/profile/ProfileSubpageHeader'
-import {EmptyState} from 'view/com/util/EmptyState'
-import {FAB} from 'view/com/util/fab/FAB'
-import {Button} from 'view/com/util/forms/Button'
-import {DropdownItem, NativeDropdown} from 'view/com/util/forms/NativeDropdown'
-import {TextLink} from 'view/com/util/Link'
-import {ListRef} from 'view/com/util/List'
-import {LoadLatestBtn} from 'view/com/util/load-latest/LoadLatestBtn'
-import {LoadingScreen} from 'view/com/util/LoadingScreen'
-import {Text} from 'view/com/util/text/Text'
-import * as Toast from 'view/com/util/Toast'
-import {CenteredView} from 'view/com/util/Views'
+import {PagerWithHeader} from '#/view/com/pager/PagerWithHeader'
+import {PostFeed} from '#/view/com/posts/PostFeed'
+import {ProfileSubpageHeader} from '#/view/com/profile/ProfileSubpageHeader'
+import {EmptyState} from '#/view/com/util/EmptyState'
+import {FAB} from '#/view/com/util/fab/FAB'
+import {Button} from '#/view/com/util/forms/Button'
+import {
+  DropdownItem,
+  NativeDropdown,
+} from '#/view/com/util/forms/NativeDropdown'
+import {TextLink} from '#/view/com/util/Link'
+import {ListRef} from '#/view/com/util/List'
+import {LoadLatestBtn} from '#/view/com/util/load-latest/LoadLatestBtn'
+import {LoadingScreen} from '#/view/com/util/LoadingScreen'
+import {Text} from '#/view/com/util/text/Text'
+import * as Toast from '#/view/com/util/Toast'
 import {ListHiddenScreen} from '#/screens/List/ListHiddenScreen'
 import {atoms as a, useTheme} from '#/alf'
 import {useDialogControl} from '#/components/Dialog'
+import * as Layout from '#/components/Layout'
 import * as Hider from '#/components/moderation/Hider'
 import * as Prompt from '#/components/Prompt'
 import {ReportDialog, useReportDialogControl} from '#/components/ReportDialog'
@@ -85,6 +87,14 @@ interface SectionRef {
 
 type Props = NativeStackScreenProps<CommonNavigatorParams, 'ProfileList'>
 export function ProfileListScreen(props: Props) {
+  return (
+    <Layout.Screen testID="profileListScreen">
+      <ProfileListScreenInner {...props} />
+    </Layout.Screen>
+  )
+}
+
+function ProfileListScreenInner(props: Props) {
   const {_} = useLingui()
   const {name: handleOrDid, rkey} = props.route.params
   const {data: resolvedUri, error: resolveError} = useResolveUriQuery(
@@ -96,20 +106,20 @@ export function ProfileListScreen(props: Props) {
 
   if (resolveError) {
     return (
-      <CenteredView>
+      <Layout.Content>
         <ErrorScreen
           error={_(
             msg`We're sorry, but we were unable to resolve this list. If this persists, please contact the list creator, @${handleOrDid}.`,
           )}
         />
-      </CenteredView>
+      </Layout.Content>
     )
   }
   if (listError) {
     return (
-      <CenteredView>
+      <Layout.Content>
         <ErrorScreen error={cleanError(listError)} />
-      </CenteredView>
+      </Layout.Content>
     )
   }
 
@@ -306,7 +316,6 @@ function Header({
   const isBlocking = !!list.viewer?.blocked
   const isMuting = !!list.viewer?.muted
   const isOwner = list.creator.did === currentAccount?.did
-  const {track} = useAnalytics()
   const playHaptic = useHaptics()
 
   const {mutateAsync: addSavedFeeds, isPending: isAddSavedFeedPending} =
@@ -384,7 +393,6 @@ function Header({
     try {
       await listMuteMutation.mutateAsync({uri: list.uri, mute: true})
       Toast.show(_(msg`List muted`))
-      track('Lists:Mute')
     } catch {
       Toast.show(
         _(
@@ -392,13 +400,12 @@ function Header({
         ),
       )
     }
-  }, [list, listMuteMutation, track, _])
+  }, [list, listMuteMutation, _])
 
   const onUnsubscribeMute = useCallback(async () => {
     try {
       await listMuteMutation.mutateAsync({uri: list.uri, mute: false})
       Toast.show(_(msg`List unmuted`))
-      track('Lists:Unmute')
     } catch {
       Toast.show(
         _(
@@ -406,13 +413,12 @@ function Header({
         ),
       )
     }
-  }, [list, listMuteMutation, track, _])
+  }, [list, listMuteMutation, _])
 
   const onSubscribeBlock = useCallback(async () => {
     try {
       await listBlockMutation.mutateAsync({uri: list.uri, block: true})
       Toast.show(_(msg`List blocked`))
-      track('Lists:Block')
     } catch {
       Toast.show(
         _(
@@ -420,13 +426,12 @@ function Header({
         ),
       )
     }
-  }, [list, listBlockMutation, track, _])
+  }, [list, listBlockMutation, _])
 
   const onUnsubscribeBlock = useCallback(async () => {
     try {
       await listBlockMutation.mutateAsync({uri: list.uri, block: false})
       Toast.show(_(msg`List unblocked`))
-      track('Lists:Unblock')
     } catch {
       Toast.show(
         _(
@@ -434,7 +439,7 @@ function Header({
         ),
       )
     }
-  }, [list, listBlockMutation, track, _])
+  }, [list, listBlockMutation, _])
 
   const onPressEdit = useCallback(() => {
     openModal({
@@ -451,7 +456,6 @@ function Header({
     }
 
     Toast.show(_(msg`List deleted`))
-    track('Lists:Delete')
     if (navigation.canGoBack()) {
       navigation.goBack()
     } else {
@@ -461,7 +465,6 @@ function Header({
     list,
     listDeleteMutation,
     navigation,
-    track,
     _,
     removeSavedFeed,
     savedFeedConfig,
@@ -474,8 +477,7 @@ function Header({
   const onPressShare = useCallback(() => {
     const url = toShareUrl(`/profile/${list.creator.did}/lists/${rkey}`)
     shareUrl(url)
-    track('Lists:Share')
-  }, [list, rkey, track])
+  }, [list, rkey])
 
   const dropdownItems: DropdownItem[] = useMemo(() => {
     let items: DropdownItem[] = [
@@ -787,7 +789,7 @@ const FeedSection = React.forwardRef<SectionRef, FeedSectionProps>(
 
     return (
       <View>
-        <Feed
+        <PostFeed
           testID="listFeed"
           enabled={isFocused}
           feed={feed}
@@ -1007,7 +1009,6 @@ function ErrorScreen({error}: {error: string}) {
         pal.view,
         pal.border,
         {
-          marginTop: 10,
           paddingHorizontal: 18,
           paddingVertical: 14,
           borderTopWidth: StyleSheet.hairlineWidth,

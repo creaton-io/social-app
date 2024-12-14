@@ -10,14 +10,14 @@ import {msg} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
 import {useNavigation} from '@react-navigation/native'
 
-import {BACK_HITSLOP} from 'lib/constants'
-import {makeProfileLink} from 'lib/routes/links'
-import {NavigationProp} from 'lib/routes/types'
-import {sanitizeDisplayName} from 'lib/strings/display-names'
-import {isWeb} from 'platform/detection'
-import {useProfileShadow} from 'state/cache/profile-shadow'
-import {isConvoActive, useConvo} from 'state/messages/convo'
-import {PreviewableUserAvatar} from 'view/com/util/UserAvatar'
+import {BACK_HITSLOP} from '#/lib/constants'
+import {makeProfileLink} from '#/lib/routes/links'
+import {NavigationProp} from '#/lib/routes/types'
+import {sanitizeDisplayName} from '#/lib/strings/display-names'
+import {isWeb} from '#/platform/detection'
+import {useProfileShadow} from '#/state/cache/profile-shadow'
+import {isConvoActive, useConvo} from '#/state/messages/convo'
+import {PreviewableUserAvatar} from '#/view/com/util/UserAvatar'
 import {atoms as a, useBreakpoints, useTheme, web} from '#/alf'
 import {ConvoMenu} from '#/components/dms/ConvoMenu'
 import {Bell2Off_Filled_Corner0_Rounded as BellStroke} from '#/components/icons/Bell2'
@@ -65,25 +65,23 @@ export let MessagesListHeader = ({
         a.pr_lg,
         a.py_sm,
       ]}>
-      {!gtTablet && (
-        <TouchableOpacity
-          testID="conversationHeaderBackBtn"
-          onPress={onPressBack}
-          hitSlop={BACK_HITSLOP}
-          style={{width: 30, height: 30, marginTop: isWeb ? 6 : 4}}
-          accessibilityRole="button"
-          accessibilityLabel={_(msg`Back`)}
-          accessibilityHint="">
-          <FontAwesomeIcon
-            size={18}
-            icon="angle-left"
-            style={{
-              marginTop: 6,
-            }}
-            color={t.atoms.text.color}
-          />
-        </TouchableOpacity>
-      )}
+      <TouchableOpacity
+        testID="conversationHeaderBackBtn"
+        onPress={onPressBack}
+        hitSlop={BACK_HITSLOP}
+        style={{width: 30, height: 30, marginTop: isWeb ? 6 : 4}}
+        accessibilityRole="button"
+        accessibilityLabel={_(msg`Back`)}
+        accessibilityHint="">
+        <FontAwesomeIcon
+          size={18}
+          icon="angle-left"
+          style={{
+            marginTop: 6,
+          }}
+          color={t.atoms.text.color}
+        />
+      </TouchableOpacity>
 
       {profile && moderation && blockInfo ? (
         <HeaderReady
@@ -147,7 +145,7 @@ function HeaderReady({
 
   const isDeletedAccount = profile?.handle === 'missing.invalid'
   const displayName = isDeletedAccount
-    ? 'Deleted Account'
+    ? _(msg`Deleted Account`)
     : sanitizeDisplayName(
         profile.displayName || profile.handle,
         moderation.ui('displayName'),
@@ -170,6 +168,7 @@ function HeaderReady({
           </View>
           <View style={a.flex_1}>
             <Text
+              emoji
               style={[
                 a.text_md,
                 a.font_bold,

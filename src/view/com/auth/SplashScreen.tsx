@@ -1,4 +1,3 @@
-import React from 'react'
 import {View} from 'react-native'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {msg, Trans} from '@lingui/macro'
@@ -39,21 +38,21 @@ export const SplashScreen = ({
             <Trans>What's up?</Trans>
           </Text>
         </View>
-        <View testID="signinOrCreateAccount">
+        <View
+          testID="signinOrCreateAccount"
+          style={[a.px_xl, a.gap_md, a.pb_2xl]}>
           <Button
             testID="createAccountButton"
             onPress={onPressCreateAccount}
-            accessibilityRole="button"
             label={_(msg`Create new account`)}
             accessibilityHint={_(
               msg`Opens flow to create a new Creaton account`,
             )}
-            style={[a.mx_xl, a.mb_xl]}
             size="large"
             variant="solid"
             color="primary">
             <ButtonText>
-              <Trans>Create a new account</Trans>
+              <Trans>Create account</Trans>
             </ButtonText>
           </Button>
           <Button
@@ -63,7 +62,6 @@ export const SplashScreen = ({
             accessibilityHint={_(
               msg`Opens flow to sign into your existing Creaton account`,
             )}
-            style={[a.mx_xl, a.mb_xl]}
             size="large"
             variant="solid"
             color="secondary">

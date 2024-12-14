@@ -12,21 +12,23 @@ import {useLingui} from '@lingui/react'
 import {useNavigation} from '@react-navigation/native'
 import {InfiniteData, UseInfiniteQueryResult} from '@tanstack/react-query'
 
+import {useGenerateStarterPackMutation} from '#/lib/generate-starterpack'
+import {useBottomBarOffset} from '#/lib/hooks/useBottomBarOffset'
+import {useEmail} from '#/lib/hooks/useEmail'
+import {useWebMediaQueries} from '#/lib/hooks/useWebMediaQueries'
+import {NavigationProp} from '#/lib/routes/types'
+import {parseStarterPackUri} from '#/lib/strings/starter-pack'
 import {logger} from '#/logger'
-import {useGenerateStarterPackMutation} from 'lib/generate-starterpack'
-import {useBottomBarOffset} from 'lib/hooks/useBottomBarOffset'
-import {useWebMediaQueries} from 'lib/hooks/useWebMediaQueries'
-import {NavigationProp} from 'lib/routes/types'
-import {parseStarterPackUri} from 'lib/strings/starter-pack'
-import {List, ListRef} from 'view/com/util/List'
-import {Text} from 'view/com/util/text/Text'
-import {atoms as a, useTheme} from '#/alf'
+import {List, ListRef} from '#/view/com/util/List'
+import {Text} from '#/view/com/util/text/Text'
+import {atoms as a, ios, useTheme} from '#/alf'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
 import {useDialogControl} from '#/components/Dialog'
 import {LinearGradientBackground} from '#/components/LinearGradientBackground'
 import {Loader} from '#/components/Loader'
 import * as Prompt from '#/components/Prompt'
 import {Default as StarterPackCard} from '#/components/StarterPack/StarterPackCard'
+import {VerifyEmailDialog} from '../dialogs/VerifyEmailDialog'
 import {PlusSmall_Stroke2_Corner0_Rounded as Plus} from '../icons/Plus'
 
 interface SectionRef {
@@ -132,6 +134,7 @@ export const ProfileStarterPacks = React.forwardRef<
         keyExtractor={keyExtractor}
         refreshing={isPTRing}
         headerOffset={headerOffset}
+        progressViewOffset={ios(0)}
         contentContainerStyle={{paddingBottom: headerOffset + bottomBarOffset}}
         indicatorStyle={t.name === 'light' ? 'black' : 'white'}
         removeClippedSubviews={true}
@@ -184,6 +187,9 @@ function Empty() {
   const confirmDialogControl = useDialogControl()
   const followersDialogControl = useDialogControl()
   const errorDialogControl = useDialogControl()
+
+  const {needsEmailVerification} = useEmail()
+  const verifyEmailControl = useDialogControl()
 
   const [isGenerating, setIsGenerating] = React.useState(false)
 
@@ -248,7 +254,13 @@ function Empty() {
           color="primary"
           size="small"
           disabled={isGenerating}
-          onPress={confirmDialogControl.open}
+          onPress={() => {
+            if (needsEmailVerification) {
+              verifyEmailControl.open()
+            } else {
+              confirmDialogControl.open()
+            }
+          }}
           style={{backgroundColor: 'transparent'}}>
           <ButtonText style={{color: 'white'}}>
             <Trans>Make one for me</Trans>
@@ -261,7 +273,13 @@ function Empty() {
           color="primary"
           size="small"
           disabled={isGenerating}
-          onPress={() => navigation.navigate('StarterPackWizard')}
+          onPress={() => {
+            if (needsEmailVerification) {
+              verifyEmailControl.open()
+            } else {
+              navigation.navigate('StarterPackWizard')
+            }
+          }}
           style={{
             backgroundColor: 'white',
             borderColor: 'white',
@@ -316,6 +334,12 @@ function Empty() {
         )}
         onConfirm={generate}
         confirmButtonCta={_(msg`Retry`)}
+      />
+      <VerifyEmailDialog
+        reasonText={_(
+          msg`Before creating a starter pack, you must first verify your email.`,
+        )}
+        control={verifyEmailControl}
       />
     </LinearGradientBackground>
   )

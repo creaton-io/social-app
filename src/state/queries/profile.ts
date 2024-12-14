@@ -16,7 +16,6 @@ import {
   useQueryClient,
 } from '@tanstack/react-query'
 
-import {track} from '#/lib/analytics/analytics'
 import {uploadBlob} from '#/lib/api'
 import {until} from '#/lib/async/until'
 import {useToggleMutationQueue} from '#/lib/hooks/useToggleMutationQueue'
@@ -31,7 +30,7 @@ import {
   ProgressGuideAction,
   useProgressGuideControls,
 } from '../shell/progress-guide'
-import {RQKEY as RQKEY_LIST_CONVOS} from './messages/list-converations'
+import {RQKEY as RQKEY_LIST_CONVOS} from './messages/list-conversations'
 import {RQKEY as RQKEY_MY_BLOCKED} from './my-blocked-accounts'
 import {RQKEY as RQKEY_MY_MUTED} from './my-muted-accounts'
 
@@ -160,6 +159,9 @@ export function useProfileUpdateMutation() {
         } else {
           existing.displayName = updates.displayName
           existing.description = updates.description
+          if ('pinnedPost' in updates) {
+            existing.pinnedPost = updates.pinnedPost
+          }
         }
         if (newUserAvatarPromise) {
           const res = await newUserAvatarPromise
@@ -219,8 +221,8 @@ export function useProfileUpdateMutation() {
 
 export function useProfileFollowMutationQueue(
   profile: Shadow<AppBskyActorDefs.ProfileViewDetailed>,
-  logContext: LogEvents['profile:follow:sampled']['logContext'] &
-    LogEvents['profile:follow:sampled']['logContext'],
+  logContext: LogEvents['profile:follow']['logContext'] &
+    LogEvents['profile:follow']['logContext'],
 ) {
   const agent = useAgent()
   const queryClient = useQueryClient()
@@ -291,7 +293,7 @@ export function useProfileFollowMutationQueue(
 }
 
 function useProfileFollowMutation(
-  logContext: LogEvents['profile:follow:sampled']['logContext'],
+  logContext: LogEvents['profile:follow']['logContext'],
   profile: Shadow<AppBskyActorDefs.ProfileViewDetailed>,
 ) {
   const {currentAccount} = useSession()
@@ -306,7 +308,7 @@ function useProfileFollowMutation(
         ownProfile = findProfileQueryData(queryClient, currentAccount.did)
       }
       captureAction(ProgressGuideAction.Follow)
-      logEvent('profile:follow:sampled', {
+      logEvent('profile:follow', {
         logContext,
         didBecomeMutual: profile.viewer
           ? Boolean(profile.viewer.followedBy)
@@ -316,20 +318,16 @@ function useProfileFollowMutation(
       })
       return await agent.follow(did)
     },
-    onSuccess(data, variables) {
-      track('Profile:Follow', {username: variables.did})
-    },
   })
 }
 
 function useProfileUnfollowMutation(
-  logContext: LogEvents['profile:unfollow:sampled']['logContext'],
+  logContext: LogEvents['profile:unfollow']['logContext'],
 ) {
   const agent = useAgent()
   return useMutation<void, Error, {did: string; followUri: string}>({
     mutationFn: async ({followUri}) => {
-      logEvent('profile:unfollow:sampled', {logContext})
-      track('Profile:Unfollow', {username: followUri})
+      logEvent('profile:unfollow', {logContext})
       return await agent.deleteFollow(followUri)
     },
   })
@@ -411,7 +409,7 @@ function useProfileUnmuteMutation() {
 }
 
 export function useProfileBlockMutationQueue(
-  profile: Shadow<AppBskyActorDefs.ProfileViewDetailed>,
+  profile: Shadow<AppBskyActorDefs.ProfileViewBasic>,
 ) {
   const queryClient = useQueryClient()
   const did = profile.did

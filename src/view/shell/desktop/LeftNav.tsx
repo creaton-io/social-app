@@ -1,9 +1,6 @@
 import React from 'react'
-import {StyleSheet, TouchableOpacity, View} from 'react-native'
-import {
-  FontAwesomeIcon,
-  FontAwesomeIconStyle,
-} from '@fortawesome/react-native-fontawesome'
+import {StyleSheet, View} from 'react-native'
+import {FontAwesomeIconStyle} from '@fortawesome/react-native-fontawesome'
 import {msg, Trans} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
 import {
@@ -14,14 +11,14 @@ import {
 
 import {usePalette} from '#/lib/hooks/usePalette'
 import {useWebMediaQueries} from '#/lib/hooks/useWebMediaQueries'
-import {getCurrentRoute, isStateAtTabRoot, isTab} from '#/lib/routes/helpers'
+import {getCurrentRoute, isTab} from '#/lib/routes/helpers'
 import {makeProfileLink} from '#/lib/routes/links'
-import {CommonNavigatorParams, NavigationProp} from '#/lib/routes/types'
+import {CommonNavigatorParams} from '#/lib/routes/types'
 import {isInvalidHandle} from '#/lib/strings/handles'
 import {colors, s} from '#/lib/styles'
 import {emitSoftReset} from '#/state/events'
 import {useFetchHandle} from '#/state/queries/handle'
-import {useUnreadMessageCount} from '#/state/queries/messages/list-converations'
+import {useUnreadMessageCount} from '#/state/queries/messages/list-conversations'
 import {useUnreadNotifications} from '#/state/queries/notifications/unread'
 import {useProfileQuery} from '#/state/queries/profile'
 import {useSession} from '#/state/session'
@@ -29,9 +26,10 @@ import {useComposerControls} from '#/state/shell/composer'
 import {Link} from '#/view/com/util/Link'
 import {LoadingPlaceholder} from '#/view/com/util/LoadingPlaceholder'
 import {PressableWithHover} from '#/view/com/util/PressableWithHover'
-import {Text} from '#/view/com/util/text/Text'
 import {UserAvatar} from '#/view/com/util/UserAvatar'
 import {NavSignupCard} from '#/view/shell/NavSignupCard'
+import {atoms as a, useBreakpoints, useTheme} from '#/alf'
+import {Button, ButtonIcon, ButtonText} from '#/components/Button'
 import {
   Bell_Filled_Corner0_Rounded as BellFilled,
   Bell_Stroke2_Corner0_Rounded as Bell,
@@ -63,6 +61,7 @@ import {
   UserCircle_Filled_Corner0_Rounded as UserCircleFilled,
   UserCircle_Stroke2_Corner0_Rounded as UserCircle,
 } from '#/components/icons/UserCircle'
+import {Text} from '#/components/Typography'
 import {router} from '../../../routes'
 
 const NAV_ICON_WIDTH = 28
@@ -100,47 +99,6 @@ function ProfileCard() {
   )
 }
 
-const HIDDEN_BACK_BNT_ROUTES = ['StarterPackWizard', 'StarterPackEdit']
-
-function BackBtn() {
-  const {isTablet} = useWebMediaQueries()
-  const pal = usePalette('default')
-  const navigation = useNavigation<NavigationProp>()
-  const {_} = useLingui()
-  const shouldShow = useNavigationState(
-    state =>
-      !isStateAtTabRoot(state) &&
-      !HIDDEN_BACK_BNT_ROUTES.includes(getCurrentRoute(state).name),
-  )
-
-  const onPressBack = React.useCallback(() => {
-    if (navigation.canGoBack()) {
-      navigation.goBack()
-    } else {
-      navigation.navigate('Home')
-    }
-  }, [navigation])
-
-  if (!shouldShow || isTablet) {
-    return <></>
-  }
-  return (
-    <TouchableOpacity
-      testID="viewHeaderBackOrMenuBtn"
-      onPress={onPressBack}
-      style={styles.backBtn}
-      accessibilityRole="button"
-      accessibilityLabel={_(msg`Go back`)}
-      accessibilityHint="">
-      <FontAwesomeIcon
-        size={24}
-        icon="angle-left"
-        style={pal.text as FontAwesomeIconStyle}
-      />
-    </TouchableOpacity>
-  )
-}
-
 interface NavItemProps {
   count?: string
   href: string
@@ -149,9 +107,11 @@ interface NavItemProps {
   label: string
 }
 function NavItem({count, href, icon, iconFilled, label}: NavItemProps) {
-  const pal = usePalette('default')
+  const t = useTheme()
+  const {_} = useLingui()
   const {currentAccount} = useSession()
-  const {isDesktop, isTablet} = useWebMediaQueries()
+  const {gtMobile, gtTablet} = useBreakpoints()
+  const isTablet = gtMobile && !gtTablet
   const [pathName] = React.useMemo(() => router.matchPath(href), [href])
   const currentRouteInfo = useNavigationState(state => {
     if (!state) {
@@ -183,35 +143,82 @@ function NavItem({count, href, icon, iconFilled, label}: NavItemProps) {
 
   return (
     <PressableWithHover
-      style={styles.navItemWrapper}
-      hoverStyle={pal.viewLight}
+      style={[
+        a.flex_row,
+        a.align_center,
+        a.p_md,
+        a.rounded_sm,
+        a.gap_sm,
+        a.outline_inset_1,
+        a.transition_color,
+      ]}
+      hoverStyle={t.atoms.bg_contrast_25}
       // @ts-ignore the function signature differs on web -prf
       onPress={onPressWrapped}
       // @ts-ignore web only -prf
       href={href}
       dataSet={{noUnderline: 1}}
-      accessibilityRole="tab"
+      role="link"
       accessibilityLabel={label}
       accessibilityHint="">
       <View
         style={[
-          styles.navItemIconWrapper,
-          isTablet && styles.navItemIconWrapperTablet,
+          a.align_center,
+          a.justify_center,
+          a.z_10,
+          {
+            width: 24,
+            height: 24,
+          },
+          isTablet && {
+            width: 40,
+            height: 40,
+          },
         ]}>
         {isCurrent ? iconFilled : icon}
         {typeof count === 'string' && count ? (
-          <Text
-            type="button"
+          <View
             style={[
-              styles.navItemCount,
-              isTablet && styles.navItemCountTablet,
+              a.absolute,
+              a.inset_0,
+              {right: -20}, // more breathing room
             ]}>
-            {count}
-          </Text>
+            <Text
+              accessibilityLabel={_(msg`${count} unread items`)}
+              accessibilityHint=""
+              accessible={true}
+              numberOfLines={1}
+              style={[
+                a.absolute,
+                a.text_xs,
+                a.font_bold,
+                a.rounded_full,
+                a.text_center,
+                a.leading_tight,
+                {
+                  top: '-10%',
+                  left: count.length === 1 ? 12 : 8,
+                  backgroundColor: t.palette.primary_500,
+                  color: t.palette.white,
+                  lineHeight: a.text_sm.fontSize,
+                  paddingHorizontal: 4,
+                  paddingVertical: 1,
+                  minWidth: 16,
+                },
+                isTablet && [
+                  {
+                    top: '10%',
+                    left: count.length === 1 ? 20 : 16,
+                  },
+                ],
+              ]}>
+              {count}
+            </Text>
+          </View>
         ) : null}
       </View>
-      {isDesktop && (
-        <Text type="title" style={[isCurrent ? s.bold : s.normal, pal.text]}>
+      {gtTablet && (
+        <Text style={[a.text_xl, isCurrent ? a.font_heavy : a.font_normal]}>
           {label}
         </Text>
       )}
@@ -268,21 +275,20 @@ function ComposeBtn() {
     return null
   }
   return (
-    <View style={styles.newPostBtnContainer}>
-      <TouchableOpacity
+    <View style={[a.flex_row, a.pl_md, a.pt_xl]}>
+      <Button
         disabled={isFetchingHandle}
-        style={styles.newPostBtn}
+        label={_(msg`Compose new post`)}
         onPress={onPressCompose}
-        accessibilityRole="button"
-        accessibilityLabel={_(msg`New post`)}
-        accessibilityHint="">
-        <View style={styles.newPostBtnIconWrapper}>
-          <EditBig width={19} style={styles.newPostBtnLabel} />
-        </View>
-        <Text type="button" style={styles.newPostBtnLabel}>
+        size="large"
+        variant="solid"
+        color="primary"
+        style={[a.rounded_full]}>
+        <ButtonIcon icon={EditBig} position="left" />
+        <ButtonText>
           <Trans context="action">New Post</Trans>
-        </Text>
-      </TouchableOpacity>
+        </ButtonText>
+      </Button>
     </View>
   )
 }
@@ -296,8 +302,16 @@ function ChatNavItem() {
     <NavItem
       href="/messages"
       count={numUnreadMessages.numUnread}
-      icon={<Message style={pal.text} width={NAV_ICON_WIDTH} />}
-      iconFilled={<MessageFilled style={pal.text} width={NAV_ICON_WIDTH} />}
+      icon={
+        <Message style={pal.text} aria-hidden={true} width={NAV_ICON_WIDTH} />
+      }
+      iconFilled={
+        <MessageFilled
+          style={pal.text}
+          aria-hidden={true}
+          width={NAV_ICON_WIDTH}
+        />
+      }
       label={_(msg`Chat`)}
     />
   )
@@ -316,43 +330,76 @@ export function DesktopLeftNav() {
 
   return (
     <View
+      role="navigation"
       style={[
+        a.px_xl,
         styles.leftNav,
         isTablet && styles.leftNavTablet,
-        pal.view,
         pal.border,
       ]}>
       {hasSession ? (
         <ProfileCard />
       ) : isDesktop ? (
-        <View style={{paddingHorizontal: 12}}>
+        <View style={[a.pt_xl]}>
           <NavSignupCard />
         </View>
       ) : null}
 
       {hasSession && (
         <>
-          <BackBtn />
-
           <NavItem
             href="/"
-            icon={<Home width={NAV_ICON_WIDTH} style={pal.text} />}
-            iconFilled={<HomeFilled width={NAV_ICON_WIDTH} style={pal.text} />}
+            icon={
+              <Home
+                aria-hidden={true}
+                width={NAV_ICON_WIDTH}
+                style={pal.text}
+              />
+            }
+            iconFilled={
+              <HomeFilled
+                aria-hidden={true}
+                width={NAV_ICON_WIDTH}
+                style={pal.text}
+              />
+            }
             label={_(msg`Home`)}
           />
           <NavItem
             href="/search"
-            icon={<MagnifyingGlass style={pal.text} width={NAV_ICON_WIDTH} />}
+            icon={
+              <MagnifyingGlass
+                style={pal.text}
+                aria-hidden={true}
+                width={NAV_ICON_WIDTH}
+              />
+            }
             iconFilled={
-              <MagnifyingGlassFilled style={pal.text} width={NAV_ICON_WIDTH} />
+              <MagnifyingGlassFilled
+                style={pal.text}
+                aria-hidden={true}
+                width={NAV_ICON_WIDTH}
+              />
             }
             label={_(msg`Search`)}
           />
           <NavItem
             href="/notifications"
             count={numUnreadNotifications}
-            icon={<Bell width={NAV_ICON_WIDTH} style={pal.text} />}
-            iconFilled={<BellFilled width={NAV_ICON_WIDTH} style={pal.text} />}
+            icon={
+              <Bell
+                aria-hidden={true}
+                width={NAV_ICON_WIDTH}
+                style={pal.text}
+              />
+            }
+            iconFilled={
+              <BellFilled
+                aria-hidden={true}
+                width={NAV_ICON_WIDTH}
+                style={pal.text}
+              />
+            }
             label={_(msg`Notifications`)}
           />
           <ChatNavItem />
@@ -361,12 +408,14 @@ export function DesktopLeftNav() {
             icon={
               <Hashtag
                 style={pal.text as FontAwesomeIconStyle}
+                aria-hidden={true}
                 width={NAV_ICON_WIDTH}
               />
             }
             iconFilled={
               <HashtagFilled
                 style={pal.text as FontAwesomeIconStyle}
+                aria-hidden={true}
                 width={NAV_ICON_WIDTH}
               />
             }
@@ -374,23 +423,55 @@ export function DesktopLeftNav() {
           />
           <NavItem
             href="/lists"
-            icon={<List style={pal.text} width={NAV_ICON_WIDTH} />}
-            iconFilled={<ListFilled style={pal.text} width={NAV_ICON_WIDTH} />}
+            icon={
+              <List
+                style={pal.text}
+                aria-hidden={true}
+                width={NAV_ICON_WIDTH}
+              />
+            }
+            iconFilled={
+              <ListFilled
+                style={pal.text}
+                aria-hidden={true}
+                width={NAV_ICON_WIDTH}
+              />
+            }
             label={_(msg`Lists`)}
           />
           <NavItem
             href={currentAccount ? makeProfileLink(currentAccount) : '/'}
-            icon={<UserCircle width={NAV_ICON_WIDTH} style={pal.text} />}
+            icon={
+              <UserCircle
+                aria-hidden={true}
+                width={NAV_ICON_WIDTH}
+                style={pal.text}
+              />
+            }
             iconFilled={
-              <UserCircleFilled width={NAV_ICON_WIDTH} style={pal.text} />
+              <UserCircleFilled
+                aria-hidden={true}
+                width={NAV_ICON_WIDTH}
+                style={pal.text}
+              />
             }
             label={_(msg`Profile`)}
           />
           <NavItem
             href="/settings"
-            icon={<Settings width={NAV_ICON_WIDTH} style={pal.text} />}
+            icon={
+              <Settings
+                aria-hidden={true}
+                width={NAV_ICON_WIDTH}
+                style={pal.text}
+              />
+            }
             iconFilled={
-              <SettingsFilled width={NAV_ICON_WIDTH} style={pal.text} />
+              <SettingsFilled
+                aria-hidden={true}
+                width={NAV_ICON_WIDTH}
+                style={pal.text}
+              />
             }
             label={_(msg`Settings`)}
           />
@@ -408,8 +489,17 @@ const styles = StyleSheet.create({
     position: 'fixed',
     top: 10,
     // @ts-ignore web only
-    left: 'calc(50vw - 300px - 220px - 20px)',
-    width: 220,
+    left: '50%',
+    transform: [
+      {
+        translateX: -300,
+      },
+      {
+        translateX: '-100%',
+      },
+      ...a.scrollbar_offset.transform,
+    ],
+    width: 240,
     // @ts-ignore web only
     maxHeight: 'calc(100vh - 10px)',
     overflowY: 'auto',
@@ -421,7 +511,10 @@ const styles = StyleSheet.create({
     borderRightWidth: 1,
     height: '100%',
     width: 76,
+    paddingLeft: 0,
+    paddingRight: 0,
     alignItems: 'center',
+    transform: [],
   },
 
   profileCard: {
@@ -439,68 +532,5 @@ const styles = StyleSheet.create({
     right: 12,
     width: 30,
     height: 30,
-  },
-
-  navItemWrapper: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 12,
-    padding: 12,
-    borderRadius: 8,
-    gap: 10,
-  },
-  navItemIconWrapper: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 28,
-    height: 24,
-    marginTop: 2,
-    zIndex: 1,
-  },
-  navItemIconWrapperTablet: {
-    width: 40,
-    height: 40,
-  },
-  navItemCount: {
-    position: 'absolute',
-    top: 0,
-    left: 15,
-    backgroundColor: colors.blue3,
-    color: colors.white,
-    fontSize: 12,
-    fontWeight: '600',
-    paddingHorizontal: 4,
-    borderRadius: 6,
-  },
-  navItemCountTablet: {
-    left: 18,
-    fontSize: 14,
-  },
-
-  newPostBtnContainer: {
-    flexDirection: 'row',
-  },
-  newPostBtn: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 24,
-    paddingTop: 10,
-    paddingBottom: 12, // visually aligns the text vertically inside the button
-    paddingLeft: 16,
-    paddingRight: 18, // looks nicer like this
-    backgroundColor: colors.blue3,
-    marginLeft: 12,
-    marginTop: 20,
-    marginBottom: 10,
-    gap: 8,
-  },
-  newPostBtnIconWrapper: {
-    marginTop: 2, // aligns the icon visually with the text
-  },
-  newPostBtnLabel: {
-    color: colors.white,
-    fontSize: 16,
-    fontWeight: '600',
   },
 })

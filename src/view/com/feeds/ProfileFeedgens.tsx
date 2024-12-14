@@ -1,8 +1,10 @@
 import React from 'react'
 import {
+  ActivityIndicator,
   findNodeHandle,
   ListRenderItemInfo,
   StyleProp,
+  StyleSheet,
   View,
   ViewStyle,
 } from 'react-native'
@@ -10,14 +12,15 @@ import {msg} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
 import {useQueryClient} from '@tanstack/react-query'
 
+import {useWebMediaQueries} from '#/lib/hooks/useWebMediaQueries'
 import {cleanError} from '#/lib/strings/errors'
 import {logger} from '#/logger'
 import {isNative, isWeb} from '#/platform/detection'
 import {usePreferencesQuery} from '#/state/queries/preferences'
 import {RQKEY, useProfileFeedgensQuery} from '#/state/queries/profile-feedgens'
+import {EmptyState} from '#/view/com/util/EmptyState'
 import {FeedLoadingPlaceholder} from '#/view/com/util/LoadingPlaceholder'
-import {EmptyState} from 'view/com/util/EmptyState'
-import {atoms as a, useTheme} from '#/alf'
+import {atoms as a, ios, useTheme} from '#/alf'
 import * as FeedCard from '#/components/FeedCard'
 import {ErrorMessage} from '../util/error/ErrorMessage'
 import {List, ListRef} from '../util/List'
@@ -57,6 +60,7 @@ export const ProfileFeedgens = React.forwardRef<
     data,
     isFetching,
     isFetched,
+    isFetchingNextPage,
     hasNextPage,
     fetchNextPage,
     isError,
@@ -65,6 +69,7 @@ export const ProfileFeedgens = React.forwardRef<
   } = useProfileFeedgensQuery(did, opts)
   const isEmpty = !isFetching && !data?.pages[0]?.feeds.length
   const {data: preferences} = usePreferencesQuery()
+  const {isMobile} = useWebMediaQueries()
 
   const items = React.useMemo(() => {
     let items: any[] = []
@@ -180,6 +185,12 @@ export const ProfileFeedgens = React.forwardRef<
     }
   }, [enabled, scrollElRef, setScrollViewTag])
 
+  const ProfileFeedgensFooter = React.useCallback(() => {
+    return isFetchingNextPage ? (
+      <ActivityIndicator style={[styles.footer]} />
+    ) : null
+  }, [isFetchingNextPage])
+
   return (
     <View testID={testID} style={style}>
       <List
@@ -188,10 +199,12 @@ export const ProfileFeedgens = React.forwardRef<
         data={items}
         keyExtractor={(item: any) => item._reactKey || item.uri}
         renderItem={renderItem}
+        ListFooterComponent={ProfileFeedgensFooter}
         refreshing={isPTRing}
         onRefresh={onRefresh}
         headerOffset={headerOffset}
-        contentContainerStyle={isNative && {paddingBottom: headerOffset + 100}}
+        progressViewOffset={ios(0)}
+        contentContainerStyle={isMobile && {paddingBottom: headerOffset + 100}}
         indicatorStyle={t.name === 'light' ? 'black' : 'white'}
         removeClippedSubviews={true}
         // @ts-ignore our .web version only -prf
@@ -200,4 +213,8 @@ export const ProfileFeedgens = React.forwardRef<
       />
     </View>
   )
+})
+
+const styles = StyleSheet.create({
+  footer: {paddingTop: 20},
 })

@@ -1,7 +1,7 @@
-import React from 'react'
 import {View} from 'react-native'
 import {AppBskyActorDefs} from '@atproto/api'
-import {Trans} from '@lingui/macro'
+import {msg, Trans} from '@lingui/macro'
+import {useLingui} from '@lingui/react'
 
 import {isInvalidHandle} from '#/lib/strings/handles'
 import {isIOS} from '#/platform/detection'
@@ -20,6 +20,7 @@ export function ProfileHeaderHandle({
   disableTaps?: boolean
 }) {
   const t = useTheme()
+  const {_} = useLingui()
   const invalidHandle = isInvalidHandle(profile.handle)
   const blockHide = profile.viewer?.blocking || profile.viewer?.blockedBy
   const useResolveDidQueryResult = useResolveDidDocQuery(profile.did)
@@ -42,7 +43,7 @@ export function ProfileHeaderHandle({
 
   return (
     <View
-      style={[a.flex_row, a.gap_xs, a.align_center]}
+      style={[a.flex_row, a.gap_xs, a.align_center, {maxWidth: '100%'}]}
       pointerEvents={disableTaps ? 'none' : isIOS ? 'auto' : 'box-none'}>
       <NewskieDialog profile={profile} disabled={disableTaps} />
       {profile.viewer?.followedBy && !blockHide ? (
@@ -53,6 +54,7 @@ export function ProfileHeaderHandle({
         </View>
       ) : undefined}
       <Text
+        emoji
         numberOfLines={1}
         style={[
           invalidHandle
@@ -64,10 +66,10 @@ export function ProfileHeaderHandle({
                 a.rounded_xs,
                 {borderColor: t.palette.contrast_200},
               ]
-            : [a.text_md, a.leading_tight, t.atoms.text_contrast_medium],
+            : [a.text_md, a.leading_snug, t.atoms.text_contrast_medium],
           web({wordBreak: 'break-all'}),
         ]}>
-        {invalidHandle ? <Trans>⚠Invalid Handle</Trans> : `@${profile.handle}`}
+        {invalidHandle ? _(msg`⚠Invalid Handle`) : `@${profile.handle}`}
       </Text>
       {ethAddress ? (
         <Button variant="solid" color="primary" size="tiny" label="Link out">

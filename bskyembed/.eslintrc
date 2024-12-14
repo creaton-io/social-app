@@ -11,7 +11,7 @@
   "rules": {
     "simple-import-sort/imports": "warn",
     "simple-import-sort/exports": "warn",
-    'no-else-return': 'off'
+    "no-else-return": "off"
   },
   "parserOptions": {
     "sourceType": "module",

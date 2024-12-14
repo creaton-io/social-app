@@ -13,7 +13,6 @@ import {
 import {msg, Trans} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
 
-import {useAnalytics} from '#/lib/analytics/analytics'
 import {useRequestNotificationsPermission} from '#/lib/notifications/notifications'
 import {isNetworkError} from '#/lib/strings/errors'
 import {cleanError} from '#/lib/strings/errors'
@@ -56,7 +55,6 @@ export const LoginForm = ({
   onPressBack: () => void
   onPressSignSIWE: () => Promise<string>
 }) => {
-  const {track} = useAnalytics()
   const t = useTheme()
   const [isProcessing, setIsProcessing] = useState<boolean>(false)
   const [isAuthFactorTokenNeeded, setIsAuthFactorTokenNeeded] =
@@ -73,8 +71,7 @@ export const LoginForm = ({
 
   const onPressSelectService = React.useCallback(() => {
     Keyboard.dismiss()
-    track('Signin:PressedSelectService')
-  }, [track])
+  }, [])
 
   const onPressNext = async () => {
     if (isProcessing) return
@@ -219,7 +216,7 @@ export const LoginForm = ({
               autoCapitalize="none"
               autoFocus
               autoCorrect={false}
-              autoComplete="off"
+              autoComplete="one-time-code"
               returnKeyType="done"
               textContentType="username"
               blurOnSubmit={false} // prevents flickering due to onSubmitEditing going to next field

@@ -3,8 +3,6 @@ import {Image as RNImage} from 'react-native-image-crop-picker'
 import {AppBskyActorDefs, AppBskyGraphDefs} from '@atproto/api'
 
 import {useNonReactiveCallback} from '#/lib/hooks/useNonReactiveCallback'
-import {GalleryModel} from '#/state/models/media/gallery'
-import {ImageModel} from '#/state/models/media/image'
 
 export interface EditProfileModal {
   name: 'edit-profile'
@@ -37,38 +35,17 @@ export interface ListAddRemoveUsersModal {
   ) => void
 }
 
-export interface EditImageModal {
-  name: 'edit-image'
-  image: ImageModel
-  gallery: GalleryModel
-}
-
 export interface CropImageModal {
   name: 'crop-image'
   uri: string
   dimensions?: {width: number; height: number}
+  aspect?: number
+  circular?: boolean
   onSelect: (img?: RNImage) => void
-}
-
-export interface AltTextImageModal {
-  name: 'alt-text-image'
-  image: ImageModel
 }
 
 export interface DeleteAccountModal {
   name: 'delete-account'
-}
-
-export interface SelfLabelModal {
-  name: 'self-label'
-  labels: string[]
-  hasMedia: boolean
-  onChange: (labels: string[]) => void
-}
-
-export interface ChangeHandleModal {
-  name: 'change-handle'
-  onChanged: () => void
 }
 
 export interface WaitlistModal {
@@ -77,10 +54,6 @@ export interface WaitlistModal {
 
 export interface InviteCodesModal {
   name: 'invite-codes'
-}
-
-export interface AddAppPasswordModal {
-  name: 'add-app-password'
 }
 
 export interface ContentLanguagesSettingsModal {
@@ -119,13 +92,13 @@ export interface InAppBrowserConsentModal {
 
 export type Modal =
   // Account
-  | AddAppPasswordModal
-  | ChangeHandleModal
   | DeleteAccountModal
-  | EditProfileModal
   | VerifyEmailModal
   | ChangeEmailModal
   | ChangePasswordModal
+
+  // Temp
+  | EditProfileModal
 
   // Curation
   | ContentLanguagesSettingsModal
@@ -137,10 +110,7 @@ export type Modal =
   | ListAddRemoveUsersModal
 
   // Posts
-  | AltTextImageModal
   | CropImageModal
-  | EditImageModal
-  | SelfLabelModal
 
   // Bluesky access
   | WaitlistModal

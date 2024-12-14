@@ -9,10 +9,9 @@ import {
 import {msg, Trans} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
 
-import {useAnalytics} from '#/lib/analytics/analytics'
 import {sanitizeDisplayName} from '#/lib/strings/display-names'
 import {logger} from '#/logger'
-import {isIOS} from '#/platform/detection'
+import {isIOS, isWeb} from '#/platform/detection'
 import {useProfileShadow} from '#/state/cache/profile-shadow'
 import {Shadow} from '#/state/cache/types'
 import {useModalControls} from '#/state/modals'
@@ -28,6 +27,7 @@ import * as Toast from '#/view/com/util/Toast'
 import {atoms as a} from '#/alf'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
 import * as Dialog from '#/components/Dialog'
+import {useDialogControl} from '#/components/Dialog'
 import {MessageProfileButton} from '#/components/dms/MessageProfileButton'
 import {Check_Stroke2_Corner0_Rounded as Check} from '#/components/icons/Check'
 import {PlusLarge_Stroke2_Corner0_Rounded as Plus} from '#/components/icons/Plus'
@@ -38,6 +38,7 @@ import {
 import * as Prompt from '#/components/Prompt'
 import {RichText} from '#/components/RichText'
 import {ProfileHeaderDisplayName} from './DisplayName'
+import {EditProfileDialog} from './EditProfileDialog'
 import {ProfileHeaderHandle} from './Handle'
 import {ProfileHeaderMetrics} from './Metrics'
 import {ProfileHeaderShell} from './Shell'
@@ -62,8 +63,6 @@ let ProfileHeaderStandard = ({
     useProfileShadow(profileUnshadowed)
   const {currentAccount, hasSession} = useSession()
   const {_} = useLingui()
-  const {openModal} = useModalControls()
-  const {track} = useAnalytics()
   const basic = Dialog.useDialogControl()
   const moderation = useMemo(
     () => moderateProfile(profile, moderationOpts),
@@ -81,13 +80,19 @@ let ProfileHeaderStandard = ({
     profile.viewer?.blockedBy ||
     profile.viewer?.blockingByList
 
+  const {openModal} = useModalControls()
+  const editProfileControl = useDialogControl()
   const onPressEditProfile = React.useCallback(() => {
-    track('ProfileHeader:EditProfileButtonClicked')
-    openModal({
-      name: 'edit-profile',
-      profile,
-    })
-  }, [track, openModal, profile])
+    if (isWeb) {
+      // temp, while we figure out the nested dialog bug
+      openModal({
+        name: 'edit-profile',
+        profile,
+      })
+    } else {
+      editProfileControl.open()
+    }
+  }, [editProfileControl, openModal, profile])
 
   const useResolveDidQueryResult = useResolveDidDocQuery(profile.did)
   let fullEthAddress = ''
@@ -106,7 +111,6 @@ let ProfileHeaderStandard = ({
   const onPressFollow = () => {
     requireAuth(async () => {
       try {
-        track('ProfileHeader:FollowButtonClicked')
         await queueFollow()
         Toast.show(
           _(
@@ -128,7 +132,6 @@ let ProfileHeaderStandard = ({
   const onPressUnfollow = () => {
     requireAuth(async () => {
       try {
-        track('ProfileHeader:UnfollowButtonClicked')
         await queueUnfollow()
         Toast.show(
           _(
@@ -148,7 +151,6 @@ let ProfileHeaderStandard = ({
   }
 
   const unblockAccount = React.useCallback(async () => {
-    track('ProfileHeader:UnblockAccountButtonClicked')
     try {
       await queueUnblock()
       Toast.show(_(msg`Account unblocked`))
@@ -158,7 +160,7 @@ let ProfileHeaderStandard = ({
         Toast.show(_(msg`There was an issue! ${e.toString()}`), 'xmark')
       }
     }
-  }, [_, queueUnblock, track])
+  }, [_, queueUnblock])
 
   const isMe = React.useMemo(
     () => currentAccount?.did === profile.did,
@@ -178,25 +180,32 @@ let ProfileHeaderStandard = ({
           style={[
             {paddingLeft: 90},
             a.flex_row,
+            a.align_center,
             a.justify_end,
-            a.gap_sm,
+            a.gap_xs,
             a.pb_sm,
             a.flex_wrap,
           ]}
           pointerEvents={isIOS ? 'auto' : 'box-none'}>
           {isMe ? (
-            <Button
-              testID="profileHeaderEditProfileButton"
-              size="small"
-              color="secondary"
-              variant="solid"
-              onPress={onPressEditProfile}
-              label={_(msg`Edit profile`)}
-              style={[a.rounded_full, a.py_sm]}>
-              <ButtonText>
-                <Trans>Edit Profile</Trans>
-              </ButtonText>
-            </Button>
+            <>
+              <Button
+                testID="profileHeaderEditProfileButton"
+                size="small"
+                color="secondary"
+                variant="solid"
+                onPress={onPressEditProfile}
+                label={_(msg`Edit profile`)}
+                style={[a.rounded_full]}>
+                <ButtonText>
+                  <Trans>Edit Profile</Trans>
+                </ButtonText>
+              </Button>
+              <EditProfileDialog
+                profile={profile}
+                control={editProfileControl}
+              />
+            </>
           ) : profile.viewer?.blocking ? (
             profile.viewer?.blockingByList ? null : (
               <Button
@@ -207,7 +216,7 @@ let ProfileHeaderStandard = ({
                 label={_(msg`Unblock`)}
                 disabled={!hasSession}
                 onPress={() => unblockPromptControl.open()}
-                style={[a.rounded_full, a.py_sm]}>
+                style={[a.rounded_full]}>
                 <ButtonText>
                   <Trans context="action">Unblock</Trans>
                 </ButtonText>
@@ -242,7 +251,7 @@ let ProfileHeaderStandard = ({
                 onPress={
                   profile.viewer?.following ? onPressUnfollow : onPressFollow
                 }
-                style={[a.rounded_full, a.gap_xs, a.py_sm]}>
+                style={[a.rounded_full]}>
                 <ButtonIcon
                   position="left"
                   icon={profile.viewer?.following ? Check : Plus}
@@ -261,7 +270,7 @@ let ProfileHeaderStandard = ({
           ) : null}
           <ProfileMenu profile={profile} />
         </View>
-        <View style={[a.flex_col, a.gap_xs, a.pb_sm]}>
+        <View style={[a.flex_col, a.gap_2xs, a.pt_2xs, a.pb_sm]}>
           <ProfileHeaderDisplayName profile={profile} moderation={moderation} />
           <ProfileHeaderHandle profile={profile} />
         </View>

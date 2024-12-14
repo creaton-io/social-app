@@ -59,7 +59,7 @@ function PlaceholderOverlay({
         accessibilityLabel={_(msg`Play Video`)}
         accessibilityHint={_(msg`Play Video`)}
         onPress={onPress}
-        style={[styles.overlayContainer, styles.topRadius]}>
+        style={[styles.overlayContainer]}>
         {!isPlayerActive ? (
           <PlayButtonIcon />
         ) : (
@@ -227,39 +227,19 @@ export function ExternalPlayer({
       <Animated.View
         ref={viewRef}
         collapsable={false}
-        style={[
-          aspect,
-          a.rounded_md,
-          a.overflow_hidden,
-          {
-            borderBottomLeftRadius: 0,
-            borderBottomRightRadius: 0,
-          },
-        ]}>
+        style={[aspect, a.overflow_hidden]}>
         {link.thumb && (!isPlayerActive || isLoading) ? (
           <>
             <Image
-              style={[a.flex_1, styles.topRadius]}
+              style={[a.flex_1]}
               source={{uri: link.thumb}}
               accessibilityIgnoresInvertColors
             />
             <Fill
               style={[
-                a.rounded_md,
                 t.name === 'light' ? t.atoms.bg_contrast_975 : t.atoms.bg,
                 {
-                  borderBottomLeftRadius: 0,
-                  borderBottomRightRadius: 0,
                   opacity: 0.3,
-                },
-              ]}
-            />
-            <MediaInsetBorder
-              opaque
-              style={[
-                {
-                  borderBottomLeftRadius: 0,
-                  borderBottomRightRadius: 0,
                 },
               ]}
             />
@@ -267,12 +247,9 @@ export function ExternalPlayer({
         ) : (
           <Fill
             style={[
-              a.rounded_md,
               {
                 backgroundColor:
                   t.name === 'light' ? t.palette.contrast_975 : 'black',
-                borderBottomLeftRadius: 0,
-                borderBottomRightRadius: 0,
                 opacity: 0.3,
               },
             ]}
@@ -303,10 +280,6 @@ export function ExternalPlayer({
 }
 
 const styles = StyleSheet.create({
-  topRadius: {
-    borderTopLeftRadius: a.rounded_md.borderRadius,
-    borderTopRightRadius: a.rounded_md.borderRadius,
-  },
   overlayContainer: {
     flex: 1,
     justifyContent: 'center',

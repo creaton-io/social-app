@@ -1,8 +1,10 @@
 import React from 'react'
 import {
+  ActivityIndicator,
   findNodeHandle,
   ListRenderItemInfo,
   StyleProp,
+  StyleSheet,
   View,
   ViewStyle,
 } from 'react-native'
@@ -10,14 +12,14 @@ import {msg} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
 import {useQueryClient} from '@tanstack/react-query'
 
+import {useWebMediaQueries} from '#/lib/hooks/useWebMediaQueries'
 import {cleanError} from '#/lib/strings/errors'
 import {logger} from '#/logger'
 import {isNative, isWeb} from '#/platform/detection'
 import {RQKEY, useProfileListsQuery} from '#/state/queries/profile-lists'
-import {useAnalytics} from 'lib/analytics/analytics'
+import {EmptyState} from '#/view/com/util/EmptyState'
 import {FeedLoadingPlaceholder} from '#/view/com/util/LoadingPlaceholder'
-import {EmptyState} from 'view/com/util/EmptyState'
-import {atoms as a, useTheme} from '#/alf'
+import {atoms as a, ios, useTheme} from '#/alf'
 import * as ListCard from '#/components/ListCard'
 import {ErrorMessage} from '../util/error/ErrorMessage'
 import {List, ListRef} from '../util/List'
@@ -48,7 +50,6 @@ export const ProfileLists = React.forwardRef<SectionRef, ProfileListsProps>(
     ref,
   ) {
     const t = useTheme()
-    const {track} = useAnalytics()
     const {_} = useLingui()
     const [isPTRing, setIsPTRing] = React.useState(false)
     const opts = React.useMemo(() => ({enabled}), [enabled])
@@ -58,10 +59,12 @@ export const ProfileLists = React.forwardRef<SectionRef, ProfileListsProps>(
       isFetched,
       hasNextPage,
       fetchNextPage,
+      isFetchingNextPage,
       isError,
       error,
       refetch,
     } = useProfileListsQuery(did, opts)
+    const {isMobile} = useWebMediaQueries()
     const isEmpty = !isFetching && !data?.pages[0]?.lists.length
 
     const items = React.useMemo(() => {
@@ -102,7 +105,6 @@ export const ProfileLists = React.forwardRef<SectionRef, ProfileListsProps>(
     }))
 
     const onRefresh = React.useCallback(async () => {
-      track('Lists:onRefresh')
       setIsPTRing(true)
       try {
         await refetch()
@@ -110,18 +112,16 @@ export const ProfileLists = React.forwardRef<SectionRef, ProfileListsProps>(
         logger.error('Failed to refresh lists', {message: err})
       }
       setIsPTRing(false)
-    }, [refetch, track, setIsPTRing])
+    }, [refetch, setIsPTRing])
 
     const onEndReached = React.useCallback(async () => {
       if (isFetching || !hasNextPage || isError) return
-
-      track('Lists:onEndReached')
       try {
         await fetchNextPage()
       } catch (err) {
         logger.error('Failed to load more lists', {message: err})
       }
-    }, [isFetching, hasNextPage, isError, fetchNextPage, track])
+    }, [isFetching, hasNextPage, isError, fetchNextPage])
 
     const onPressRetryLoadMore = React.useCallback(() => {
       fetchNextPage()
@@ -181,6 +181,12 @@ export const ProfileLists = React.forwardRef<SectionRef, ProfileListsProps>(
       }
     }, [enabled, scrollElRef, setScrollViewTag])
 
+    const ProfileListsFooter = React.useCallback(() => {
+      return isFetchingNextPage ? (
+        <ActivityIndicator style={[styles.footer]} />
+      ) : null
+    }, [isFetchingNextPage])
+
     return (
       <View testID={testID} style={style}>
         <List
@@ -189,11 +195,13 @@ export const ProfileLists = React.forwardRef<SectionRef, ProfileListsProps>(
           data={items}
           keyExtractor={(item: any) => item._reactKey || item.uri}
           renderItem={renderItemInner}
+          ListFooterComponent={ProfileListsFooter}
           refreshing={isPTRing}
           onRefresh={onRefresh}
           headerOffset={headerOffset}
+          progressViewOffset={ios(0)}
           contentContainerStyle={
-            isNative && {paddingBottom: headerOffset + 100}
+            isMobile && {paddingBottom: headerOffset + 100}
           }
           indicatorStyle={t.name === 'light' ? 'black' : 'white'}
           removeClippedSubviews={true}
@@ -205,3 +213,7 @@ export const ProfileLists = React.forwardRef<SectionRef, ProfileListsProps>(
     )
   },
 )
+
+const styles = StyleSheet.create({
+  footer: {paddingTop: 20},
+})

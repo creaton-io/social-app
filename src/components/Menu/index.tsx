@@ -4,7 +4,7 @@ import {msg, Trans} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
 import flattenReactChildren from 'react-keyed-flatten-children'
 
-import {isNative} from 'platform/detection'
+import {isNative} from '#/platform/detection'
 import {atoms as a, useTheme} from '#/alf'
 import {Button, ButtonText} from '#/components/Button'
 import * as Dialog from '#/components/Dialog'
@@ -46,7 +46,7 @@ export function Root({
   return <Context.Provider value={context}>{children}</Context.Provider>
 }
 
-export function Trigger({children, label}: TriggerProps) {
+export function Trigger({children, label, role = 'button'}: TriggerProps) {
   const {control} = React.useContext(Context)
   const {state: focused, onIn: onFocus, onOut: onBlur} = useInteractionState()
   const {
@@ -70,6 +70,7 @@ export function Trigger({children, label}: TriggerProps) {
       onPressIn,
       onPressOut,
       accessibilityLabel: label,
+      accessibilityRole: role,
     },
   })
 }
@@ -82,19 +83,20 @@ export function Outer({
   style?: StyleProp<ViewStyle>
 }>) {
   const context = React.useContext(Context)
+  const {_} = useLingui()
 
   return (
-    <Dialog.Outer control={context.control}>
+    <Dialog.Outer
+      control={context.control}
+      nativeOptions={{preventExpansion: true}}>
       <Dialog.Handle />
-
       {/* Re-wrap with context since Dialogs are portal-ed to root */}
       <Context.Provider value={context}>
-        <Dialog.ScrollableInner label="Menu TODO">
+        <Dialog.ScrollableInner label={_(msg`Menu`)} style={[a.py_sm]}>
           <View style={[a.gap_lg]}>
             {children}
             {isNative && showCancel && <Cancel />}
           </View>
-          <View style={{height: a.gap_lg.gap}} />
         </Dialog.ScrollableInner>
       </Context.Provider>
     </Dialog.Outer>
@@ -116,15 +118,14 @@ export function Item({children, label, style, onPress, ...rest}: ItemProps) {
       {...rest}
       accessibilityHint=""
       accessibilityLabel={label}
-      onPress={e => {
-        onPress(e)
-
+      onFocus={onFocus}
+      onBlur={onBlur}
+      onPress={async e => {
+        await onPress(e)
         if (!e.defaultPrevented) {
           control?.close()
         }
       }}
-      onFocus={onFocus}
-      onBlur={onBlur}
       onPressIn={e => {
         onPressIn()
         rest.onPressIn?.(e)
