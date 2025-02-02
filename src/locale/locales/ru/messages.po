@@ -571,7 +571,7 @@ msgstr "Содержимое для взрослых"
 msgid "Adult content can only be enabled via the Web at <0>bsky.app</0>."
 msgstr "Взрослый контент можно включить только через веб-сайт <0>bsky.app</0>."
 
-#: src/components/moderation/LabelPreference.tsx:242
+#: src/components/moderation/LabelPreference.tsx:241
 msgid "Adult content is disabled."
 msgstr "Содержимое для взрослых отключено."
 
@@ -1543,7 +1543,7 @@ msgstr "Сжатие видео..."
 msgid "Configure content filtering setting for category: {name}"
 msgstr "Настроить фильтрацию содержимого для категории: {имя}"
 
-#: src/components/moderation/LabelPreference.tsx:244
+#: src/components/moderation/LabelPreference.tsx:243
 msgid "Configured in <0>moderation settings</0>."
 msgstr "Настраивается в <0>настройках модерации</0>."
 
@@ -1828,6 +1828,10 @@ msgstr "Создать ещё один"
 #: src/view/com/auth/SplashScreen.web.tsx:109
 msgid "Create new account"
 msgstr "Создать новую учётную запись"
+
+#: src/view/com/auth/SplashScreen.web.tsx:86
+msgid "ℂ𝕣𝕖𝕒𝕥𝕖 𝕠𝕟𝕔𝕙𝕒𝕚𝕟 - 𝕋𝕖𝕤𝕥 𝕧𝕖𝕣𝕤𝕚𝕠𝕟"
+msgstr ""
 
 #: src/components/ReportDialog/SelectReportOptionView.tsx:101
 msgid "Create report for {0}"
@@ -2526,6 +2530,10 @@ msgstr "Ошибка получения ответа Captcha."
 msgid "Error:"
 msgstr "Ошибка:"
 
+#: src/screens/Signup/StepInfo/index.tsx:197
+msgid "Ethereum Wallet"
+msgstr ""
+
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:364
 msgid "Everybody"
 msgstr "Всех"
@@ -2889,6 +2897,10 @@ msgstr "Подписаться в ответ"
 msgid "Follow more accounts to get connected to your interests and build your network."
 msgstr "Подпишитесь на большее число учётных записей, чтобы найти связь со своими интересами и построить свой круг общения."
 
+#: src/view/com/auth/SplashScreen.web.tsx:153
+msgid "Follow us on Twitter (or just follow Creaton on Creaton!)"
+msgstr ""
+
 #: src/components/KnownFollowers.tsx:231
 msgid "Followed by <0>{0}</0>"
 msgstr "Подписаны <0>{0}</0>"
@@ -2980,6 +2992,11 @@ msgstr "В целях безопасности вы не сможете прос
 #: src/screens/Settings/AppearanceSettings.tsx:142
 msgid "For the best experience, we recommend using the theme font."
 msgstr "Для наилучшего восприятия мы рекомендуем использовать тематический шрифт."
+
+#: src/components/dialogs/nuxs/NeueTypography.tsx:74
+#: src/screens/Settings/AppearanceSettings.tsx:143
+msgid "For the best experience, we recommend using the theme font."
+msgstr ""
 
 #: src/components/dialogs/MutedWords.tsx:178
 msgid "Forever"
@@ -3444,7 +3461,7 @@ msgstr "Пригласить друга"
 msgid "Invite code"
 msgstr "Код приглашения"
 
-#: src/screens/Signup/state.ts:258
+#: src/screens/Signup/state.ts:276
 msgid "Invite code not accepted. Check that you input it correctly and try again."
 msgstr "Код приглашения не принят. Убедитесь в его правильности и повторите попытку."
 
@@ -3973,7 +3990,7 @@ msgstr "Списки модерации"
 msgid "Moderation Lists"
 msgstr "Списки модерации"
 
-#: src/components/moderation/LabelPreference.tsx:247
+#: src/components/moderation/LabelPreference.tsx:246
 msgid "moderation settings"
 msgstr "настройка модерации"
 
@@ -4682,6 +4699,10 @@ msgstr "Открывает процесс создания новой учётн
 msgid "Opens flow to sign into your existing Bluesky account"
 msgstr "Открывает процесс входа в существующую учётную запись Bluesky"
 
+#: src/view/com/auth/SplashScreen.tsx:64
+msgid "Opens flow to sign into your existing Creaton account"
+msgstr ""
+
 #: src/view/com/composer/photos/SelectGifBtn.tsx:36
 msgid "Opens GIF select dialog"
 msgstr "Открывает диалоговое окно выбора GIF"
@@ -4890,7 +4911,7 @@ msgstr "Воспроизвести видео"
 msgid "Plays the GIF"
 msgstr "Воспроизводит GIF"
 
-#: src/screens/Signup/state.ts:217
+#: src/screens/Signup/state.ts:222
 msgid "Please choose your handle."
 msgstr "Пожалуйста, выберите псевдоним."
 
@@ -4899,7 +4920,7 @@ msgstr "Пожалуйста, выберите псевдоним."
 msgid "Please choose your password."
 msgstr "Пожалуйста, выберите ваш пароль."
 
-#: src/screens/Signup/state.ts:231
+#: src/screens/Signup/state.ts:236
 msgid "Please complete the verification captcha."
 msgstr "Пожалуйста, завершите проверку Captcha."
 
@@ -8134,6 +8155,7 @@ msgstr "Чтобы получить стартовый набор, вы долж
 msgid "You must grant access to your photo library to save a QR code"
 msgstr "Чтобы сохранить QR-код, необходимо предоставить доступ к библиотеке фотографий"
 
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:302
 #: src/components/StarterPack/ShareDialog.tsx:68
 msgid "You must grant access to your photo library to save the image."
 msgstr "Чтобы сохранить изображение, необходимо предоставить доступ к библиотеке фотографий."

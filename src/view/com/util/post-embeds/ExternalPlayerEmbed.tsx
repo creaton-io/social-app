@@ -29,6 +29,7 @@ import {atoms as a, useTheme} from '#/alf'
 import {useDialogControl} from '#/components/Dialog'
 import {EmbedConsentDialog} from '#/components/dialogs/EmbedConsent'
 import {Fill} from '#/components/Fill'
+import {MediaInsetBorder} from '#/components/MediaInsetBorder'
 import {PlayButtonIcon} from '#/components/video/PlayButtonIcon'
 import {EventStopper} from '../EventStopper'
 
@@ -106,6 +107,16 @@ function Player({
         onLoad={onLoad}
         style={styles.webview}
         setSupportMultipleWindows={false} // Prevent any redirects from opening a new window (ads)
+      />
+
+      <MediaInsetBorder
+        opaque
+        style={[
+          {
+            borderBottomLeftRadius: 0,
+            borderBottomRightRadius: 0,
+          },
+        ]}
       />
     </EventStopper>
   )
@@ -244,6 +255,15 @@ export function ExternalPlayer({
             ]}
           />
         )}
+        <MediaInsetBorder
+          opaque
+          style={[
+            {
+              borderBottomLeftRadius: 0,
+              borderBottomRightRadius: 0,
+            },
+          ]}
+        />
         <PlaceholderOverlay
           isLoading={isLoading}
           isPlayerActive={isPlayerActive}
@@ -272,6 +292,8 @@ const styles = StyleSheet.create({
     zIndex: 3,
   },
   webview: {
+    borderTopRightRadius: a.rounded_md.borderRadius,
+    borderTopLeftRadius: a.rounded_md.borderRadius,
     backgroundColor: 'transparent',
   },
   gifContainer: {

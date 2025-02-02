@@ -20,6 +20,97 @@
     <link rel="preload" as="font" type="font/woff2" href="/static/media/InterVariable.c504db5c06caaf7cdfba.woff2" crossorigin>
 
     <style>
+      @font-face {
+        font-family: "Inter-Regular";
+        src: local("Inter-Regular"), url(/static/media/Inter-Regular.1f5ed03b6dd9fd1f9982.otf) format("font/otf");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Inter-Italic";
+        src: local("Inter-Italic"), url(/static/media/Inter-Italic.95778eb0c75dc956257e.otf) format("font/otf");
+        font-weight: 400;
+        font-style: italic;
+        font-display: swap;
+      }
+      /*
+      @font-face {
+        font-family: "Inter-Medium";
+        src: local("Inter-Medium"), url(/static/media/Inter-Medium.296aa2d65964269836b3.otf) format("font/otf");
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Inter-MediumItalic";
+        src: local("Inter-MediumItalic"), url(/static/media/Inter-MediumItalic.0e57e17a6311368e2114.otf) format("font/otf");
+        font-weight: 500;
+        font-style: italic;
+        font-display: swap;
+      }
+      */
+      @font-face {
+        font-family: "Inter-SemiBold";
+        src: local("Inter-SemiBold"), url(/static/media/Inter-SemiBold.2277990330981b8409bb.otf) format("font/otf");
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Inter-SemiBoldItalic";
+        src: local("Inter-SemiBoldItalic"), url(/static/media/Inter-SemiBoldItalic.f62fea3df3a521d6c8a7.otf) format("font/otf");
+        font-weight: 600;
+        font-style: italic;
+        font-display: swap;
+      }
+      /*
+      @font-face {
+        font-family: "Inter-Bold";
+        src: local("Inter-Bold"), url(/static/media/Inter-Bold.8d330503e1d034ad68de.otf) format("font/otf");
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Inter-BoldItalic";
+        src: local("Inter-BoldItalic"), url(/static/media/Inter-BoldItalic.bb17e63f9baa0d861a20.otf) format("font/otf");
+        font-weight: 700;
+        font-style: italic;
+        font-display: swap;
+      }
+      */
+      @font-face {
+        font-family: "Inter-ExtraBold";
+        src: local("Inter-ExtraBold"), url(/static/media/Inter-ExtraBold.ff2581a193bf6b7e0b06.otf) format("font/otf");
+        font-weight: 800;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Inter-ExtraBoldItalic";
+        src: local("Inter-ExtraBoldItalic"), url(/static/media/Inter-ExtraBoldItalic.0e50b40728d24d40fdf4.otf) format("font/otf");
+        font-weight: 800;
+        font-style: italic;
+        font-display: swap;
+      }
+      /*
+      @font-face {
+        font-family: "Inter-Black";
+        src: local("Inter-Black"), url(/static/media/Inter-Black.66e9a87f1c921e844ed4.otf) format("font/otf");
+        font-weight: 900;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Inter-BlackItalic";
+        src: local("Inter-BlackItalic"), url(/static/media/Inter-BlackItalic.27b9f0ad06fd13a7b9da.otf) format("font/otf");
+        font-weight: 900;
+        font-style: italic;
+        font-display: swap;
+      }
+      */
+
       /**
        * Minimum styles required to render splash.
        *
@@ -88,6 +179,51 @@
         width: 100%;
         overflow-y: scroll;
       }
+
+      input[type=range][orient=vertical] {
+        writing-mode: vertical-lr;
+        direction: rtl;
+        appearance: slider-vertical;
+        width: 16px;
+        vertical-align: bottom;
+        -webkit-appearance: none;
+        appearance: none;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      input[type="range"][orient=vertical]::-webkit-slider-runnable-track {
+        background: white;
+        height: 100%;
+        width: 4px;
+        border-radius: 4px;
+      }
+
+      input[type="range"][orient=vertical]::-moz-range-track {
+        background: white;
+        height: 100%;
+        width: 4px;
+        border-radius: 4px;
+      }
+
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        border-radius: 50%;
+        background-color: white;
+        height: 16px;
+        width: 16px;
+        margin-left: -6px;
+      }
+
+      input[type="range"][orient=vertical]::-moz-range-thumb {
+        border: none;
+        border-radius: 50%;
+        background-color: white;
+        height: 16px;
+        width: 16px;
+        margin-left: -6px;
+      }
     </style>
   </head>
 
@@ -145,7 +281,37 @@
     <div id="root">
       <div id="splash">
         <!-- Bluesky SVG -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 320"><path fill="#0085ff" d="M180 142c-16.3-31.7-60.7-90.8-102-120C38.5-5.9 23.4-1 13.5 3.4 2.1 8.6 0 26.2 0 36.5c0 10.4 5.7 84.8 9.4 97.2 12.2 41 55.7 55 95.7 50.5-58.7 8.6-110.8 30-42.4 106.1 75.1 77.9 103-16.7 117.3-64.6 14.3 48 30.8 139 116 64.6 64-64.6 17.6-97.5-41.1-106.1 40 4.4 83.5-9.5 95.7-50.5 3.7-12.4 9.4-86.8 9.4-97.2 0-10.3-2-27.9-13.5-33C336.5-1 321.5-6 282 22c-41.3 29.2-85.7 88.3-102 120Z"/></svg>
+        <svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100" height="100">
+          <title>Creaton new logo-ai</title>
+          <defs>
+            <linearGradient id="grd1" gradientUnits="userSpaceOnUse"  x1="166.696" y1="153.348" x2="79.279" y2="196.092">
+              <stop offset="0" stop-color="#63c88e"  />
+              <stop offset="1" stop-color="#26359c"  />
+            </linearGradient>
+            <linearGradient id="grd2" gradientUnits="userSpaceOnUse"  x1="15" y1="72.359" x2="91.248" y2="72.359">
+              <stop offset="0" stop-color="#63c88e"  />
+              <stop offset="1" stop-color="#26359c"  />
+            </linearGradient>
+          </defs>
+          <style>
+            tspan { white-space:pre }
+            .shp0 { fill: #43e296 } 
+            .shp1 { fill: url(#grd1) } 
+            .shp2 { fill: #42389d } 
+            .shp3 { fill: url(#grd2) } 
+          </style>
+          <g id="Layer 1">
+            <g id="&lt;Group&gt;">
+              <g id="&lt;Group&gt;">
+                <path id="&lt;Path&gt;" class="shp0" d="M98.52 58.38L65.14 24.84L117.33 24.91L150.97 58.44C136.47 72.93 112.97 72.91 98.52 58.38Z" />
+                <path id="&lt;Path&gt;" class="shp1" d="M91.25 148.93L42.4 100.09L117.33 24.91L65.14 24.84L15.52 74.46L15.52 125.7L65.02 175.16L117.53 175.16L149.53 143.16C135.03 128.66 111.52 128.66 97.02 143.16L91.25 148.93Z" />
+                <path id="&lt;Path&gt;" class="shp2" d="M97.08 143.1L65.02 175.16L117.53 175.16L149.53 143.16L149.47 143.1C135 128.64 111.55 128.64 97.08 143.1Z" />
+                <path id="&lt;Path&gt;" class="shp3" d="M42.4 100.09L15.52 74.36L15 125.35L65.02 175.16L91.25 148.94L42.4 100.09Z" />
+                <path id="&lt;Path&gt;" class="shp0" d="M116.55 99.81L91.49 124.87L66.42 99.81L91.49 74.75L116.55 99.81Z" />
+              </g>
+            </g>
+          </g>
+        </svg>
       </div>
     </div>
   </body>

@@ -43,8 +43,8 @@ module.exports = function (config) {
   return {
     expo: {
       version: VERSION,
-      name: 'Bluesky',
-      slug: 'bluesky',
+      name: 'Creaton',
+      slug: 'creaton',
       scheme: 'bluesky',
       owner: 'blueskysocial',
       runtimeVersion: {

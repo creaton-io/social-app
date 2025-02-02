@@ -607,7 +607,7 @@ msgstr "Añadir texto alternativo"
 #~ msgid "Add ALT text"
 #~ msgstr "Añadir texto alternativo"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:107
+#: src/view/com/composer/videos/SubtitleDialog.tsx:109
 msgid "Add alt text (optional)"
 msgstr "Agregar texto alternativo (opcional)"
 
@@ -708,7 +708,7 @@ msgstr "Contenido adulto"
 msgid "Adult content can only be enabled via the Web at <0>bsky.app</0>."
 msgstr "El contenido para adultos solo se puede habilitar a través de la web en <0>bsky.app</0>."
 
-#: src/components/moderation/LabelPreference.tsx:242
+#: src/components/moderation/LabelPreference.tsx:241
 msgid "Adult content is disabled."
 msgstr "El contenido adulto está desactivado."
 
@@ -845,6 +845,10 @@ msgstr "Se produjo un error mientras cargaba el video. Por favor, inténtalo de 
 #: src/components/dialogs/nuxs/TenMillion/index.tsx:250
 #~ msgid "An error occurred while saving the image!"
 #~ msgstr ""
+
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:315
+msgid "An error occurred while saving the image!"
+msgstr ""
 
 #: src/components/StarterPack/ShareDialog.tsx:79
 #~ msgid "An error occurred while saving the image."
@@ -1480,7 +1484,7 @@ msgstr "Cancela apertura del sitio web vinculado"
 msgid "Cannot interact with a blocked user"
 msgstr "No se puede interactuar con un usuario bloqueado"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:133
+#: src/view/com/composer/videos/SubtitleDialog.tsx:135
 msgid "Captions (.vtt)"
 msgstr "Subtítulos (.vtt)"
 
@@ -1816,6 +1820,10 @@ msgstr "Colapsa la lista de usuarios para una notificación en particular"
 msgid "Color mode"
 msgstr "Modo de color"
 
+#: src/screens/Settings/AppearanceSettings.tsx:97
+msgid "Color mode"
+msgstr ""
+
 #: src/screens/Onboarding/index.tsx:38
 #: src/screens/Onboarding/state.ts:97
 msgid "Comedy"
@@ -1867,7 +1875,7 @@ msgstr "Comprimiendo video..."
 msgid "Configure content filtering setting for category: {name}"
 msgstr "Configuración de filtrado de contenido para la categoría: {name}"
 
-#: src/components/moderation/LabelPreference.tsx:244
+#: src/components/moderation/LabelPreference.tsx:243
 msgid "Configured in <0>moderation settings</0>."
 msgstr "Configurado en <0>ajustes de moderación</0>."
 
@@ -2144,7 +2152,7 @@ msgstr "No se pudo procesar tu video"
 msgid "Create"
 msgstr "Crear"
 
-#: src/view/com/auth/SplashScreen.tsx:57
+#: src/view/com/auth/SplashScreen.tsx:56
 #: src/view/com/auth/SplashScreen.web.tsx:106
 #~ msgid "Create a new account"
 #~ msgstr "Crear una cuenta nueva"
@@ -2197,6 +2205,10 @@ msgstr "Crea otro"
 #: src/view/com/auth/SplashScreen.web.tsx:109
 msgid "Create new account"
 msgstr "Crear una cuenta nueva"
+
+#: src/view/com/auth/SplashScreen.web.tsx:86
+msgid "ℂ𝕣𝕖𝕒𝕥𝕖 𝕠𝕟𝕔𝕙𝕒𝕚𝕟 - 𝕋𝕖𝕤𝕥 𝕧𝕖𝕣𝕤𝕚𝕠𝕟"
+msgstr ""
 
 #: src/components/StarterPack/ShareDialog.tsx:158
 #~ msgid "Create QR code"
@@ -3010,6 +3022,10 @@ msgstr "Error al recibir la respuesta del captcha."
 msgid "Error:"
 msgstr "Error:"
 
+#: src/screens/Signup/StepInfo/index.tsx:197
+msgid "Ethereum Wallet"
+msgstr ""
+
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:364
 msgid "Everybody"
 msgstr "Todos"
@@ -3443,6 +3459,10 @@ msgstr "Sigue más cuentas para conectarte con tus intereses y ampliar tu red."
 #~ msgid "Follow selected accounts and continue to the next step"
 #~ msgstr ""
 
+#: src/view/com/auth/SplashScreen.web.tsx:153
+msgid "Follow us on Twitter (or just follow Creaton on Creaton!)"
+msgstr ""
+
 #: src/components/KnownFollowers.tsx:169
 #~ msgid "Followed by"
 #~ msgstr ""
@@ -3567,6 +3587,11 @@ msgstr "Por razones de seguridad, no podrás volver a verla de nuevo. Si pierdes
 #: src/screens/Settings/AppearanceSettings.tsx:142
 msgid "For the best experience, we recommend using the theme font."
 msgstr "Para una mejor experiencia, recomendamos que uses la fuente del tema."
+
+#: src/components/dialogs/nuxs/NeueTypography.tsx:74
+#: src/screens/Settings/AppearanceSettings.tsx:143
+msgid "For the best experience, we recommend using the theme font."
+msgstr ""
 
 #: src/components/dialogs/MutedWords.tsx:178
 msgid "Forever"
@@ -4002,6 +4027,7 @@ msgstr "Imagen"
 #~ msgid "Image alt text"
 #~ msgstr "Texto alt de la imagen"
 
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:312
 #: src/components/StarterPack/ShareDialog.tsx:76
 msgid "Image saved to your camera roll!"
 msgstr "¡Imagen guardada en tu carrete de fotos!"
@@ -4100,7 +4126,7 @@ msgstr "Invita a un amigo"
 msgid "Invite code"
 msgstr "Código de invitación"
 
-#: src/screens/Signup/state.ts:258
+#: src/screens/Signup/state.ts:276
 msgid "Invite code not accepted. Check that you input it correctly and try again."
 msgstr "No se acepta el código de invitación. Comprueba que lo has introducido correctamente e inténtalo de nuevo."
 
@@ -4127,6 +4153,10 @@ msgstr "Invitaciones, pero personales"
 #: src/screens/Signup/StepInfo/index.tsx:80
 msgid "It looks like you may have entered your email address incorrectly. Are you sure it's right?"
 msgstr "Parece que podrías haber ingresado tu dirección de correo electrónico incorrectamente. ¿Estás seguro de que es correcta?"
+
+#: src/screens/Signup/StepInfo/index.tsx:78
+msgid "It looks like you may have entered your email address incorrectly. Are you sure it's right?"
+msgstr ""
 
 #: src/screens/Onboarding/StepFollowingFeed.tsx:65
 #~ msgid "It shows posts from the people you follow as they happen."
@@ -4163,6 +4193,14 @@ msgstr "Únete a la conversación"
 #: src/components/dialogs/nuxs/TenMillion/index.tsx:492
 #~ msgid "Joined {0}"
 #~ msgstr ""
+
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:492
+#~ msgid "Joined {0}"
+#~ msgstr ""
+
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:559
+msgid "Joined on {joinedDate}"
+msgstr ""
 
 #: src/screens/Onboarding/index.tsx:21
 #: src/screens/Onboarding/state.ts:104
@@ -4695,7 +4733,7 @@ msgstr "Listas de moderación"
 msgid "Moderation Lists"
 msgstr "Listas de moderación"
 
-#: src/components/moderation/LabelPreference.tsx:247
+#: src/components/moderation/LabelPreference.tsx:246
 msgid "moderation settings"
 msgstr "ajustes de moderación"
 
@@ -5189,6 +5227,14 @@ msgstr "Nadie ha citado esto todavía. ¡Quizás deberías ser el primero!"
 msgid "Nobody has reposted this yet. Maybe you should be the first!"
 msgstr "Nadie ha republicado esto todavía. ¡Quizás deberías ser el primero!"
 
+#: src/view/com/post-thread/PostQuotes.tsx:108
+msgid "Nobody has quoted this yet. Maybe you should be the first!"
+msgstr ""
+
+#: src/view/com/post-thread/PostRepostedBy.tsx:80
+msgid "Nobody has reposted this yet. Maybe you should be the first!"
+msgstr ""
+
 #: src/screens/StarterPack/Wizard/StepProfiles.tsx:103
 msgid "Nobody was found. Try searching for someone else."
 msgstr "No se encontró a nadie. Intenta buscar a otra persona."
@@ -5527,6 +5573,10 @@ msgstr "Abre el flujo para crear una nueva cuenta de Bluesky"
 msgid "Opens flow to sign into your existing Bluesky account"
 msgstr "Abre el flujo para iniciar sesión en tu cuenta existente de Bluesky"
 
+#: src/view/com/auth/SplashScreen.tsx:64
+msgid "Opens flow to sign into your existing Creaton account"
+msgstr ""
+
 #: src/view/com/composer/photos/SelectGifBtn.tsx:36
 msgid "Opens GIF select dialog"
 msgstr "Abre el diálogo de selección de GIF."
@@ -5810,7 +5860,7 @@ msgstr "Reproducir Video"
 msgid "Plays the GIF"
 msgstr "Reproducir GIF"
 
-#: src/screens/Signup/state.ts:217
+#: src/screens/Signup/state.ts:222
 msgid "Please choose your handle."
 msgstr "Por favor, elige tu identificador."
 
@@ -5819,13 +5869,17 @@ msgstr "Por favor, elige tu identificador."
 msgid "Please choose your password."
 msgstr "Por favor, elige tu contraseña."
 
-#: src/screens/Signup/state.ts:231
+#: src/screens/Signup/state.ts:236
 msgid "Please complete the verification captcha."
 msgstr "Por favor, completa la verificación CAPTCHA."
 
 #: src/view/com/modals/ChangeEmail.tsx:65
 msgid "Please confirm your email before changing it. This is a temporary requirement while email-updating tools are added, and it will soon be removed."
 msgstr "Por favor, confirma tu correo electrónico antes de cambiarlo. Se trata de un requisito temporal mientras se añaden herramientas de actualización de correo electrónico, y pronto se eliminará."
+
+#: src/screens/Signup/StepInfo/index.tsx:112
+msgid "Please connect or create a wallet"
+msgstr ""
 
 #: src/view/com/modals/AddAppPasswords.tsx:94
 #~ msgid "Please enter a name for your app password. All spaces is not allowed."
@@ -6342,7 +6396,7 @@ msgstr "Eliminar cita"
 msgid "Remove repost"
 msgstr "Eliminar republicación"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:260
+#: src/view/com/composer/videos/SubtitleDialog.tsx:264
 msgid "Remove subtitle file"
 msgstr "Eliminar archivo de subtítulo"
 
@@ -6994,7 +7048,7 @@ msgstr "Seleccionar GIF \"{0}\""
 msgid "Select how long to mute this word for."
 msgstr "Selecciona por cuánto tiempo se debería silenciar esta palabra."
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:245
+#: src/view/com/composer/videos/SubtitleDialog.tsx:249
 msgid "Select language..."
 msgstr "Seleccionar idioma..."
 
@@ -7616,6 +7670,11 @@ msgstr "Saltar este flujo"
 msgid "Smaller"
 msgstr "Más pequeño"
 
+#: src/components/dialogs/nuxs/NeueTypography.tsx:96
+#: src/screens/Settings/AppearanceSettings.tsx:165
+msgid "Smaller"
+msgstr ""
+
 #: src/screens/Onboarding/index.tsx:37
 #: src/screens/Onboarding/state.ts:100
 msgid "Software Dev"
@@ -8014,6 +8073,10 @@ msgstr "Gracias. Tu denuncia ha sido enviada."
 #~ msgid "Thanks for being one of our first 10 million users."
 #~ msgstr "Gracias por ser uno de nuestros primeros 10 millones de usuarios."
 
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:647
+msgid "Thanks for being one of our first 10 million users."
+msgstr ""
+
 #: src/components/intents/VerifyEmailIntentDialog.tsx:74
 #~ msgid "Thanks, you have successfully verified your email address."
 #~ msgstr "Gracias, has verificado tu dirección de correo electrónico exitosamente."
@@ -8138,6 +8201,11 @@ msgstr "El código de verificación que has proporcionado es inválido. Por favo
 #: src/screens/Settings/AppearanceSettings.tsx:151
 msgid "Theme"
 msgstr "Tema"
+
+#: src/components/dialogs/nuxs/NeueTypography.tsx:83
+#: src/screens/Settings/AppearanceSettings.tsx:152
+msgid "Theme"
+msgstr ""
 
 #: src/screens/Onboarding/StepAlgoFeeds/index.tsx:141
 #~ msgid "There are many feeds to try:"
@@ -8583,6 +8651,11 @@ msgstr "Hoy"
 #: src/components/dialogs/nuxs/TenMillion/index.tsx:597
 #~ msgid "Together, we're rebuilding the social internet. We're glad you're here."
 #~ msgstr "Juntos, estamos reconstruyendo el internet social. Nos alegra que estés aquí."
+
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:651
+#: src/components/dialogs/nuxs/TenMillion/Trigger.tsx:63
+msgid "Together, we're rebuilding the social internet. We're glad you're here."
+msgstr ""
 
 #: src/components/dialogs/MutedWords.tsx:112
 #~ msgid "Toggle between muted word options."
@@ -9145,7 +9218,7 @@ msgstr "Videojuegos"
 msgid "Video not found."
 msgstr "Video no encontrado."
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:99
+#: src/view/com/composer/videos/SubtitleDialog.tsx:101
 msgid "Video settings"
 msgstr "Configuración del video"
 
@@ -9744,6 +9817,7 @@ msgstr "Debes seguir al menos a siete personas más para generar un paquete de i
 msgid "You must grant access to your photo library to save a QR code"
 msgstr "Debes otorgar acceso a tu biblioteca de fotos para guardar un código QR"
 
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:302
 #: src/components/StarterPack/ShareDialog.tsx:68
 msgid "You must grant access to your photo library to save the image."
 msgstr "Debes otorgar acceso a tu biblioteca de fotos para guardar la imagen."

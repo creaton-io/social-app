@@ -656,7 +656,7 @@ msgstr "Afegeix text alternatiu"
 #~ msgid "Add ALT text"
 #~ msgstr "Afegeix text alternatiu"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:107
+#: src/view/com/composer/videos/SubtitleDialog.tsx:109
 msgid "Add alt text (optional)"
 msgstr "Afegeix text alternatiu (opcional)"
 
@@ -782,7 +782,7 @@ msgstr "Contingut per a adults"
 msgid "Adult content can only be enabled via the Web at <0>bsky.app</0>."
 msgstr "El contingut per a adults només es pot activar a través del web a <0>bsky.app</0>."
 
-#: src/components/moderation/LabelPreference.tsx:242
+#: src/components/moderation/LabelPreference.tsx:241
 msgid "Adult content is disabled."
 msgstr "El contingut per a adults està deshabilitat."
 
@@ -1626,7 +1626,7 @@ msgstr "Cancel·la obrir la web enllaçada"
 msgid "Cannot interact with a blocked user"
 msgstr "No pots interactuar amb un usuari bloquejat"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:133
+#: src/view/com/composer/videos/SubtitleDialog.tsx:135
 msgid "Captions (.vtt)"
 msgstr "Subtítols (.vtt)"
 
@@ -2042,7 +2042,7 @@ msgstr "Comprimint el vídeo..."
 msgid "Configure content filtering setting for category: {name}"
 msgstr "Configura els filtres de continguts per la categoria: {name}"
 
-#: src/components/moderation/LabelPreference.tsx:244
+#: src/components/moderation/LabelPreference.tsx:243
 msgid "Configured in <0>moderation settings</0>."
 msgstr "Configurat a <0>configuració de moderació</0>."
 
@@ -2349,7 +2349,7 @@ msgstr "No s'ha pogut processar el teu vídeo"
 msgid "Create"
 msgstr "Crea"
 
-#: src/view/com/auth/SplashScreen.tsx:57
+#: src/view/com/auth/SplashScreen.tsx:56
 #: src/view/com/auth/SplashScreen.web.tsx:106
 #~ msgid "Create a new account"
 #~ msgstr "Crea un nou compte"
@@ -2402,6 +2402,10 @@ msgstr "Crea'n un altre"
 #: src/view/com/auth/SplashScreen.web.tsx:109
 msgid "Create new account"
 msgstr "Crea un nou compte"
+
+#: src/view/com/auth/SplashScreen.web.tsx:86
+msgid "ℂ𝕣𝕖𝕒𝕥𝕖 𝕠𝕟𝕔𝕙𝕒𝕚𝕟 - 𝕋𝕖𝕤𝕥 𝕧𝕖𝕣𝕤𝕚𝕠𝕟"
+msgstr ""
 
 #: src/components/StarterPack/ShareDialog.tsx:158
 #~ msgid "Create QR code"
@@ -3283,6 +3287,10 @@ msgstr "Error en rebre la resposta al captcha."
 msgid "Error:"
 msgstr "Error:"
 
+#: src/screens/Signup/StepInfo/index.tsx:197
+msgid "Ethereum Wallet"
+msgstr ""
+
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:364
 msgid "Everybody"
 msgstr "Tothom"
@@ -3753,6 +3761,10 @@ msgstr "Segueix més comptes per connectar-te als teus interessos i construir la
 #~ msgid "Follow some users to get started. We can recommend you more users based on who you find interesting."
 #~ msgstr "Segueix a alguns usuaris per a començar. Te'n podem recomanar més basant-nos en els que trobes interessants."
 
+#: src/view/com/auth/SplashScreen.web.tsx:153
+msgid "Follow us on Twitter (or just follow Creaton on Creaton!)"
+msgstr ""
+
 #: src/components/KnownFollowers.tsx:169
 #~ msgid "Followed by"
 #~ msgstr "Seguit per"
@@ -3881,6 +3893,11 @@ msgstr "Per motius de seguretat, no podràs tornar a veure això. Si perds aques
 #: src/screens/Settings/AppearanceSettings.tsx:142
 msgid "For the best experience, we recommend using the theme font."
 msgstr "Per obtenir la millor experiència, et recomanem utilitzar el tipus de lletra del tema."
+
+#: src/components/dialogs/nuxs/NeueTypography.tsx:74
+#: src/screens/Settings/AppearanceSettings.tsx:143
+msgid "For the best experience, we recommend using the theme font."
+msgstr ""
 
 #: src/components/dialogs/MutedWords.tsx:178
 msgid "Forever"
@@ -4354,6 +4371,7 @@ msgstr "Imatge"
 #~ msgid "Image options"
 #~ msgstr "Opcions de la imatge"
 
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:312
 #: src/components/StarterPack/ShareDialog.tsx:76
 msgid "Image saved to your camera roll!"
 msgstr "La imatge s'ha desat a la teva galeria!"
@@ -4476,7 +4494,7 @@ msgstr "Convida un amic"
 msgid "Invite code"
 msgstr "Codi d'invitació"
 
-#: src/screens/Signup/state.ts:258
+#: src/screens/Signup/state.ts:276
 msgid "Invite code not accepted. Check that you input it correctly and try again."
 msgstr "Codi d'invitació rebutjat. Comprova que l'has entrat correctament i torna-ho a provar."
 
@@ -5129,7 +5147,7 @@ msgstr "Llistes de moderació"
 msgid "Moderation Lists"
 msgstr "Llistes de moderació"
 
-#: src/components/moderation/LabelPreference.tsx:247
+#: src/components/moderation/LabelPreference.tsx:246
 msgid "moderation settings"
 msgstr "preferències de moderació"
 
@@ -5199,6 +5217,12 @@ msgstr "Silencia"
 msgctxt "video"
 msgid "Mute"
 msgstr "Silencia"
+
+#: src/view/com/util/post-embeds/VideoEmbedInner/VideoEmbedInnerNative.tsx:157
+#: src/view/com/util/post-embeds/VideoEmbedInner/web-controls/VolumeControl.tsx:94
+msgctxt "video"
+msgid "Mute"
+msgstr ""
 
 #: src/components/TagMenu/index.web.tsx:116
 msgid "Mute {truncatedTag}"
@@ -6020,6 +6044,10 @@ msgstr "Obre el procés per a crear un nou compte de Bluesky"
 msgid "Opens flow to sign into your existing Bluesky account"
 msgstr "Obre el procés per a iniciar sessió a un compte existent de Bluesky"
 
+#: src/view/com/auth/SplashScreen.tsx:64
+msgid "Opens flow to sign into your existing Creaton account"
+msgstr ""
+
 #: src/view/com/profile/ProfileHeader.tsx:575
 #~ msgid "Opens followers list"
 #~ msgstr "Obre la llista de seguidors"
@@ -6335,7 +6363,7 @@ msgstr "Reprodueix el vídeo"
 msgid "Plays the GIF"
 msgstr "Reprodueix el GIF"
 
-#: src/screens/Signup/state.ts:217
+#: src/screens/Signup/state.ts:222
 msgid "Please choose your handle."
 msgstr "Tria el teu identificador."
 
@@ -6344,13 +6372,17 @@ msgstr "Tria el teu identificador."
 msgid "Please choose your password."
 msgstr "Tria la teva contrasenya."
 
-#: src/screens/Signup/state.ts:231
+#: src/screens/Signup/state.ts:236
 msgid "Please complete the verification captcha."
 msgstr "Completa el captcha de verificació."
 
 #: src/view/com/modals/ChangeEmail.tsx:65
 msgid "Please confirm your email before changing it. This is a temporary requirement while email-updating tools are added, and it will soon be removed."
 msgstr "Confirma el teu correu abans de canviar-lo. Aquest és un requisit temporal mentre no s'afegeixin eines per a actualitzar el correu. Aviat no serà necessari."
+
+#: src/screens/Signup/StepInfo/index.tsx:112
+msgid "Please connect or create a wallet"
+msgstr ""
 
 #: src/view/com/modals/AddAppPasswords.tsx:94
 #~ msgid "Please enter a name for your app password. All spaces is not allowed."
@@ -6918,7 +6950,7 @@ msgstr "Elimina la citació"
 msgid "Remove repost"
 msgstr "Elimina la republicació"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:260
+#: src/view/com/composer/videos/SubtitleDialog.tsx:264
 msgid "Remove subtitle file"
 msgstr "Eliminar el fitxer de subtítols"
 
@@ -7640,7 +7672,7 @@ msgstr "Selecciona GIF \"{0}\""
 msgid "Select how long to mute this word for."
 msgstr "Tria per quant temps s'ha de silenciar aquesta paraula."
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:245
+#: src/view/com/composer/videos/SubtitleDialog.tsx:249
 msgid "Select language..."
 msgstr "Selecciona l'idioma..."
 
@@ -9570,6 +9602,12 @@ msgctxt "video"
 msgid "Unmute"
 msgstr "Deixa de silenciar"
 
+#: src/view/com/util/post-embeds/VideoEmbedInner/VideoEmbedInnerNative.tsx:156
+#: src/view/com/util/post-embeds/VideoEmbedInner/web-controls/VolumeControl.tsx:93
+msgctxt "video"
+msgid "Unmute"
+msgstr ""
+
 #: src/components/TagMenu/index.web.tsx:115
 msgid "Unmute {truncatedTag}"
 msgstr "Deixa de silenciar {truncatedTag}"
@@ -9984,7 +10022,7 @@ msgstr "Videojocs"
 msgid "Video not found."
 msgstr "No s'ha trobat el vídeo."
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:99
+#: src/view/com/composer/videos/SubtitleDialog.tsx:101
 msgid "Video settings"
 msgstr "Configuració de vídeo"
 
@@ -10626,6 +10664,7 @@ msgstr "Has de seguir almenys set persones més per generar un starter pack."
 msgid "You must grant access to your photo library to save a QR code"
 msgstr "Has de concedir accés a la teva galeria per desar un codi QR"
 
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:302
 #: src/components/StarterPack/ShareDialog.tsx:68
 msgid "You must grant access to your photo library to save the image."
 msgstr "Has de concedir accés a la teva galeria per desar la imatge."

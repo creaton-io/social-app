@@ -1,12 +1,17 @@
 import '#/lib/sentry' // must be near top
 import '#/view/icons'
+import '@coinbase/onchainkit/styles.css'
 import './style.css'
 
 import React, {useEffect, useState} from 'react'
 import {RootSiblingParent} from 'react-native-root-siblings'
 import {SafeAreaProvider} from 'react-native-safe-area-context'
+import {OnchainKitProvider} from '@coinbase/onchainkit'
 import {msg} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query'
+import {baseSepolia} from 'viem/chains'
+import {WagmiProvider} from 'wagmi'
 
 import {QueryProvider} from '#/lib/react-query'
 import {Provider as StatsigProvider} from '#/lib/statsig/statsig'
@@ -60,6 +65,15 @@ import {useStarterPackEntry} from '#/components/hooks/useStarterPackEntry'
 import {Provider as IntentDialogProvider} from '#/components/intents/IntentDialogs'
 import {Provider as PortalProvider} from '#/components/Portal'
 import {BackgroundNotificationPreferencesProvider} from '../modules/expo-background-notification-handler/src/BackgroundNotificationHandlerProvider'
+import {PUBLIC_CDP_API_KEY} from './env'
+import {wagmiConfig} from './wagmi'
+
+const queryClient = new QueryClient()
+
+/**
+ * Begin geolocation ASAP
+ */
+beginResolveGeolocation()
 
 /**
  * Begin geolocation ASAP
@@ -129,10 +143,22 @@ function InnerApp() {
                                           <SafeAreaProvider>
                                             <ProgressGuideProvider>
                                               <TrendingConfigProvider>
-                                                <IntentDialogProvider>
-                                                  <Shell />
-                                                  <NuxDialogs />
-                                                </IntentDialogProvider>
+                                                <WagmiProvider
+                                                  config={wagmiConfig}>
+                                                  <QueryClientProvider
+                                                    client={queryClient}>
+                                                    <OnchainKitProvider
+                                                      apiKey={
+                                                        PUBLIC_CDP_API_KEY
+                                                      }
+                                                      chain={baseSepolia}>
+                                                      <IntentDialogProvider>
+                                                        <Shell />
+                                                        <NuxDialogs />
+                                                      </IntentDialogProvider>
+                                                    </OnchainKitProvider>
+                                                  </QueryClientProvider>
+                                                </WagmiProvider>
                                               </TrendingConfigProvider>
                                             </ProgressGuideProvider>
                                           </SafeAreaProvider>

@@ -15,7 +15,7 @@ import {useNonReactiveCallback} from '../hooks/useNonReactiveCallback'
 import {LogEvents} from './events'
 import {Gate} from './gates'
 
-const SDK_KEY = 'client-SXJakO39w9vIhl3D44u8UupyzFl4oZ2qPIkjwcvuPsV'
+const SDK_KEY = 'client-ryfmmwMZTKKrLJjiXFBTTXAHQzrgortF5V58Cxt94uh'
 
 export const initPromise = initialize()
 

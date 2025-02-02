@@ -87,6 +87,11 @@ if (isAndroid) {
  */
 beginResolveGeolocation()
 
+/**
+ * Begin geolocation ASAP
+ */
+beginResolveGeolocation()
+
 function InnerApp() {
   const [isReady, setIsReady] = React.useState(false)
   const {currentAccount} = useSession()

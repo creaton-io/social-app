@@ -22,6 +22,7 @@ import {useSetDrawerOpen} from '#/state/shell'
 import {formatCount} from '#/view/com/util/numeric/format'
 import {UserAvatar} from '#/view/com/util/UserAvatar'
 import {NavSignupCard} from '#/view/shell/NavSignupCard'
+import {WalletComponents} from '#/screens/Login/LoginWallet'
 import {atoms as a, tokens, useTheme, web} from '#/alf'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
 import {Divider} from '#/components/Divider'
@@ -203,18 +204,20 @@ let DrawerContent = ({}: React.PropsWithoutRef<{}>): React.ReactNode => {
     setDrawerOpen(false)
   }, [navigation, setDrawerOpen])
 
-  const onPressFeedback = React.useCallback(() => {
-    Linking.openURL(
-      FEEDBACK_FORM_URL({
-        email: currentAccount?.email,
-        handle: currentAccount?.handle,
-      }),
-    )
-  }, [currentAccount])
+  // const onPressFeedback = React.useCallback(() => {
+  //   track('Menu:FeedbackClicked')
+  //   Linking.openURL(
+  //     FEEDBACK_FORM_URL({
+  //       email: currentAccount?.email,
+  //       handle: currentAccount?.handle,
+  //     }),
+  //   )
+  // }, [track, currentAccount])
 
-  const onPressHelp = React.useCallback(() => {
-    Linking.openURL(HELP_DESK_URL)
-  }, [])
+  // const onPressHelp = React.useCallback(() => {
+  //   track('Menu:HelpClicked')
+  //   Linking.openURL(HELP_DESK_URL)
+  // }, [track])
 
   // rendering
   // =
@@ -250,6 +253,7 @@ let DrawerContent = ({}: React.PropsWithoutRef<{}>): React.ReactNode => {
 
         {hasSession ? (
           <>
+            <WalletComponents />
             <SearchMenuItem isActive={isAtSearch} onPress={onPressSearch} />
             <HomeMenuItem isActive={isAtHome} onPress={onPressHome} />
             <ChatMenuItem isActive={isAtMessages} onPress={onPressMessages} />
@@ -275,14 +279,14 @@ let DrawerContent = ({}: React.PropsWithoutRef<{}>): React.ReactNode => {
 
         <View style={[a.px_xl]}>
           <Divider style={[a.mb_xl, a.mt_sm]} />
-          <ExtraLinks />
+          {/* <ExtraLinks /> */}
         </View>
       </ScrollView>
 
-      <DrawerFooter
+      {/* <DrawerFooter
         onPressFeedback={onPressFeedback}
         onPressHelp={onPressHelp}
-      />
+      /> */}
     </View>
   )
 }

@@ -3,7 +3,7 @@ import {AppState, AppStateStatus} from 'react-native'
 import {AppBskyFeedDefs} from '@atproto/api'
 import throttle from 'lodash.throttle'
 
-import {FEEDBACK_FEEDS, STAGING_FEEDS} from '#/lib/constants'
+import {FEEDBACK_FEEDS, PROD_DEFAULT_FEED,STAGING_FEEDS} from '#/lib/constants'
 import {logEvent} from '#/lib/statsig/statsig'
 import {logger} from '#/logger'
 import {FeedDescriptor, FeedPostSliceItem} from '#/state/queries/post-feed'
@@ -158,7 +158,7 @@ export function useFeedFeedbackContext() {
 // place, we're hardcoding it to the discover feed.
 // -prf
 function isDiscoverFeed(feed: FeedDescriptor) {
-  return FEEDBACK_FEEDS.includes(feed)
+  return feed === `feedgen|${PROD_DEFAULT_FEED('whats-hot')}`
 }
 
 function toString(interaction: AppBskyFeedDefs.Interaction): string {

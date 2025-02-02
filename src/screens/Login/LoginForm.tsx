@@ -27,12 +27,11 @@ import {FormError} from '#/components/forms/FormError'
 import {HostingProvider} from '#/components/forms/HostingProvider'
 import * as TextField from '#/components/forms/TextField'
 import {At_Stroke2_Corner0_Rounded as At} from '#/components/icons/At'
-import {Lock_Stroke2_Corner0_Rounded as Lock} from '#/components/icons/Lock'
 import {Ticket_Stroke2_Corner0_Rounded as Ticket} from '#/components/icons/Ticket'
 import {Loader} from '#/components/Loader'
 import {Text} from '#/components/Typography'
 import {FormContainer} from './FormContainer'
-
+import {WalletComponents} from './LoginWallet'
 type ServiceDescription = ComAtprotoServerDescribeServer.OutputSchema
 
 export const LoginForm = ({
@@ -44,7 +43,7 @@ export const LoginForm = ({
   setServiceUrl,
   onPressRetryConnect,
   onPressBack,
-  onPressForgotPassword,
+  onPressSignSIWE,
 }: {
   error: string
   serviceUrl: string
@@ -54,18 +53,10 @@ export const LoginForm = ({
   setServiceUrl: (v: string) => void
   onPressRetryConnect: () => void
   onPressBack: () => void
-  onPressForgotPassword: () => void
+  onPressSignSIWE: () => Promise<string>
 }) => {
   const t = useTheme()
   const [isProcessing, setIsProcessing] = useState<boolean>(false)
-  const [isAuthFactorTokenNeeded, setIsAuthFactorTokenNeeded] =
-    useState<boolean>(false)
-  const [isAuthFactorTokenValueEmpty, setIsAuthFactorTokenValueEmpty] =
-    useState<boolean>(true)
-  const identifierValueRef = useRef<string>(initialHandle || '')
-  const passwordValueRef = useRef<string>('')
-  const authFactorTokenValueRef = useRef<string>('')
-  const passwordRef = useRef<TextInput>(null)
   const {_} = useLingui()
   const {login} = useSessionApi()
   const requestNotificationsPermission = useRequestNotificationsPermission()
@@ -82,52 +73,16 @@ export const LoginForm = ({
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
     setError('')
 
-    const identifier = identifierValueRef.current.toLowerCase().trim()
-    const password = passwordValueRef.current
-    const authFactorToken = authFactorTokenValueRef.current
-
-    if (!identifier) {
-      setError(_(msg`Please enter your username`))
-      return
-    }
-
-    if (!password) {
-      setError(_(msg`Please enter your password`))
-      return
-    }
-
     setIsProcessing(true)
 
     try {
-      // try to guess the handle if the user just gave their own username
-      let fullIdent = identifier
-      if (
-        !identifier.includes('@') && // not an email
-        !identifier.includes('.') && // not a domain
-        serviceDescription &&
-        serviceDescription.availableUserDomains.length > 0
-      ) {
-        let matched = false
-        for (const domain of serviceDescription.availableUserDomains) {
-          if (fullIdent.endsWith(domain)) {
-            matched = true
-          }
-        }
-        if (!matched) {
-          fullIdent = createFullHandle(
-            identifier,
-            serviceDescription.availableUserDomains[0],
-          )
-        }
-      }
+      const siweSignature = await onPressSignSIWE()
 
-      // TODO remove double login
       await login(
         {
           service: serviceUrl,
-          identifier: fullIdent,
-          password,
-          authFactorToken: authFactorToken.trim(),
+          identifier: 'wallet',
+          siweSignature,
         },
         'LoginForm',
       )
@@ -138,24 +93,7 @@ export const LoginForm = ({
       const errMsg = e.toString()
       LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
       setIsProcessing(false)
-      if (
-        e instanceof ComAtprotoServerCreateSession.AuthFactorTokenRequiredError
-      ) {
-        setIsAuthFactorTokenNeeded(true)
-      } else if (errMsg.includes('Token is invalid')) {
-        logger.debug('Failed to login due to invalid 2fa token', {
-          error: errMsg,
-        })
-        setError(_(msg`Invalid 2FA confirmation code.`))
-      } else if (
-        errMsg.includes('Authentication Required') ||
-        errMsg.includes('Invalid identifier or password')
-      ) {
-        logger.debug('Failed to login due to invalid credentials', {
-          error: errMsg,
-        })
-        setError(_(msg`Incorrect username or password`))
-      } else if (isNetworkError(e)) {
+      if (isNetworkError(e)) {
         logger.warn('Failed to login due to network error', {error: errMsg})
         setError(
           _(
@@ -170,179 +108,26 @@ export const LoginForm = ({
   }
 
   return (
-    <FormContainer testID="loginForm" titleText={<Trans>Sign in</Trans>}>
+    <FormContainer
+      testID="loginForm"
+      titleText={<Trans>Sign in to Creaton</Trans>}>
       <View>
-        <TextField.LabelText>
+        <Text style={[a.text_md, a.mb_lg]}>
+          <Trans>Connect your wallet to sign in</Trans>
+        </Text>
+        <WalletComponents />
+      </View>
+      <View>
+        <Text style={[a.text_sm, a.mb_sm]}>
           <Trans>Hosting provider</Trans>
-        </TextField.LabelText>
+        </Text>
         <HostingProvider
           serviceUrl={serviceUrl}
           onSelectServiceUrl={setServiceUrl}
           onOpenDialog={onPressSelectService}
         />
       </View>
-      <View>
-        <TextField.LabelText>
-          <Trans>Account</Trans>
-        </TextField.LabelText>
-        <View style={[a.gap_sm]}>
-          <TextField.Root>
-            <TextField.Icon icon={At} />
-            <TextField.Input
-              testID="loginUsernameInput"
-              label={_(msg`Username or email address`)}
-              autoCapitalize="none"
-              autoFocus
-              autoCorrect={false}
-              autoComplete="username"
-              returnKeyType="next"
-              textContentType="username"
-              defaultValue={initialHandle || ''}
-              onChangeText={v => {
-                identifierValueRef.current = v
-              }}
-              onSubmitEditing={() => {
-                passwordRef.current?.focus()
-              }}
-              blurOnSubmit={false} // prevents flickering due to onSubmitEditing going to next field
-              editable={!isProcessing}
-              accessibilityHint={_(
-                msg`Input the username or email address you used at signup`,
-              )}
-            />
-          </TextField.Root>
-
-          <TextField.Root>
-            <TextField.Icon icon={Lock} />
-            <TextField.Input
-              testID="loginPasswordInput"
-              inputRef={passwordRef}
-              label={_(msg`Password`)}
-              autoCapitalize="none"
-              autoCorrect={false}
-              autoComplete="password"
-              returnKeyType="done"
-              enablesReturnKeyAutomatically={true}
-              secureTextEntry={true}
-              textContentType="password"
-              clearButtonMode="while-editing"
-              onChangeText={v => {
-                passwordValueRef.current = v
-              }}
-              onSubmitEditing={onPressNext}
-              blurOnSubmit={false} // HACK: https://github.com/facebook/react-native/issues/21911#issuecomment-558343069 Keyboard blur behavior is now handled in onSubmitEditing
-              editable={!isProcessing}
-              accessibilityHint={_(msg`Input your password`)}
-            />
-            <Button
-              testID="forgotPasswordButton"
-              onPress={onPressForgotPassword}
-              label={_(msg`Forgot password?`)}
-              accessibilityHint={_(msg`Opens password reset form`)}
-              variant="solid"
-              color="secondary"
-              style={[
-                a.rounded_sm,
-                // t.atoms.bg_contrast_100,
-                {marginLeft: 'auto', left: 6, padding: 6},
-                a.z_10,
-              ]}>
-              <ButtonText>
-                <Trans>Forgot?</Trans>
-              </ButtonText>
-            </Button>
-          </TextField.Root>
-        </View>
-      </View>
-      {isAuthFactorTokenNeeded && (
-        <View>
-          <TextField.LabelText>
-            <Trans>2FA Confirmation</Trans>
-          </TextField.LabelText>
-          <TextField.Root>
-            <TextField.Icon icon={Ticket} />
-            <TextField.Input
-              testID="loginAuthFactorTokenInput"
-              label={_(msg`Confirmation code`)}
-              autoCapitalize="none"
-              autoFocus
-              autoCorrect={false}
-              autoComplete="one-time-code"
-              returnKeyType="done"
-              textContentType="username"
-              blurOnSubmit={false} // prevents flickering due to onSubmitEditing going to next field
-              onChangeText={v => {
-                setIsAuthFactorTokenValueEmpty(v === '')
-                authFactorTokenValueRef.current = v
-              }}
-              onSubmitEditing={onPressNext}
-              editable={!isProcessing}
-              accessibilityHint={_(
-                msg`Input the code which has been emailed to you`,
-              )}
-              style={[
-                {
-                  textTransform: isAuthFactorTokenValueEmpty
-                    ? 'none'
-                    : 'uppercase',
-                },
-              ]}
-            />
-          </TextField.Root>
-          <Text style={[a.text_sm, t.atoms.text_contrast_medium, a.mt_sm]}>
-            <Trans>Check your email for a login code and enter it here.</Trans>
-          </Text>
-        </View>
-      )}
-      <FormError error={error} />
-      <View style={[a.flex_row, a.align_center, a.pt_md]}>
-        <Button
-          label={_(msg`Back`)}
-          variant="solid"
-          color="secondary"
-          size="large"
-          onPress={onPressBack}>
-          <ButtonText>
-            <Trans>Back</Trans>
-          </ButtonText>
-        </Button>
-        <View style={a.flex_1} />
-        {!serviceDescription && error ? (
-          <Button
-            testID="loginRetryButton"
-            label={_(msg`Retry`)}
-            accessibilityHint={_(msg`Retries login`)}
-            variant="solid"
-            color="secondary"
-            size="large"
-            onPress={onPressRetryConnect}>
-            <ButtonText>
-              <Trans>Retry</Trans>
-            </ButtonText>
-          </Button>
-        ) : !serviceDescription ? (
-          <>
-            <ActivityIndicator />
-            <Text style={[t.atoms.text_contrast_high, a.pl_md]}>
-              <Trans>Connecting...</Trans>
-            </Text>
-          </>
-        ) : (
-          <Button
-            testID="loginNextButton"
-            label={_(msg`Next`)}
-            accessibilityHint={_(msg`Navigates to the next screen`)}
-            variant="solid"
-            color="primary"
-            size="large"
-            onPress={onPressNext}>
-            <ButtonText>
-              <Trans>Next</Trans>
-            </ButtonText>
-            {isProcessing && <ButtonIcon icon={Loader} />}
-          </Button>
-        )}
-      </View>
+      {error ? <FormError error={error} /> : null}
     </FormContainer>
   )
 }

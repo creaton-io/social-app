@@ -474,7 +474,7 @@ msgstr "Ajouter un compte"
 msgid "Add alt text"
 msgstr "Ajouter un texte alt"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:107
+#: src/view/com/composer/videos/SubtitleDialog.tsx:109
 msgid "Add alt text (optional)"
 msgstr "Ajouter un texte alt (facultatif)"
 
@@ -569,7 +569,7 @@ msgstr "Contenu pour adultes"
 msgid "Adult content can only be enabled via the Web at <0>bsky.app</0>."
 msgstr "Le contenu pour adultes ne peut être activé que via le Web sur <0>bsky.app</0>."
 
-#: src/components/moderation/LabelPreference.tsx:242
+#: src/components/moderation/LabelPreference.tsx:241
 msgid "Adult content is disabled."
 msgstr "Le contenu pour adultes est désactivé."
 
@@ -1261,7 +1261,7 @@ msgstr "Annule l’ouverture du site web lié"
 msgid "Cannot interact with a blocked user"
 msgstr "Impossible d’interagir avec un compte bloqué"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:133
+#: src/view/com/composer/videos/SubtitleDialog.tsx:135
 msgid "Captions (.vtt)"
 msgstr "Sous-titres (.vtt)"
 
@@ -1567,7 +1567,7 @@ msgstr "Compression de la vidéo en cours…"
 msgid "Configure content filtering setting for category: {name}"
 msgstr "Configure les paramètres de filtrage de contenu pour la catégorie : {name}"
 
-#: src/components/moderation/LabelPreference.tsx:244
+#: src/components/moderation/LabelPreference.tsx:243
 msgid "Configured in <0>moderation settings</0>."
 msgstr "Configuré dans <0>les paramètres de modération</0>."
 
@@ -2583,6 +2583,10 @@ msgstr "Erreur de réception de la réponse captcha."
 msgid "Error:"
 msgstr "Erreur :"
 
+#: src/screens/Signup/StepInfo/index.tsx:197
+msgid "Ethereum Wallet"
+msgstr ""
+
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:364
 msgid "Everybody"
 msgstr "Tout le monde"
@@ -3526,7 +3530,7 @@ msgstr "Inviter un ami"
 msgid "Invite code"
 msgstr "Code d’invitation"
 
-#: src/screens/Signup/state.ts:258
+#: src/screens/Signup/state.ts:276
 msgid "Invite code not accepted. Check that you input it correctly and try again."
 msgstr "Code d’invitation refusé. Vérifiez que vous l’avez saisi correctement et réessayez."
 
@@ -3581,6 +3585,14 @@ msgstr "Rejoignez Bluesky"
 #: src/view/shell/NavSignupCard.tsx:40
 msgid "Join the conversation"
 msgstr "Participez à la conversation"
+
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:492
+#~ msgid "Joined {0}"
+#~ msgstr "Inscrit·e le {0}"
+
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:559
+msgid "Joined on {joinedDate}"
+msgstr ""
 
 #: src/screens/Onboarding/index.tsx:21
 #: src/screens/Onboarding/state.ts:104
@@ -4058,7 +4070,7 @@ msgstr "Listes de modération"
 msgid "Moderation Lists"
 msgstr "Listes de modération"
 
-#: src/components/moderation/LabelPreference.tsx:247
+#: src/components/moderation/LabelPreference.tsx:246
 msgid "moderation settings"
 msgstr "paramètres de modération"
 
@@ -4478,6 +4490,14 @@ msgstr "Personne n’a encore cité. Peut-être devriez-vous ouvrir la voie !"
 msgid "Nobody has reposted this yet. Maybe you should be the first!"
 msgstr "Personne n’a encore republié. Peut-être devriez-vous ouvrir la voie !"
 
+#: src/view/com/post-thread/PostQuotes.tsx:108
+msgid "Nobody has quoted this yet. Maybe you should be the first!"
+msgstr "Personne n’a encore cité. Peut-être devriez-vous ouvrir la voie !"
+
+#: src/view/com/post-thread/PostRepostedBy.tsx:80
+msgid "Nobody has reposted this yet. Maybe you should be the first!"
+msgstr "Personne n’a encore republié. Peut-être devriez-vous ouvrir la voie !"
+
 #: src/screens/StarterPack/Wizard/StepProfiles.tsx:103
 msgid "Nobody was found. Try searching for someone else."
 msgstr "Personne n’a été trouvé. Essayez de chercher quelqu’un d’autre."
@@ -4756,6 +4776,10 @@ msgstr "Ouvre le flux de création d’un nouveau compte Bluesky"
 msgid "Opens flow to sign into your existing Bluesky account"
 msgstr "Ouvre le flux pour vous connecter à votre compte Bluesky existant"
 
+#: src/view/com/auth/SplashScreen.tsx:64
+msgid "Opens flow to sign into your existing Creaton account"
+msgstr ""
+
 #: src/view/com/composer/photos/SelectGifBtn.tsx:36
 msgid "Opens GIF select dialog"
 msgstr "Ouvre la sélection de GIF"
@@ -4977,7 +5001,7 @@ msgstr "Lire la vidéo"
 msgid "Plays the GIF"
 msgstr "Lit le GIF"
 
-#: src/screens/Signup/state.ts:217
+#: src/screens/Signup/state.ts:222
 msgid "Please choose your handle."
 msgstr "Veuillez choisir votre pseudo."
 
@@ -4986,7 +5010,7 @@ msgstr "Veuillez choisir votre pseudo."
 msgid "Please choose your password."
 msgstr "Veuillez choisir votre mot de passe."
 
-#: src/screens/Signup/state.ts:231
+#: src/screens/Signup/state.ts:236
 msgid "Please complete the verification captcha."
 msgstr "Veuillez compléter le captcha de vérification."
 
@@ -5461,7 +5485,7 @@ msgstr "Supprimer la citation"
 msgid "Remove repost"
 msgstr "Supprimer le repost"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:260
+#: src/view/com/composer/videos/SubtitleDialog.tsx:264
 msgid "Remove subtitle file"
 msgstr "Supprimer le fichier de sous-titres"
 
@@ -6023,7 +6047,7 @@ msgstr "Sélectionner le GIF « {0} »"
 msgid "Select how long to mute this word for."
 msgstr "Sélectionnez la durée pendant laquelle vous souhaitez masquer ce mot."
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:245
+#: src/view/com/composer/videos/SubtitleDialog.tsx:249
 msgid "Select language..."
 msgstr "Sélectionner la langue…"
 
@@ -7752,7 +7776,7 @@ msgstr "Vidéo en cours de lecture"
 msgid "Video not found."
 msgstr "Vidéo non trouvée."
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:99
+#: src/view/com/composer/videos/SubtitleDialog.tsx:101
 msgid "Video settings"
 msgstr "Paramètres vidéo"
 
@@ -8294,6 +8318,7 @@ msgstr "Vous devez suivre au moins sept autres personnes pour générer un kit d
 msgid "You must grant access to your photo library to save a QR code"
 msgstr "Vous devez autoriser l’accès à votre photothèque pour enregistrer un code QR"
 
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:302
 #: src/components/StarterPack/ShareDialog.tsx:68
 msgid "You must grant access to your photo library to save the image."
 msgstr "Vous devez autoriser l’accès à votre photothèque pour enregistrer l’image."

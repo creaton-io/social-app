@@ -474,7 +474,7 @@ msgstr "アカウントを追加"
 msgid "Add alt text"
 msgstr "ALTテキストを追加"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:107
+#: src/view/com/composer/videos/SubtitleDialog.tsx:109
 msgid "Add alt text (optional)"
 msgstr "ALTテキストを追加（オプション）"
 
@@ -569,7 +569,7 @@ msgstr "成人向けコンテンツ"
 msgid "Adult content can only be enabled via the Web at <0>bsky.app</0>."
 msgstr "成人向けコンテンツは<0>bsky.app</0>のウェブ版からしか有効にできません。"
 
-#: src/components/moderation/LabelPreference.tsx:242
+#: src/components/moderation/LabelPreference.tsx:241
 msgid "Adult content is disabled."
 msgstr "成人向けコンテンツは無効になっています。"
 
@@ -689,6 +689,10 @@ msgstr "ビデオの読み込み時にエラーが発生しました。時間を
 #: src/view/com/util/post-embeds/VideoEmbed.web.tsx:198
 msgid "An error occurred while loading the video. Please try again."
 msgstr "ビデオの読み込み時にエラーが発生しました。もう一度お試しください。"
+
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:315
+msgid "An error occurred while saving the image!"
+msgstr "画像の保存中にエラーが発生しました！"
 
 #: src/components/StarterPack/QrCodeDialog.tsx:71
 #: src/components/StarterPack/ShareDialog.tsx:79
@@ -1261,7 +1265,7 @@ msgstr "リンク先のウェブサイトを開くことをキャンセル"
 msgid "Cannot interact with a blocked user"
 msgstr "ブロックしたユーザーとはやりとりできません"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:133
+#: src/view/com/composer/videos/SubtitleDialog.tsx:135
 msgid "Captions (.vtt)"
 msgstr "キャプション（.vtt）"
 
@@ -1567,7 +1571,7 @@ msgstr "ビデオを圧縮中…"
 msgid "Configure content filtering setting for category: {name}"
 msgstr "このカテゴリのコンテンツフィルタリングを設定：{name}"
 
-#: src/components/moderation/LabelPreference.tsx:244
+#: src/components/moderation/LabelPreference.tsx:243
 msgid "Configured in <0>moderation settings</0>."
 msgstr "<0>モデレーションの設定</0>で設定されています。"
 
@@ -2583,6 +2587,10 @@ msgstr "CAPTCHAレスポンスの受信中にエラーが発生しました。"
 msgid "Error:"
 msgstr "エラー："
 
+#: src/screens/Signup/StepInfo/index.tsx:197
+msgid "Ethereum Wallet"
+msgstr ""
+
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:364
 msgid "Everybody"
 msgstr "全員"
@@ -3047,6 +3055,11 @@ msgstr "セキュリティ上の理由から、これを再度表示すること
 #: src/screens/Settings/AppearanceSettings.tsx:142
 msgid "For the best experience, we recommend using the theme font."
 msgstr "ベストな体験のために、テーマフォントの使用をお勧めします。"
+
+#: src/components/dialogs/nuxs/NeueTypography.tsx:74
+#: src/screens/Settings/AppearanceSettings.tsx:143
+msgid "For the best experience, we recommend using the theme font."
+msgstr ""
 
 #: src/components/dialogs/MutedWords.tsx:178
 msgid "Forever"
@@ -3526,7 +3539,7 @@ msgstr "友達を招待"
 msgid "Invite code"
 msgstr "招待コード"
 
-#: src/screens/Signup/state.ts:258
+#: src/screens/Signup/state.ts:276
 msgid "Invite code not accepted. Check that you input it correctly and try again."
 msgstr "招待コードが確認できません。正しく入力されていることを確認し、もう一度試してください。"
 
@@ -3581,6 +3594,14 @@ msgstr "Blueskyに参加"
 #: src/view/shell/NavSignupCard.tsx:40
 msgid "Join the conversation"
 msgstr "会話に参加"
+
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:492
+#~ msgid "Joined {0}"
+#~ msgstr "{0} に参加"
+
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:559
+msgid "Joined on {joinedDate}"
+msgstr ""
 
 #: src/screens/Onboarding/index.tsx:21
 #: src/screens/Onboarding/state.ts:104
@@ -4058,7 +4079,7 @@ msgstr "モデレーションリスト"
 msgid "Moderation Lists"
 msgstr "モデレーションリスト"
 
-#: src/components/moderation/LabelPreference.tsx:247
+#: src/components/moderation/LabelPreference.tsx:246
 msgid "moderation settings"
 msgstr "モデレーションの設定"
 
@@ -4756,6 +4777,10 @@ msgstr "新しいBlueskyのアカウントを作成するフローを開く"
 msgid "Opens flow to sign into your existing Bluesky account"
 msgstr "既存のBlueskyアカウントにサインインするフローを開く"
 
+#: src/view/com/auth/SplashScreen.tsx:64
+msgid "Opens flow to sign into your existing Creaton account"
+msgstr ""
+
 #: src/view/com/composer/photos/SelectGifBtn.tsx:36
 msgid "Opens GIF select dialog"
 msgstr "GIFの選択のダイアログを開く"
@@ -4977,7 +5002,7 @@ msgstr "ビデオを再生"
 msgid "Plays the GIF"
 msgstr "GIFを再生"
 
-#: src/screens/Signup/state.ts:217
+#: src/screens/Signup/state.ts:222
 msgid "Please choose your handle."
 msgstr "ハンドルをお選びください。"
 
@@ -4986,7 +5011,7 @@ msgstr "ハンドルをお選びください。"
 msgid "Please choose your password."
 msgstr "パスワードを選択してください。"
 
-#: src/screens/Signup/state.ts:231
+#: src/screens/Signup/state.ts:236
 msgid "Please complete the verification captcha."
 msgstr "CAPTCHA認証を完了してください。"
 
@@ -5461,7 +5486,7 @@ msgstr "引用を削除"
 msgid "Remove repost"
 msgstr "リポストを削除"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:260
+#: src/view/com/composer/videos/SubtitleDialog.tsx:264
 msgid "Remove subtitle file"
 msgstr "字幕ファイルを削除"
 
@@ -6023,7 +6048,7 @@ msgstr "GIF「{0}」を選ぶ"
 msgid "Select how long to mute this word for."
 msgstr "このワードをどのくらいの間ミュートするのかを選択。"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:245
+#: src/view/com/composer/videos/SubtitleDialog.tsx:249
 msgid "Select language..."
 msgstr "言語を選択…"
 
@@ -7752,7 +7777,7 @@ msgstr "ビデオは再生中"
 msgid "Video not found."
 msgstr "ビデオが見つかりません。"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:99
+#: src/view/com/composer/videos/SubtitleDialog.tsx:101
 msgid "Video settings"
 msgstr "ビデオの設定"
 
@@ -8294,6 +8319,7 @@ msgstr "スターターパックを作成するには、少なくとも７人を
 msgid "You must grant access to your photo library to save a QR code"
 msgstr "QRコードを保存するには写真ライブラリへのアクセスを許可する必要があります"
 
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:302
 #: src/components/StarterPack/ShareDialog.tsx:68
 msgid "You must grant access to your photo library to save the image."
 msgstr "画像を保存するには写真ライブラリへのアクセスを許可する必要があります。"

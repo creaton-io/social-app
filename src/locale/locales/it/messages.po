@@ -575,7 +575,7 @@ msgstr "Contenuto per adulti"
 msgid "Adult content can only be enabled via the Web at <0>bsky.app</0>."
 msgstr "I contenuti per adulti possono essere abilitati solo dal sito Web a <0>bsky.app</0>."
 
-#: src/components/moderation/LabelPreference.tsx:242
+#: src/components/moderation/LabelPreference.tsx:241
 msgid "Adult content is disabled."
 msgstr "Il contenuto per adulti è disattivato."
 
@@ -1267,7 +1267,7 @@ msgstr "Annulla l'apertura del sito collegato"
 msgid "Cannot interact with a blocked user"
 msgstr "Non puoi interagire con un utente bloccato"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:133
+#: src/view/com/composer/videos/SubtitleDialog.tsx:135
 msgid "Captions (.vtt)"
 msgstr "Sottotitoli (.vtt)"
 
@@ -1573,7 +1573,7 @@ msgstr "Compressione del video..."
 msgid "Configure content filtering setting for category: {name}"
 msgstr "Configura l'impostazione del filtro dei contenuti per la categoria: {name}"
 
-#: src/components/moderation/LabelPreference.tsx:244
+#: src/components/moderation/LabelPreference.tsx:243
 msgid "Configured in <0>moderation settings</0>."
 msgstr "Configurato nelle <0>impostazioni di moderazione</0>."
 
@@ -2589,6 +2589,10 @@ msgstr "Errore nella risposta del captcha."
 msgid "Error:"
 msgstr "Errore:"
 
+#: src/screens/Signup/StepInfo/index.tsx:197
+msgid "Ethereum Wallet"
+msgstr ""
+
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:364
 msgid "Everybody"
 msgstr "Tutti"
@@ -3053,6 +3057,11 @@ msgstr "Per motivi di sicurezza non potrai più visualizzarla. Se perdi questa p
 #: src/screens/Settings/AppearanceSettings.tsx:142
 msgid "For the best experience, we recommend using the theme font."
 msgstr "Per una migliore esperienza, consigliamo di usare il font del tema."
+
+#: src/components/dialogs/nuxs/NeueTypography.tsx:74
+#: src/screens/Settings/AppearanceSettings.tsx:143
+msgid "For the best experience, we recommend using the theme font."
+msgstr ""
 
 #: src/components/dialogs/MutedWords.tsx:178
 msgid "Forever"
@@ -3532,7 +3541,7 @@ msgstr "Invita un amico"
 msgid "Invite code"
 msgstr "Codice d'invito"
 
-#: src/screens/Signup/state.ts:258
+#: src/screens/Signup/state.ts:276
 msgid "Invite code not accepted. Check that you input it correctly and try again."
 msgstr "Codice invito non accettato. Controlla di averlo inserito correttamente e riprova."
 
@@ -4064,7 +4073,7 @@ msgstr "Liste di moderazione"
 msgid "Moderation Lists"
 msgstr "Liste di moderazione"
 
-#: src/components/moderation/LabelPreference.tsx:247
+#: src/components/moderation/LabelPreference.tsx:246
 msgid "moderation settings"
 msgstr "impostazioni di moderazione"
 
@@ -4983,7 +4992,7 @@ msgstr "Riproduci video"
 msgid "Plays the GIF"
 msgstr "Riproduci questa GIF"
 
-#: src/screens/Signup/state.ts:217
+#: src/screens/Signup/state.ts:222
 msgid "Please choose your handle."
 msgstr "Scegli il tuo nome utente."
 
@@ -4992,7 +5001,7 @@ msgstr "Scegli il tuo nome utente."
 msgid "Please choose your password."
 msgstr "Scegli la tua password."
 
-#: src/screens/Signup/state.ts:231
+#: src/screens/Signup/state.ts:236
 msgid "Please complete the verification captcha."
 msgstr "Si prega di completare il captcha di verifica."
 
@@ -5467,7 +5476,7 @@ msgstr "Rimuovi citazione"
 msgid "Remove repost"
 msgstr "Rimuovi ripubblicazione"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:260
+#: src/view/com/composer/videos/SubtitleDialog.tsx:264
 msgid "Remove subtitle file"
 msgstr "Sottotitolo rimosso"
 
@@ -6029,7 +6038,7 @@ msgstr "Seleziona GIF \"{0}\""
 msgid "Select how long to mute this word for."
 msgstr "Seleziona per quanto tempo silenziare questa parola."
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:245
+#: src/view/com/composer/videos/SubtitleDialog.tsx:249
 msgid "Select language..."
 msgstr "Seleziona lingua..."
 
@@ -7758,7 +7767,7 @@ msgstr "Video in riproduzione"
 msgid "Video not found."
 msgstr "Video non trovato."
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:99
+#: src/view/com/composer/videos/SubtitleDialog.tsx:101
 msgid "Video settings"
 msgstr "Impostazioni video"
 
@@ -8139,6 +8148,10 @@ msgstr "Non sei autorizzato a caricare video."
 msgid "You are not following anyone."
 msgstr "Non stai seguendo nessuno."
 
+#: src/components/dialogs/nuxs/NeueTypography.tsx:62
+msgid "You can adjust these in your Appearance Settings later."
+msgstr ""
+
 #: src/view/com/posts/FollowingEmptyState.tsx:63
 #: src/view/com/posts/FollowingEndOfFeed.tsx:64
 msgid "You can also discover new Custom Feeds to follow."
@@ -8300,6 +8313,7 @@ msgstr "Devi seguire almeno altri 7 utenti per creare uno starter pack."
 msgid "You must grant access to your photo library to save a QR code"
 msgstr "Devi concedere il permesso alla galleria per salvare il codice QR"
 
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:302
 #: src/components/StarterPack/ShareDialog.tsx:68
 msgid "You must grant access to your photo library to save the image."
 msgstr "Devi concedere il permesso alla galleria per salvare l'immagine."

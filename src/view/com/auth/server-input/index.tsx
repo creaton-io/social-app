@@ -4,7 +4,7 @@ import {useWindowDimensions} from 'react-native'
 import {msg, Trans} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
 
-import {BSKY_SERVICE} from '#/lib/constants'
+import {CREATON_SERVICE} from '#/lib/constants'
 import * as persisted from '#/state/persisted'
 import {useSession} from '#/state/session'
 import {atoms as a, useBreakpoints, useTheme} from '#/alf'
@@ -31,7 +31,7 @@ export function ServerInputDialog({
   const [pdsAddressHistory, setPdsAddressHistory] = React.useState<string[]>(
     persisted.get('pdsAddressHistory') || [],
   )
-  const [fixedOption, setFixedOption] = React.useState([BSKY_SERVICE])
+  const [fixedOption, setFixedOption] = React.useState([CREATON_SERVICE])
   const [customAddress, setCustomAddress] = React.useState('')
   const {accounts} = useSession()
 
@@ -89,9 +89,9 @@ export function ServerInputDialog({
             label="Preferences"
             values={fixedOption}
             onChange={setFixedOption}>
-            <ToggleButton.Button name={BSKY_SERVICE} label={_(msg`Bluesky`)}>
+            <ToggleButton.Button name={CREATON_SERVICE} label={_(msg`Creaton`)}>
               <ToggleButton.ButtonText>
-                {_(msg`Bluesky`)}
+                {_(msg`Creaton`)}
               </ToggleButton.ButtonText>
             </ToggleButton.Button>
             <ToggleButton.Button
@@ -104,7 +104,7 @@ export function ServerInputDialog({
             </ToggleButton.Button>
           </ToggleButton.Group>
 
-          {fixedOption[0] === BSKY_SERVICE && isFirstTimeUser && (
+          {fixedOption[0] === CREATON_SERVICE && isFirstTimeUser && (
             <Admonition type="tip">
               <Trans>
                 Bluesky is an open network where you can choose your own

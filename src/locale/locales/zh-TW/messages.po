@@ -479,7 +479,7 @@ msgstr "新增帳號"
 msgid "Add alt text"
 msgstr "新增替代文字"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:107
+#: src/view/com/composer/videos/SubtitleDialog.tsx:109
 msgid "Add alt text (optional)"
 msgstr "新增替代文字 (可選)"
 
@@ -574,7 +574,7 @@ msgstr "成人內容"
 msgid "Adult content can only be enabled via the Web at <0>bsky.app</0>."
 msgstr "成人內容只能透過網頁版 (<0>bsky.app</0>) 啟用。"
 
-#: src/components/moderation/LabelPreference.tsx:242
+#: src/components/moderation/LabelPreference.tsx:241
 msgid "Adult content is disabled."
 msgstr "已停用成人內容。"
 
@@ -694,6 +694,10 @@ msgstr "載入影片時發生錯誤。請稍後再試。"
 #: src/view/com/util/post-embeds/VideoEmbed.web.tsx:198
 msgid "An error occurred while loading the video. Please try again."
 msgstr "載入影片時發生錯誤。請稍後再試。"
+
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:315
+msgid "An error occurred while saving the image!"
+msgstr ""
 
 #: src/components/StarterPack/QrCodeDialog.tsx:71
 #: src/components/StarterPack/ShareDialog.tsx:79
@@ -1266,7 +1270,7 @@ msgstr "取消開啟網站連結"
 msgid "Cannot interact with a blocked user"
 msgstr "無法與被封鎖的用戶進行互動"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:133
+#: src/view/com/composer/videos/SubtitleDialog.tsx:135
 msgid "Captions (.vtt)"
 msgstr "字幕 (.vtt)"
 
@@ -1529,6 +1533,10 @@ msgstr "折疊指定通知的用戶列表"
 msgid "Color mode"
 msgstr "色彩模式"
 
+#: src/screens/Settings/AppearanceSettings.tsx:97
+msgid "Color mode"
+msgstr ""
+
 #: src/screens/Onboarding/index.tsx:38
 #: src/screens/Onboarding/state.ts:97
 msgid "Comedy"
@@ -1572,7 +1580,7 @@ msgstr "正在壓縮影片..."
 msgid "Configure content filtering setting for category: {name}"
 msgstr "設定 {name} 類別的內容篩選"
 
-#: src/components/moderation/LabelPreference.tsx:244
+#: src/components/moderation/LabelPreference.tsx:243
 msgid "Configured in <0>moderation settings</0>."
 msgstr "在 <0>內容篩選</0> 中設定。"
 
@@ -2588,6 +2596,10 @@ msgstr "接收驗證碼回應時發生錯誤。"
 msgid "Error:"
 msgstr "錯誤："
 
+#: src/screens/Signup/StepInfo/index.tsx:197
+msgid "Ethereum Wallet"
+msgstr ""
+
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:364
 msgid "Everybody"
 msgstr "所有人"
@@ -3052,6 +3064,11 @@ msgstr "為了確保您的帳號安全，將無法再次查看此密碼。如果
 #: src/screens/Settings/AppearanceSettings.tsx:142
 msgid "For the best experience, we recommend using the theme font."
 msgstr "我們建議使用主題字型，以享有最佳體驗。"
+
+#: src/components/dialogs/nuxs/NeueTypography.tsx:74
+#: src/screens/Settings/AppearanceSettings.tsx:143
+msgid "For the best experience, we recommend using the theme font."
+msgstr ""
 
 #: src/components/dialogs/MutedWords.tsx:178
 msgid "Forever"
@@ -3531,7 +3548,7 @@ msgstr "邀請朋友"
 msgid "Invite code"
 msgstr "邀請碼"
 
-#: src/screens/Signup/state.ts:258
+#: src/screens/Signup/state.ts:276
 msgid "Invite code not accepted. Check that you input it correctly and try again."
 msgstr "邀請碼無效。請檢查是否輸入正確，然後再試一次。"
 
@@ -3586,6 +3603,14 @@ msgstr "加入 Bluesky"
 #: src/view/shell/NavSignupCard.tsx:40
 msgid "Join the conversation"
 msgstr "加入對話"
+
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:492
+#~ msgid "Joined {0}"
+#~ msgstr ""
+
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:559
+msgid "Joined on {joinedDate}"
+msgstr ""
 
 #: src/screens/Onboarding/index.tsx:21
 #: src/screens/Onboarding/state.ts:104
@@ -4063,7 +4088,7 @@ msgstr "內容管理列表"
 msgid "Moderation Lists"
 msgstr "內容管理列表"
 
-#: src/components/moderation/LabelPreference.tsx:247
+#: src/components/moderation/LabelPreference.tsx:246
 msgid "moderation settings"
 msgstr "內容管理設定"
 
@@ -4761,6 +4786,10 @@ msgstr "開始建立新的 Bluesky 帳號的流程"
 msgid "Opens flow to sign into your existing Bluesky account"
 msgstr "開始登入您現有的 Bluesky 帳號流程"
 
+#: src/view/com/auth/SplashScreen.tsx:64
+msgid "Opens flow to sign into your existing Creaton account"
+msgstr ""
+
 #: src/view/com/composer/photos/SelectGifBtn.tsx:36
 msgid "Opens GIF select dialog"
 msgstr "開啟 GIF 選擇對話框"
@@ -4982,7 +5011,7 @@ msgstr "播放影片"
 msgid "Plays the GIF"
 msgstr "播放 GIF"
 
-#: src/screens/Signup/state.ts:217
+#: src/screens/Signup/state.ts:222
 msgid "Please choose your handle."
 msgstr "請選擇您的帳號代碼。"
 
@@ -4991,7 +5020,7 @@ msgstr "請選擇您的帳號代碼。"
 msgid "Please choose your password."
 msgstr "請設定您的密碼。"
 
-#: src/screens/Signup/state.ts:231
+#: src/screens/Signup/state.ts:236
 msgid "Please complete the verification captcha."
 msgstr "請完成 Captcha 驗證。"
 
@@ -5466,7 +5495,7 @@ msgstr "刪除引用貼文"
 msgid "Remove repost"
 msgstr "刪除轉發"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:260
+#: src/view/com/composer/videos/SubtitleDialog.tsx:264
 msgid "Remove subtitle file"
 msgstr "移除字幕檔案"
 
@@ -6028,7 +6057,7 @@ msgstr "選擇 GIF「{0}」"
 msgid "Select how long to mute this word for."
 msgstr "選擇要靜音此字詞的時間長度。"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:245
+#: src/view/com/composer/videos/SubtitleDialog.tsx:249
 msgid "Select language..."
 msgstr "選擇語言…"
 
@@ -7757,7 +7786,7 @@ msgstr "影片正在播放"
 msgid "Video not found."
 msgstr "找不到影片。"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:99
+#: src/view/com/composer/videos/SubtitleDialog.tsx:101
 msgid "Video settings"
 msgstr "影片設定"
 
@@ -8138,6 +8167,10 @@ msgstr "您沒有上傳影片的權限。"
 msgid "You are not following anyone."
 msgstr "您還沒有跟隨任何人。"
 
+#: src/components/dialogs/nuxs/NeueTypography.tsx:62
+msgid "You can adjust these in your Appearance Settings later."
+msgstr ""
+
 #: src/view/com/posts/FollowingEmptyState.tsx:63
 #: src/view/com/posts/FollowingEndOfFeed.tsx:64
 msgid "You can also discover new Custom Feeds to follow."
@@ -8299,6 +8332,7 @@ msgstr "您必須跟隨至少 7 個人才能產生新手包。"
 msgid "You must grant access to your photo library to save a QR code"
 msgstr "您必須授予相簿權限才能儲存 QR Code"
 
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:302
 #: src/components/StarterPack/ShareDialog.tsx:68
 msgid "You must grant access to your photo library to save the image."
 msgstr "您必須授予相簿權限才能儲存圖片。"

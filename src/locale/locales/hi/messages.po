@@ -566,7 +566,7 @@ msgstr "विवरण जोड़ें"
 #~ msgid "Add ALT text"
 #~ msgstr "विवरण जोड़ें"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:107
+#: src/view/com/composer/videos/SubtitleDialog.tsx:109
 msgid "Add alt text (optional)"
 msgstr "विवरण जोड़ें (वैकल्पिक)"
 
@@ -684,7 +684,7 @@ msgstr "वयस्क सामग्री"
 msgid "Adult content can only be enabled via the Web at <0>bsky.app</0>."
 msgstr "वयस्क सामग्री को केवल <0>bsky.app</0> वेबसाइट पर सक्षम किया जा सकता है।"
 
-#: src/components/moderation/LabelPreference.tsx:242
+#: src/components/moderation/LabelPreference.tsx:241
 msgid "Adult content is disabled."
 msgstr "वयस्क सामग्री अक्षम है।"
 
@@ -1234,6 +1234,10 @@ msgstr "Bluesky दोस्तों के साथ बेहतर है!"
 #~ msgid "Bluesky is public."
 #~ msgstr "Bluesky सार्वजनिक है।"
 
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:256
+msgid "Bluesky now has over 10 million users, and I was #{0}!"
+msgstr ""
+
 #: src/view/com/modals/Waitlist.tsx:70
 #~ msgid "Bluesky uses invites to build a healthier community. If you don't know anybody with an invite, you can sign up for the waitlist and we'll send one soon."
 #~ msgstr "Bluesky एक स्वस्थ समुदाय बनाने के लिए आमंत्रित करता है। यदि आप किसी को आमंत्रित नहीं करते हैं, तो आप प्रतीक्षा सूची के लिए साइन अप कर सकते हैं और हम जल्द ही एक भेज देंगे।"
@@ -1443,7 +1447,7 @@ msgstr "लिंक वेबसाइट के खोलने को रद�
 msgid "Cannot interact with a blocked user"
 msgstr "अवरुद्ध उपयोगकर्ता से संपर्क नहीं कर सकते"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:133
+#: src/view/com/composer/videos/SubtitleDialog.tsx:135
 msgid "Captions (.vtt)"
 msgstr "अनुशीर्षक (.vtt)"
 
@@ -1743,6 +1747,10 @@ msgstr "किसी अधिसूचना के उपयोगकर्त
 msgid "Color mode"
 msgstr "रंग मोड"
 
+#: src/screens/Settings/AppearanceSettings.tsx:97
+msgid "Color mode"
+msgstr ""
+
 #: src/screens/Onboarding/index.tsx:38
 #: src/screens/Onboarding/state.ts:97
 msgid "Comedy"
@@ -1790,7 +1798,7 @@ msgstr "वीडियो कंप्रेस हो रहा है..."
 msgid "Configure content filtering setting for category: {name}"
 msgstr "{name} श्रेणी के लिए सामग्री फ़िल्टर करने की सेटिंग व्यवस्थित करें"
 
-#: src/components/moderation/LabelPreference.tsx:244
+#: src/components/moderation/LabelPreference.tsx:243
 msgid "Configured in <0>moderation settings</0>."
 msgstr "<0>मॉडरेशन सेटिंग</0> में व्यवस्थित।"
 
@@ -2073,7 +2081,7 @@ msgstr "आपका वीडियो प्रोसेस नहीं क�
 msgid "Create"
 msgstr "बनाएँ"
 
-#: src/view/com/auth/SplashScreen.tsx:57
+#: src/view/com/auth/SplashScreen.tsx:56
 #: src/view/com/auth/SplashScreen.web.tsx:106
 #~ msgid "Create a new account"
 #~ msgstr "नया खाता बनाएँ"
@@ -2126,6 +2134,10 @@ msgstr "एक और बनाएँ"
 #: src/view/com/auth/SplashScreen.web.tsx:109
 msgid "Create new account"
 msgstr "नया खाता बनाएँ"
+
+#: src/view/com/auth/SplashScreen.web.tsx:86
+msgid "ℂ𝕣𝕖𝕒𝕥𝕖 𝕠𝕟𝕔𝕙𝕒𝕚𝕟 - 𝕋𝕖𝕤𝕥 𝕧𝕖𝕣𝕤𝕚𝕠𝕟"
+msgstr ""
 
 #: src/components/StarterPack/ShareDialog.tsx:158
 #~ msgid "Create QR code"
@@ -2918,6 +2930,10 @@ msgstr "CAPTCHA उत्तर पाने मे त्रुटि हुई
 msgid "Error:"
 msgstr "त्रुटि:"
 
+#: src/screens/Signup/StepInfo/index.tsx:197
+msgid "Ethereum Wallet"
+msgstr ""
+
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:364
 msgid "Everybody"
 msgstr "सब"
@@ -3435,6 +3451,16 @@ msgstr "फ़ॉन्ट"
 msgid "Font size"
 msgstr "फ़ॉन्ट आकार"
 
+#: src/components/dialogs/nuxs/NeueTypography.tsx:72
+#: src/screens/Settings/AppearanceSettings.tsx:141
+msgid "Font"
+msgstr ""
+
+#: src/components/dialogs/nuxs/NeueTypography.tsx:92
+#: src/screens/Settings/AppearanceSettings.tsx:161
+msgid "Font size"
+msgstr ""
+
 #: src/screens/Onboarding/index.tsx:40
 #: src/screens/Onboarding/state.ts:102
 msgid "Food"
@@ -3455,6 +3481,11 @@ msgstr "सुरक्षा कारणों से, आप इसे फि
 #: src/screens/Settings/AppearanceSettings.tsx:142
 msgid "For the best experience, we recommend using the theme font."
 msgstr "बहतरीन अनुभव के लिए, हम थीम फ़ॉन्ट का उपयोग करने की सलाह देते हैं।"
+
+#: src/components/dialogs/nuxs/NeueTypography.tsx:74
+#: src/screens/Settings/AppearanceSettings.tsx:143
+msgid "For the best experience, we recommend using the theme font."
+msgstr ""
 
 #: src/components/dialogs/MutedWords.tsx:178
 msgid "Forever"
@@ -3890,6 +3921,7 @@ msgstr "छवि"
 #~ msgid "Image options"
 #~ msgstr "छवि विकल्प"
 
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:312
 #: src/components/StarterPack/ShareDialog.tsx:76
 msgid "Image saved to your camera roll!"
 msgstr "छवि आपके कैमरा रोल में सहेजी गई!"
@@ -3984,7 +4016,7 @@ msgstr "दोस्त को आमंत्रित करें"
 msgid "Invite code"
 msgstr "आमंत्रण कोड"
 
-#: src/screens/Signup/state.ts:258
+#: src/screens/Signup/state.ts:276
 msgid "Invite code not accepted. Check that you input it correctly and try again."
 msgstr "आमंत्रण कोड स्वीकार नहीं हुआ। देख लें कि आपने उसे सही से दर्ज किया है और फिर से प्रयास करें।"
 
@@ -4052,6 +4084,14 @@ msgstr "बातचीत में शामिल हों"
 #: src/view/com/modals/Waitlist.tsx:128
 #~ msgid "Join Waitlist"
 #~ msgstr "प्रतीक्षा सूची में शामिल हों"
+
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:492
+#~ msgid "Joined {0}"
+#~ msgstr ""
+
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:559
+msgid "Joined on {joinedDate}"
+msgstr ""
 
 #: src/screens/Onboarding/index.tsx:21
 #: src/screens/Onboarding/state.ts:104
@@ -4572,7 +4612,7 @@ msgstr "मॉडरेशन सूचियाँ"
 msgid "Moderation Lists"
 msgstr "मॉडरेशन सूचियाँ"
 
-#: src/components/moderation/LabelPreference.tsx:247
+#: src/components/moderation/LabelPreference.tsx:246
 msgid "moderation settings"
 msgstr "मॉडरेशन सेटिंग"
 
@@ -5050,6 +5090,14 @@ msgstr "इसे अभी तक किसी ने क्वोट नही
 #: src/view/com/post-thread/PostRepostedBy.tsx:92
 msgid "Nobody has reposted this yet. Maybe you should be the first!"
 msgstr "इसे अभी तक किसी ने रीपोस्ट नहीं किया है। शायद सबसे पहले आपको करना चाहिए!"
+
+#: src/view/com/post-thread/PostQuotes.tsx:108
+msgid "Nobody has quoted this yet. Maybe you should be the first!"
+msgstr ""
+
+#: src/view/com/post-thread/PostRepostedBy.tsx:80
+msgid "Nobody has reposted this yet. Maybe you should be the first!"
+msgstr ""
 
 #: src/screens/StarterPack/Wizard/StepProfiles.tsx:103
 msgid "Nobody was found. Try searching for someone else."
@@ -5642,7 +5690,7 @@ msgstr "वीडियो चलाएँ"
 msgid "Plays the GIF"
 msgstr "GIF चलाता है"
 
-#: src/screens/Signup/state.ts:217
+#: src/screens/Signup/state.ts:222
 msgid "Please choose your handle."
 msgstr "कृपया अपना हैंडल चुनें"
 
@@ -5651,13 +5699,17 @@ msgstr "कृपया अपना हैंडल चुनें"
 msgid "Please choose your password."
 msgstr "कृपया अपना पासवर्ड चुनें"
 
-#: src/screens/Signup/state.ts:231
+#: src/screens/Signup/state.ts:236
 msgid "Please complete the verification captcha."
 msgstr "कृपया सत्यापन कैपचा समाप्त करें"
 
 #: src/view/com/modals/ChangeEmail.tsx:65
 msgid "Please confirm your email before changing it. This is a temporary requirement while email-updating tools are added, and it will soon be removed."
 msgstr "इसे बदलने से पहले कृपया अपने ईमेल की पुष्टि करें। यह एक अस्थायी आवश्यकता है जबकि ईमेल-अपडेटिंग औज़ार जोड़ा जाता है, और इसे जल्द ही हटा दिया जाएगा।"
+
+#: src/screens/Signup/StepInfo/index.tsx:112
+msgid "Please connect or create a wallet"
+msgstr ""
 
 #: src/view/com/modals/AddAppPasswords.tsx:94
 #~ msgid "Please enter a name for your app password. All spaces is not allowed."
@@ -6148,7 +6200,7 @@ msgstr "क्वोट हटाएँ"
 msgid "Remove repost"
 msgstr "रिपोस्ट हटाएँ"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:260
+#: src/view/com/composer/videos/SubtitleDialog.tsx:264
 msgid "Remove subtitle file"
 msgstr "उपशीर्षक फ़ाइल हटाएँ"
 
@@ -6762,7 +6814,7 @@ msgstr "\"{0}\" GIF चुनें"
 msgid "Select how long to mute this word for."
 msgstr "चुनें कि कितने समय तक इस शब्द को म्यूट करना है।"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:245
+#: src/view/com/composer/videos/SubtitleDialog.tsx:249
 msgid "Select language..."
 msgstr "भाषा चुनें..."
 
@@ -7290,6 +7342,11 @@ msgstr "इस फ़्लो को छोड़ें"
 #: src/screens/Settings/AppearanceSettings.tsx:164
 msgid "Smaller"
 msgstr "छोटा"
+
+#: src/components/dialogs/nuxs/NeueTypography.tsx:96
+#: src/screens/Settings/AppearanceSettings.tsx:165
+msgid "Smaller"
+msgstr ""
 
 #: src/view/com/auth/create/Step2.tsx:82
 #~ msgid "SMS verification"
@@ -8328,6 +8385,12 @@ msgctxt "video"
 msgid "Unmute"
 msgstr "अनम्यूट करें"
 
+#: src/view/com/util/post-embeds/VideoEmbedInner/VideoEmbedInnerNative.tsx:156
+#: src/view/com/util/post-embeds/VideoEmbedInner/web-controls/VolumeControl.tsx:93
+msgctxt "video"
+msgid "Unmute"
+msgstr ""
+
 #: src/components/TagMenu/index.web.tsx:115
 msgid "Unmute {truncatedTag}"
 msgstr "{truncatedTag} को अनम्यूट करें"
@@ -8702,7 +8765,7 @@ msgstr "वीडियो गेम"
 msgid "Video not found."
 msgstr "वीडियो नहीं मिला"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:99
+#: src/view/com/composer/videos/SubtitleDialog.tsx:101
 msgid "Video settings"
 msgstr "वीडियो सेटिंग"
 
@@ -9088,6 +9151,10 @@ msgstr "आप किसी को फ़ॉलो नहीं कर रहे
 #~ msgid "You can adjust these in your Appearance Settings later."
 #~ msgstr "आप इसे अपने दिखावट सेटिंग में बाद में बदल सकते हैं।"
 
+#: src/components/dialogs/nuxs/NeueTypography.tsx:62
+msgid "You can adjust these in your Appearance Settings later."
+msgstr ""
+
 #: src/view/com/posts/FollowingEmptyState.tsx:63
 #: src/view/com/posts/FollowingEndOfFeed.tsx:64
 msgid "You can also discover new Custom Feeds to follow."
@@ -9264,6 +9331,7 @@ msgstr "स्टार्टर पैक उत्पन्न करने �
 msgid "You must grant access to your photo library to save a QR code"
 msgstr "QR कोड सहेजने के लिए आपको फ़ोटो लाइब्रेरी तक पहुँच देनी पड़ेगी।"
 
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:302
 #: src/components/StarterPack/ShareDialog.tsx:68
 msgid "You must grant access to your photo library to save the image."
 msgstr "छवि सहेजने के लिए आपको फ़ोटो लाइब्रेरी तक पहुँच देनी पड़ेगी।"

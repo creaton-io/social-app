@@ -566,7 +566,7 @@ msgstr "Ábhar do dhaoine fásta"
 msgid "Adult content can only be enabled via the Web at <0>bsky.app</0>."
 msgstr "Ní féidir ábhar do dhaoine fásta a chur ar fáil ach tríd an nGréasán ag <0>bsky.app</0>."
 
-#: src/components/moderation/LabelPreference.tsx:242
+#: src/components/moderation/LabelPreference.tsx:241
 msgid "Adult content is disabled."
 msgstr "Tá ábhar do dhaoine fásta curtha ar ceal."
 
@@ -1221,7 +1221,7 @@ msgstr "Cuireann sé seo oscailt an tsuímh gréasáin atá nasctha ar ceal"
 msgid "Cannot interact with a blocked user"
 msgstr "Ní féidir plé le húsáideoir blocáilte"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:133
+#: src/view/com/composer/videos/SubtitleDialog.tsx:135
 msgid "Captions (.vtt)"
 msgstr "Fotheidil (.vtt)"
 
@@ -1526,7 +1526,7 @@ msgstr "Físeán á chomhbhrú..."
 msgid "Configure content filtering setting for category: {name}"
 msgstr "Socraigh scagadh an ábhair le haghaidh catagóir: {name}"
 
-#: src/components/moderation/LabelPreference.tsx:244
+#: src/components/moderation/LabelPreference.tsx:243
 msgid "Configured in <0>moderation settings</0>."
 msgstr "Le socrú i <0>socruithe na modhnóireachta</0>."
 
@@ -2509,6 +2509,10 @@ msgstr "Earráid agus an freagra ar an captcha á phróiseáil."
 msgid "Error:"
 msgstr "Earráid:"
 
+#: src/screens/Signup/StepInfo/index.tsx:197
+msgid "Ethereum Wallet"
+msgstr ""
+
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:364
 msgid "Everybody"
 msgstr "Chuile dhuine"
@@ -3423,7 +3427,7 @@ msgstr "Tabhair cuireadh chuig cara leat"
 msgid "Invite code"
 msgstr "Cód cuiridh"
 
-#: src/screens/Signup/state.ts:258
+#: src/screens/Signup/state.ts:276
 msgid "Invite code not accepted. Check that you input it correctly and try again."
 msgstr "Níor glacadh leis an gcód cuiridh. Bí cinnte gur scríobh tú i gceart é agus bain triail eile as."
 
@@ -3952,7 +3956,7 @@ msgstr "Liostaí modhnóireachta"
 msgid "Moderation Lists"
 msgstr "Liostaí modhnóireachta"
 
-#: src/components/moderation/LabelPreference.tsx:247
+#: src/components/moderation/LabelPreference.tsx:246
 msgid "moderation settings"
 msgstr "socruithe modhnóireachta"
 
@@ -4383,6 +4387,14 @@ msgstr "Ní dhearna éinne postáil athluaite air seo fós. Ar cheart duitse tos
 msgid "Nobody has reposted this yet. Maybe you should be the first!"
 msgstr "Ní dhearna éinne athphostáil air seo fós. Ar cheart duitse tosú?"
 
+#: src/view/com/post-thread/PostQuotes.tsx:108
+msgid "Nobody has quoted this yet. Maybe you should be the first!"
+msgstr ""
+
+#: src/view/com/post-thread/PostRepostedBy.tsx:80
+msgid "Nobody has reposted this yet. Maybe you should be the first!"
+msgstr ""
+
 #: src/screens/StarterPack/Wizard/StepProfiles.tsx:103
 msgid "Nobody was found. Try searching for someone else."
 msgstr "Ní fuarthas éinne. Bain triail as duine éigin eile a chuardach."
@@ -4661,6 +4673,10 @@ msgstr "Osclaíonn sé seo an próiseas le cuntas nua Bluesky a chruthú"
 msgid "Opens flow to sign into your existing Bluesky account"
 msgstr "Osclaíonn sé seo an síniú isteach ar an gcuntas Bluesky atá agat cheana féin"
 
+#: src/view/com/auth/SplashScreen.tsx:64
+msgid "Opens flow to sign into your existing Creaton account"
+msgstr ""
+
 #: src/view/com/composer/photos/SelectGifBtn.tsx:36
 msgid "Opens GIF select dialog"
 msgstr "Osclaíonn sé seo fuinneog chun GIF a roghnú"
@@ -4869,7 +4885,7 @@ msgstr "Seinn an físeán"
 msgid "Plays the GIF"
 msgstr "Seinneann sé seo an GIF"
 
-#: src/screens/Signup/state.ts:217
+#: src/screens/Signup/state.ts:222
 msgid "Please choose your handle."
 msgstr "Roghnaigh do leasainm, le do thoil."
 
@@ -4878,7 +4894,7 @@ msgstr "Roghnaigh do leasainm, le do thoil."
 msgid "Please choose your password."
 msgstr "Roghnaigh do phasfhocal, le do thoil."
 
-#: src/screens/Signup/state.ts:231
+#: src/screens/Signup/state.ts:236
 msgid "Please complete the verification captcha."
 msgstr "Déan an captcha, le do thoil."
 
@@ -5323,7 +5339,7 @@ msgstr "Bain an phostáil athluaite"
 msgid "Remove repost"
 msgstr "Scrios an athphostáil"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:260
+#: src/view/com/composer/videos/SubtitleDialog.tsx:264
 msgid "Remove subtitle file"
 msgstr "Bain an comhad fotheideal"
 
@@ -5880,7 +5896,7 @@ msgstr "Roghnaigh GIF \"{0}\""
 msgid "Select how long to mute this word for."
 msgstr "Cá fhad a bheidh an focal seo balbhaithe?"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:245
+#: src/view/com/composer/videos/SubtitleDialog.tsx:249
 msgid "Select language..."
 msgstr "Roghnaigh teanga..."
 
@@ -7571,7 +7587,7 @@ msgstr "Físchluichí"
 msgid "Video not found."
 msgstr "Físeán gan aimsiú."
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:99
+#: src/view/com/composer/videos/SubtitleDialog.tsx:101
 msgid "Video settings"
 msgstr "Socruithe físe"
 
@@ -8093,6 +8109,7 @@ msgstr "Ní mór duit seachtar ar a laghad a leanúint le pacáiste fáilte a ch
 msgid "You must grant access to your photo library to save a QR code"
 msgstr "Ní mór duit fáil ar do leabharlann grianghraf a cheadú le cód QR a shábháil"
 
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:302
 #: src/components/StarterPack/ShareDialog.tsx:68
 msgid "You must grant access to your photo library to save the image."
 msgstr "Ní mór duit fáil ar do leabharlann grianghraf a cheadú le íomhá a shábháil."

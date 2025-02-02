@@ -11,6 +11,8 @@ import * as Toast from '#/view/com/util/Toast'
 import {atoms as a} from '#/alf'
 import {PlayButtonIcon} from '#/components/video/PlayButtonIcon'
 
+const MAX_DURATION = 60
+
 export function VideoPreview({
   asset,
   video,

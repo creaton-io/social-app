@@ -4,10 +4,14 @@ import {msg, Trans} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
 import * as EmailValidator from 'email-validator'
 import type tldts from 'tldts'
+import {useAccount} from 'wagmi'
 
+import {usePalette} from '#/lib/hooks/usePalette'
 import {logEvent} from '#/lib/statsig/statsig'
 import {isEmailMaybeInvalid} from '#/lib/strings/email'
 import {logger} from '#/logger'
+import {TextLink} from '#/view/com/util/Link'
+import {WalletComponents} from '#/screens/Login/LoginWallet'
 import {ScreenTransition} from '#/screens/Login/ScreenTransition'
 import {is13, is18, useSignupContext} from '#/screens/Signup/state'
 import {Policies} from '#/screens/Signup/StepInfo/Policies'
@@ -17,7 +21,6 @@ import {FormError} from '#/components/forms/FormError'
 import {HostingProvider} from '#/components/forms/HostingProvider'
 import * as TextField from '#/components/forms/TextField'
 import {Envelope_Stroke2_Corner0_Rounded as Envelope} from '#/components/icons/Envelope'
-import {Lock_Stroke2_Corner0_Rounded as Lock} from '#/components/icons/Lock'
 import {Ticket_Stroke2_Corner0_Rounded as Ticket} from '#/components/icons/Ticket'
 import {Loader} from '#/components/Loader'
 import {BackNextButtons} from '../BackNextButtons'
@@ -49,7 +52,8 @@ export function StepInfo({
   const inviteCodeValueRef = useRef<string>(state.inviteCode)
   const emailValueRef = useRef<string>(state.email)
   const prevEmailValueRef = useRef<string>(state.email)
-  const passwordValueRef = useRef<string>(state.password)
+  const account = useAccount()
+  const pal = usePalette('default')
 
   const [hasWarnedEmail, setHasWarnedEmail] = React.useState<boolean>(false)
 
@@ -68,7 +72,23 @@ export function StepInfo({
     const inviteCode = inviteCodeValueRef.current
     const email = emailValueRef.current
     const emailChanged = prevEmailValueRef.current !== email
-    const password = passwordValueRef.current
+    const ethAddress = account.address
+
+    if (emailChanged && tldtsRef.current) {
+      if (isEmailMaybeInvalid(email, tldtsRef.current)) {
+        prevEmailValueRef.current = email
+        setHasWarnedEmail(true)
+        return dispatch({
+          type: 'setError',
+          value: _(
+            msg`It looks like you may have entered your email address incorrectly. Are you sure it's right?`,
+          ),
+        })
+      }
+    } else if (hasWarnedEmail) {
+      setHasWarnedEmail(false)
+    }
+    prevEmailValueRef.current = email
 
     if (emailChanged && tldtsRef.current) {
       if (isEmailMaybeInvalid(email, tldtsRef.current)) {
@@ -108,31 +128,44 @@ export function StepInfo({
         value: _(msg`Your email appears to be invalid.`),
       })
     }
-    if (!password) {
+    if (!ethAddress) {
       return dispatch({
         type: 'setError',
-        value: _(msg`Please choose your password.`),
+        value: _(msg`Please connect or create a wallet`),
       })
     }
 
     dispatch({type: 'setInviteCode', value: inviteCode})
     dispatch({type: 'setEmail', value: email})
-    dispatch({type: 'setPassword', value: password})
+    dispatch({type: 'setEthAddress', value: ethAddress})
     dispatch({type: 'next'})
     logEvent('signup:nextPressed', {
       activeStep: state.activeStep,
     })
-  }
+  } // }, [
+  //   _,
+  //   dispatch,
+  //   state.activeStep,
+  //   state.dateOfBirth,
+  //   state.serviceDescription?.inviteCodeRequired,
+  //   account.address,
+  // ])
 
   return (
     <ScreenTransition>
       <View style={[a.gap_md]}>
         <FormError error={state.error} />
-        <HostingProvider
-          minimal
-          serviceUrl={state.serviceUrl}
-          onSelectServiceUrl={v => dispatch({type: 'setServiceUrl', value: v})}
-        />
+        <View>
+          <TextField.LabelText>
+            <Trans>Hosting provider</Trans>
+          </TextField.LabelText>
+          <HostingProvider
+            serviceUrl={state.serviceUrl}
+            onSelectServiceUrl={v =>
+              dispatch({type: 'setServiceUrl', value: v})
+            }
+          />
+        </View>
         {state.isLoading || isLoadingStarterPack ? (
           <View style={[a.align_center]}>
             <Loader size="xl" />
@@ -142,7 +175,19 @@ export function StepInfo({
             {state.serviceDescription.inviteCodeRequired && (
               <View>
                 <TextField.LabelText>
-                  <Trans>Invite code</Trans>
+                  Invite code needed, DM @Aer0xander on
+                  <TextLink
+                    style={pal.link}
+                    href="https://x.com/aer0xander"
+                    text=" Twitter "
+                  />
+                  or
+                  <TextLink
+                    style={pal.link}
+                    href="https://warpcast.com/aer0xander"
+                    text=" Warpcast "
+                  />
+                  for an invite!
                 </TextField.LabelText>
                 <TextField.Root>
                   <TextField.Icon icon={Ticket} />
@@ -181,24 +226,11 @@ export function StepInfo({
                 />
               </TextField.Root>
             </View>
-            <View>
+            <View style={{zIndex: 1000000000000000}}>
               <TextField.LabelText>
-                <Trans>Password</Trans>
+                <Trans>Ethereum Wallet</Trans>
               </TextField.LabelText>
-              <TextField.Root>
-                <TextField.Icon icon={Lock} />
-                <TextField.Input
-                  testID="passwordInput"
-                  onChangeText={value => {
-                    passwordValueRef.current = value
-                  }}
-                  label={_(msg`Choose your password`)}
-                  defaultValue={state.password}
-                  secureTextEntry
-                  autoComplete="new-password"
-                  autoCapitalize="none"
-                />
-              </TextField.Root>
+              <WalletComponents />
             </View>
             <View>
               <DateField.LabelText>

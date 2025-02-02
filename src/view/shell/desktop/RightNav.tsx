@@ -11,6 +11,7 @@ import {useSession} from '#/state/session'
 import {DesktopFeeds} from '#/view/shell/desktop/Feeds'
 import {DesktopSearch} from '#/view/shell/desktop/Search'
 import {SidebarTrendingTopics} from '#/view/shell/desktop/SidebarTrendingTopics'
+import {WalletComponents} from '#/screens/Login/LoginWallet'
 import {atoms as a, useGutters, useTheme, web} from '#/alf'
 import {Divider} from '#/components/Divider'
 import {InlineLinkText} from '#/components/Link'
@@ -67,11 +68,25 @@ export function DesktopRightNav({routeName}: {routeName: string}) {
           ],
           width: 300 + gutters.paddingLeft,
           maxHeight: '100%',
-          overflowY: 'auto',
         }),
       ]}>
-      {!isSearchScreen && <DesktopSearch />}
-
+      <View
+        style={[
+          {
+            marginBottom: 18,
+            zIndex: 1000000000000000,
+            marginLeft: 20,
+          },
+          a.flex_row,
+          a.justify_center,
+        ]}>
+        <WalletComponents />
+      </View>
+      {routeName !== 'Search' && (
+        <View style={[a.pb_lg]}>
+          <DesktopSearch />
+        </View>
+      )}
       {hasSession && (
         <>
           <ProgressGuideList />

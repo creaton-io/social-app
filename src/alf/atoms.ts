@@ -290,10 +290,10 @@ export const atoms = {
     fontWeight: tokens.fontWeight.normal,
   },
   font_bold: {
-    fontWeight: tokens.fontWeight.bold,
+    fontWeight: tokens.fontWeight.semibold,
   },
   font_heavy: {
-    fontWeight: tokens.fontWeight.heavy,
+    fontWeight: tokens.fontWeight.extrabold,
   },
   italic: {
     fontStyle: 'italic',

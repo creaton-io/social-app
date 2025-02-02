@@ -643,7 +643,7 @@ msgstr "Alternatif metin ekle"
 #~ msgid "Add ALT text"
 #~ msgstr ""
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:107
+#: src/view/com/composer/videos/SubtitleDialog.tsx:109
 msgid "Add alt text (optional)"
 msgstr "Alternatif metin ekle (isteğe bağlı)"
 
@@ -769,7 +769,7 @@ msgstr "Yetişkin İçerik"
 msgid "Adult content can only be enabled via the Web at <0>bsky.app</0>."
 msgstr "Yetişkin içerik yalnızca Web üzerinden <0>bsky.app</0> etkinleştirilebilir."
 
-#: src/components/moderation/LabelPreference.tsx:242
+#: src/components/moderation/LabelPreference.tsx:241
 msgid "Adult content is disabled."
 msgstr "Yetişkin içerik devre dışı bırakıldı."
 
@@ -1605,7 +1605,7 @@ msgstr ""
 msgid "Cannot interact with a blocked user"
 msgstr "Engellenen kullanıcıya etkileşime geçilemez"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:133
+#: src/view/com/composer/videos/SubtitleDialog.tsx:135
 msgid "Captions (.vtt)"
 msgstr "Altyazılar (.vtt)"
 
@@ -2021,7 +2021,7 @@ msgstr ""
 msgid "Configure content filtering setting for category: {name}"
 msgstr ""
 
-#: src/components/moderation/LabelPreference.tsx:244
+#: src/components/moderation/LabelPreference.tsx:243
 msgid "Configured in <0>moderation settings</0>."
 msgstr ""
 
@@ -2327,7 +2327,7 @@ msgstr "Videonuz işlenemedi"
 msgid "Create"
 msgstr "Oluştur"
 
-#: src/view/com/auth/SplashScreen.tsx:57
+#: src/view/com/auth/SplashScreen.tsx:56
 #: src/view/com/auth/SplashScreen.web.tsx:106
 #~ msgid "Create a new account"
 #~ msgstr "Yeni bir hesap oluştur"
@@ -2380,6 +2380,10 @@ msgstr "Bir tane daha oluştur"
 #: src/view/com/auth/SplashScreen.web.tsx:109
 msgid "Create new account"
 msgstr "Yeni hesap oluştur"
+
+#: src/view/com/auth/SplashScreen.web.tsx:86
+msgid "ℂ𝕣𝕖𝕒𝕥𝕖 𝕠𝕟𝕔𝕙𝕒𝕚𝕟 - 𝕋𝕖𝕤𝕥 𝕧𝕖𝕣𝕤𝕚𝕠𝕟"
+msgstr ""
 
 #: src/components/StarterPack/ShareDialog.tsx:158
 #~ msgid "Create QR code"
@@ -3241,6 +3245,10 @@ msgstr ""
 msgid "Error:"
 msgstr "Hata:"
 
+#: src/screens/Signup/StepInfo/index.tsx:197
+msgid "Ethereum Wallet"
+msgstr ""
+
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:364
 msgid "Everybody"
 msgstr "Herkes"
@@ -3711,6 +3719,10 @@ msgstr ""
 #~ msgid "Follow some users to get started. We can recommend you more users based on who you find interesting."
 #~ msgstr "Başlamak için bazı kullanıcıları takip edin. Sizi ilginç bulduğunuz kişilere dayanarak size daha fazla kullanıcı önerebiliriz."
 
+#: src/view/com/auth/SplashScreen.web.tsx:153
+msgid "Follow us on Twitter (or just follow Creaton on Creaton!)"
+msgstr ""
+
 #: src/components/KnownFollowers.tsx:169
 #~ msgid "Followed by"
 #~ msgstr ""
@@ -3835,6 +3847,11 @@ msgstr "Güvenlik nedeniyle, bunu bir daha görüntüleyemeyeceksiniz. Eğer bu 
 #: src/screens/Settings/AppearanceSettings.tsx:142
 msgid "For the best experience, we recommend using the theme font."
 msgstr "En iyi deneyim için, tema yazı tipini kullanmanızı öneriyoruz."
+
+#: src/components/dialogs/nuxs/NeueTypography.tsx:74
+#: src/screens/Settings/AppearanceSettings.tsx:143
+msgid "For the best experience, we recommend using the theme font."
+msgstr ""
 
 #: src/components/dialogs/MutedWords.tsx:178
 msgid "Forever"
@@ -4297,6 +4314,7 @@ msgstr "Resim"
 #~ msgid "Image options"
 #~ msgstr "Resim seçenekleri"
 
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:312
 #: src/components/StarterPack/ShareDialog.tsx:76
 msgid "Image saved to your camera roll!"
 msgstr ""
@@ -4419,7 +4437,7 @@ msgstr "Arkadaşını Davet Et"
 msgid "Invite code"
 msgstr "Davet kodu"
 
-#: src/screens/Signup/state.ts:258
+#: src/screens/Signup/state.ts:276
 msgid "Invite code not accepted. Check that you input it correctly and try again."
 msgstr "Davet kodu kabul edilmedi. Doğru girdiğinizden emin olun ve tekrar deneyin."
 
@@ -5052,7 +5070,7 @@ msgstr "Moderasyon listeleri"
 msgid "Moderation Lists"
 msgstr "Moderasyon Listeleri"
 
-#: src/components/moderation/LabelPreference.tsx:247
+#: src/components/moderation/LabelPreference.tsx:246
 msgid "moderation settings"
 msgstr "moderasyon araçları"
 
@@ -5911,6 +5929,10 @@ msgstr ""
 msgid "Opens flow to sign into your existing Bluesky account"
 msgstr ""
 
+#: src/view/com/auth/SplashScreen.tsx:64
+msgid "Opens flow to sign into your existing Creaton account"
+msgstr ""
+
 #: src/view/com/profile/ProfileHeader.tsx:614
 #~ msgid "Opens followers list"
 #~ msgstr "Takipçi listesini açar"
@@ -6226,7 +6248,7 @@ msgstr "Videoyu Oynat"
 msgid "Plays the GIF"
 msgstr "GIF'i oynatır"
 
-#: src/screens/Signup/state.ts:217
+#: src/screens/Signup/state.ts:222
 msgid "Please choose your handle."
 msgstr "Kullanıcı adınızı seçin."
 
@@ -6235,13 +6257,17 @@ msgstr "Kullanıcı adınızı seçin."
 msgid "Please choose your password."
 msgstr "Şifrenizi seçin."
 
-#: src/screens/Signup/state.ts:231
+#: src/screens/Signup/state.ts:236
 msgid "Please complete the verification captcha."
 msgstr ""
 
 #: src/view/com/modals/ChangeEmail.tsx:65
 msgid "Please confirm your email before changing it. This is a temporary requirement while email-updating tools are added, and it will soon be removed."
 msgstr "E-postanızı değiştirmeden önce onaylayın. Bu, e-posta güncelleme araçları eklenirken geçici bir gerekliliktir ve yakında kaldırılacaktır."
+
+#: src/screens/Signup/StepInfo/index.tsx:112
+msgid "Please connect or create a wallet"
+msgstr ""
 
 #: src/view/com/modals/AddAppPasswords.tsx:94
 #~ msgid "Please enter a name for your app password. All spaces is not allowed."
@@ -6792,7 +6818,7 @@ msgstr ""
 msgid "Remove repost"
 msgstr "Yeniden göndermeyi kaldır"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:260
+#: src/view/com/composer/videos/SubtitleDialog.tsx:264
 msgid "Remove subtitle file"
 msgstr "Altyazı dosyasını kaldır"
 
@@ -7490,7 +7516,7 @@ msgstr "GIF Seç \"{0}\""
 msgid "Select how long to mute this word for."
 msgstr "Bu kelimenin ne kadar süre sessize alınacağını seçin."
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:245
+#: src/view/com/composer/videos/SubtitleDialog.tsx:249
 msgid "Select language..."
 msgstr "Dil seç..."
 
@@ -9799,7 +9825,7 @@ msgstr "Video Oyunları"
 msgid "Video not found."
 msgstr "Video bulunamadı."
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:99
+#: src/view/com/composer/videos/SubtitleDialog.tsx:101
 msgid "Video settings"
 msgstr "Video ayarları"
 
@@ -10434,6 +10460,7 @@ msgstr ""
 msgid "You must grant access to your photo library to save a QR code"
 msgstr ""
 
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:302
 #: src/components/StarterPack/ShareDialog.tsx:68
 msgid "You must grant access to your photo library to save the image."
 msgstr ""

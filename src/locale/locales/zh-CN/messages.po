@@ -479,7 +479,7 @@ msgstr "添加账户"
 msgid "Add alt text"
 msgstr "添加替代文本"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:107
+#: src/view/com/composer/videos/SubtitleDialog.tsx:109
 msgid "Add alt text (optional)"
 msgstr "添加替代文本（可选）"
 
@@ -574,7 +574,7 @@ msgstr "成人内容"
 msgid "Adult content can only be enabled via the Web at <0>bsky.app</0>."
 msgstr "仅可通过网页端（<0>bsky.app</0>）启用成人内容显示。"
 
-#: src/components/moderation/LabelPreference.tsx:242
+#: src/components/moderation/LabelPreference.tsx:241
 msgid "Adult content is disabled."
 msgstr "成人内容显示已停用。"
 
@@ -694,6 +694,10 @@ msgstr "播放视频时发生错误，请重试。"
 #: src/view/com/util/post-embeds/VideoEmbed.web.tsx:198
 msgid "An error occurred while loading the video. Please try again."
 msgstr "播放视频时发生错误，请重试。"
+
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:315
+msgid "An error occurred while saving the image!"
+msgstr "保存图片时发生错误！"
 
 #: src/components/StarterPack/QrCodeDialog.tsx:71
 #: src/components/StarterPack/ShareDialog.tsx:79
@@ -1266,7 +1270,7 @@ msgstr "取消开启网站链接"
 msgid "Cannot interact with a blocked user"
 msgstr "无法与被屏蔽的用户进行互动"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:133
+#: src/view/com/composer/videos/SubtitleDialog.tsx:135
 msgid "Captions (.vtt)"
 msgstr "字幕（.vtt）"
 
@@ -1529,6 +1533,10 @@ msgstr "折叠指定通知的用户列表"
 msgid "Color mode"
 msgstr "主题模式"
 
+#: src/screens/Settings/AppearanceSettings.tsx:97
+msgid "Color mode"
+msgstr ""
+
 #: src/screens/Onboarding/index.tsx:38
 #: src/screens/Onboarding/state.ts:97
 msgid "Comedy"
@@ -1572,7 +1580,7 @@ msgstr "正在压缩视频……"
 msgid "Configure content filtering setting for category: {name}"
 msgstr "配置 {name} 类别的内容过滤设置"
 
-#: src/components/moderation/LabelPreference.tsx:244
+#: src/components/moderation/LabelPreference.tsx:243
 msgid "Configured in <0>moderation settings</0>."
 msgstr "已在 <0>内容审核设置</0> 中进行配置。"
 
@@ -2588,6 +2596,10 @@ msgstr "CAPTCHA（人机验证）响应错误。"
 msgid "Error:"
 msgstr "错误："
 
+#: src/screens/Signup/StepInfo/index.tsx:197
+msgid "Ethereum Wallet"
+msgstr ""
+
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:364
 msgid "Everybody"
 msgstr "所有人"
@@ -3052,6 +3064,11 @@ msgstr "出于安全原因，你将无法再次查看这个应用密码。如果
 #: src/screens/Settings/AppearanceSettings.tsx:142
 msgid "For the best experience, we recommend using the theme font."
 msgstr "我们建议你使用主题字体，以获得最佳的使用体验。"
+
+#: src/components/dialogs/nuxs/NeueTypography.tsx:74
+#: src/screens/Settings/AppearanceSettings.tsx:143
+msgid "For the best experience, we recommend using the theme font."
+msgstr ""
 
 #: src/components/dialogs/MutedWords.tsx:178
 msgid "Forever"
@@ -3531,7 +3548,7 @@ msgstr "邀请朋友"
 msgid "Invite code"
 msgstr "邀请码"
 
-#: src/screens/Signup/state.ts:258
+#: src/screens/Signup/state.ts:276
 msgid "Invite code not accepted. Check that you input it correctly and try again."
 msgstr "邀请码无效，请检查你输入的邀请码并重试。"
 
@@ -3586,6 +3603,14 @@ msgstr "加入 Bluesky"
 #: src/view/shell/NavSignupCard.tsx:40
 msgid "Join the conversation"
 msgstr "加入对话"
+
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:492
+#~ msgid "Joined {0}"
+#~ msgstr "{0} 已加入"
+
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:559
+msgid "Joined on {joinedDate}"
+msgstr ""
 
 #: src/screens/Onboarding/index.tsx:21
 #: src/screens/Onboarding/state.ts:104
@@ -4063,7 +4088,7 @@ msgstr "内容审核列表"
 msgid "Moderation Lists"
 msgstr "内容审核列表"
 
-#: src/components/moderation/LabelPreference.tsx:247
+#: src/components/moderation/LabelPreference.tsx:246
 msgid "moderation settings"
 msgstr "内容审核设置"
 
@@ -4483,6 +4508,14 @@ msgstr "目前还没有人引用这则帖文，或许你可以来当第一个哦
 msgid "Nobody has reposted this yet. Maybe you should be the first!"
 msgstr "目前还没有人转发这则帖文，或许你可以来当第一个哦！"
 
+#: src/view/com/post-thread/PostQuotes.tsx:108
+msgid "Nobody has quoted this yet. Maybe you should be the first!"
+msgstr ""
+
+#: src/view/com/post-thread/PostRepostedBy.tsx:80
+msgid "Nobody has reposted this yet. Maybe you should be the first!"
+msgstr ""
+
 #: src/screens/StarterPack/Wizard/StepProfiles.tsx:103
 msgid "Nobody was found. Try searching for someone else."
 msgstr "找不到任何人，试试搜点其他关键字。"
@@ -4761,6 +4794,10 @@ msgstr "开启创建一个新的 Bluesky 账户的流程"
 msgid "Opens flow to sign into your existing Bluesky account"
 msgstr "开启登录到你现有的 Bluesky 账户的流程"
 
+#: src/view/com/auth/SplashScreen.tsx:64
+msgid "Opens flow to sign into your existing Creaton account"
+msgstr ""
+
 #: src/view/com/composer/photos/SelectGifBtn.tsx:36
 msgid "Opens GIF select dialog"
 msgstr "开启 GIF 选择对话框"
@@ -4982,7 +5019,7 @@ msgstr "播放视频"
 msgid "Plays the GIF"
 msgstr "播放 GIF"
 
-#: src/screens/Signup/state.ts:217
+#: src/screens/Signup/state.ts:222
 msgid "Please choose your handle."
 msgstr "请设置你的账户代码。"
 
@@ -4991,7 +5028,7 @@ msgstr "请设置你的账户代码。"
 msgid "Please choose your password."
 msgstr "请设置你的密码。"
 
-#: src/screens/Signup/state.ts:231
+#: src/screens/Signup/state.ts:236
 msgid "Please complete the verification captcha."
 msgstr "请完成 CAPTCHA（人机验证）。"
 
@@ -5466,7 +5503,7 @@ msgstr "删除引用"
 msgid "Remove repost"
 msgstr "删除转发"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:260
+#: src/view/com/composer/videos/SubtitleDialog.tsx:264
 msgid "Remove subtitle file"
 msgstr "删除字幕文件"
 
@@ -6028,7 +6065,7 @@ msgstr "选择 GIF “{0}”"
 msgid "Select how long to mute this word for."
 msgstr "选择要将这个字词隐藏多长时间。"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:245
+#: src/view/com/composer/videos/SubtitleDialog.tsx:249
 msgid "Select language..."
 msgstr "选择语言……"
 
@@ -7757,7 +7794,7 @@ msgstr "视频正在播放"
 msgid "Video not found."
 msgstr "无法找到视频。"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:99
+#: src/view/com/composer/videos/SubtitleDialog.tsx:101
 msgid "Video settings"
 msgstr "视频设置"
 
@@ -8138,6 +8175,10 @@ msgstr "你目前无法上传视频。"
 msgid "You are not following anyone."
 msgstr "你还没有关注任何账户。"
 
+#: src/components/dialogs/nuxs/NeueTypography.tsx:62
+msgid "You can adjust these in your Appearance Settings later."
+msgstr ""
+
 #: src/view/com/posts/FollowingEmptyState.tsx:63
 #: src/view/com/posts/FollowingEndOfFeed.tsx:64
 msgid "You can also discover new Custom Feeds to follow."
@@ -8299,6 +8340,7 @@ msgstr "你必须至少关注 7 个人以创建新手包。"
 msgid "You must grant access to your photo library to save a QR code"
 msgstr "你必须授权访问照片图库以保存二维码"
 
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:302
 #: src/components/StarterPack/ShareDialog.tsx:68
 msgid "You must grant access to your photo library to save the image."
 msgstr "你必须授权访问照片图库以保存图片。"

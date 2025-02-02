@@ -17,6 +17,8 @@ module.exports = {
     'eslint-plugin-react-compiler',
   ],
   rules: {
+    'no-unused-vars': 0,
+    '@typescript-eslint/no-unused-vars': 0,
     'react/no-unescaped-entities': 0,
     'react/prop-types': 0,
     'react-native/no-inline-styles': 0,

@@ -624,7 +624,7 @@ msgstr "Tambahkan teks alt"
 #~ msgid "Add ALT text"
 #~ msgstr ""
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:107
+#: src/view/com/composer/videos/SubtitleDialog.tsx:109
 msgid "Add alt text (optional)"
 msgstr "Tambahkan teks alt (opsional)"
 
@@ -737,7 +737,7 @@ msgstr "Konten Dewasa"
 msgid "Adult content can only be enabled via the Web at <0>bsky.app</0>."
 msgstr "Konten dewasa hanya dapat diaktifkan melalui laman <0>bsky.app</0>."
 
-#: src/components/moderation/LabelPreference.tsx:242
+#: src/components/moderation/LabelPreference.tsx:241
 msgid "Adult content is disabled."
 msgstr "Konten dewasa dinonaktifkan."
 
@@ -874,6 +874,10 @@ msgstr "Terjadi kesalahan saat memuat video. Silakan coba lagi."
 #: src/components/dialogs/nuxs/TenMillion/index.tsx:250
 #~ msgid "An error occurred while saving the image!"
 #~ msgstr ""
+
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:315
+msgid "An error occurred while saving the image!"
+msgstr ""
 
 #: src/components/StarterPack/ShareDialog.tsx:79
 #~ msgid "An error occurred while saving the image."
@@ -1528,7 +1532,7 @@ msgstr "Membatalkan membuka situs web tertaut"
 msgid "Cannot interact with a blocked user"
 msgstr "Tidak dapat berinteraksi dengan pengguna yang diblokir"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:133
+#: src/view/com/composer/videos/SubtitleDialog.tsx:135
 msgid "Captions (.vtt)"
 msgstr "Subtitel (.vtt)"
 
@@ -1936,7 +1940,7 @@ msgstr ""
 msgid "Configure content filtering setting for category: {name}"
 msgstr "Konfigurasikan pengaturan penyaringan konten untuk kategori: {name}"
 
-#: src/components/moderation/LabelPreference.tsx:244
+#: src/components/moderation/LabelPreference.tsx:243
 msgid "Configured in <0>moderation settings</0>."
 msgstr "Diatur pada <0>pengaturan moderasi</0>."
 
@@ -2213,7 +2217,7 @@ msgstr "Tidak dapat memproses video"
 msgid "Create"
 msgstr "Buat"
 
-#: src/view/com/auth/SplashScreen.tsx:57
+#: src/view/com/auth/SplashScreen.tsx:56
 #: src/view/com/auth/SplashScreen.web.tsx:106
 #~ msgid "Create a new account"
 #~ msgstr ""
@@ -2266,6 +2270,10 @@ msgstr "Buat paket lain"
 #: src/view/com/auth/SplashScreen.web.tsx:109
 msgid "Create new account"
 msgstr "Buat akun baru"
+
+#: src/view/com/auth/SplashScreen.web.tsx:86
+msgid "ℂ𝕣𝕖𝕒𝕥𝕖 𝕠𝕟𝕔𝕙𝕒𝕚𝕟 - 𝕋𝕖𝕤𝕥 𝕧𝕖𝕣𝕤𝕚𝕠𝕟"
+msgstr ""
 
 #: src/components/StarterPack/ShareDialog.tsx:158
 #~ msgid "Create QR code"
@@ -3091,6 +3099,10 @@ msgstr "Kesalahan saat menerima respons captcha."
 msgid "Error:"
 msgstr "Galat:"
 
+#: src/screens/Signup/StepInfo/index.tsx:197
+msgid "Ethereum Wallet"
+msgstr ""
+
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:364
 msgid "Everybody"
 msgstr "Semua orang"
@@ -3549,6 +3561,10 @@ msgstr "Ikuti lebih banyak akun untuk terhubung sesuai minat Anda dan membangun 
 #~ msgid "Follow some users to get started. We can recommend you more users based on who you find interesting."
 #~ msgstr ""
 
+#: src/view/com/auth/SplashScreen.web.tsx:153
+msgid "Follow us on Twitter (or just follow Creaton on Creaton!)"
+msgstr ""
+
 #: src/components/KnownFollowers.tsx:169
 #~ msgid "Followed by"
 #~ msgstr ""
@@ -3673,6 +3689,11 @@ msgstr ""
 #: src/screens/Settings/AppearanceSettings.tsx:142
 msgid "For the best experience, we recommend using the theme font."
 msgstr "Untuk pengalaman terbaik, kami sarankan menggunakan font tema."
+
+#: src/components/dialogs/nuxs/NeueTypography.tsx:74
+#: src/screens/Settings/AppearanceSettings.tsx:143
+msgid "For the best experience, we recommend using the theme font."
+msgstr ""
 
 #: src/components/dialogs/MutedWords.tsx:178
 msgid "Forever"
@@ -4113,6 +4134,7 @@ msgstr "Gambar"
 #~ msgid "Image alt text"
 #~ msgstr ""
 
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:312
 #: src/components/StarterPack/ShareDialog.tsx:76
 msgid "Image saved to your camera roll!"
 msgstr "Gambar telah disimpan ke rol kamera Anda!"
@@ -4211,7 +4233,7 @@ msgstr "Undang Teman"
 msgid "Invite code"
 msgstr "Kode Undangan"
 
-#: src/screens/Signup/state.ts:258
+#: src/screens/Signup/state.ts:276
 msgid "Invite code not accepted. Check that you input it correctly and try again."
 msgstr "Kode undangan salah. Periksa bahwa Anda memasukkannya dengan benar dan coba lagi."
 
@@ -4806,7 +4828,7 @@ msgstr "Daftar moderasi"
 msgid "Moderation Lists"
 msgstr "Daftar Moderasi"
 
-#: src/components/moderation/LabelPreference.tsx:247
+#: src/components/moderation/LabelPreference.tsx:246
 msgid "moderation settings"
 msgstr "pengaturan moderasi"
 
@@ -4868,6 +4890,12 @@ msgstr "Bisukan"
 msgctxt "video"
 msgid "Mute"
 msgstr "Bisukan"
+
+#: src/view/com/util/post-embeds/VideoEmbedInner/VideoEmbedInnerNative.tsx:157
+#: src/view/com/util/post-embeds/VideoEmbedInner/web-controls/VolumeControl.tsx:94
+msgctxt "video"
+msgid "Mute"
+msgstr ""
 
 #: src/components/TagMenu/index.web.tsx:116
 msgid "Mute {truncatedTag}"
@@ -5648,6 +5676,10 @@ msgstr "Membuka alur untuk membuat akun baru Bluesky"
 msgid "Opens flow to sign into your existing Bluesky account"
 msgstr "Membuka alur untuk masuk ke akun Bluesky Anda yang sudah ada"
 
+#: src/view/com/auth/SplashScreen.tsx:64
+msgid "Opens flow to sign into your existing Creaton account"
+msgstr ""
+
 #: src/view/com/composer/photos/SelectGifBtn.tsx:36
 msgid "Opens GIF select dialog"
 msgstr "Membuka dialog pemilihan GIF"
@@ -5931,7 +5963,7 @@ msgstr "Putar Video"
 msgid "Plays the GIF"
 msgstr "Putar GIF"
 
-#: src/screens/Signup/state.ts:217
+#: src/screens/Signup/state.ts:222
 msgid "Please choose your handle."
 msgstr "Silakan tentukan panggilan Anda."
 
@@ -5940,13 +5972,17 @@ msgstr "Silakan tentukan panggilan Anda."
 msgid "Please choose your password."
 msgstr "Masukkan kata sandi Anda."
 
-#: src/screens/Signup/state.ts:231
+#: src/screens/Signup/state.ts:236
 msgid "Please complete the verification captcha."
 msgstr "Mohon selesaikan verifikasi captcha."
 
 #: src/view/com/modals/ChangeEmail.tsx:65
 msgid "Please confirm your email before changing it. This is a temporary requirement while email-updating tools are added, and it will soon be removed."
 msgstr "Harap konfirmasi email Anda sebelum mengubahnya. Ini adalah persyaratan sementara selama alat pembaruan email ditambahkan, dan akan segera dihapus."
+
+#: src/screens/Signup/StepInfo/index.tsx:112
+msgid "Please connect or create a wallet"
+msgstr ""
 
 #: src/view/com/modals/AddAppPasswords.tsx:94
 #~ msgid "Please enter a name for your app password. All spaces is not allowed."
@@ -6476,7 +6512,7 @@ msgstr "Hapus kutipan"
 msgid "Remove repost"
 msgstr "Hapus postingan ulang"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:260
+#: src/view/com/composer/videos/SubtitleDialog.tsx:264
 msgid "Remove subtitle file"
 msgstr "Hapus berkas subtitel"
 
@@ -7142,7 +7178,7 @@ msgstr "Pilih GIF \"{0}\""
 msgid "Select how long to mute this word for."
 msgstr "Pilih berapa lama kata ini akan dibisukan."
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:245
+#: src/view/com/composer/videos/SubtitleDialog.tsx:249
 msgid "Select language..."
 msgstr "Pilih bahasa..."
 
@@ -8291,6 +8327,11 @@ msgstr "Kode verifikasi yang Anda berikan tidak valid. Pastikan Anda telah mengg
 msgid "Theme"
 msgstr "Tema"
 
+#: src/components/dialogs/nuxs/NeueTypography.tsx:83
+#: src/screens/Settings/AppearanceSettings.tsx:152
+msgid "Theme"
+msgstr ""
+
 #: src/screens/Onboarding/StepAlgoFeeds/index.tsx:141
 #~ msgid "There are many feeds to try:"
 #~ msgstr ""
@@ -8911,6 +8952,12 @@ msgctxt "video"
 msgid "Unmute"
 msgstr "Bunyikan"
 
+#: src/view/com/util/post-embeds/VideoEmbedInner/VideoEmbedInnerNative.tsx:156
+#: src/view/com/util/post-embeds/VideoEmbedInner/web-controls/VolumeControl.tsx:93
+msgctxt "video"
+msgid "Unmute"
+msgstr ""
+
 #: src/components/TagMenu/index.web.tsx:115
 msgid "Unmute {truncatedTag}"
 msgstr "Bunyikan {truncatedTag}"
@@ -9301,7 +9348,7 @@ msgstr "Permainan Video"
 msgid "Video not found."
 msgstr "Video tidak ditemukan."
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:99
+#: src/view/com/composer/videos/SubtitleDialog.tsx:101
 msgid "Video settings"
 msgstr "Pengaturan video"
 
@@ -9904,6 +9951,7 @@ msgstr "Anda harus mengikuti setidaknya tujuh orang sebelum membuat paket pemula
 msgid "You must grant access to your photo library to save a QR code"
 msgstr "Anda harus memberikan akses ke pustaka foto Anda untuk menyimpan kode QR"
 
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:302
 #: src/components/StarterPack/ShareDialog.tsx:68
 msgid "You must grant access to your photo library to save the image."
 msgstr "Anda harus memberikan akses ke pustaka foto Anda untuk menyimpan gambar ini."

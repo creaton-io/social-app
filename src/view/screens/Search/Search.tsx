@@ -36,6 +36,7 @@ import {
 } from '#/lib/routes/types'
 import {sanitizeDisplayName} from '#/lib/strings/display-names'
 import {augmentSearchQuery} from '#/lib/strings/helpers'
+import {useTheme} from '#/lib/ThemeContext'
 import {languageName} from '#/locale/helpers'
 import {logger} from '#/logger'
 import {isNative, isWeb} from '#/platform/detection'
@@ -585,7 +586,7 @@ let SearchScreenInner = ({
             style={pal.textLight}
           />
           <Text type="xl" style={[pal.textLight, {paddingHorizontal: 18}]}>
-            <Trans>Find posts and users on Bluesky</Trans>
+            <Trans>Find posts and users on Creaton</Trans>
           </Text>
         </View>
       </View>

@@ -474,7 +474,7 @@ msgstr "Lisää tili"
 msgid "Add alt text"
 msgstr "Lisää tekstivastine"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:107
+#: src/view/com/composer/videos/SubtitleDialog.tsx:109
 msgid "Add alt text (optional)"
 msgstr "Lisää tekstivastine (valinnainen)"
 
@@ -567,7 +567,7 @@ msgstr "Aikuissisältö"
 msgid "Adult content can only be enabled via the Web at <0>bsky.app</0>."
 msgstr "Aikuissisällön voi ottaa käyttöön vain selainsovelluksen <0>bsky.app</0> kautta."
 
-#: src/components/moderation/LabelPreference.tsx:242
+#: src/components/moderation/LabelPreference.tsx:241
 msgid "Adult content is disabled."
 msgstr "Aikuissisältö on poissa käytöstä."
 
@@ -1222,7 +1222,7 @@ msgstr "Peruuttaa linkitetyn verkkosivuston avaamisen"
 msgid "Cannot interact with a blocked user"
 msgstr "Estetyn käyttäjän kanssa ei voi olla vuorovaikutuksessa"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:133
+#: src/view/com/composer/videos/SubtitleDialog.tsx:135
 msgid "Captions (.vtt)"
 msgstr "Tekstitykset (.vtt)"
 
@@ -1527,7 +1527,7 @@ msgstr "Pakataan videota…"
 msgid "Configure content filtering setting for category: {name}"
 msgstr "Määritä sisällönsuodatusasetus luokalle {name}"
 
-#: src/components/moderation/LabelPreference.tsx:244
+#: src/components/moderation/LabelPreference.tsx:243
 msgid "Configured in <0>moderation settings</0>."
 msgstr "Määritetään <0>moderointiasetuksissa</0>."
 
@@ -1824,6 +1824,15 @@ msgstr "Luotu {0}"
 #: src/screens/List/ListHiddenScreen.tsx:127
 msgid "Creator has been blocked"
 msgstr "Tekijä on estetty"
+
+#: src/view/com/auth/server-input/index.tsx:89
+#: src/view/com/auth/server-input/index.tsx:91
+msgid "Creaton"
+msgstr ""
+
+#: src/components/ProgressGuide/List.tsx:55
+msgid "Creaton is better with frens!"
+msgstr ""
 
 #: src/screens/Onboarding/index.tsx:26
 #: src/screens/Onboarding/state.ts:99
@@ -2510,6 +2519,10 @@ msgstr "Virhe captcha-vastauksen vastaanottamisessa."
 msgid "Error:"
 msgstr "Virhe:"
 
+#: src/screens/Signup/StepInfo/index.tsx:197
+msgid "Ethereum Wallet"
+msgstr ""
+
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:364
 msgid "Everybody"
 msgstr "Kaikilta"
@@ -2964,6 +2977,11 @@ msgstr "Turvallisuussyistä et voi tarkastella tätä enää uudelleen. Jos kado
 #: src/screens/Settings/AppearanceSettings.tsx:142
 msgid "For the best experience, we recommend using the theme font."
 msgstr "Parhaan käyttökokemuksen saavuttamiseksi suosittelemme käyttämään teemafonttia."
+
+#: src/components/dialogs/nuxs/NeueTypography.tsx:74
+#: src/screens/Settings/AppearanceSettings.tsx:143
+msgid "For the best experience, we recommend using the theme font."
+msgstr ""
 
 #: src/components/dialogs/MutedWords.tsx:178
 msgid "Forever"
@@ -3424,7 +3442,7 @@ msgstr "Kutsu ystävä"
 msgid "Invite code"
 msgstr "Kutsukoodi"
 
-#: src/screens/Signup/state.ts:258
+#: src/screens/Signup/state.ts:276
 msgid "Invite code not accepted. Check that you input it correctly and try again."
 msgstr "Kutsukoodia ei hyväksytty. Tarkista, että syötit sen oikein, ja yritä uudelleen."
 
@@ -3953,7 +3971,7 @@ msgstr "Moderointilistat"
 msgid "Moderation Lists"
 msgstr "Moderointilistat"
 
-#: src/components/moderation/LabelPreference.tsx:247
+#: src/components/moderation/LabelPreference.tsx:246
 msgid "moderation settings"
 msgstr "moderointiasetukset"
 
@@ -4662,6 +4680,10 @@ msgstr "Avaa vaiheet uuden Bluesky-tilin luomiseksi"
 msgid "Opens flow to sign into your existing Bluesky account"
 msgstr "Avaa vaiheet olemassa olevaan Bluesky-tiliisi kirjautumiseksi"
 
+#: src/view/com/auth/SplashScreen.tsx:64
+msgid "Opens flow to sign into your existing Creaton account"
+msgstr ""
+
 #: src/view/com/composer/photos/SelectGifBtn.tsx:36
 msgid "Opens GIF select dialog"
 msgstr "Avaa GIF-valintaikkunan"
@@ -4870,7 +4892,7 @@ msgstr "Toista video"
 msgid "Plays the GIF"
 msgstr "Toistaa GIF-animaation"
 
-#: src/screens/Signup/state.ts:217
+#: src/screens/Signup/state.ts:222
 msgid "Please choose your handle."
 msgstr "Valitse käyttäjätunnuksesi."
 
@@ -4879,7 +4901,7 @@ msgstr "Valitse käyttäjätunnuksesi."
 msgid "Please choose your password."
 msgstr "Valitse salasanasi."
 
-#: src/screens/Signup/state.ts:231
+#: src/screens/Signup/state.ts:236
 msgid "Please complete the verification captcha."
 msgstr "Täydennä vahvistus-captcha, ole hyvä."
 
@@ -5324,7 +5346,7 @@ msgstr "Poista lainaus"
 msgid "Remove repost"
 msgstr "Poista uudelleenjulkaisu"
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:260
+#: src/view/com/composer/videos/SubtitleDialog.tsx:264
 msgid "Remove subtitle file"
 msgstr "Poista tekstitystiedosto"
 
@@ -5881,7 +5903,7 @@ msgstr "Valitse GIF ”{0}”"
 msgid "Select how long to mute this word for."
 msgstr "Valitse, kuinka pitkään tämä sana mykistetään."
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:245
+#: src/view/com/composer/videos/SubtitleDialog.tsx:249
 msgid "Select language..."
 msgstr "Valitse kieli…"
 
@@ -7572,7 +7594,7 @@ msgstr "Videopelit"
 msgid "Video not found."
 msgstr "Videota ei löydy."
 
-#: src/view/com/composer/videos/SubtitleDialog.tsx:99
+#: src/view/com/composer/videos/SubtitleDialog.tsx:101
 msgid "Video settings"
 msgstr "Videon asetukset"
 
@@ -8094,6 +8116,7 @@ msgstr "Sinun on seurattava ainakin seitsemää muuta käyttäjää, jotta voit 
 msgid "You must grant access to your photo library to save a QR code"
 msgstr "Sinun on myönnettävä pääsy kuvakirjastoosi tallentaaksesi QR-koodin"
 
+#: src/components/dialogs/nuxs/TenMillion/index.tsx:302
 #: src/components/StarterPack/ShareDialog.tsx:68
 msgid "You must grant access to your photo library to save the image."
 msgstr "Sinun on myönnettävä pääsy kuvagalleriaasi tallentaaksesi kuvan."

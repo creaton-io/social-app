@@ -166,7 +166,6 @@ function VideoControls({
     </View>
   )
 }
-
 function ControlButton({
   onPress,
   children,

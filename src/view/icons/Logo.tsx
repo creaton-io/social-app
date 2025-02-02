@@ -8,12 +8,9 @@ import Svg, {
   Stop,
   SvgProps,
 } from 'react-native-svg'
-import {Image} from 'expo-image'
 
-import {colors} from '#/lib/styles'
-import {useKawaiiMode} from '#/state/preferences/kawaii'
-
-const ratio = 57 / 64
+// Use aspect ratio from previous SVG
+const ratio = 200 / 180
 
 type Props = {
   fill?: PathProps['fill']
@@ -21,51 +18,62 @@ type Props = {
 } & Omit<SvgProps, 'style'>
 
 export const Logo = React.forwardRef(function LogoImpl(props: Props, ref) {
-  const {fill, ...rest} = props
-  const gradient = fill === 'sky'
+  // ... existing code ...
+
+  const {...rest} = props
   const styles = StyleSheet.flatten(props.style)
-  const _fill = gradient ? 'url(#sky)' : fill || styles?.color || colors.blue3
   // @ts-ignore it's fiiiiine
   const size = parseInt(rest.width || 32)
-
-  const isKawaii = useKawaiiMode()
-
-  if (isKawaii) {
-    return (
-      <Image
-        source={
-          size > 100
-            ? require('../../../assets/kawaii.png')
-            : require('../../../assets/kawaii_smol.png')
-        }
-        accessibilityLabel="Bluesky"
-        accessibilityHint=""
-        accessibilityIgnoresInvertColors
-        style={[{height: size, aspectRatio: 1.4}]}
-      />
-    )
-  }
 
   return (
     <Svg
       fill="none"
       // @ts-ignore it's fiiiiine
       ref={ref}
-      viewBox="0 0 64 57"
+      viewBox="0 0 180 180"
       {...rest}
       style={[{width: size, height: size * ratio}, styles]}>
-      {gradient && (
-        <Defs>
-          <LinearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-            <Stop offset="0" stopColor="#0A7AFF" stopOpacity="1" />
-            <Stop offset="1" stopColor="#59B9FF" stopOpacity="1" />
-          </LinearGradient>
-        </Defs>
-      )}
-
+      <Defs>
+        <LinearGradient
+          id="grd1"
+          x1="166.696"
+          y1="153.348"
+          x2="79.279"
+          y2="196.092"
+          gradientUnits="userSpaceOnUse">
+          <Stop offset="0" stopColor="#63c88e" />
+          <Stop offset="1" stopColor="#26359c" />
+        </LinearGradient>
+        <LinearGradient
+          id="grd2"
+          x1="15"
+          y1="72.359"
+          x2="91.248"
+          y2="72.359"
+          gradientUnits="userSpaceOnUse">
+          <Stop offset="0" stopColor="#63c88e" />
+          <Stop offset="1" stopColor="#26359c" />
+        </LinearGradient>
+      </Defs>
       <Path
-        fill={_fill}
-        d="M13.873 3.805C21.21 9.332 29.103 20.537 32 26.55v15.882c0-.338-.13.044-.41.867-1.512 4.456-7.418 21.847-20.923 7.944-7.111-7.32-3.819-14.64 9.125-16.85-7.405 1.264-15.73-.825-18.014-9.015C1.12 23.022 0 8.51 0 6.55 0-3.268 8.579-.182 13.873 3.805ZM50.127 3.805C42.79 9.332 34.897 20.537 32 26.55v15.882c0-.338.13.044.41.867 1.512 4.456 7.418 21.847 20.923 7.944 7.111-7.32 3.819-14.64-9.125-16.85 7.405 1.264 15.73-.825 18.014-9.015C62.88 23.022 64 8.51 64 6.55c0-9.818-8.578-6.732-13.873-2.745Z"
+        fill="#43e296"
+        d="M98.52 58.38L65.14 24.84L117.33 24.91L150.97 58.44C136.47 72.93 112.97 72.91 98.52 58.38Z"
+      />
+      <Path
+        fill="#43e296"
+        d="M116.55 99.81L91.49 124.87L66.42 99.81L91.49 74.75L116.55 99.81Z"
+      />
+      <Path
+        fill="url(#grd1)"
+        d="M91.25 148.93L42.4 100.09L117.33 24.91L65.14 24.84L15.52 74.46L15.52 125.7L65.02 175.16L117.53 175.16L149.53 143.16C135.03 128.66 111.52 128.66 97.02 143.16L91.25 148.93Z"
+      />
+      <Path
+        fill="#42389d"
+        d="M97.08 143.1L65.02 175.16L117.53 175.16L149.53 143.16L149.47 143.1C135 128.64 111.55 128.64 97.08 143.1Z"
+      />
+      <Path
+        fill="url(#grd2)"
+        d="M42.4 100.09L15.52 74.36L15 125.35L65.02 175.16L91.25 148.94L42.4 100.09Z"
       />
     </Svg>
   )

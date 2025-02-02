@@ -8,6 +8,7 @@ import {
 
 import {STALE} from '#/state/queries'
 import {useAgent} from '#/state/session'
+import {IS_DEV} from '#/env'
 import {profileBasicQueryKey as RQKEY_PROFILE_BASIC} from './profile'
 
 const RQKEY_ROOT = 'resolved-did'
@@ -53,6 +54,43 @@ export function useResolveDidQuery(didOrHandle: string | undefined) {
       return profile?.did
     },
     enabled: !!didOrHandle,
+  })
+}
+
+export function useResolveDidDocQuery(did: any | undefined) {
+  const queryClient = useQueryClient()
+
+  return useQuery<any, Error>({
+    staleTime: STALE.HOURS.ONE,
+    queryKey: RQKEY(did ?? ''),
+    queryFn: async () => {
+      if (!did) return ''
+
+      const url = IS_DEV ? 'http://localhost:2583/' : 'https://plc.directory/'
+      try {
+        const response = await fetch(url + did)
+        if (!response.ok) {
+          throw new Error(`Response status: ${response.status}`)
+        }
+
+        const json = await response.json()
+        console.log(json)
+        return json
+      } catch (error) {
+        console.error("couldn't fetch DID document:", error)
+      }
+    },
+    initialData: () => {
+      // Return undefined if no did or handle
+      if (!did) return
+
+      const profile =
+        queryClient.getQueryData<AppBskyActorDefs.ProfileViewBasic>(
+          RQKEY_PROFILE_BASIC(did),
+        )
+      return profile?.did
+    },
+    enabled: !!did,
   })
 }
 

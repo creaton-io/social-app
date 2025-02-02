@@ -3,11 +3,17 @@ import {KeyboardAvoidingView} from 'react-native'
 import {LayoutAnimationConfig} from 'react-native-reanimated'
 import {msg} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
+import {signMessage} from '@wagmi/core'
+import {getPublicClient, http} from '@wagmi/core'
+import {recoverMessageAddress} from 'viem'
+import {baseSepolia} from 'viem/chains'
+import {parseErc6492Signature} from 'viem/experimental'
+import {createConfig} from 'wagmi'
 
 import {DEFAULT_SERVICE} from '#/lib/constants'
 import {logger} from '#/logger'
 import {useServiceQuery} from '#/state/queries/service'
-import {SessionAccount, useSession} from '#/state/session'
+import {type SessionAccount, useAgent, useSession} from '#/state/session'
 import {useLoggedOutView} from '#/state/shell/logged-out'
 import {LoggedOutLayout} from '#/view/com/util/layouts/LoggedOutLayout'
 import {ForgotPasswordForm} from '#/screens/Login/ForgotPasswordForm'
@@ -15,6 +21,7 @@ import {LoginForm} from '#/screens/Login/LoginForm'
 import {PasswordUpdatedForm} from '#/screens/Login/PasswordUpdatedForm'
 import {SetNewPasswordForm} from '#/screens/Login/SetNewPasswordForm'
 import {atoms as a} from '#/alf'
+import {wagmiConfig} from '../../wagmi'
 import {ChooseAccountForm} from './ChooseAccountForm'
 import {ScreenTransition} from './ScreenTransition'
 
@@ -28,6 +35,8 @@ enum Forms {
 
 export const Login = ({onPressBack}: {onPressBack: () => void}) => {
   const {_} = useLingui()
+
+  const agent = useAgent()
 
   const {accounts} = useSession()
   const {requestedAccountSwitchTo} = useLoggedOutView()
@@ -84,8 +93,98 @@ export const Login = ({onPressBack}: {onPressBack: () => void}) => {
     }
   }, [serviceError, serviceUrl, _])
 
-  const onPressForgotPassword = () => {
-    setCurrentForm(Forms.ForgotPassword)
+  // const onPressForgotPassword = () => {
+  //   track('Signin:PressedForgotPassword')
+  //   setCurrentForm(Forms.ForgotPassword)
+  // }
+
+  const onPressSignSIWE = async (): Promise<string> => {
+    //track('Signin:PressedSignSIWE')
+    //setCurrentForm(Forms.ForgotPassword)=
+
+    const config = createConfig({
+      chains: [baseSepolia],
+      transports: {
+        [baseSepolia.id]: http(),
+      },
+    })
+
+    const publicClient = getPublicClient(config)
+
+    // const siweMessage = createSiweMessage({
+    //   address: '0xDbf991366D902377d2b6480f0774C4d4c0F11747',
+    //   chainId: 84532,
+    //   domain: 'creaton.social', //TODO: get domain from env
+    //   nonce: "12345678", //TODO generated random nonce or time based?
+    //   uri: 'https://example.com/path',
+    //   version: '1',
+    // })
+
+    console.log('initialHandle: ', initialHandle)
+
+    const siweResult = await agent.com.atproto.server.createSIWE({
+      identifier: initialHandle,
+    })
+
+    const siweMessage = siweResult.data.siweMessage
+
+    const siweSigned = await signMessage(wagmiConfig, {message: siweMessage})
+
+    const valid = await publicClient.verifySiweMessage({
+      message: siweMessage,
+      signature: siweSigned,
+    })
+
+    const {
+      address: recoveredAddress,
+      data,
+      signature,
+    } = parseErc6492Signature(siweSigned)
+
+    try {
+      const address = await recoverMessageAddress({
+        message: data as string,
+        signature: siweSigned,
+      })
+      console.log('recoveredaddress:', address)
+    } catch (error) {
+      console.log('error:', error)
+    }
+
+    try {
+      const address = await recoverMessageAddress({
+        message: siweMessage,
+        signature: siweSigned,
+      })
+      console.log('recoveredaddress:', address)
+    } catch (error) {
+      console.log('error:', error)
+    }
+
+    try {
+      const address = await recoverMessageAddress({
+        message: siweMessage,
+        signature: siweSigned,
+      })
+      console.log('recoveredaddress:', address)
+    } catch (error) {
+      console.log('error:', error)
+    }
+
+    try {
+      const address = await recoverMessageAddress({
+        message: siweMessage,
+        signature: signature,
+      })
+      console.log('recoveredaddress:', address)
+    } catch (error) {
+      console.log('error:', error)
+    }
+    console.log('probably wrong recoveredaddress:', recoveredAddress)
+
+    console.log('valid:', valid)
+
+    return siweSigned
   }
 
   let content = null
@@ -107,7 +206,7 @@ export const Login = ({onPressBack}: {onPressBack: () => void}) => {
           onPressBack={() =>
             accounts.length ? gotoForm(Forms.ChooseAccount) : onPressBack()
           }
-          onPressForgotPassword={onPressForgotPassword}
+          onPressSignSIWE={onPressSignSIWE}
           onPressRetryConnect={refetchService}
         />
       )

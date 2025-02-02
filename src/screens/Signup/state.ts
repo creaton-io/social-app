@@ -6,6 +6,7 @@ import {
 } from '@atproto/api'
 import {msg} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
+import {signMessage} from '@wagmi/core'
 import * as EmailValidator from 'email-validator'
 
 import {DEFAULT_SERVICE} from '#/lib/constants'
@@ -15,6 +16,7 @@ import {getAge} from '#/lib/strings/time'
 import {logger} from '#/logger'
 import {useSessionApi} from '#/state/session'
 import {useOnboardingDispatch} from '#/state/shell'
+import {wagmiConfig} from '#/wagmi'
 
 export type ServiceDescription = ComAtprotoServerDescribeServer.OutputSchema
 
@@ -40,7 +42,8 @@ export type SignupState = {
   userDomain: string
   dateOfBirth: Date
   email: string
-  password: string
+  ethAddress: string
+  signature: string
   inviteCode: string
   handle: string
 
@@ -58,7 +61,8 @@ export type SignupAction =
   | {type: 'setServiceUrl'; value: string}
   | {type: 'setServiceDescription'; value: ServiceDescription | undefined}
   | {type: 'setEmail'; value: string}
-  | {type: 'setPassword'; value: string}
+  | {type: 'setEthAddress'; value: string}
+  | {type: 'setSignature'; value: string}
   | {type: 'setDateOfBirth'; value: Date}
   | {type: 'setInviteCode'; value: string}
   | {type: 'setHandle'; value: string}
@@ -75,7 +79,8 @@ export const initialState: SignupState = {
   userDomain: '',
   dateOfBirth: DEFAULT_DATE,
   email: '',
-  password: '',
+  ethAddress: '',
+  signature: '',
   handle: '',
   inviteCode: '',
 
@@ -134,8 +139,8 @@ export function reducer(s: SignupState, a: SignupAction): SignupState {
       next.email = a.value
       break
     }
-    case 'setPassword': {
-      next.password = a.value
+    case 'setEthAddress': {
+      next.ethAddress = a.value
       break
     }
     case 'setDateOfBirth': {
@@ -203,11 +208,11 @@ export function useSubmitSignup() {
           value: _(msg`Your email appears to be invalid.`),
         })
       }
-      if (!state.password) {
+      if (!state.ethAddress) {
         dispatch({type: 'setStep', value: SignupStep.INFO})
         return dispatch({
           type: 'setError',
-          value: _(msg`Please choose your password.`),
+          value: _(msg`Please put in your Ethereum address.`),
         })
       }
       if (!state.handle) {
@@ -234,14 +239,29 @@ export function useSubmitSignup() {
       dispatch({type: 'setError', value: ''})
       dispatch({type: 'setIsLoading', value: true})
 
+      const sig = await signMessage(wagmiConfig, {
+        message: 'Create account for Creaton',
+      })
+
+      if (!sig) {
+        return dispatch({
+          type: 'setError',
+          value: _(msg`Failed to sign message`),
+        })
+      }
+
       try {
         await createAccount({
           service: state.serviceUrl,
           email: state.email,
-          handle: createFullHandle(state.handle, state.userDomain),
-          password: state.password,
+          ethAddress: state.ethAddress,
+          signature: sig,
+          handle: createFullHandle(state.handle, state.userDomain), //TODO: seems like upstream just uses state.handle
           birthDate: state.dateOfBirth,
-          inviteCode: state.inviteCode.trim(),
+          inviteCode: state.inviteCode,
+          verificationPhone: state.pendingSubmit?.verificationCode
+            ? state.handle
+            : undefined,
           verificationCode: state.pendingSubmit?.verificationCode,
         })
         /*
