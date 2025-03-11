@@ -1,10 +1,25 @@
 import React, {useCallback, useEffect, useState} from 'react'
 import {View} from 'react-native'
 import {AppBskyActorDefs} from '@atproto/api'
+import {createDrift} from '@delvtech/drift'
+import {viemAdapter} from '@delvtech/drift-viem'
 import {msg, Trans} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
-import {Chain} from 'viem'
-import {useAccount, useChainId,useSwitchChain} from 'wagmi'
+import {
+  type CreateParams,
+  DEFAULT_PD_SLUGS,
+  DOPPLER_V4_ADDRESSES,
+  ReadWriteFactory,
+} from 'doppler-v4-sdk'
+import {encodeAbiParameters, PublicClient} from 'viem'
+import {
+  useAccount,
+  useChainId,
+  usePublicClient,
+  useSwitchChain,
+  useWalletClient,
+} from 'wagmi'
+import {unichainSepolia} from 'wagmi/chains'
 
 import {isNative} from '#/platform/detection'
 import {Shadow} from '#/state/cache/types'
@@ -18,50 +33,6 @@ import {ChevronTop_Stroke2_Corner0_Rounded as ChevronDown} from '#/components/ic
 import {ChevronRight_Stroke2_Corner0_Rounded as ChevronRight} from '#/components/icons/Chevron'
 import {Text} from '#/components/Typography'
 
-// Define Unichain Sepolia testnet chain
-const unichainSepolia: Chain = {
-  id: 641_230_074,
-  name: 'Unichain Sepolia',
-  nativeCurrency: {
-    decimals: 18,
-    name: 'Sepolia Ether',
-    symbol: 'ETH',
-  },
-  rpcUrls: {
-    default: {http: ['https://rpc.unichain.io/sepolia']},
-    public: {http: ['https://rpc.unichain.io/sepolia']},
-  },
-  blockExplorers: {
-    default: {name: 'Explorer', url: 'https://explorer.unichain.io/sepolia'},
-  },
-  testnet: true,
-}
-
-// Define main Unichain network
-const unichain: Chain = {
-  id: 641_230,
-  name: 'Unichain',
-  nativeCurrency: {
-    decimals: 18,
-    name: 'Ether',
-    symbol: 'ETH',
-  },
-  rpcUrls: {
-    default: {http: ['https://rpc.unichain.io']},
-    public: {http: ['https://rpc.unichain.io']},
-  },
-  blockExplorers: {
-    default: {name: 'Explorer', url: 'https://explorer.unichain.io'},
-  },
-  testnet: false,
-}
-
-// Map chain IDs to chain objects for easy lookup
-const chainMap: Record<string, Chain> = {
-  'unichain-sepolia': unichainSepolia,
-  unichain: unichain,
-}
-
 export function CreateTokenDialog({
   profile,
   control,
@@ -71,13 +42,11 @@ export function CreateTokenDialog({
 }) {
   const {_} = useLingui()
   const t = useTheme()
-  const {isConnected} = useAccount()
+  const {isConnected, chain} = useAccount()
   const currentChainId = useChainId()
-  const {
-    switchChain,
-    isPending: isSwitchingChain,
-    error: switchChainError,
-  } = useSwitchChain()
+  const publicClient = usePublicClient()
+  const {data: walletClient} = useWalletClient()
+  const {chains, switchChain} = useSwitchChain()
 
   // Form states
   const [tokenName, setTokenName] = useState('')
@@ -85,10 +54,6 @@ export function CreateTokenDialog({
   const [priceRangeStartTick, setPriceRangeStartTick] = useState('')
   const [priceRangeEndTick, setPriceRangeEndTick] = useState('')
   const [showAdvanced, setShowAdvanced] = useState(false)
-  const [selectedChain, setSelectedChain] = useState(['unichain-sepolia'])
-
-  // Get the currently selected chain object
-  const currentChain = chainMap[selectedChain[0]]
 
   // Track if required fields are filled
   const isFormValid = tokenName.trim() !== '' && tokenSymbol.trim() !== ''
@@ -100,30 +65,10 @@ export function CreateTokenDialog({
     priceRangeStartTick !== '' ||
     priceRangeEndTick !== ''
 
-  // Handle chain change
-  const handleChainChange = useCallback(
-    (values: string[]) => {
-      setSelectedChain(values)
-      const newChain = chainMap[values[0]]
-
-      // Only attempt to switch chain if connected and the chain is different
-      if (isConnected && newChain.id !== currentChainId) {
-        try {
-          switchChain({chainId: newChain.id})
-        } catch (err) {
-          console.error('Failed to switch chain:', err)
-        }
-      }
-    },
-    [isConnected, currentChainId, switchChain],
-  )
-
-  // Show toast notification for chain switch errors
+  // Show toast notification for errors
   useEffect(() => {
-    if (switchChainError) {
-      Toast.show(_(msg`Failed to switch network: ${switchChainError.message}`))
-    }
-  }, [switchChainError, _])
+    // Any other effects that need to be preserved
+  }, [])
 
   // Reset form
   const resetForm = useCallback(() => {
@@ -132,32 +77,158 @@ export function CreateTokenDialog({
     setPriceRangeStartTick('')
     setPriceRangeEndTick('')
     setShowAdvanced(false)
-    setSelectedChain(['unichain-sepolia'])
   }, [])
 
   // Handle form submission
   const onSubmit = useCallback(() => {
-    // TODO: Implement token creation logic
-    console.log('Creating token with:', {
-      name: tokenName,
-      symbol: tokenSymbol,
-      chain: currentChain,
-      chainId: currentChain.id,
-      startTick: parseInt(priceRangeStartTick, 10) || 0,
-      endTick: parseInt(priceRangeEndTick, 10) || 0,
-    })
+    const factoryAddress = '0x0000000000000000000000000000000000000000'
+    if (!walletClient) {
+      Toast.show(_(msg`Please connect your wallet first.`))
+      return
+    }
 
-    // Reset form and close dialog
-    resetForm()
-    control.close()
+    const DEFAULT_MIN_PROCEEDS = BigInt('1')
+    const DEFAULT_MAX_PROCEEDS = BigInt('10')
+    const DEFAULT_STARTING_TIME = BigInt('1')
+    const DEFAULT_ENDING_TIME = BigInt('3')
+    const DEFAULT_GAMMA = BigInt('800')
+    const DEFAULT_EPOCH_LENGTH = BigInt('400')
+    const DEFAULT_START_TICK = BigInt('6000')
+    const DEFAULT_END_TICK = BigInt('60000')
+    const DEFAULT_FEE = BigInt('0')
+    const DEFAULT_TICK_SPACING = BigInt('8')
+
+    try {
+      if (!DOPPLER_V4_ADDRESSES[chain.id]) {
+        switchChain({chainId: unichainSepolia.id})
+        Toast.show(_(msg`Switched to Unichain Sepolia.`))
+        return
+      }
+
+      // bytes memory tokenFactoryData = abi.encode(DEFAULT_TOKEN_NAME, DEFAULT_TOKEN_SYMBOL, 0, 0, new address[](0), new uint256[](0), "");
+      const tokenFactoryData = encodeAbiParameters(
+        [
+          {type: 'string', name: 'name'},
+          {type: 'string', name: 'symbol'},
+          {type: 'uint256', name: 'initialSupply'},
+          {type: 'uint256', name: 'numTokensToSell'},
+          {type: 'address[]', name: 'pdSlugs'},
+          {type: 'uint256[]', name: 'pdSlugWeights'},
+          {type: 'string', name: 'uri'},
+        ],
+        [tokenName, tokenSymbol, 0n, 0n, [], [], ''],
+      )
+      // bytes memory governanceFactoryData = abi.encode(DEFAULT_TOKEN_NAME, 7200, 50_400, 0);
+      const governanceFactoryData = encodeAbiParameters(
+        [
+          {type: 'string', name: 'name'},
+          {type: 'uint256', name: 'duration'},
+          {type: 'uint256', name: 'minProceeds'},
+          {type: 'uint256', name: 'maxProceeds'},
+        ],
+        [tokenName, 7200n, 50400n, 0n],
+      )
+
+      // bytes memory poolInitializerData = abi.encode(
+      //       sqrtPrice,
+      //       DEFAULT_MIN_PROCEEDS,
+      //       DEFAULT_MAX_PROCEEDS,
+      //       DEFAULT_STARTING_TIME,
+      //       DEFAULT_ENDING_TIME,
+      //       DEFAULT_START_TICK,
+      //       DEFAULT_END_TICK,
+      //       DEFAULT_EPOCH_LENGTH,
+      //       DEFAULT_GAMMA,
+      //       false,
+      //       DEFAULT_PD_SLUGS,
+      //       DEFAULT_FEE,
+      //       DEFAULT_TICK_SPACING
+      //   );
+      const poolInitializerData = encodeAbiParameters(
+        [
+          {type: 'uint256', name: 'sqrtPrice'},
+          {type: 'uint256', name: 'minProceeds'},
+          {type: 'uint256', name: 'maxProceeds'},
+          {type: 'uint256', name: 'startingTime'},
+          {type: 'uint256', name: 'endingTime'},
+          {type: 'uint256', name: 'startTick'},
+          {type: 'uint256', name: 'endTick'},
+          {type: 'uint256', name: 'epochLength'},
+          {type: 'uint256', name: 'gamma'},
+          {type: 'bool', name: 'isPaused'},
+          {type: 'address[]', name: 'pdSlugs'},
+          {type: 'uint256', name: 'fee'},
+          {type: 'uint256', name: 'tickSpacing'},
+        ],
+        [
+          0n,
+          DEFAULT_MIN_PROCEEDS,
+          DEFAULT_MAX_PROCEEDS,
+          DEFAULT_STARTING_TIME,
+          DEFAULT_ENDING_TIME,
+          DEFAULT_START_TICK,
+          DEFAULT_END_TICK,
+          DEFAULT_EPOCH_LENGTH,
+          DEFAULT_GAMMA,
+          false,
+          [],
+          DEFAULT_FEE,
+          DEFAULT_TICK_SPACING,
+        ],
+      )
+
+      console.log('DOPPLER_V4_ADDRESSES', DOPPLER_V4_ADDRESSES)
+      console.log('currentChain', chain)
+      console.log(
+        'DOPPLER_V4_ADDRESSES[currentChain.id]',
+        DOPPLER_V4_ADDRESSES[chain.id],
+      )
+
+      const tokenCreationParams: CreateParams = {
+        initialSupply: 1000000000000000000n, // Total supply of the token (might be increased later on)
+        numTokensToSell: 1000000000000000000n, // Amount of tokens to sell in the Doppler hook
+        numeraire: '0x0000000000000000000000000000000000000000', // Address of the numeraire token
+        tokenFactory: DOPPLER_V4_ADDRESSES[chain.id].tokenFactory, // Address of the factory contract deploying the ERC20 token
+        tokenFactoryData, // Arbitrary data to pass to the token factory
+        governanceFactory: DOPPLER_V4_ADDRESSES[chain.id].governanceFactory, // Address of the factory contract deploying the governance
+        governanceFactoryData, // Arbitrary data to pass to the governance factory
+        poolInitializer: DOPPLER_V4_ADDRESSES[chain.id].v4Initializer, // Address of the pool initializer contract
+        poolInitializerData, // Arbitrary data to pass to the pool initializer
+        liquidityMigrator: DOPPLER_V4_ADDRESSES[chain.id].migrator, // Address of the liquidity migrator contract
+        liquidityMigratorData: '0x', // Arbitrary data to pass to the liquidity migrator
+        integrator: '0x0000000000000000000000000000000000000000', // Address of the front-end integrator
+        salt: '0x', // Salt used by the different factories to deploy the contracts using CREATE2
+        hook: '0x',
+        token: '0x',
+      }
+
+      const drift = createDrift({
+        adapter: viemAdapter({
+          publicClient: publicClient as PublicClient,
+          walletClient: walletClient,
+        }),
+      })
+
+      const factory = new ReadWriteFactory(factoryAddress, drift)
+      console.log('creating...', factory.create(tokenCreationParams))
+
+      // Reset form and close dialog
+      resetForm()
+      control.close()
+    } catch (error) {
+      console.error('Error creating token:', error)
+      Toast.show(_(msg`Error creating token. Please try again.`))
+    }
   }, [
     tokenName,
     tokenSymbol,
-    currentChain,
-    priceRangeStartTick,
-    priceRangeEndTick,
+    chain,
     resetForm,
     control,
+    walletClient,
+    publicClient,
+    _,
+    switchChain,
   ])
 
   // Close dialog (cancel form)
@@ -165,11 +236,6 @@ export function CreateTokenDialog({
     resetForm()
     control.close()
   }, [resetForm, control])
-
-  // Handle button click for demo
-  const handleButtonClick = useCallback(() => {
-    console.log('hello')
-  }, [])
 
   // Toggle advanced settings
   const toggleAdvanced = useCallback(() => {
@@ -199,7 +265,7 @@ export function CreateTokenDialog({
       <Button
         label={_(msg`Create`)}
         onPress={onSubmit}
-        disabled={!dirty || !isFormValid || isSwitchingChain}
+        disabled={!dirty || !isFormValid}
         size="small"
         color="primary"
         variant="ghost"
@@ -208,14 +274,13 @@ export function CreateTokenDialog({
         <ButtonText
           style={[
             a.text_md,
-            (!dirty || !isFormValid || isSwitchingChain) &&
-              t.atoms.text_contrast_low,
+            (!dirty || !isFormValid) && t.atoms.text_contrast_low,
           ]}>
           <Trans>Create</Trans>
         </ButtonText>
       </Button>
     ),
-    [_, t, dirty, isFormValid, isSwitchingChain, onSubmit],
+    [_, t, dirty, isFormValid, onSubmit],
   )
 
   return (
@@ -235,50 +300,6 @@ export function CreateTokenDialog({
         <View style={[a.p_lg]}>
           <View style={[a.pb_lg, a.pt_md]}>
             <View style={[a.gap_md]}>
-              <View>
-                <TextField.LabelText>
-                  <Trans>Blockchain</Trans>
-                </TextField.LabelText>
-                <ToggleButton.Group
-                  label={_(msg`Select chain`)}
-                  values={selectedChain}
-                  onChange={handleChainChange}
-                  disabled={isSwitchingChain}>
-                  <ToggleButton.Button
-                    name="unichain-sepolia"
-                    label={_(msg`${unichainSepolia.name} testnet`)}
-                    testID="chainSelectorUnichainSepolia">
-                    <ToggleButton.ButtonText>
-                      <Trans>{unichainSepolia.name} testnet</Trans>
-                    </ToggleButton.ButtonText>
-                  </ToggleButton.Button>
-                  <ToggleButton.Button
-                    name="unichain"
-                    label={_(msg`${unichain.name}`)}
-                    testID="chainSelectorUnichain">
-                    <ToggleButton.ButtonText>
-                      <Trans>{unichain.name}</Trans>
-                    </ToggleButton.ButtonText>
-                  </ToggleButton.Button>
-                </ToggleButton.Group>
-                {isSwitchingChain && (
-                  <Text
-                    style={[a.mt_xs, a.text_sm, t.atoms.text_contrast_medium]}>
-                    <Trans>Switching network...</Trans>
-                  </Text>
-                )}
-                {switchChainError && (
-                  <Text
-                    style={[
-                      a.mt_xs,
-                      a.text_sm,
-                      {color: t.palette.negative_500},
-                    ]}>
-                    <Trans>Failed to switch network. Please try again.</Trans>
-                  </Text>
-                )}
-              </View>
-
               <View>
                 <TextField.LabelText>
                   <Trans>Token Name</Trans>
@@ -388,8 +409,8 @@ export function CreateTokenDialog({
                   variant="solid"
                   color="primary"
                   size="large"
-                  onPress={handleButtonClick}
-                  disabled={!isFormValid || isSwitchingChain}
+                  onPress={onSubmit}
+                  disabled={!isFormValid}
                   label={_(msg`Create Token`)}>
                   <ButtonText>
                     <Trans>Create Token</Trans>
