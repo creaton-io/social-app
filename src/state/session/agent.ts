@@ -1,4 +1,8 @@
-import {AtpSessionData, AtpSessionEvent, BskyAgent} from '@atproto/api'
+import {
+  type AtpSessionData,
+  type AtpSessionEvent,
+  BskyAgent,
+} from '@atproto/api'
 import {TID} from '@atproto/common-web'
 
 import {networkRetry} from '#/lib/async/retry'
@@ -19,7 +23,7 @@ import {
   configureModerationForAccount,
   configureModerationForGuest,
 } from './moderation'
-import {SessionAccount} from './types'
+import {type SessionAccount} from './types'
 import {isSessionExpired, isSignupQueued} from './util'
 
 export function createPublicAgent() {
@@ -69,11 +73,13 @@ export async function createAgentAndLogin(
     service,
     identifier,
     password,
+    siweSignature,
     authFactorToken,
   }: {
     service: string
     identifier: string
-    password: string
+    password?: string
+    siweSignature?: string
     authFactorToken?: string
   },
   onSessionChange: (
@@ -86,6 +92,7 @@ export async function createAgentAndLogin(
   await agent.login({
     identifier,
     password,
+    siweSignature,
     authFactorToken,
     allowTakendown: true,
   })
@@ -100,6 +107,8 @@ export async function createAgentAndCreateAccount(
   {
     service,
     email,
+    ethAddress,
+    siweSignature,
     password,
     handle,
     birthDate,
@@ -109,6 +118,8 @@ export async function createAgentAndCreateAccount(
   }: {
     service: string
     email: string
+    ethAddress?: string
+    siweSignature?: string
     password: string
     handle: string
     birthDate: Date
@@ -125,6 +136,8 @@ export async function createAgentAndCreateAccount(
   const agent = new BskyAppAgent({service})
   await agent.createAccount({
     email,
+    ethAddress,
+    siweSignature,
     password,
     handle,
     inviteCode,
@@ -202,6 +215,7 @@ export function agentToSessionAccount(
     did: agent.session.did,
     handle: agent.session.handle,
     email: agent.session.email,
+    ethAddress: agent.session.ethAddress,
     emailConfirmed: agent.session.emailConfirmed || false,
     emailAuthFactor: agent.session.emailAuthFactor || false,
     refreshJwt: agent.session.refreshJwt,
@@ -222,6 +236,7 @@ export function sessionAccountToSession(
     accessJwt: account.accessJwt ?? '',
     did: account.did,
     email: account.email,
+    ethAddress: account.ethAddress,
     emailAuthFactor: account.emailAuthFactor,
     emailConfirmed: account.emailConfirmed,
     handle: account.handle,

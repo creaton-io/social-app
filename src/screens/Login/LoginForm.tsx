@@ -3,19 +3,18 @@ import {
   ActivityIndicator,
   Keyboard,
   LayoutAnimation,
-  TextInput,
+  type TextInput,
   View,
 } from 'react-native'
 import {
   ComAtprotoServerCreateSession,
-  ComAtprotoServerDescribeServer,
+  type ComAtprotoServerDescribeServer,
 } from '@atproto/api'
 import {msg, Trans} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
 
 import {useRequestNotificationsPermission} from '#/lib/notifications/notifications'
-import {isNetworkError} from '#/lib/strings/errors'
-import {cleanError} from '#/lib/strings/errors'
+import {cleanError, isNetworkError} from '#/lib/strings/errors'
 import {createFullHandle} from '#/lib/strings/handles'
 import {logger} from '#/logger'
 import {useSetHasCheckedForStarterPack} from '#/state/preferences/used-starter-packs'
@@ -32,10 +31,11 @@ import {Ticket_Stroke2_Corner0_Rounded as Ticket} from '#/components/icons/Ticke
 import {Loader} from '#/components/Loader'
 import {Text} from '#/components/Typography'
 import {FormContainer} from './FormContainer'
+import {WalletComponents} from './LoginWallet'
 
 type ServiceDescription = ComAtprotoServerDescribeServer.OutputSchema
 
-export const LoginForm = ({
+export function LoginForm({
   error,
   serviceUrl,
   serviceDescription,
@@ -44,6 +44,7 @@ export const LoginForm = ({
   setServiceUrl,
   onPressRetryConnect,
   onPressBack,
+  onPressSignSIWE,
   onPressForgotPassword,
   onAttemptSuccess,
   onAttemptFailed,
@@ -56,18 +57,21 @@ export const LoginForm = ({
   setServiceUrl: (v: string) => void
   onPressRetryConnect: () => void
   onPressBack: () => void
+  onPressSignSIWE: () => Promise<string>
   onPressForgotPassword: () => void
   onAttemptSuccess: () => void
   onAttemptFailed: () => void
-}) => {
+}) {
   const t = useTheme()
   const [isProcessing, setIsProcessing] = useState<boolean>(false)
   const [isAuthFactorTokenNeeded, setIsAuthFactorTokenNeeded] =
     useState<boolean>(false)
   const [isAuthFactorTokenValueEmpty, setIsAuthFactorTokenValueEmpty] =
     useState<boolean>(true)
+  const [useSiweLogin, setUseSiweLogin] = useState<boolean>(true)
   const identifierValueRef = useRef<string>(initialHandle || '')
   const passwordValueRef = useRef<string>('')
+  const siweSignatureValueRef = useRef<string>('')
   const authFactorTokenValueRef = useRef<string>('')
   const passwordRef = useRef<TextInput>(null)
   const {_} = useLingui()
@@ -88,6 +92,7 @@ export const LoginForm = ({
 
     const identifier = identifierValueRef.current.toLowerCase().trim()
     const password = passwordValueRef.current
+    const siweSignature = siweSignatureValueRef.current
     const authFactorToken = authFactorTokenValueRef.current
 
     if (!identifier) {
@@ -95,8 +100,13 @@ export const LoginForm = ({
       return
     }
 
-    if (!password) {
+    if (!useSiweLogin && !password) {
       setError(_(msg`Please enter your password`))
+      return
+    }
+
+    if (useSiweLogin && !siweSignature) {
+      setError(_(msg`Please sign with your wallet`))
       return
     }
 
@@ -125,13 +135,14 @@ export const LoginForm = ({
         }
       }
 
-      // TODO remove double login
+      // Login with either password or SIWE signature
       await login(
         {
           service: serviceUrl,
           identifier: fullIdent,
-          password,
-          authFactorToken: authFactorToken.trim(),
+          password: useSiweLogin ? undefined : password,
+          siweSignature: useSiweLogin ? siweSignature : undefined,
+          authFactorToken: authFactorToken ? authFactorToken.trim() : undefined,
         },
         'LoginForm',
       )
@@ -179,6 +190,108 @@ export const LoginForm = ({
 
   return (
     <FormContainer testID="loginForm" titleText={<Trans>Sign in</Trans>}>
+      {useSiweLogin && (
+        <View style={[a.mb_lg]}>
+          <Text style={[a.text_lg, a.font_bold, a.mb_md]}>
+            <Trans>Wallet</Trans>
+          </Text>
+
+          <View style={[a.flex_row, a.justify_between, a.gap_md]}>
+            <View
+              style={[
+                a.flex_1,
+                a.p_md,
+                a.border_1,
+                a.border_contrast_low,
+                {
+                  backgroundColor: t.atoms.bg_contrast_25.backgroundColor,
+                  borderRadius: 12,
+                },
+              ]}>
+              <View
+                style={[
+                  a.flex_row,
+                  a.justify_between,
+                  a.align_center,
+                  a.mb_xs,
+                ]}>
+                <Text
+                  style={[a.text_md, a.font_bold, t.atoms.text_contrast_high]}>
+                  <Trans>
+                    Choose the wallet you used to create your account
+                  </Trans>
+                </Text>
+              </View>
+              <Text style={[a.text_sm, t.atoms.text_contrast_medium, a.mb_sm]}>
+                <Trans>
+                  If you used a password, click on "Use password instead"
+                </Trans>
+              </Text>
+              <View
+                style={[
+                  a.relative, // Make the container relative for proper positioning
+                  a.z_50, // Set a high z-index
+                  a.flex_row, // Add flex row to enable horizontal centering
+                  a.justify_center, // Center content horizontally
+                  {
+                    position: 'relative', // Ensure proper stacking context
+                  },
+                ]}>
+                <WalletComponents />
+              </View>
+            </View>
+            {/* 
+            <View
+              style={[
+                a.flex_1,
+                a.p_md,
+                a.border_1,
+                a.border_contrast_low,
+                {
+                  backgroundColor: t.atoms.bg_contrast_25.backgroundColor,
+                  borderRadius: 12,
+                },
+              ]}>
+              <View
+                style={[
+                  a.flex_row,
+                  a.justify_between,
+                  a.align_center,
+                  a.mb_xs,
+                ]}>
+                <Text
+                  style={[a.text_md, a.font_bold, t.atoms.text_contrast_high]}>
+                  <Trans>Browser Wallet</Trans>
+                </Text>
+                <View
+                  style={[
+                    a.px_xs,
+                    a.py_xxs,
+                    {
+                      backgroundColor: '#93C5FD',
+                      borderRadius: 4,
+                      paddingHorizontal: 8,
+                      paddingVertical: 4,
+                      marginLeft: 4,
+                    },
+                  ]}>
+                  <Text style={[a.text_xs, a.font_bold, {color: '#1E3A8A'}]}>
+                    <Trans>For existing wallets</Trans>
+                  </Text>
+                </View>
+              </View>
+              <Text style={[a.text_sm, t.atoms.text_contrast_medium, a.mb_sm]}>
+                <Trans>
+                  Already have MetaMask or another wallet? Connect it here.
+                </Trans>
+              </Text>
+              <View style={[a.overflow_hidden, {borderRadius: 12}]}>
+                <ConnectButton />
+              </View>
+            </View> */}
+          </View>
+        </View>
+      )}
       <View>
         <TextField.LabelText>
           <Trans>Hosting provider</Trans>
@@ -210,7 +323,9 @@ export const LoginForm = ({
                 identifierValueRef.current = v
               }}
               onSubmitEditing={() => {
-                passwordRef.current?.focus()
+                if (!useSiweLogin) {
+                  passwordRef.current?.focus()
+                }
               }}
               blurOnSubmit={false} // prevents flickering due to onSubmitEditing going to next field
               editable={!isProcessing}
@@ -220,46 +335,48 @@ export const LoginForm = ({
             />
           </TextField.Root>
 
-          <TextField.Root>
-            <TextField.Icon icon={Lock} />
-            <TextField.Input
-              testID="loginPasswordInput"
-              inputRef={passwordRef}
-              label={_(msg`Password`)}
-              autoCapitalize="none"
-              autoCorrect={false}
-              autoComplete="password"
-              returnKeyType="done"
-              enablesReturnKeyAutomatically={true}
-              secureTextEntry={true}
-              textContentType="password"
-              clearButtonMode="while-editing"
-              onChangeText={v => {
-                passwordValueRef.current = v
-              }}
-              onSubmitEditing={onPressNext}
-              blurOnSubmit={false} // HACK: https://github.com/facebook/react-native/issues/21911#issuecomment-558343069 Keyboard blur behavior is now handled in onSubmitEditing
-              editable={!isProcessing}
-              accessibilityHint={_(msg`Enter your password`)}
-            />
-            <Button
-              testID="forgotPasswordButton"
-              onPress={onPressForgotPassword}
-              label={_(msg`Forgot password?`)}
-              accessibilityHint={_(msg`Opens password reset form`)}
-              variant="solid"
-              color="secondary"
-              style={[
-                a.rounded_sm,
-                // t.atoms.bg_contrast_100,
-                {marginLeft: 'auto', left: 6, padding: 6},
-                a.z_10,
-              ]}>
-              <ButtonText>
-                <Trans>Forgot?</Trans>
-              </ButtonText>
-            </Button>
-          </TextField.Root>
+          {!useSiweLogin && (
+            <TextField.Root>
+              <TextField.Icon icon={Lock} />
+              <TextField.Input
+                testID="loginPasswordInput"
+                inputRef={passwordRef}
+                label={_(msg`Password`)}
+                autoCapitalize="none"
+                autoCorrect={false}
+                autoComplete="password"
+                returnKeyType="done"
+                enablesReturnKeyAutomatically={true}
+                secureTextEntry={true}
+                textContentType="password"
+                clearButtonMode="while-editing"
+                onChangeText={v => {
+                  passwordValueRef.current = v
+                }}
+                onSubmitEditing={onPressNext}
+                blurOnSubmit={false} // HACK: https://github.com/facebook/react-native/issues/21911#issuecomment-558343069 Keyboard blur behavior is now handled in onSubmitEditing
+                editable={!isProcessing}
+                accessibilityHint={_(msg`Enter your password`)}
+              />
+              <Button
+                testID="forgotPasswordButton"
+                onPress={onPressForgotPassword}
+                label={_(msg`Forgot password?`)}
+                accessibilityHint={_(msg`Opens password reset form`)}
+                variant="solid"
+                color="secondary"
+                style={[
+                  a.rounded_sm,
+                  // t.atoms.bg_contrast_100,
+                  {marginLeft: 'auto', left: 6, padding: 6},
+                  a.z_10,
+                ]}>
+                <ButtonText>
+                  <Trans>Forgot?</Trans>
+                </ButtonText>
+              </Button>
+            </TextField.Root>
+          )}
         </View>
       </View>
       {isAuthFactorTokenNeeded && (
@@ -338,20 +455,69 @@ export const LoginForm = ({
             </Text>
           </>
         ) : (
-          <Button
-            testID="loginNextButton"
-            label={_(msg`Next`)}
-            accessibilityHint={_(msg`Navigates to the next screen`)}
-            variant="solid"
-            color="primary"
-            size="large"
-            onPress={onPressNext}>
-            <ButtonText>
-              <Trans>Next</Trans>
-            </ButtonText>
-            {isProcessing && <ButtonIcon icon={Loader} />}
-          </Button>
+          <>
+            {useSiweLogin ? (
+              <Button
+                testID="signSIWEButton"
+                onPress={() => {
+                  onPressSignSIWE()
+                    .then(signature => {
+                      siweSignatureValueRef.current = signature
+                      onPressNext()
+                      console.log('Signature: ', signature)
+                    })
+                    .catch(signError => {
+                      siweSignatureValueRef.current = 'Error, try again!'
+                      console.log('Error: ', signError)
+                    })
+                }}
+                label={_(msg`Sign SIWE`)}
+                accessibilityHint={_(msg`Sign SIWE to log in`)}
+                variant="solid"
+                color="primary"
+                size="large">
+                <ButtonText>
+                  <Trans>Log in with wallet signature</Trans>
+                </ButtonText>
+                {isProcessing && <ButtonIcon icon={Loader} />}
+              </Button>
+            ) : (
+              <Button
+                testID="loginNextButton"
+                label={_(msg`Next`)}
+                accessibilityHint={_(msg`Navigates to the next screen`)}
+                variant="solid"
+                color="primary"
+                size="large"
+                onPress={onPressNext}>
+                <ButtonText>
+                  <Trans>Next</Trans>
+                </ButtonText>
+                {isProcessing && <ButtonIcon icon={Loader} />}
+              </Button>
+            )}
+          </>
         )}
+      </View>
+      <View style={[a.flex_row, a.justify_center, a.mt_md]}>
+        <Button
+          variant="ghost"
+          color="secondary"
+          onPress={() => setUseSiweLogin(!useSiweLogin)}
+          label={_(
+            msg`Switch to ${useSiweLogin ? 'password' : 'wallet'} login`,
+          )}
+          accessibilityHint={_(
+            msg`Switch to ${useSiweLogin ? 'password' : 'wallet'} login`,
+          )}>
+          <ButtonText>
+            <Trans>
+              {useSiweLogin
+                ? 'Use password instead'
+                : 'Use wallet signature instead'}
+            </Trans>
+          </ButtonText>
+        </Button>
       </View>
     </FormContainer>
   )

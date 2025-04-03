@@ -3,9 +3,9 @@ import {type AppBskyActorDefs} from '@atproto/api'
 
 export const LOCAL_DEV_SERVICE =
   Platform.OS === 'android' ? 'http://10.0.2.2:2583' : 'http://localhost:2583'
-export const STAGING_SERVICE = 'https://staging.bsky.dev'
-export const BSKY_SERVICE = 'https://bsky.social'
-export const PUBLIC_BSKY_SERVICE = 'https://public.api.bsky.app'
+export const STAGING_SERVICE = 'http://localhost:2583'
+export const BSKY_SERVICE = 'http://localhost:2583'
+export const PUBLIC_BSKY_SERVICE = 'http://localhost:2583'
 export const DEFAULT_SERVICE = BSKY_SERVICE
 const HELP_DESK_LANG = 'en-us'
 export const HELP_DESK_URL = `https://blueskyweb.zendesk.com/hc/${HELP_DESK_LANG}`
@@ -73,18 +73,15 @@ export function IS_PROD_SERVICE(url?: string) {
 }
 
 export const PROD_DEFAULT_FEED = (rkey: string) =>
-  `at://did:plc:z72i7hdynmk6r22z27h6tvur/app.bsky.feed.generator/${rkey}`
+  `at://did:plc:2zlzmv2xujgpohsvay3xhpbr/app.bsky.feed.generator/${rkey}`
 
 export const STAGING_DEFAULT_FEED = (rkey: string) =>
-  `at://did:plc:yofh3kx63drvfljkibw5zuxo/app.bsky.feed.generator/${rkey}`
+  `at://did:plc:2zlzmv2xujgpohsvay3xhpbr/app.bsky.feed.generator/${rkey}`
 
-export const PROD_FEEDS = [
-  `feedgen|${PROD_DEFAULT_FEED('whats-hot')}`,
-  `feedgen|${PROD_DEFAULT_FEED('thevids')}`,
-]
+export const PROD_FEEDS = [`feedgen|${PROD_DEFAULT_FEED('aaaoletwpo5ga')}`]
 
 export const STAGING_FEEDS = [
-  `feedgen|${STAGING_DEFAULT_FEED('whats-hot')}`,
+  `feedgen|${STAGING_DEFAULT_FEED('aaaoletwpo5ga')}`,
   `feedgen|${STAGING_DEFAULT_FEED('thevids')}`,
 ]
 
@@ -126,7 +123,7 @@ export const LANG_DROPDOWN_HITSLOP = {top: 10, bottom: 10, left: 4, right: 4}
 export const BACK_HITSLOP = HITSLOP_30
 export const MAX_POST_LINES = 25
 
-export const BSKY_APP_ACCOUNT_DID = 'did:plc:z72i7hdynmk6r22z27h6tvur'
+export const BSKY_APP_ACCOUNT_DID = 'did:plc:2zlzmv2xujgpohsvay3xhpbr'
 
 export const BSKY_FEED_OWNER_DIDS = [
   BSKY_APP_ACCOUNT_DID,
@@ -135,7 +132,7 @@ export const BSKY_FEED_OWNER_DIDS = [
 ]
 
 export const DISCOVER_FEED_URI =
-  'at://did:plc:z72i7hdynmk6r22z27h6tvur/app.bsky.feed.generator/whats-hot'
+  'at://did:plc:2zlzmv2xujgpohsvay3xhpbr/app.bsky.feed.generator/aaaoletwpo5ga'
 export const VIDEO_FEED_URI =
   'at://did:plc:z72i7hdynmk6r22z27h6tvur/app.bsky.feed.generator/thevids'
 export const STAGING_VIDEO_FEED_URI =

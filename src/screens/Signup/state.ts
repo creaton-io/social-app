@@ -6,15 +6,19 @@ import {
 } from '@atproto/api'
 import {msg} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
+import {signMessage} from '@wagmi/core'
 import * as EmailValidator from 'email-validator'
+import {useAccount} from 'wagmi'
 
 import {DEFAULT_SERVICE} from '#/lib/constants'
 import {cleanError} from '#/lib/strings/errors'
 import {createFullHandle} from '#/lib/strings/handles'
 import {getAge} from '#/lib/strings/time'
 import {logger} from '#/logger'
+import {useAgent} from '#/state/session'
 import {useSessionApi} from '#/state/session'
 import {useOnboardingDispatch} from '#/state/shell'
+import {wagmiConfig} from '#/wagmi'
 
 export type ServiceDescription = ComAtprotoServerDescribeServer.OutputSchema
 
@@ -47,9 +51,10 @@ export type SignupState = {
   userDomain: string
   dateOfBirth: Date
   email: string
-  password: string
+  password?: string
   inviteCode: string
   handle: string
+  ethAddress?: string
 
   error: string
   errorField?: ErrorField
@@ -75,6 +80,7 @@ export type SignupAction =
   | {type: 'setDateOfBirth'; value: Date}
   | {type: 'setInviteCode'; value: string}
   | {type: 'setHandle'; value: string}
+  | {type: 'setEthAddress'; value: string | undefined}
   | {type: 'setError'; value: string; field?: ErrorField}
   | {type: 'clearError'}
   | {type: 'setIsLoading'; value: boolean}
@@ -93,6 +99,7 @@ export const initialState: SignupState = {
   password: '',
   handle: '',
   inviteCode: '',
+  ethAddress: undefined,
 
   error: '',
   errorField: undefined,
@@ -179,6 +186,10 @@ export function reducer(s: SignupState, a: SignupAction): SignupState {
       next.handle = a.value
       break
     }
+    case 'setEthAddress': {
+      next.ethAddress = a.value
+      break
+    }
     case 'setIsLoading': {
       next.isLoading = a.value
       break
@@ -252,6 +263,8 @@ export function useSubmitSignup() {
   const {_} = useLingui()
   const {createAccount} = useSessionApi()
   const onboardingDispatch = useOnboardingDispatch()
+  const agent = useAgent()
+  const {address} = useAccount()
 
   return useCallback(
     async (state: SignupState, dispatch: (action: SignupAction) => void) => {
@@ -271,11 +284,13 @@ export function useSubmitSignup() {
           field: 'email',
         })
       }
-      if (!state.password) {
+      if (!state.password && !state.ethAddress) {
         dispatch({type: 'setStep', value: SignupStep.INFO})
         return dispatch({
           type: 'setError',
-          value: _(msg`Please choose your password.`),
+          value: _(
+            msg`Please choose your password or connect a crypto wallet.`,
+          ),
           field: 'password',
         })
       }
@@ -304,11 +319,28 @@ export function useSubmitSignup() {
       dispatch({type: 'setError', value: ''})
       dispatch({type: 'setIsLoading', value: true})
 
+      const siweResult = await agent.com.atproto.server.createSIWERegistration({
+        ethAddress: address as string,
+      })
+
+      const siweMessage = siweResult.data.siweMessage
+
+      const siweSigned = await signMessage(wagmiConfig, {message: siweMessage})
+
+      if (!siweSigned) {
+        return dispatch({
+          type: 'setError',
+          value: _(msg`Failed to sign message`),
+        })
+      }
+
       try {
         await createAccount(
           {
             service: state.serviceUrl,
             email: state.email,
+            ethAddress: state.ethAddress,
+            siweSignature: siweSigned,
             handle: createFullHandle(state.handle, state.userDomain),
             password: state.password,
             birthDate: state.dateOfBirth,
@@ -363,6 +395,6 @@ export function useSubmitSignup() {
         dispatch({type: 'setIsLoading', value: false})
       }
     },
-    [_, onboardingDispatch, createAccount],
+    [agent.com.atproto.server, address, _, createAccount, onboardingDispatch],
   )
 }

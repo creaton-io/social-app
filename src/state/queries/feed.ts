@@ -1,18 +1,18 @@
 import {useCallback, useEffect, useMemo, useRef} from 'react'
 import {
-  AppBskyActorDefs,
-  AppBskyFeedDefs,
-  AppBskyGraphDefs,
-  AppBskyUnspeccedGetPopularFeedGenerators,
+  type AppBskyActorDefs,
+  type AppBskyFeedDefs,
+  type AppBskyGraphDefs,
+  type AppBskyUnspeccedGetPopularFeedGenerators,
   AtUri,
   moderateFeedGenerator,
   RichText,
 } from '@atproto/api'
 import {
-  InfiniteData,
+  type InfiniteData,
   keepPreviousData,
-  QueryClient,
-  QueryKey,
+  type QueryClient,
+  type QueryKey,
   useInfiniteQuery,
   useMutation,
   useQuery,
@@ -28,7 +28,7 @@ import {usePreferencesQuery} from '#/state/queries/preferences'
 import {useAgent, useSession} from '#/state/session'
 import {router} from '#/routes'
 import {useModerationOpts} from '../preferences/moderation-opts'
-import {FeedDescriptor} from './post-feed'
+import {type FeedDescriptor} from './post-feed'
 import {precacheResolvedUri} from './resolve-uri'
 
 export type FeedSourceFeedInfo = {
@@ -259,11 +259,7 @@ export function useGetPopularFeedsQuery(options?: GetPopularFeedsOptions) {
       (
         data: InfiniteData<AppBskyUnspeccedGetPopularFeedGenerators.OutputSchema>,
       ) => {
-        const {
-          savedFeeds,
-          hasSession: hasSessionInner,
-          moderationOpts,
-        } = selectArgs
+        const {savedFeeds, hasSession: hasSessionInner} = selectArgs
         return {
           ...data,
           pages: data.pages.map(page => {
@@ -288,6 +284,7 @@ export function useGetPopularFeedsQuery(options?: GetPopularFeedsOptions) {
           }),
         }
       },
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       [selectArgs /* Don't change. Everything needs to go into selectArgs. */],
     ),
   })
@@ -476,6 +473,27 @@ export function usePinnedFeedsInfos() {
             savedFeed: pinnedItem,
           })
         } else if (pinnedItem.type === 'timeline') {
+          result.push({
+            type: 'feed',
+            displayName: 'Creaton',
+            uri: 'at://did:plc:2zlzmv2xujgpohsvay3xhpbr/app.bsky.feed.generator/aaaoletwpo5ga',
+            feedDescriptor:
+              'feedgen|at://did:plc:2zlzmv2xujgpohsvay3xhpbr/app.bsky.feed.generator/aaaoletwpo5ga',
+            route: {
+              href: '/',
+              name: 'Home',
+              params: {},
+            },
+            cid: '',
+            avatar: '',
+            description: new RichText({text: ''}),
+            creatorDid: '',
+            creatorHandle: '',
+            likeCount: 0,
+            likeUri: '',
+            savedFeed: pinnedItem,
+            contentMode: undefined,
+          })
           result.push({
             type: 'feed',
             displayName: 'Following',
