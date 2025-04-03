@@ -1,7 +1,7 @@
 import {
-  AppBskyActorDefs,
-  BskyFeedViewPreference,
-  LabelPreference,
+  type AppBskyActorDefs,
+  type BskyFeedViewPreference,
+  type LabelPreference,
 } from '@atproto/api'
 import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query'
 
@@ -16,8 +16,8 @@ import {
   DEFAULT_THREAD_VIEW_PREFS,
 } from '#/state/queries/preferences/const'
 import {
-  ThreadViewPreferences,
-  UsePreferencesQueryResponse,
+  type ThreadViewPreferences,
+  type UsePreferencesQueryResponse,
 } from '#/state/queries/preferences/types'
 import {useAgent} from '#/state/session'
 import {saveLabelers} from '#/state/session/agent-config'
@@ -265,7 +265,7 @@ export function useReplaceForYouWithDiscoverFeedMutation() {
         await agent.addSavedFeeds([
           {
             type: 'feed',
-            value: PROD_DEFAULT_FEED('whats-hot'),
+            value: PROD_DEFAULT_FEED('aaaoletwpo5ga'),
             pinned: true,
           },
         ])

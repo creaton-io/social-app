@@ -1,5 +1,5 @@
-import {LogEvents} from '#/lib/statsig/statsig'
-import {PersistedAccount} from '#/state/persisted'
+import {type LogEvents} from '#/lib/statsig/statsig'
+import {type PersistedAccount} from '#/state/persisted'
 
 export type SessionAccount = PersistedAccount
 
@@ -14,7 +14,9 @@ export type SessionApiContext = {
     props: {
       service: string
       email: string
-      password: string
+      ethAddress?: string
+      siweSignature?: string
+      password?: string
       handle: string
       birthDate: Date
       inviteCode?: string
@@ -27,7 +29,8 @@ export type SessionApiContext = {
     props: {
       service: string
       identifier: string
-      password: string
+      password?: string
+      siweSignature?: string
       authFactorToken?: string | undefined
     },
     logContext: LogEvents['account:loggedIn']['logContext'],

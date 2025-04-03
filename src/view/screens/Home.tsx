@@ -8,23 +8,23 @@ import {useOTAUpdates} from '#/lib/hooks/useOTAUpdates'
 import {useSetTitle} from '#/lib/hooks/useSetTitle'
 import {useRequestNotificationsPermission} from '#/lib/notifications/notifications'
 import {
-  HomeTabNavigatorParams,
-  NativeStackScreenProps,
+  type HomeTabNavigatorParams,
+  type NativeStackScreenProps,
 } from '#/lib/routes/types'
 import {logEvent} from '#/lib/statsig/statsig'
 import {isWeb} from '#/platform/detection'
 import {emitSoftReset} from '#/state/events'
-import {SavedFeedSourceInfo, usePinnedFeedsInfos} from '#/state/queries/feed'
-import {FeedDescriptor, FeedParams} from '#/state/queries/post-feed'
+import {type SavedFeedSourceInfo, usePinnedFeedsInfos} from '#/state/queries/feed'
+import {type FeedDescriptor, type FeedParams} from '#/state/queries/post-feed'
 import {usePreferencesQuery} from '#/state/queries/preferences'
-import {UsePreferencesQueryResponse} from '#/state/queries/preferences/types'
+import {type UsePreferencesQueryResponse} from '#/state/queries/preferences/types'
 import {useSession} from '#/state/session'
 import {useSetMinimalShellMode} from '#/state/shell'
 import {useLoggedOutViewControls} from '#/state/shell/logged-out'
 import {useSelectedFeed, useSetSelectedFeed} from '#/state/shell/selected-feed'
 import {FeedPage} from '#/view/com/feeds/FeedPage'
 import {HomeHeader} from '#/view/com/home/HomeHeader'
-import {Pager, PagerRef, RenderTabBarFnProps} from '#/view/com/pager/Pager'
+import {Pager, type PagerRef, type RenderTabBarFnProps} from '#/view/com/pager/Pager'
 import {CustomFeedEmptyState} from '#/view/com/posts/CustomFeedEmptyState'
 import {FollowingEmptyState} from '#/view/com/posts/FollowingEmptyState'
 import {FollowingEndOfFeed} from '#/view/com/posts/FollowingEndOfFeed'
@@ -273,7 +273,7 @@ function HomeScreenReady({
         testID="customFeedPage"
         isPageFocused
         isPageAdjacent={false}
-        feed={`feedgen|${PROD_DEFAULT_FEED('whats-hot')}`}
+        feed={`feedgen|${PROD_DEFAULT_FEED('aaaoletwpo5ga')}`}
         renderEmptyState={renderCustomFeedEmptyState}
         feedInfo={pinnedFeedInfos[0]}
       />
