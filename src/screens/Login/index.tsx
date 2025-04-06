@@ -3,12 +3,13 @@ import {KeyboardAvoidingView} from 'react-native'
 import {LayoutAnimationConfig} from 'react-native-reanimated'
 import {msg} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
+import {signMessage} from '@wagmi/core'
 
 import {DEFAULT_SERVICE} from '#/lib/constants'
 import {logEvent} from '#/lib/statsig/statsig'
 import {logger} from '#/logger'
 import {useServiceQuery} from '#/state/queries/service'
-import {SessionAccount, useSession} from '#/state/session'
+import {type SessionAccount, useAgent, useSession} from '#/state/session'
 import {useLoggedOutView} from '#/state/shell/logged-out'
 import {LoggedOutLayout} from '#/view/com/util/layouts/LoggedOutLayout'
 import {ForgotPasswordForm} from '#/screens/Login/ForgotPasswordForm'
@@ -16,6 +17,7 @@ import {LoginForm} from '#/screens/Login/LoginForm'
 import {PasswordUpdatedForm} from '#/screens/Login/PasswordUpdatedForm'
 import {SetNewPasswordForm} from '#/screens/Login/SetNewPasswordForm'
 import {atoms as a} from '#/alf'
+import {wagmiConfig} from '#/wagmi'
 import {ChooseAccountForm} from './ChooseAccountForm'
 import {ScreenTransition} from './ScreenTransition'
 
@@ -31,6 +33,8 @@ export const Login = ({onPressBack}: {onPressBack: () => void}) => {
   const {_} = useLingui()
   const failedAttemptCountRef = useRef(0)
   const startTimeRef = useRef(Date.now())
+
+  const agent = useAgent()
 
   const {accounts} = useSession()
   const {requestedAccountSwitchTo} = useLoggedOutView()
@@ -93,6 +97,20 @@ export const Login = ({onPressBack}: {onPressBack: () => void}) => {
     logEvent('signin:forgotPasswordPressed', {})
   }
 
+  const onPressSignSIWE = async (): Promise<string> => {
+    console.log('initialHandle: ', initialHandle)
+
+    const siweResult = await agent.com.atproto.server.createSIWELogin({
+      identifier: initialHandle,
+    })
+
+    const siweMessage = siweResult.data.siweMessage
+
+    const siweSigned = await signMessage(wagmiConfig, {message: siweMessage})
+
+    return siweSigned
+  }
+
   const handlePressBack = () => {
     onPressBack()
     logEvent('signin:backPressed', {
@@ -136,6 +154,7 @@ export const Login = ({onPressBack}: {onPressBack: () => void}) => {
           }
           onPressForgotPassword={onPressForgotPassword}
           onPressRetryConnect={refetchService}
+          onPressSignSIWE={onPressSignSIWE}
         />
       )
       break

@@ -58,9 +58,10 @@
     "icons:optimize": "svgo -f ./assets/icons"
   },
   "dependencies": {
-    "@atproto/api": "^0.14.20",
+    "@atproto/api": "link:./../cproto/packages/api",
     "@bitdrift/react-native": "^0.6.8",
     "@braintree/sanitize-url": "^6.0.2",
+    "@coinbase/onchainkit": "^0.38.2",
     "@discord/bottom-sheet": "bluesky-social/react-native-bottom-sheet",
     "@emoji-mart/react": "^1.1.1",
     "@expo/html-elements": "^0.4.2",
@@ -79,11 +80,12 @@
     "@lingui/react": "^4.14.1",
     "@mattermost/react-native-paste-input": "^0.7.1",
     "@miblanchard/react-native-slider": "^2.3.1",
-    "@mozzius/expo-dynamic-app-icon": "^1.5.0",
+    "@mozzius/expo-dynamic-app-icon": "1.5.0",
     "@radix-ui/react-dismissable-layer": "^1.1.5",
     "@radix-ui/react-dropdown-menu": "2.1.6",
     "@radix-ui/react-focus-guards": "^1.1.1",
     "@radix-ui/react-focus-scope": "^1.1.2",
+    "@rainbow-me/rainbowkit": "^2.2.4",
     "@react-native-async-storage/async-storage": "1.23.1",
     "@react-native-menu/menu": "^1.1.7",
     "@react-native-picker/picker": "2.9.0",
@@ -93,7 +95,7 @@
     "@react-navigation/native-stack": "^6.9.26",
     "@sentry/react-native": "~6.10.0",
     "@tanstack/query-async-storage-persister": "^5.25.0",
-    "@tanstack/react-query": "^5.8.1",
+    "@tanstack/react-query": "^5.66.9",
     "@tanstack/react-query-persist-client": "^5.25.0",
     "@tiptap/core": "^2.9.1",
     "@tiptap/extension-document": "^2.9.1",
@@ -206,10 +208,13 @@
     "react-responsive": "^9.0.2",
     "react-textarea-autosize": "^8.5.3",
     "rn-fetch-blob": "^0.12.0",
+    "siwe": "^2.3.2",
     "statsig-react-native-expo": "^4.6.1",
     "tippy.js": "^6.3.7",
     "tlds": "^1.234.0",
     "tldts": "^6.1.46",
+    "viem": "2.x",
+    "wagmi": "^2.14.12",
     "zeego": "^1.6.2",
     "zod": "^3.20.2"
   },
@@ -278,7 +283,8 @@
     "@types/react": "^18",
     "**/expo-constants": "17.0.3",
     "**/expo-device": "7.0.1",
-    "**/zod": "3.23.8"
+    "**/zod": "3.23.8",
+    "@atproto/api": "link:./../cproto/packages/api"
   },
   "jest": {
     "preset": "jest-expo/ios",
