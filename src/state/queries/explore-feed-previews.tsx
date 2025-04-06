@@ -1,8 +1,17 @@
 import {useMemo} from 'react'
-import {type AppBskyFeedDefs, moderatePost} from '@atproto/api'
+import {
+  type AppBskyActorDefs,
+  AppBskyFeedDefs,
+  AtUri,
+  moderatePost,
+} from '@atproto/api'
 import {msg} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
-import {useInfiniteQuery} from '@tanstack/react-query'
+import {
+  type InfiniteData,
+  type QueryClient,
+  useInfiniteQuery,
+} from '@tanstack/react-query'
 
 import {CustomFeedAPI} from '#/lib/api/feed/custom'
 import {aggregateUserInterests} from '#/lib/api/feed/utils'
@@ -14,6 +23,11 @@ import {
   type FeedPostSliceItem,
 } from '#/state/queries/post-feed'
 import {usePreferencesQuery} from '#/state/queries/preferences'
+import {
+  didOrHandleUriMatches,
+  embedViewRecordToPostView,
+  getEmbeddedPost,
+} from '#/state/queries/util'
 import {useAgent} from '#/state/session'
 
 const RQKEY_ROOT = 'feed-previews'
@@ -23,7 +37,7 @@ const LIMIT = 8 // sliced to 6, overfetch to account for moderation
 
 export type FeedPreviewItem =
   | {
-      type: 'topBorder'
+      type: 'preview:spacer'
       key: string
     }
   | {
@@ -59,6 +73,7 @@ export type FeedPreviewItem =
       key: string
       slice: FeedPostSlice
       indexInSlice: number
+      feed: AppBskyFeedDefs.GeneratorView
       showReplyTo: boolean
       hideTopBorder: boolean
     }
@@ -68,7 +83,17 @@ export type FeedPreviewItem =
       uri: string
     }
 
-export function useFeedPreviews(feeds: AppBskyFeedDefs.GeneratorView[]) {
+export function useFeedPreviews(
+  feedsMaybeWithDuplicates: AppBskyFeedDefs.GeneratorView[],
+) {
+  const feeds = useMemo(
+    () =>
+      feedsMaybeWithDuplicates.filter(
+        (f, i, a) => i === a.findIndex(f2 => f.uri === f2.uri),
+      ),
+    [feedsMaybeWithDuplicates],
+  )
+
   const uris = feeds.map(feed => feed.uri)
   const {_} = useLingui()
   const agent = useAgent()
@@ -107,6 +132,11 @@ export function useFeedPreviews(feeds: AppBskyFeedDefs.GeneratorView[]) {
 
       if (!enabled) return items
 
+      items.push({
+        type: 'preview:spacer',
+        key: 'spacer',
+      })
+
       const isEmpty =
         !isPending && !data?.pages?.some(page => page.posts.length)
 
@@ -144,7 +174,7 @@ export function useFeedPreviews(feeds: AppBskyFeedDefs.GeneratorView[]) {
               })
 
               const slice = {
-                _reactKey: item._reactKey,
+                _reactKey: page.feed.uri + item._reactKey,
                 _isFeedPostSlice: true,
                 isFallbackMarker: false,
                 isIncompleteThread: item.isIncompleteThread,
@@ -173,6 +203,7 @@ export function useFeedPreviews(feeds: AppBskyFeedDefs.GeneratorView[]) {
                   key: slice.items[0]._reactKey,
                   slice: slice,
                   indexInSlice: 0,
+                  feed: page.feed,
                   showReplyTo: false,
                   hideTopBorder: rowIndex === 0,
                 })
@@ -186,6 +217,7 @@ export function useFeedPreviews(feeds: AppBskyFeedDefs.GeneratorView[]) {
                   key: slice.items[beforeLast]._reactKey,
                   slice: slice,
                   indexInSlice: beforeLast,
+                  feed: page.feed,
                   showReplyTo:
                     slice.items[beforeLast].parentAuthor?.did !==
                     slice.items[beforeLast].post.author.did,
@@ -196,6 +228,7 @@ export function useFeedPreviews(feeds: AppBskyFeedDefs.GeneratorView[]) {
                   key: slice.items[last]._reactKey,
                   slice: slice,
                   indexInSlice: last,
+                  feed: page.feed,
                   showReplyTo: false,
                   hideTopBorder: false,
                 })
@@ -206,6 +239,7 @@ export function useFeedPreviews(feeds: AppBskyFeedDefs.GeneratorView[]) {
                     key: slice.items[i]._reactKey,
                     slice: slice,
                     indexInSlice: i,
+                    feed: page.feed,
                     showReplyTo: i === 0,
                     hideTopBorder: i === 0 && rowIndex === 0,
                   })
@@ -216,23 +250,17 @@ export function useFeedPreviews(feeds: AppBskyFeedDefs.GeneratorView[]) {
             }
 
             if (slices.length > 0) {
-              if (pageIndex > 0) {
-                items.push({
-                  type: 'topBorder',
-                  key: `topBorder-${page.feed.uri}`,
-                })
-              }
               items.push(
-                {
-                  type: 'preview:footer',
-                  key: `footer-${page.feed.uri}`,
-                },
                 {
                   type: 'preview:header',
                   key: `header-${page.feed.uri}`,
                   feed: page.feed,
                 },
                 ...slices,
+                {
+                  type: 'preview:footer',
+                  key: `footer-${page.feed.uri}`,
+                },
               )
             }
           }
@@ -260,5 +288,105 @@ export function useFeedPreviews(feeds: AppBskyFeedDefs.GeneratorView[]) {
       _,
       error,
     ]),
+  }
+}
+
+export function* findAllPostsInQueryData(
+  queryClient: QueryClient,
+  uri: string,
+): Generator<AppBskyFeedDefs.PostView, undefined> {
+  const atUri = new AtUri(uri)
+
+  const queryDatas = queryClient.getQueriesData<
+    InfiniteData<{
+      feed: AppBskyFeedDefs.GeneratorView
+      posts: AppBskyFeedDefs.FeedViewPost[]
+    }>
+  >({
+    queryKey: [RQKEY_ROOT],
+  })
+  for (const [_queryKey, queryData] of queryDatas) {
+    if (!queryData?.pages) {
+      continue
+    }
+    for (const page of queryData?.pages) {
+      for (const item of page.posts) {
+        if (didOrHandleUriMatches(atUri, item.post)) {
+          yield item.post
+        }
+
+        const quotedPost = getEmbeddedPost(item.post.embed)
+        if (quotedPost && didOrHandleUriMatches(atUri, quotedPost)) {
+          yield embedViewRecordToPostView(quotedPost)
+        }
+
+        if (AppBskyFeedDefs.isPostView(item.reply?.parent)) {
+          if (didOrHandleUriMatches(atUri, item.reply.parent)) {
+            yield item.reply.parent
+          }
+
+          const parentQuotedPost = getEmbeddedPost(item.reply.parent.embed)
+          if (
+            parentQuotedPost &&
+            didOrHandleUriMatches(atUri, parentQuotedPost)
+          ) {
+            yield embedViewRecordToPostView(parentQuotedPost)
+          }
+        }
+
+        if (AppBskyFeedDefs.isPostView(item.reply?.root)) {
+          if (didOrHandleUriMatches(atUri, item.reply.root)) {
+            yield item.reply.root
+          }
+
+          const rootQuotedPost = getEmbeddedPost(item.reply.root.embed)
+          if (rootQuotedPost && didOrHandleUriMatches(atUri, rootQuotedPost)) {
+            yield embedViewRecordToPostView(rootQuotedPost)
+          }
+        }
+      }
+    }
+  }
+}
+
+export function* findAllProfilesInQueryData(
+  queryClient: QueryClient,
+  did: string,
+): Generator<AppBskyActorDefs.ProfileViewBasic, undefined> {
+  const queryDatas = queryClient.getQueriesData<
+    InfiniteData<{
+      feed: AppBskyFeedDefs.GeneratorView
+      posts: AppBskyFeedDefs.FeedViewPost[]
+    }>
+  >({
+    queryKey: [RQKEY_ROOT],
+  })
+  for (const [_queryKey, queryData] of queryDatas) {
+    if (!queryData?.pages) {
+      continue
+    }
+    for (const page of queryData?.pages) {
+      for (const item of page.posts) {
+        if (item.post.author.did === did) {
+          yield item.post.author
+        }
+        const quotedPost = getEmbeddedPost(item.post.embed)
+        if (quotedPost?.author.did === did) {
+          yield quotedPost.author
+        }
+        if (
+          AppBskyFeedDefs.isPostView(item.reply?.parent) &&
+          item.reply?.parent?.author.did === did
+        ) {
+          yield item.reply.parent.author
+        }
+        if (
+          AppBskyFeedDefs.isPostView(item.reply?.root) &&
+          item.reply?.root?.author.did === did
+        ) {
+          yield item.reply.root.author
+        }
+      }
+    }
   }
 }
