@@ -1,12 +1,5 @@
 import {memo, useCallback, useEffect, useMemo, useRef, useState} from 'react'
-import {
-  ScrollView,
-  type StyleProp,
-  TextInput,
-  useWindowDimensions,
-  View,
-  type ViewStyle,
-} from 'react-native'
+import {ScrollView, TextInput, useWindowDimensions, View} from 'react-native'
 import Animated, {
   LayoutAnimationConfig,
   LinearTransition,
@@ -460,7 +453,6 @@ let Tabs = ({
   hasSearchText,
   interestsDisplayNames,
   TabComponent = Tab,
-  contentContainerStyle,
 }: {
   onSelectTab: (tab: string) => void
   interests: string[]
@@ -468,7 +460,6 @@ let Tabs = ({
   hasSearchText: boolean
   interestsDisplayNames: Record<string, string>
   TabComponent?: React.ComponentType<React.ComponentProps<typeof Tab>>
-  contentContainerStyle?: StyleProp<ViewStyle>
 }): React.ReactNode => {
   const listRef = useRef<ScrollView>(null)
   const [scrollX, setScrollX] = useState(0)
@@ -529,7 +520,7 @@ let Tabs = ({
     <ScrollView
       ref={listRef}
       horizontal
-      contentContainerStyle={[a.gap_sm, a.px_lg, contentContainerStyle]}
+      contentContainerStyle={[a.gap_sm, a.px_lg]}
       showsHorizontalScrollIndicator={false}
       decelerationRate="fast"
       snapToOffsets={
