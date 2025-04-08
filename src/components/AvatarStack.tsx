@@ -6,7 +6,7 @@ import {useModerationOpts} from '#/state/preferences/moderation-opts'
 import {useProfilesQuery} from '#/state/queries/profile'
 import {UserAvatar} from '#/view/com/util/UserAvatar'
 import {atoms as a, useTheme} from '#/alf'
-import type * as bsky from '#/types/bsky'
+import * as bsky from '#/types/bsky'
 
 export function AvatarStack({
   profiles,
@@ -19,7 +19,7 @@ export function AvatarStack({
   numPending?: number
   backgroundColor?: string
 }) {
-  const translation = size / 3 // overlap by 1/3
+  const halfSize = size / 2
   const t = useTheme()
   const moderationOpts = useModerationOpts()
 
@@ -43,7 +43,7 @@ export function AvatarStack({
         a.flex_row,
         a.align_center,
         a.relative,
-        {width: size + (items.length - 1) * (size - translation)},
+        {width: size + (items.length - 1) * halfSize},
       ]}>
       {items.map((item, i) => (
         <View
@@ -54,7 +54,7 @@ export function AvatarStack({
             {
               width: size,
               height: size,
-              left: i * -translation,
+              left: i * -halfSize,
               borderWidth: 1,
               borderColor: backgroundColor ?? t.atoms.bg.backgroundColor,
               borderRadius: 999,

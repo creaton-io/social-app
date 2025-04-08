@@ -55,14 +55,12 @@ export function SearchScreenShell({
   fixedParams,
   navButton = 'menu',
   inputPlaceholder,
-  isExplore,
 }: {
   queryParam: string
   testID: string
   fixedParams?: Params
   navButton?: 'back' | 'menu'
   inputPlaceholder?: string
-  isExplore?: boolean
 }) {
   const t = useTheme()
   const {gtMobile} = useBreakpoints()
@@ -304,7 +302,7 @@ export function SearchScreenShell({
                 )}
                 <Layout.Header.Content align="left">
                   <Layout.Header.TitleText>
-                    {isExplore ? <Trans>Explore</Trans> : <Trans>Search</Trans>}
+                    <Trans>Search</Trans>
                   </Layout.Header.TitleText>
                 </Layout.Header.Content>
                 {showFilters ? (
@@ -318,7 +316,7 @@ export function SearchScreenShell({
               </Layout.Header.Outer>
             </View>
           )}
-          <View style={[a.px_lg, a.pt_sm, a.pb_sm, a.overflow_hidden]}>
+          <View style={[a.px_md, a.pt_sm, a.pb_sm, a.overflow_hidden]}>
             <View style={[a.gap_sm]}>
               <View style={[a.w_full, a.flex_row, a.align_stretch, a.gap_xs]}>
                 <View style={[a.flex_1]}>

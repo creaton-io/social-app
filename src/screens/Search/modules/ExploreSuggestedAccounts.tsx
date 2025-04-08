@@ -83,16 +83,10 @@ export function SuggestedAccountsTabBar({
         }}
         hasSearchText={false}
         interestsDisplayNames={{
-          all: _(msg`For You`),
+          all: _(msg`All`),
           ...interestsDisplayNames,
         }}
         TabComponent={Tab}
-        contentContainerStyle={[
-          {
-            // visual alignment
-            paddingLeft: a.px_md.paddingLeft,
-          },
-        ]}
       />
     </BlockDrawerGesture>
   )
