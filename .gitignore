@@ -118,3 +118,4 @@ src/locale/locales/**/*.js
 
 # ogcard assets
 bskyogcard/src/assets/fonts/noto-*
+.yalc/*

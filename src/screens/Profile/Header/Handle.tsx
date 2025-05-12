@@ -1,12 +1,14 @@
 import {View} from 'react-native'
-import {AppBskyActorDefs} from '@atproto/api'
+import {type AppBskyActorDefs} from '@atproto/api'
 import {msg, Trans} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
 
 import {isInvalidHandle} from '#/lib/strings/handles'
 import {isIOS} from '#/platform/detection'
-import {Shadow} from '#/state/cache/types'
+import {type Shadow} from '#/state/cache/types'
+import {useResolveDidDocQuery} from '#/state/queries/resolve-uri'
 import {atoms as a, useTheme, web} from '#/alf'
+import {Button, ButtonText} from '#/components/Button'
 import {NewskieDialog} from '#/components/NewskieDialog'
 import {Text} from '#/components/Typography'
 
@@ -21,6 +23,21 @@ export function ProfileHeaderHandle({
   const {_} = useLingui()
   const invalidHandle = isInvalidHandle(profile.handle)
   const blockHide = profile.viewer?.blocking || profile.viewer?.blockedBy
+  const useResolveDidQueryResult = useResolveDidDocQuery(profile.did)
+  let ethAddress = ''
+  if (
+    useResolveDidQueryResult.data &&
+    useResolveDidQueryResult.data.alsoKnownAs[1]
+  ) {
+    const parts = useResolveDidQueryResult.data.alsoKnownAs[1].split(':')
+    const ethereumAddress = parts[2]
+    const formattedEthAddress = ethereumAddress.slice(0, 6)
+
+    const lastChars = ethereumAddress.slice(-4)
+
+    ethAddress = formattedEthAddress + '...' + lastChars
+  }
+
   return (
     <View
       style={[a.flex_row, a.gap_xs, a.align_center, {maxWidth: '100%'}]}
@@ -51,6 +68,11 @@ export function ProfileHeaderHandle({
         ]}>
         {invalidHandle ? _(msg`⚠Invalid Handle`) : `@${profile.handle}`}
       </Text>
+      {ethAddress ? (
+        <Button variant="solid" color="primary" size="tiny" label="Link out">
+          <ButtonText>{ethAddress}</ButtonText>
+        </Button>
+      ) : undefined}
     </View>
   )
 }

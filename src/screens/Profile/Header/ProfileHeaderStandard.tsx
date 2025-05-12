@@ -1,10 +1,10 @@
 import React, {memo, useMemo} from 'react'
 import {View} from 'react-native'
 import {
-  AppBskyActorDefs,
+  type AppBskyActorDefs,
   moderateProfile,
-  ModerationOpts,
-  RichText as RichTextAPI,
+  type ModerationOpts,
+  type RichText as RichTextAPI,
 } from '@atproto/api'
 import {msg, Trans} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
@@ -13,17 +13,19 @@ import {sanitizeDisplayName} from '#/lib/strings/display-names'
 import {logger} from '#/logger'
 import {isIOS, isWeb} from '#/platform/detection'
 import {useProfileShadow} from '#/state/cache/profile-shadow'
-import {Shadow} from '#/state/cache/types'
+import {type Shadow} from '#/state/cache/types'
 import {useModalControls} from '#/state/modals'
 import {
   useProfileBlockMutationQueue,
   useProfileFollowMutationQueue,
 } from '#/state/queries/profile'
+import {useResolveDidDocQuery} from '#/state/queries/resolve-uri'
 import {useRequireAuth, useSession} from '#/state/session'
 import {ProfileMenu} from '#/view/com/profile/ProfileMenu'
 import * as Toast from '#/view/com/util/Toast'
 import {atoms as a} from '#/alf'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
+import * as Dialog from '#/components/Dialog'
 import {useDialogControl} from '#/components/Dialog'
 import {MessageProfileButton} from '#/components/dms/MessageProfileButton'
 import {Check_Stroke2_Corner0_Rounded as Check} from '#/components/icons/Check'
@@ -39,6 +41,7 @@ import {EditProfileDialog} from './EditProfileDialog'
 import {ProfileHeaderHandle} from './Handle'
 import {ProfileHeaderMetrics} from './Metrics'
 import {ProfileHeaderShell} from './Shell'
+import TipComponents from './TipComponents'
 
 interface Props {
   profile: AppBskyActorDefs.ProfileViewDetailed
@@ -69,6 +72,7 @@ let ProfileHeaderStandard = ({
   )
   const [_queueBlock, queueUnblock] = useProfileBlockMutationQueue(profile)
   const unblockPromptControl = Prompt.usePromptControl()
+  const basic = useDialogControl()
   const requireAuth = useRequireAuth()
   const isBlockedUser =
     profile.viewer?.blocking ||
@@ -88,6 +92,17 @@ let ProfileHeaderStandard = ({
       editProfileControl.open()
     }
   }, [editProfileControl, openModal, profile])
+
+  const useResolveDidQueryResult = useResolveDidDocQuery(profile.did)
+  let fullEthAddress = ''
+  if (
+    useResolveDidQueryResult.data &&
+    useResolveDidQueryResult.data.alsoKnownAs[1]
+  ) {
+    const parts = useResolveDidQueryResult.data.alsoKnownAs[1].split(':')
+    const ethereumAddress = parts[2]
+    fullEthAddress = ethereumAddress
+  }
 
   const onPressFollow = () => {
     requireAuth(async () => {
@@ -134,7 +149,7 @@ let ProfileHeaderStandard = ({
   const unblockAccount = React.useCallback(async () => {
     try {
       await queueUnblock()
-      Toast.show(_(msg({message: 'Account unblocked', context: 'toast'})))
+      Toast.show(_(msg`Account unblocked`))
     } catch (e: any) {
       if (e?.name !== 'AbortError') {
         logger.error('Failed to unblock account', {message: e})
@@ -206,6 +221,18 @@ let ProfileHeaderStandard = ({
           ) : !profile.viewer?.blockedBy ? (
             <>
               {hasSession && <MessageProfileButton profile={profile} />}
+              {fullEthAddress && (
+                <Button
+                  variant="gradient"
+                  color="gradient_sunset"
+                  size="small"
+                  onPress={() => {
+                    basic.open()
+                  }}
+                  label="Open basic dialog">
+                  <ButtonText>Tip</ButtonText>
+                </Button>
+              )}
 
               <Button
                 testID={profile.viewer?.following ? 'unfollowBtn' : 'followBtn'}
@@ -284,6 +311,13 @@ let ProfileHeaderStandard = ({
         }
         confirmButtonColor="negative"
       />
+      <Dialog.Outer control={basic}>
+        <Dialog.Handle />
+
+        <Dialog.Inner label="test" style={{width: 300}}>
+          <TipComponents sendAddress={fullEthAddress} />
+        </Dialog.Inner>
+      </Dialog.Outer>
     </ProfileHeaderShell>
   )
 }

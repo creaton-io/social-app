@@ -15,7 +15,7 @@ import {
 
 export function WalletComponents() {
   return (
-    <div className="flex justify-end">
+    <div className="flex justify-start">
       <Wallet>
         <ConnectWallet>
           <Avatar className="h-6 w-6" />

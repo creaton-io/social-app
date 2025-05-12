@@ -4,12 +4,13 @@ import {msg, Trans} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
 import {useNavigation} from '@react-navigation/core'
 
-import {FEEDBACK_FORM_URL, HELP_DESK_URL} from '#/lib/constants'
+//import {FEEDBACK_FORM_URL, HELP_DESK_URL} from '#/lib/constants'
 import {useKawaiiMode} from '#/state/preferences/kawaii'
 import {useSession} from '#/state/session'
 import {DesktopFeeds} from '#/view/shell/desktop/Feeds'
 import {DesktopSearch} from '#/view/shell/desktop/Search'
 import {SidebarTrendingTopics} from '#/view/shell/desktop/SidebarTrendingTopics'
+import {WalletComponents} from '#/screens/Login/LoginWallet'
 import {
   atoms as a,
   useGutters,
@@ -44,7 +45,7 @@ function useWebQueryParams() {
 export function DesktopRightNav({routeName}: {routeName: string}) {
   const t = useTheme()
   const {_} = useLingui()
-  const {hasSession, currentAccount} = useSession()
+  const {hasSession} = useSession()
   const kawaii = useKawaiiMode()
   const gutters = useGutters(['base', 0, 'base', 'wide'])
   const isSearchScreen = routeName === 'Search'
@@ -79,6 +80,16 @@ export function DesktopRightNav({routeName}: {routeName: string}) {
           overflowY: 'auto',
         }),
       ]}>
+      <View
+        style={web({
+          position: 'relative',
+          zIndex: 1000,
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'flex-start', // Changed from end (right) to start (left)
+        })}>
+        <WalletComponents />
+      </View>
       {!isSearchScreen && <DesktopSearch />}
 
       {hasSession && (
@@ -90,7 +101,7 @@ export function DesktopRightNav({routeName}: {routeName: string}) {
       )}
 
       {showTrending && <SidebarTrendingTopics />}
-
+      {/* 
       <Text style={[a.leading_snug, t.atoms.text_contrast_low]}>
         {hasSession && (
           <>
@@ -119,8 +130,8 @@ export function DesktopRightNav({routeName}: {routeName: string}) {
         {' • '}
         <InlineLinkText label={_(msg`Help`)} to={HELP_DESK_URL}>
           {_(msg`Help`)}
-        </InlineLinkText>
-      </Text>
+        </InlineLinkText> 
+      </Text>*/}
 
       {kawaii && (
         <Text style={[t.atoms.text_contrast_medium, {marginTop: 12}]}>
