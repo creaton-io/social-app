@@ -7,6 +7,8 @@ export type {NativeStackScreenProps} from '@react-navigation/native-stack'
 
 export type CommonNavigatorParams = {
   NotFound: undefined
+  Xmtp: undefined
+  XmtpConversation: {conversation: string}
   Lists: undefined
   Moderation: undefined
   ModerationModlists: undefined

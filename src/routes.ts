@@ -69,4 +69,7 @@ export const router = new Router({
   StarterPackShort: '/starter-pack-short/:code',
   StarterPackWizard: '/starter-pack/create',
   VideoFeed: '/video-feed',
+  // Decentralized Messaging
+  Xmtp: '/xmtp',
+  XmtpConversation: '/xmtp/:conversation',
 })

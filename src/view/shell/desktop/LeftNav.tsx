@@ -519,7 +519,7 @@ function ChatNavItem() {
 
   return (
     <NavItem
-      href="/messages"
+      href="/xmtp"
       count={numUnreadMessages.numUnread}
       hasNew={numUnreadMessages.hasNew}
       icon={

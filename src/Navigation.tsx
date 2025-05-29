@@ -90,6 +90,7 @@ import {
 } from '#/screens/StarterPack/StarterPackScreen'
 import {Wizard} from '#/screens/StarterPack/Wizard'
 import {VideoFeed} from '#/screens/VideoFeed'
+import {XmtpScreen} from '#/screens/Xmtp'
 import {useTheme} from '#/alf'
 import {router} from '#/routes'
 import {Referrer} from '../modules/expo-bluesky-swiss-army'
@@ -106,6 +107,7 @@ import {PrivacyAndSecuritySettingsScreen} from './screens/Settings/PrivacyAndSec
 import {SettingsScreen} from './screens/Settings/Settings'
 import {ThreadPreferencesScreen} from './screens/Settings/ThreadPreferences'
 import TopicScreen from './screens/Topic'
+import {XmtpConversationScreen} from './screens/Xmtp/Conversation'
 
 const navigationRef = createNavigationContainerRef<AllNavigatorParams>()
 
@@ -133,6 +135,16 @@ function commonScreens(Stack: typeof HomeTab, unreadCountLabel?: string) {
         name="NotFound"
         getComponent={() => NotFoundScreen}
         options={{title: title(msg`Not Found`)}}
+      />
+      <Stack.Screen
+        name="Xmtp"
+        getComponent={() => XmtpScreen}
+        options={{title: title(msg`XMTP Messages`), requireAuth: true}}
+      />
+      <Stack.Screen
+        name="XmtpConversation"
+        getComponent={() => XmtpConversationScreen}
+        options={{title: title(msg`XMTP Chat`), requireAuth: true}}
       />
       <Stack.Screen
         name="Lists"
