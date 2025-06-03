@@ -14,7 +14,7 @@ import {PlusLarge_Stroke2_Corner0_Rounded as Plus} from '#/components/icons/Plus
 import * as Layout from '#/components/Layout'
 import {Text as TypographyText} from '#/components/Typography'
 import {navigate} from '#/Navigation'
-import {useXmtp} from './useXmtp'
+import {useXMTP} from './useXmtp'
 
 type Props = NativeStackScreenProps<any, 'Xmtp'>
 
@@ -22,11 +22,12 @@ export function XmtpScreen({}: Props) {
   const {_} = useLingui()
   const t = useTheme()
   const [conversations, setConversations] = useState<Conversation[]>([])
-  const {client, newDm} = useXmtp()
+  const {client, newDm} = useXMTP()
   const [newChatAddress, setNewChatAddress] = useState('')
   const dialogControl = Dialog.useDialogControl()
 
   useEffect(() => {
+    console.log('GOT HERE THE CLIENT xmtpScreen', client)
     async function fetchConversations() {
       if (!client) return
       setConversations(await client.conversations.list())
@@ -80,7 +81,7 @@ export function XmtpScreen({}: Props) {
                 styles.conversationSubtext,
                 {color: t.palette.contrast_700},
               ]}>
-              Direct Message
+              <Trans>Direct Message</Trans>
             </Text>
           )}
           {item.metadata?.conversationType === 'group' && (
@@ -89,7 +90,7 @@ export function XmtpScreen({}: Props) {
                 styles.conversationSubtext,
                 {color: t.palette.contrast_700},
               ]}>
-              Group Chat
+              <Trans>Group Chat</Trans>
             </Text>
           )}
         </Pressable>
@@ -113,20 +114,19 @@ export function XmtpScreen({}: Props) {
             <Trans>XMTP Messages</Trans>
           </Layout.Header.TitleText>
         </Layout.Header.Content>
-        <Layout.Header.Slot>
+        <View style={[a.flex_row, a.align_center, a.gap_sm]}>
           <Button
             label={_(msg`New chat`)}
             color="primary"
             size="small"
             variant="solid"
-            onPress={() => dialogControl.open()}
-            style={[a.px_md]}>
+            onPress={() => dialogControl.open()}>
             <ButtonIcon icon={Plus} position="left" />
             <ButtonText>
               <Trans>New chat</Trans>
             </ButtonText>
           </Button>
-        </Layout.Header.Slot>
+        </View>
       </Layout.Header.Outer>
 
       {conversations.length === 0 && (
@@ -194,6 +194,7 @@ export function XmtpScreen({}: Props) {
             <Button
               label={_('Start Chat')}
               color="primary"
+              size="small"
               variant="solid"
               onPress={handleNewChat}>
               <ButtonText>

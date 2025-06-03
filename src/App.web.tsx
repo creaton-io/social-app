@@ -70,6 +70,7 @@ import {Provider as IntentDialogProvider} from '#/components/intents/IntentDialo
 import {Provider as PortalProvider} from '#/components/Portal'
 import {BackgroundNotificationPreferencesProvider} from '../modules/expo-background-notification-handler/src/BackgroundNotificationHandlerProvider'
 import {NEXT_PUBLIC_ONCHAINKIT_API_KEY} from './env'
+import {XMTPProvider} from './screens/Xmtp/useXmtp'
 import {wagmiConfig} from './wagmi'
 
 const queryClient = new QueryClient()
@@ -171,7 +172,9 @@ function InnerApp() {
                                                                   'https://...',
                                                               },
                                                             }}>
-                                                            <Shell />
+                                                            <XMTPProvider>
+                                                              <Shell />
+                                                            </XMTPProvider>
                                                           </OnchainKitProvider>
                                                         </QueryClientProvider>
                                                       </RainbowKitProvider>

@@ -46,7 +46,7 @@ import {Provider as ModerationOptsProvider} from '#/state/preferences/moderation
 import {Provider as UnreadNotifsProvider} from '#/state/queries/notifications/unread'
 import {
   Provider as SessionProvider,
-  SessionAccount,
+  type SessionAccount,
   useSession,
   useSessionApi,
 } from '#/state/session'
@@ -74,6 +74,7 @@ import {Provider as PortalProvider} from '#/components/Portal'
 import {Splash} from '#/Splash'
 import {BottomSheetProvider} from '../modules/bottom-sheet'
 import {BackgroundNotificationPreferencesProvider} from '../modules/expo-background-notification-handler/src/BackgroundNotificationHandlerProvider'
+import {XMTPProvider} from './screens/Xmtp/useXmtp'
 
 SplashScreen.preventAutoHideAsync()
 if (isIOS) {
@@ -155,8 +156,10 @@ function InnerApp() {
                                                 <GestureHandlerRootView
                                                   style={s.h100pct}>
                                                   <IntentDialogProvider>
-                                                    <TestCtrls />
-                                                    <Shell />
+                                                    <XMTPProvider>
+                                                      <TestCtrls />
+                                                      <Shell />
+                                                    </XMTPProvider>
                                                     <NuxDialogs />
                                                   </IntentDialogProvider>
                                                 </GestureHandlerRootView>

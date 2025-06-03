@@ -17,7 +17,7 @@ import {ArrowLeft_Stroke2_Corner0_Rounded as ArrowLeft} from '#/components/icons
 import * as Layout from '#/components/Layout'
 import {Text as TypographyText} from '#/components/Typography'
 import {navigate} from '#/Navigation'
-import {useXmtp} from './useXmtp'
+import {useXMTP} from './useXmtp'
 
 type Props = NativeStackScreenProps<any, 'XmtpConversation'>
 
@@ -32,7 +32,7 @@ export function XmtpConversationScreen({route}: Props) {
   const {_} = useLingui()
   const t = useTheme()
   const conversationId = route.params?.conversation
-  const {client, sendMessage} = useXmtp()
+  const {client, sendMessage} = useXMTP()
   const [messages, setMessages] = useState<XmtpMessage[]>([])
   const [newMessage, setNewMessage] = useState('')
   const [conversation, setConversation] = useState<Conversation | null>(null)
@@ -139,7 +139,7 @@ export function XmtpConversationScreen({route}: Props) {
             <Trans>XMTP Chat</Trans>
           </Layout.Header.TitleText>
         </Layout.Header.Content>
-        <Layout.Header.Slot>
+        <View style={[a.flex_row, a.align_center, a.gap_sm]}>
           <Button
             label={_(msg`Back`)}
             color="primary"
@@ -152,7 +152,7 @@ export function XmtpConversationScreen({route}: Props) {
               <Trans>Back</Trans>
             </ButtonText>
           </Button>
-        </Layout.Header.Slot>
+        </View>
       </Layout.Header.Outer>
 
       <Layout.Content>
