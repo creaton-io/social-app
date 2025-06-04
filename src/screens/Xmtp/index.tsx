@@ -1,5 +1,5 @@
 import {useCallback, useEffect, useState} from 'react'
-import {Pressable, StyleSheet, Text, View} from 'react-native'
+import {StyleSheet, View} from 'react-native'
 import {msg, Trans} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
 import {type NativeStackScreenProps} from '@react-navigation/native-stack'
@@ -14,6 +14,7 @@ import {PlusLarge_Stroke2_Corner0_Rounded as Plus} from '#/components/icons/Plus
 import * as Layout from '#/components/Layout'
 import {Text as TypographyText} from '#/components/Typography'
 import {navigate} from '#/Navigation'
+import {ConversationsListItem} from './ConversationsListItem'
 import {useXMTP} from './useXmtp'
 
 type Props = NativeStackScreenProps<any, 'Xmtp'>
@@ -22,12 +23,14 @@ export function XmtpScreen({}: Props) {
   const {_} = useLingui()
   const t = useTheme()
   const [conversations, setConversations] = useState<Conversation[]>([])
-  const {client, newDm} = useXMTP()
+  const {client, newConversation} = useXMTP()
   const [newChatAddress, setNewChatAddress] = useState('')
   const dialogControl = Dialog.useDialogControl()
+  const [isGroupChat, setIsGroupChat] = useState(false)
+  const [groupName, setGroupName] = useState('')
+  const [groupDescription, setGroupDescription] = useState('')
 
   useEffect(() => {
-    console.log('GOT HERE THE CLIENT xmtpScreen', client)
     async function fetchConversations() {
       if (!client) return
       setConversations(await client.conversations.list())
@@ -46,7 +49,11 @@ export function XmtpScreen({}: Props) {
     }
 
     try {
-      let conversation: Conversation | undefined = await newDm(newChatAddress)
+      let conversation: Conversation | undefined = await newConversation(
+        newChatAddress.split(','),
+        {groupName, groupDescription},
+      )
+      console.log('conversation created:', conversation)
       if (!conversation) {
         console.error('Failed to create new conversation')
         return
@@ -59,50 +66,14 @@ export function XmtpScreen({}: Props) {
     } catch (error) {
       console.error('Error creating new conversation:', error)
     }
-  }, [client, newChatAddress, dialogControl, newDm])
-
-  const renderItem = useCallback(
-    ({item}: {item: Conversation}) => {
-      return (
-        <Pressable
-          accessibilityRole="button"
-          onPress={() => handleConversationPress(item.id)}
-          style={({pressed}) => [
-            styles.conversationItem,
-            pressed && {backgroundColor: t.palette.contrast_50},
-          ]}>
-          <Text
-            style={[styles.conversationText, {color: t.palette.primary_500}]}>
-            {item.id}
-          </Text>
-          {item.metadata?.conversationType === 'dm' && (
-            <Text
-              style={[
-                styles.conversationSubtext,
-                {color: t.palette.contrast_700},
-              ]}>
-              <Trans>Direct Message</Trans>
-            </Text>
-          )}
-          {item.metadata?.conversationType === 'group' && (
-            <Text
-              style={[
-                styles.conversationSubtext,
-                {color: t.palette.contrast_700},
-              ]}>
-              <Trans>Group Chat</Trans>
-            </Text>
-          )}
-        </Pressable>
-      )
-    },
-    [
-      t.palette.primary_500,
-      t.palette.contrast_700,
-      t.palette.contrast_50,
-      handleConversationPress,
-    ],
-  )
+  }, [
+    client,
+    newChatAddress,
+    dialogControl,
+    newConversation,
+    groupName,
+    groupDescription,
+  ])
 
   const keyExtractor = useCallback((item: Conversation) => item.id, [])
 
@@ -154,7 +125,12 @@ export function XmtpScreen({}: Props) {
         <View style={[styles.listContainer]}>
           <List
             data={conversations}
-            renderItem={renderItem}
+            renderItem={({item}) => (
+              <ConversationsListItem
+                item={item}
+                handleItemPress={handleConversationPress}
+              />
+            )}
             keyExtractor={keyExtractor}
             contentContainerStyle={styles.listContent}
           />
@@ -173,11 +149,46 @@ export function XmtpScreen({}: Props) {
             <Dialog.Input
               label={_('Address or inbox ID')}
               value={newChatAddress}
-              onChangeText={setNewChatAddress}
+              onChangeText={text => {
+                setNewChatAddress(text)
+                // Debounce check for comma-separated addresses
+                const timeoutId = setTimeout(() => {
+                  const addresses = text
+                    .split(',')
+                    .map(addr => addr.trim())
+                    .filter(Boolean)
+                  setIsGroupChat(addresses.length > 1)
+                }, 1000)
+                return () => clearTimeout(timeoutId)
+              }}
               autoCapitalize="none"
               autoCorrect={false}
             />
           </View>
+          {isGroupChat && (
+            <>
+              <View style={[a.mt_md]}>
+                <Dialog.Input
+                  label={_('Group name')}
+                  value={groupName}
+                  onChangeText={setGroupName}
+                  style={[a.mt_md]}
+                />
+              </View>
+
+              <View style={[a.mt_md]}>
+                <Dialog.Input
+                  label={_('Group description')}
+                  value={groupDescription}
+                  onChangeText={setGroupDescription}
+                  multiline
+                  numberOfLines={3}
+                  style={[a.mt_md]}
+                />
+              </View>
+            </>
+          )}
+
           <View style={[a.flex_row, a.justify_end, a.gap_md, a.mt_md]}>
             <Button
               label={_('Cancel')}

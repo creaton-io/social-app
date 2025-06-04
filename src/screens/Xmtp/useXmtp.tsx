@@ -43,7 +43,10 @@ export type XMTPContextValue = {
   initializing: boolean
   error: Error | null
   disconnect: () => void
-  newDm: (inboxIdOrAddress: string) => Promise<Conversation | undefined>
+  newConversation: (
+    inboxIdOrAddress: string[],
+    options?: {groupName?: string; groupDescription?: string},
+  ) => Promise<Conversation | undefined>
   sendMessage: (conversation: Conversation, content: string) => Promise<void>
   createSCWSigner: (
     address: `0x${string}`,
@@ -58,7 +61,8 @@ export const XMTPContext = createContext<XMTPContextValue>({
   initializing: false,
   error: null,
   disconnect: () => {},
-  newDm: () => Promise.reject(new Error('XMTPProvider not available')),
+  newConversation: () =>
+    Promise.reject(new Error('XMTPProvider not available')),
   sendMessage: () => Promise.reject(new Error('XMTPProvider not available')),
   createSCWSigner: () => {
     throw new Error('XMTPProvider not available')
@@ -77,10 +81,8 @@ export const XMTPProvider: React.FC<XMTPProviderProps> = ({
   client: initialClient,
 }) => {
   const [client, setClient] = useState<Client | undefined>(initialClient)
-
   const [initializing, setInitializing] = useState(false)
   const [error, setError] = useState<Error | null>(null)
-  // client is initializing
   const initializingRef = useRef(false)
 
   const account = useAccount()
@@ -128,7 +130,7 @@ export const XMTPProvider: React.FC<XMTPProviderProps> = ({
               new WalletSendCallsCodec(),
             ],
           })
-          console.log('GOT THE CLIENT xmtpClient', xmtpClient)
+
           setClient(xmtpClient)
         } catch (e) {
           setClient(undefined)
@@ -154,24 +156,30 @@ export const XMTPProvider: React.FC<XMTPProviderProps> = ({
     }
   }, [client, setClient])
 
-  const newDm = useCallback(
-    async (inboxIdOrAddress: string) => {
+  const newConversation = useCallback(
+    async (
+      inboxIdOrAddress: string[],
+      options?: {groupName?: string; groupDescription?: string},
+    ) => {
       if (!client) return
 
-      let conversation: Conversation | undefined
-      if (isValidEthereumAddress(inboxIdOrAddress)) {
-        conversation = await client.conversations.newDmWithIdentifier({
-          identifier: inboxIdOrAddress,
-          identifierKind: 'Ethereum',
+      //All inboxIds are valid ethereum addresses or inboxIds
+      const validInboxIds = [
+        ...inboxIdOrAddress.map(id => id.trim()).filter(isValidInboxId),
+        ...inboxIdOrAddress.map(id => id.trim()).filter(isValidEthereumAddress),
+      ]
+
+      if (validInboxIds.length === 1) {
+        return await client.conversations.newDm(validInboxIds[0])
+      } else if (inboxIdOrAddress.length > 1) {
+        return await client.conversations.newGroup(validInboxIds, {
+          name: options?.groupName,
+          description: options?.groupDescription,
         })
-      } else if (isValidInboxId(inboxIdOrAddress)) {
-        conversation = await client.conversations.newDm(inboxIdOrAddress)
       } else {
         console.error('Invalid member ID format')
         return
       }
-
-      return conversation
     },
     [client],
   )
@@ -270,7 +278,7 @@ export const XMTPProvider: React.FC<XMTPProviderProps> = ({
       initializing,
       error,
       disconnect,
-      newDm,
+      newConversation,
       sendMessage,
       createSCWSigner,
     }),
@@ -280,7 +288,7 @@ export const XMTPProvider: React.FC<XMTPProviderProps> = ({
       initializing,
       error,
       disconnect,
-      newDm,
+      newConversation,
       sendMessage,
       createSCWSigner,
     ],
