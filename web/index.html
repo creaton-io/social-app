@@ -1,105 +1,110 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="theme-color">
-    <!--
+
+<head>
+  <meta charset="utf-8">
+  <meta name="theme-color">
+  <!--
       This viewport works for phones with notches.
       It's optimized for gestures by disabling global zoom.
      -->
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1.00001, viewport-fit=cover"
-    />
-    <!--
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1.00001, viewport-fit=cover" />
+  <!--
       Preconnect to essential domains
     -->
-    <link rel="preconnect" href="https://bsky.social">
-    <title>%WEB_TITLE%</title>
+  <link rel="preconnect" href="https://bsky.social">
+  <title>%WEB_TITLE%</title>
 
-    <link rel="preload" as="font" type="font/woff2" href="/static/media/InterVariable.c504db5c06caaf7cdfba.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/static/media/InterVariable.c504db5c06caaf7cdfba.woff2"
+    crossorigin>
 
-    <style>
-      /**
+  <style>
+    /**
        * Minimum styles required to render splash.
        *
        * ALL OTHER STYLES BELONG IN `src/style.css`
        *
        * THIS NEEDS TO BE DUPLICATED IN `bskyweb/templates/base.html`
        */
-      @font-face {
-        font-family: 'InterVariable';
-        src: url(/static/media/InterVariable.c504db5c06caaf7cdfba.woff2) format('woff2');
-        font-weight: 300 1000;
-        font-style: normal;
-        font-display: swap;
-      }
-      @font-face {
-        font-family: 'InterVariableItalic';
-        src: url(/static/media/InterVariable-Italic.01dcbad1bac635f9c9cd.woff2) format('woff2');
-        font-weight: 300 1000;
-        font-style: italic;
-        font-display: swap;
-      }
+    @font-face {
+      font-family: 'InterVariable';
+      src: url(/static/media/InterVariable.c504db5c06caaf7cdfba.woff2) format('woff2');
+      font-weight: 300 1000;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'InterVariableItalic';
+      src: url(/static/media/InterVariable-Italic.01dcbad1bac635f9c9cd.woff2) format('woff2');
+      font-weight: 300 1000;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    html {
+      background-color: white;
+    }
+
+    @media (prefers-color-scheme: dark) {
       html {
-        background-color: white;
+        background-color: black;
       }
-      @media (prefers-color-scheme: dark) {
-        html {
-          background-color: black;
-        }
-      }
-      html,
-      body {
-        margin: 0px;
-        padding: 0px;
-        font-family: InterVariable, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Liberation Sans', Helvetica, Arial, sans-serif;
-        text-rendering: optimizeLegibility;
-        /* Platform-specific reset */
-        -webkit-overflow-scrolling: touch;
-        -webkit-text-size-adjust: 100%;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        -ms-overflow-style: scrollbar;
-        font-synthesis-weight: none;
-      }
-      html,
-      body,
-      #root {
-        display: flex;
-        flex: 1 0 auto;
-        min-height: 100%;
-        width: 100%;
-      }
-      #splash {
-        position: fixed;
-        width: 100px;
-        left: 50%;
-        top: 50%;
-        transform: translateX(-50%) translateY(-50%) translateY(-50px);
-      }
-      /**
+    }
+
+    html,
+    body {
+      margin: 0px;
+      padding: 0px;
+      font-family: InterVariable, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Liberation Sans', Helvetica, Arial, sans-serif;
+      text-rendering: optimizeLegibility;
+      /* Platform-specific reset */
+      -webkit-overflow-scrolling: touch;
+      -webkit-text-size-adjust: 100%;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -ms-overflow-style: scrollbar;
+      font-synthesis-weight: none;
+    }
+
+    html,
+    body,
+    #root {
+      display: flex;
+      flex: 1 0 auto;
+      min-height: 100%;
+      width: 100%;
+    }
+
+    #splash {
+      position: fixed;
+      width: 100px;
+      left: 50%;
+      top: 50%;
+      transform: translateX(-50%) translateY(-50%) translateY(-50px);
+    }
+
+    /**
        * We need these styles to prevent shifting due to scrollbar show/hide on
        * OSs that have them enabled by default. This also handles cases where the
        * screen wouldn't otherwise scroll, and therefore hide the scrollbar and
        * shift the content, by forcing the page to show a scrollbar.
        */
-      body {
-        width: 100%;
-        overflow-y: scroll;
-      }
-    </style>
-  </head>
+    body {
+      width: 100%;
+      overflow-y: scroll;
+    }
+  </style>
+</head>
 
-  <body>
-    <!--
+<body>
+  <!--
       A generic no script element with a reload button and a message.
       Feel free to customize this however you'd like.
     -->
-    <noscript>
-      <form
-        action=""
-        style="
+  <noscript>
+    <form action="" style="
           background-color: #fff;
           position: fixed;
           top: 0;
@@ -107,22 +112,17 @@
           right: 0;
           bottom: 0;
           z-index: 9999;
-        "
-      >
-        <div
-          style="
+        ">
+      <div style="
             font-size: 18px;
             font-family: Helvetica, sans-serif;
             line-height: 24px;
             margin: 10%;
             width: 80%;
-          "
-        >
-          <p lang="en">Oh no! It looks like JavaScript is not enabled in your browser.</p>
-          <p lang="en" style="margin: 20px 0;">
-            <button
-              type="submit"
-              style="
+          ">
+        <p lang="en">Oh no! It looks like JavaScript is not enabled in your browser.</p>
+        <p lang="en" style="margin: 20px 0;">
+          <button type="submit" style="
                 background-color: #4630eb;
                 border-radius: 100px;
                 border: none;
@@ -132,21 +132,70 @@
                 font-weight: bold;
                 line-height: 20px;
                 padding: 6px 16px;
-              "
-            >
-              Reload
-            </button>
-          </p>
-        </div>
-      </form>
-    </noscript>
-
-    <!-- The root element for your Expo app. -->
-    <div id="root">
-      <div id="splash">
-        <!-- Bluesky SVG -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 320"><path fill="#0085ff" d="M180 142c-16.3-31.7-60.7-90.8-102-120C38.5-5.9 23.4-1 13.5 3.4 2.1 8.6 0 26.2 0 36.5c0 10.4 5.7 84.8 9.4 97.2 12.2 41 55.7 55 95.7 50.5-58.7 8.6-110.8 30-42.4 106.1 75.1 77.9 103-16.7 117.3-64.6 14.3 48 30.8 139 116 64.6 64-64.6 17.6-97.5-41.1-106.1 40 4.4 83.5-9.5 95.7-50.5 3.7-12.4 9.4-86.8 9.4-97.2 0-10.3-2-27.9-13.5-33C336.5-1 321.5-6 282 22c-41.3 29.2-85.7 88.3-102 120Z"/></svg>
+              ">
+            Reload
+          </button>
+        </p>
       </div>
+    </form>
+  </noscript>
+
+  <div id="root">
+    <div id="splash">
+      <!-- Creaton SVG -->
+      <svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100"
+        height="100">
+        <title>Creaton new logo-ai</title>
+        <defs>
+          <linearGradient id="grd1" gradientUnits="userSpaceOnUse" x1="166.696" y1="153.348" x2="79.279" y2="196.092">
+            <stop offset="0" stop-color="#63c88e" />
+            <stop offset="1" stop-color="#26359c" />
+          </linearGradient>
+          <linearGradient id="grd2" gradientUnits="userSpaceOnUse" x1="15" y1="72.359" x2="91.248" y2="72.359">
+            <stop offset="0" stop-color="#63c88e" />
+            <stop offset="1" stop-color="#26359c" />
+          </linearGradient>
+        </defs>
+        <style>
+          tspan {
+            white-space: pre
+          }
+
+          .shp0 {
+            fill: #43e296
+          }
+
+          .shp1 {
+            fill: url(#grd1)
+          }
+
+          .shp2 {
+            fill: #42389d
+          }
+
+          .shp3 {
+            fill: url(#grd2)
+          }
+        </style>
+        <g id="Layer 1">
+          <g id="&lt;Group&gt;">
+            <g id="&lt;Group&gt;">
+              <path id="&lt;Path&gt;" class="shp0"
+                d="M98.52 58.38L65.14 24.84L117.33 24.91L150.97 58.44C136.47 72.93 112.97 72.91 98.52 58.38Z" />
+              <path id="&lt;Path&gt;" class="shp1"
+                d="M91.25 148.93L42.4 100.09L117.33 24.91L65.14 24.84L15.52 74.46L15.52 125.7L65.02 175.16L117.53 175.16L149.53 143.16C135.03 128.66 111.52 128.66 97.02 143.16L91.25 148.93Z" />
+              <path id="&lt;Path&gt;" class="shp2"
+                d="M97.08 143.1L65.02 175.16L117.53 175.16L149.53 143.16L149.47 143.1C135 128.64 111.55 128.64 97.08 143.1Z" />
+              <path id="&lt;Path&gt;" class="shp3"
+                d="M42.4 100.09L15.52 74.36L15 125.35L65.02 175.16L91.25 148.94L42.4 100.09Z" />
+              <path id="&lt;Path&gt;" class="shp0"
+                d="M116.55 99.81L91.49 124.87L66.42 99.81L91.49 74.75L116.55 99.81Z" />
+            </g>
+          </g>
+        </g>
+      </svg>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

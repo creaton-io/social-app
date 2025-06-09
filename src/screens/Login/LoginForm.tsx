@@ -32,7 +32,6 @@ import {Loader} from '#/components/Loader'
 import {Text} from '#/components/Typography'
 import {FormContainer} from './FormContainer'
 import {WalletComponents} from './LoginWallet'
-
 type ServiceDescription = ComAtprotoServerDescribeServer.OutputSchema
 
 export function LoginForm({
