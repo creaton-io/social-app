@@ -24,6 +24,12 @@ module.exports = async function (env, argv) {
     'react-native$': 'react-native-web',
     'react-native-webview': 'react-native-web-webview',
   })
+
+  config.resolve.fallback = {
+    ...config.resolve.fallback,
+    crypto: false,
+  }
+
   config.module.rules = [
     ...(config.module.rules || []),
     reactNativeWebWebviewConfiguration,

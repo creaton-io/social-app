@@ -36,6 +36,7 @@ import {
 } from '#/components/KnownFollowers'
 import * as Prompt from '#/components/Prompt'
 import {RichText} from '#/components/RichText'
+import {CreateTokenDialog} from './CreateTokenDialog'
 import {ProfileHeaderDisplayName} from './DisplayName'
 import {EditProfileDialog} from './EditProfileDialog'
 import {ProfileHeaderHandle} from './Handle'
@@ -81,6 +82,8 @@ let ProfileHeaderStandard = ({
 
   const {openModal} = useModalControls()
   const editProfileControl = useDialogControl()
+  const createTokenControl = useDialogControl()
+
   const onPressEditProfile = React.useCallback(() => {
     if (isWeb) {
       // temp, while we figure out the nested dialog bug
@@ -92,6 +95,10 @@ let ProfileHeaderStandard = ({
       editProfileControl.open()
     }
   }, [editProfileControl, openModal, profile])
+
+  const onPressCreateToken = React.useCallback(() => {
+    createTokenControl.open()
+  }, [createTokenControl])
 
   const useResolveDidQueryResult = useResolveDidDocQuery(profile.did)
   let fullEthAddress = ''
@@ -185,6 +192,20 @@ let ProfileHeaderStandard = ({
           pointerEvents={isIOS ? 'auto' : 'box-none'}>
           {isMe ? (
             <>
+              <Button
+                testID="profileHeaderCreateTokenButton"
+                size="small"
+                color="secondary"
+                variant="solid"
+                onPress={onPressCreateToken}
+                label={_(msg`Create token`)}
+                style={[a.rounded_full, a.mr_xs]}>
+                <ButtonText>
+                  <Trans>Create token</Trans>
+                </ButtonText>
+              </Button>
+              <CreateTokenDialog control={createTokenControl} />
+
               <Button
                 testID="profileHeaderEditProfileButton"
                 size="small"
