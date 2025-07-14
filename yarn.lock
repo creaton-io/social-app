@@ -10120,6 +10120,11 @@ domutils@^3.0.1:
     domelementtype "^2.3.0"
     domhandler "^5.0.3"
 
+doppler-router@^1.0.11:
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/doppler-router/-/doppler-router-1.0.11.tgz#346aa554cdce985c8d52ff9e9c7e4b218e5daeac"
+  integrity sha512-u01MvSuNSkitJrdt7wCX8+GyGsd/i43KRXqO0JFHx1OH6Id0rhkWNggJ8I5epE7a7fbEPERHz01M17DinDiyVQ==
+
 doppler-v4-sdk@^0.2.5:
   version "0.2.5"
   resolved "https://registry.yarnpkg.com/doppler-v4-sdk/-/doppler-v4-sdk-0.2.5.tgz#0a492f0c5be6624202001dbf34a46de3e586bcaa"

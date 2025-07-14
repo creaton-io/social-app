@@ -1,4 +1,4 @@
-import {useCallback, useState} from 'react'
+import {useCallback, useEffect, useState} from 'react'
 import {View} from 'react-native'
 import {createDrift} from '@delvtech/drift'
 import {viemAdapter} from '@delvtech/drift-viem'
@@ -7,8 +7,14 @@ import {useLingui} from '@lingui/react'
 import {DOPPLER_V4_ADDRESSES, ReadWriteFactory} from 'doppler-v4-sdk'
 import {type PublicClient} from 'viem'
 import {getBlock} from 'viem/actions'
-import {usePublicClient, useSwitchChain, useWalletClient} from 'wagmi'
+import {
+  useChainId,
+  usePublicClient,
+  useSwitchChain,
+  useWalletClient,
+} from 'wagmi'
 
+import * as Toast from '#/view/com/util/Toast'
 import {atoms as a, useTheme} from '#/alf'
 import {Button, ButtonText} from '#/components/Button'
 import * as Dialog from '#/components/Dialog'
@@ -23,14 +29,15 @@ export function CreateTokenDialog({
   const {_} = useLingui()
   const t = useTheme()
 
-  const {isPending: isSwitchingChain} = useSwitchChain()
+  const {isPending: isSwitchingChain, switchChain} = useSwitchChain()
   const publicClient = usePublicClient()
   const {data: walletClient} = useWalletClient()
+  const chainId = useChainId()
 
   // Form states
   const [tokenName, setTokenName] = useState('')
   const [tokenSymbol, setTokenSymbol] = useState('')
-  const [, setIsDeploying] = useState(false)
+  const [isDeploying, setIsDeploying] = useState(false)
 
   // Track if required fields are filled
   const isFormValid = tokenName.trim() !== '' && tokenSymbol.trim() !== ''
@@ -44,6 +51,12 @@ export function CreateTokenDialog({
     setTokenSymbol('')
   }, [])
 
+  useEffect(() => {
+    if (chainId !== 84532) {
+      switchChain({chainId: 84532})
+    }
+  }, [chainId, switchChain])
+
   // Handle form submission
   const onSubmit = useCallback(async () => {
     if (!walletClient) {
@@ -53,7 +66,7 @@ export function CreateTokenDialog({
 
     setIsDeploying(true)
     try {
-      const addresses = DOPPLER_V4_ADDRESSES[8453]
+      const addresses = DOPPLER_V4_ADDRESSES[chainId]
 
       const drift = createDrift({
         adapter: viemAdapter({
@@ -82,17 +95,31 @@ export function CreateTokenDialog({
 
       await rwFactory.simulateCreate(createParams)
       await rwFactory.create(createParams)
-      console.log('Token created successfully')
+      Toast.show(
+        _(msg({message: 'Token created successfully', context: 'toast'})),
+      )
     } catch (error) {
+      Toast.show(
+        _(msg({message: 'Error deploying token', context: 'toast'})),
+        'xmark',
+      )
       console.error('Error deploying token:', error)
     } finally {
       setIsDeploying(false)
+      // Reset form and close dialog
+      resetForm()
+      control.close()
     }
-
-    // Reset form and close dialog
-    resetForm()
-    control.close()
-  }, [tokenName, tokenSymbol, resetForm, control, publicClient, walletClient])
+  }, [
+    tokenName,
+    tokenSymbol,
+    resetForm,
+    control,
+    publicClient,
+    walletClient,
+    chainId,
+    _,
+  ])
 
   // Close dialog (cancel form)
   const onCancel = useCallback(() => {
@@ -199,7 +226,7 @@ export function CreateTokenDialog({
                   color="primary"
                   size="large"
                   onPress={onSubmit}
-                  disabled={!isFormValid || isSwitchingChain}
+                  disabled={!isFormValid || isSwitchingChain || isDeploying}
                   label={_(msg`Create Token`)}
                   style={[a.flex_1]}>
                   <ButtonText>
@@ -213,6 +240,7 @@ export function CreateTokenDialog({
                   color="primary"
                   size="large"
                   onPress={onCancel}
+                  disabled={isDeploying}
                   label={_(msg`Cancel`)}
                   style={[a.flex_1]}>
                   <ButtonText>

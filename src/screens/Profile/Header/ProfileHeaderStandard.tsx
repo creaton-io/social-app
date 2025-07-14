@@ -28,6 +28,7 @@ import {Button, ButtonIcon, ButtonText} from '#/components/Button'
 import * as Dialog from '#/components/Dialog'
 import {useDialogControl} from '#/components/Dialog'
 import {MessageProfileButton} from '#/components/dms/MessageProfileButton'
+import {useDopplerPonder} from '#/components/hooks/useDopplerPonder'
 import {Check_Stroke2_Corner0_Rounded as Check} from '#/components/icons/Check'
 import {PlusLarge_Stroke2_Corner0_Rounded as Plus} from '#/components/icons/Plus'
 import {
@@ -43,6 +44,7 @@ import {ProfileHeaderHandle} from './Handle'
 import {ProfileHeaderMetrics} from './Metrics'
 import {ProfileHeaderShell} from './Shell'
 import TipComponents from './TipComponents'
+import {TokenDetailsDialog} from './TokenDetailsDialog'
 
 interface Props {
   profile: AppBskyActorDefs.ProfileViewDetailed
@@ -83,6 +85,7 @@ let ProfileHeaderStandard = ({
   const {openModal} = useModalControls()
   const editProfileControl = useDialogControl()
   const createTokenControl = useDialogControl()
+  const tokenDetailsControl = useDialogControl()
 
   const onPressEditProfile = React.useCallback(() => {
     if (isWeb) {
@@ -100,6 +103,10 @@ let ProfileHeaderStandard = ({
     createTokenControl.open()
   }, [createTokenControl])
 
+  const onPressViewToken = React.useCallback(() => {
+    tokenDetailsControl.open()
+  }, [tokenDetailsControl])
+
   const useResolveDidQueryResult = useResolveDidDocQuery(profile.did)
   let fullEthAddress = ''
   if (
@@ -110,6 +117,8 @@ let ProfileHeaderStandard = ({
     const ethereumAddress = parts[2]
     fullEthAddress = ethereumAddress
   }
+
+  const {creatorTokens} = useDopplerPonder(fullEthAddress)
 
   const onPressFollow = () => {
     requireAuth(async () => {
@@ -192,19 +201,43 @@ let ProfileHeaderStandard = ({
           pointerEvents={isIOS ? 'auto' : 'box-none'}>
           {isMe ? (
             <>
-              <Button
-                testID="profileHeaderCreateTokenButton"
-                size="small"
-                color="secondary"
-                variant="solid"
-                onPress={onPressCreateToken}
-                label={_(msg`Create token`)}
-                style={[a.rounded_full, a.mr_xs]}>
-                <ButtonText>
-                  <Trans>Create token</Trans>
-                </ButtonText>
-              </Button>
-              <CreateTokenDialog control={createTokenControl} />
+              {creatorTokens && (
+                <>
+                  <Button
+                    testID="profileHeaderCreateTokenButton"
+                    size="small"
+                    color="secondary"
+                    variant="solid"
+                    onPress={
+                      creatorTokens.length === 0
+                        ? onPressCreateToken
+                        : onPressViewToken
+                    }
+                    label={_(
+                      msg`${
+                        creatorTokens.length === 0
+                          ? 'Create token'
+                          : 'View Creator Token'
+                      }`,
+                    )}
+                    style={[a.rounded_full, a.mr_xs]}>
+                    <ButtonText>
+                      <Trans>
+                        {creatorTokens.length === 0
+                          ? 'Create token'
+                          : 'View Creator Token'}
+                      </Trans>
+                    </ButtonText>
+                  </Button>
+                  <CreateTokenDialog control={createTokenControl} />
+                  {creatorTokens.length > 0 && (
+                    <TokenDetailsDialog
+                      control={tokenDetailsControl}
+                      creatorTokens={creatorTokens}
+                    />
+                  )}
+                </>
+              )}
 
               <Button
                 testID="profileHeaderEditProfileButton"
