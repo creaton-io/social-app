@@ -76,7 +76,7 @@ export type CreatorToken = {
   creatorAddress: string
 }
 
-type Tokens = {
+export type Tokens = {
   items: CreatorToken[]
   pageInfo: {
     startCursor: string
@@ -87,7 +87,7 @@ type Tokens = {
   totalCount: number
 }
 
-type Pool = {
+export type Pool = {
   address: string
   volumeUsd: string
   percentDayChange: string

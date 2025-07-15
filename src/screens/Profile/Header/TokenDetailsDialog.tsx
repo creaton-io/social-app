@@ -1,35 +1,23 @@
 import {useCallback, useEffect, useState} from 'react'
 import {View} from 'react-native'
 import {Image} from 'expo-image'
-import {createDrift} from '@delvtech/drift'
-import {viemAdapter} from '@delvtech/drift-viem'
 import {msg, Trans} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
-import {CommandBuilder, V4ActionBuilder, V4ActionType} from 'doppler-router'
-import {
-  DOPPLER_V4_ADDRESSES,
-  dopplerAbi,
-  universalRouterAbi,
-} from 'doppler-v4-sdk'
-import {ReadQuoter} from 'doppler-v4-sdk/dist/entities/quoter/ReadQuoter'
 import {
   type Address,
-  encodeAbiParameters,
   formatEther,
   formatUnits,
-  keccak256,
-  maxUint256,
   parseEther,
   parseUnits,
-  type PublicClient,
 } from 'viem'
 import * as chains from 'viem/chains'
-import {useAccount, useBalance, usePublicClient, useWalletClient} from 'wagmi'
+import {useAccount, useBalance, usePublicClient, useSwitchChain} from 'wagmi'
 
 import {atoms as a, useTheme} from '#/alf'
 import {Button, ButtonText} from '#/components/Button'
 import * as Dialog from '#/components/Dialog'
 import * as TextField from '#/components/forms/TextField'
+import {useDoppler} from '#/components/hooks/useDoppler'
 import {type CreatorToken} from '#/components/hooks/useDopplerPonder'
 import {RichText} from '#/components/RichText'
 
@@ -42,17 +30,18 @@ export function TokenDetailsDialog({
 }) {
   const {_} = useLingui()
   const account = useAccount()
-  const {data: walletClient} = useWalletClient(account)
   const publicClient = usePublicClient()
   const t = useTheme()
   const [activeTab, setActiveTab] = useState<'buy' | 'sell'>('buy')
   const [amount, setAmount] = useState('')
   const [_quotedAmount, setQuotedAmount] = useState<bigint | null>(null)
+  const {switchChain} = useSwitchChain()
   const [poolKeyAddress, setPoolKeyAddress] = useState<string | null>(null)
   const [chainName, setChainName] = useState<string | null>(null)
+  const {getPoolKeyAddress, fetchQuote, executeSwap} = useDoppler()
 
   const pool = creatorTokens[0].pool
-  const {v4Quoter, universalRouter} = DOPPLER_V4_ADDRESSES[pool.chainId]
+
   const {data: _baseTokenBalance} = useBalance({
     address: account.address,
     token: pool.baseToken.address as Address,
@@ -63,41 +52,14 @@ export function TokenDetailsDialog({
     token: pool.quoteToken.address as Address,
   })
 
-  const getPoolKey = useCallback(async () => {
-    const poolKey = await publicClient?.readContract({
-      address: pool.address as Address,
-      abi: dopplerAbi,
-      functionName: 'poolKey',
-    })
-
-    if (!poolKey) return
-
-    return {
-      currency0: poolKey[0],
-      currency1: poolKey[1],
-      fee: poolKey[2],
-      tickSpacing: poolKey[3],
-      hooks: poolKey[4],
-    }
-  }, [pool, publicClient])
+  useEffect(() => {
+    switchChain({chainId: 8453})
+  }, [switchChain, publicClient])
 
   useEffect(() => {
     if (!pool) return
-    const getPoolKeyAddress = async () => {
-      const key = await getPoolKey()
-      if (!key) return
-      const encodedKey = encodeAbiParameters(
-        [
-          {type: 'address'},
-          {type: 'address'},
-          {type: 'uint24'},
-          {type: 'int24'},
-          {type: 'address'},
-        ],
-        [key.currency0, key.currency1, key.fee, key.tickSpacing, key.hooks],
-      )
-      setPoolKeyAddress(keccak256(encodedKey))
-
+    const setupPoolKeyAddress = async () => {
+      setPoolKeyAddress((await getPoolKeyAddress(pool)) as `0x${string}`)
       setChainName(
         Object.values(chains)
           .find(value => value.id === +pool.chainId)
@@ -105,78 +67,11 @@ export function TokenDetailsDialog({
       )
     }
 
-    getPoolKeyAddress()
-  }, [pool, publicClient, getPoolKey])
+    setupPoolKeyAddress()
+  }, [pool, getPoolKeyAddress])
 
-  const fetchQuote = async (amountIn: bigint) => {
-    if (!pool) return
-    const drift = createDrift({
-      adapter: viemAdapter({
-        publicClient: publicClient as PublicClient,
-        walletClient: walletClient,
-      }) as any, // Type assertion needed due to adapter version mismatch
-    })
-    const quoter = new ReadQuoter(v4Quoter, drift)
-
-    const key = await getPoolKey()
-    if (!key) return
-
-    const quote = await quoter.quoteExactInputV4({
-      poolKey: key,
-      zeroForOne: activeTab === 'buy' ? true : false,
-      exactAmount: amountIn,
-      hookData: '0x',
-    })
-
-    return quote?.amountOut
-  }
-
-  const executeSwap = async (amountIn: bigint) => {
-    if (!pool) return
-    if (!account.address || !walletClient)
-      throw new Error('account must be connected')
-
-    const poolKey = await publicClient?.readContract({
-      address: pool.address as Address,
-      abi: dopplerAbi,
-      functionName: 'poolKey',
-    })
-
-    if (!poolKey) return
-
-    const key = {
-      currency0: poolKey[0],
-      currency1: poolKey[1],
-      fee: poolKey[2],
-      tickSpacing: poolKey[3],
-      hooks: poolKey[4],
-    }
-
-    const zeroForOne = activeTab === 'buy' ? true : false
-
-    const actionBuilder = new V4ActionBuilder()
-    const [actions, params] = actionBuilder
-      .addSwapExactInSingle(key, zeroForOne, amountIn, 0n, '0x')
-      .addAction(V4ActionType.SETTLE_ALL, [
-        zeroForOne ? key.currency0 : key.currency1,
-        maxUint256,
-      ])
-      .addAction(V4ActionType.TAKE_ALL, [
-        zeroForOne ? key.currency1 : key.currency0,
-        0,
-      ])
-      .build()
-    const [commands, inputs] = new CommandBuilder()
-      .addV4Swap(actions, params)
-      .build()
-
-    await walletClient?.writeContract({
-      address: universalRouter,
-      abi: universalRouterAbi,
-      functionName: 'execute',
-      args: [commands, inputs],
-      value: zeroForOne ? amountIn : 0n,
-    })
+  const handleExecuteSwap = async (amountIn: bigint) => {
+    await executeSwap(pool, amountIn, activeTab === 'buy' ? true : false)
   }
 
   const formatNumber = (value: bigint) => {
@@ -201,7 +96,11 @@ export function TokenDetailsDialog({
     if (value && pool) {
       try {
         const amountIn = parseEther(value)
-        const quote = await fetchQuote(amountIn)
+        const quote = await fetchQuote(
+          pool,
+          amountIn,
+          activeTab === 'buy' ? true : false,
+        )
         setQuotedAmount(quote ?? null)
       } catch (error) {
         console.error('Error fetching quote:', error)
@@ -393,7 +292,7 @@ export function TokenDetailsDialog({
               variant="solid"
               color="primary"
               size="large"
-              onPress={() => executeSwap(parseUnits(amount, 18))}
+              onPress={() => handleExecuteSwap(parseUnits(amount, 18))}
               label={_(msg`Swap`)}
               style={[a.w_full]}>
               <ButtonText>
