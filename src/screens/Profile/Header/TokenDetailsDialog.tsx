@@ -1,4 +1,4 @@
-import {useCallback, useState} from 'react'
+import {useCallback, useEffect, useState} from 'react'
 import {View} from 'react-native'
 import {Image} from 'expo-image'
 import {createDrift} from '@delvtech/drift'
@@ -14,13 +14,16 @@ import {
 import {ReadQuoter} from 'doppler-v4-sdk/dist/entities/quoter/ReadQuoter'
 import {
   type Address,
+  encodeAbiParameters,
   formatEther,
   formatUnits,
+  keccak256,
   maxUint256,
   parseEther,
   parseUnits,
   type PublicClient,
 } from 'viem'
+import * as chains from 'viem/chains'
 import {useAccount, useBalance, usePublicClient, useWalletClient} from 'wagmi'
 
 import {atoms as a, useTheme} from '#/alf'
@@ -45,6 +48,8 @@ export function TokenDetailsDialog({
   const [activeTab, setActiveTab] = useState<'buy' | 'sell'>('buy')
   const [amount, setAmount] = useState('')
   const [_quotedAmount, setQuotedAmount] = useState<bigint | null>(null)
+  const [poolKeyAddress, setPoolKeyAddress] = useState<string | null>(null)
+  const [chainName, setChainName] = useState<string | null>(null)
 
   const pool = creatorTokens[0].pool
   const {v4Quoter, universalRouter} = DOPPLER_V4_ADDRESSES[pool.chainId]
@@ -58,6 +63,51 @@ export function TokenDetailsDialog({
     token: pool.quoteToken.address as Address,
   })
 
+  const getPoolKey = useCallback(async () => {
+    const poolKey = await publicClient?.readContract({
+      address: pool.address as Address,
+      abi: dopplerAbi,
+      functionName: 'poolKey',
+    })
+
+    if (!poolKey) return
+
+    return {
+      currency0: poolKey[0],
+      currency1: poolKey[1],
+      fee: poolKey[2],
+      tickSpacing: poolKey[3],
+      hooks: poolKey[4],
+    }
+  }, [pool, publicClient])
+
+  useEffect(() => {
+    if (!pool) return
+    const getPoolKeyAddress = async () => {
+      const key = await getPoolKey()
+      if (!key) return
+      const encodedKey = encodeAbiParameters(
+        [
+          {type: 'address'},
+          {type: 'address'},
+          {type: 'uint24'},
+          {type: 'int24'},
+          {type: 'address'},
+        ],
+        [key.currency0, key.currency1, key.fee, key.tickSpacing, key.hooks],
+      )
+      setPoolKeyAddress(keccak256(encodedKey))
+
+      setChainName(
+        Object.values(chains)
+          .find(value => value.id === +pool.chainId)
+          ?.name.toLowerCase() ?? 'Unknown',
+      )
+    }
+
+    getPoolKeyAddress()
+  }, [pool, publicClient, getPoolKey])
+
   const fetchQuote = async (amountIn: bigint) => {
     if (!pool) return
     const drift = createDrift({
@@ -68,27 +118,12 @@ export function TokenDetailsDialog({
     })
     const quoter = new ReadQuoter(v4Quoter, drift)
 
-    const poolKey = await publicClient?.readContract({
-      address: pool.address as Address,
-      abi: dopplerAbi,
-      functionName: 'poolKey',
-    })
-
-    if (!poolKey) return
-
-    const key = {
-      currency0: poolKey[0],
-      currency1: poolKey[1],
-      fee: poolKey[2],
-      tickSpacing: poolKey[3],
-      hooks: poolKey[4],
-    }
-
-    const zeroForOne = activeTab === 'buy' ? true : false
+    const key = await getPoolKey()
+    if (!key) return
 
     const quote = await quoter.quoteExactInputV4({
       poolKey: key,
-      zeroForOne: zeroForOne,
+      zeroForOne: activeTab === 'buy' ? true : false,
       exactAmount: amountIn,
       hookData: '0x',
     })
@@ -367,6 +402,20 @@ export function TokenDetailsDialog({
             </Button>
           </View>
         </View>
+
+        {chainName && poolKeyAddress && (
+          <View style={[a.p_lg, a.pt_0]}>
+            <iframe
+              height="800px"
+              width="100%"
+              id="geckoterminal-embed"
+              title="GeckoTerminal Embed"
+              src={`https://www.geckoterminal.com/${chainName}/pools/${poolKeyAddress}?embed=1&info=0&swaps=1&grayscale=0&light_chart=0&chart_type=price&resolution=5m`}
+              allow="clipboard-write"
+              allowFullScreen
+            />
+          </View>
+        )}
       </Dialog.ScrollableInner>
     </Dialog.Outer>
   )
