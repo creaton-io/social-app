@@ -1,4 +1,4 @@
-import React, {memo, useMemo} from 'react'
+import React, {memo, useCallback, useMemo} from 'react'
 import {View} from 'react-native'
 import {
   type AppBskyActorDefs,
@@ -8,6 +8,7 @@ import {
 } from '@atproto/api'
 import {msg, Trans} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
+import {type Conversation} from '@xmtp/browser-sdk'
 
 import {sanitizeDisplayName} from '#/lib/strings/display-names'
 import {logger} from '#/logger'
@@ -23,6 +24,7 @@ import {useResolveDidDocQuery} from '#/state/queries/resolve-uri'
 import {useRequireAuth, useSession} from '#/state/session'
 import {ProfileMenu} from '#/view/com/profile/ProfileMenu'
 import * as Toast from '#/view/com/util/Toast'
+import {useXMTP} from '#/screens/Xmtp/useXmtp'
 import {atoms as a} from '#/alf'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
 import * as Dialog from '#/components/Dialog'
@@ -37,6 +39,7 @@ import {
 } from '#/components/KnownFollowers'
 import * as Prompt from '#/components/Prompt'
 import {RichText} from '#/components/RichText'
+import {navigate} from '#/Navigation'
 import {CreateTokenDialog} from './CreateTokenDialog'
 import {ProfileHeaderDisplayName} from './DisplayName'
 import {EditProfileDialog} from './EditProfileDialog'
@@ -86,6 +89,7 @@ let ProfileHeaderStandard = ({
   const editProfileControl = useDialogControl()
   const createTokenControl = useDialogControl()
   const tokenDetailsControl = useDialogControl()
+  const {client, newConversation} = useXMTP()
 
   const onPressEditProfile = React.useCallback(() => {
     if (isWeb) {
@@ -179,6 +183,27 @@ let ProfileHeaderStandard = ({
     [currentAccount, profile],
   )
 
+  const onPressChat = useCallback(async () => {
+    if (!client) {
+      console.error('XMTP client not initialized')
+      return
+    }
+    try {
+      let conversation: Conversation | undefined = await newConversation(
+        fullEthAddress.split(','),
+      )
+      if (!conversation) {
+        console.error('Failed to create new conversation')
+        return
+      }
+
+      // Navigate to the conversation
+      navigate('XmtpConversation', {conversation: conversation.id})
+    } catch (error) {
+      console.error('Error creating new conversation:', error)
+    }
+  }, [client, newConversation, fullEthAddress])
+
   return (
     <ProfileHeaderShell
       profile={profile}
@@ -199,6 +224,21 @@ let ProfileHeaderStandard = ({
             a.flex_wrap,
           ]}
           pointerEvents={isIOS ? 'auto' : 'box-none'}>
+          {!isMe && fullEthAddress && (
+            <Button
+              testID="profileHeaderChatButton"
+              size="small"
+              color="secondary"
+              variant="solid"
+              onPress={onPressChat}
+              label={_(msg`Chat`)}
+              style={[a.rounded_full, a.mr_xs]}>
+              <ButtonText>
+                <Trans>Chat</Trans>
+              </ButtonText>
+            </Button>
+          )}
+
           {isMe ? (
             <>
               {creatorTokens && (
