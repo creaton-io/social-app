@@ -70,6 +70,7 @@ export type CommonNavigatorParams = {
   StarterPackWizard: undefined
   StarterPackEdit: {rkey?: string}
   VideoFeed: VideoFeedSourceContext
+  Tokens: undefined
 }
 
 export type BottomTabNavigatorParams = CommonNavigatorParams & {
@@ -128,6 +129,7 @@ export type AllNavigatorParams = CommonNavigatorParams & {
   StarterPackShort: {code: string}
   StarterPackWizard: undefined
   StarterPackEdit: {rkey?: string}
+  Tokens: undefined
 }
 
 // NOTE

@@ -72,4 +72,5 @@ export const router = new Router({
   // Decentralized Messaging
   Xmtp: '/xmtp',
   XmtpConversation: '/xmtp/:conversation',
+  Tokens: '/tokens',
 })

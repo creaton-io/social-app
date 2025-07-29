@@ -89,6 +89,7 @@ import {
   StarterPackScreenShort,
 } from '#/screens/StarterPack/StarterPackScreen'
 import {Wizard} from '#/screens/StarterPack/Wizard'
+import {TokensScreen} from '#/screens/Tokens'
 import {VideoFeed} from '#/screens/VideoFeed'
 import {XmtpScreen} from '#/screens/Xmtp'
 import {useTheme} from '#/alf'
@@ -665,6 +666,11 @@ const FlatNavigator = () => {
         name="Start"
         getComponent={() => HomeScreen}
         options={{title: title(msg`Home`)}}
+      />
+      <Flat.Screen
+        name="Tokens"
+        getComponent={() => TokensScreen}
+        options={{title: title(msg`Tokens`)}}
       />
       {commonScreens(Flat as typeof HomeTab, numUnread)}
     </Flat.Navigator>

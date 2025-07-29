@@ -3,8 +3,8 @@ import {GraphQLClient} from 'graphql-request'
 
 export const client = new GraphQLClient('https://doppler-dev.ponder-dev.com/')
 
-const GET_CREATOR_TOKENS_QUERY = `
-query CreatorTokens($creatorAddress: String!) {
+const GET_USER_CREATOR_TOKENS_QUERY = `
+query UserCreatorTokens($creatorAddress: String!) {
   tokens(where: { creatorAddress: $creatorAddress }) {
     items {
       address
@@ -54,6 +54,38 @@ query CreatorTokens($creatorAddress: String!) {
 }
 `
 
+const GET_POOLS_QUERY = `
+query TopPools($chainId: BigInt!) {
+  pools(where: {chainId: $chainId}, orderBy: "volumeUsd", orderDirection:"DESC") {
+    items {
+      address
+      price
+      volumeUsd
+      percentDayChange
+      marketCapUsd
+      baseToken {
+        name
+        symbol
+        address
+      }
+      quoteToken {
+        name
+        symbol
+        address
+      }
+      chainId
+    }
+    pageInfo {
+      startCursor
+      endCursor
+      hasNextPage
+      hasPreviousPage
+    }
+    totalCount
+  }
+}
+`
+
 export type CreatorToken = {
   address: string
   chainId: number
@@ -87,6 +119,17 @@ export type Tokens = {
   totalCount: number
 }
 
+export type Pools = {
+  items: Pool[]
+  pageInfo: {
+    startCursor: string
+    endCursor: string
+    hasNextPage: boolean
+    hasPreviousPage: boolean
+  }
+  totalCount: number
+}
+
 export type Pool = {
   address: string
   volumeUsd: string
@@ -105,24 +148,32 @@ export type Pool = {
   chainId: number
 }
 
-const getCreatorTokensQuery = async (
+const getUserCreatorTokensQuery = async (
   creatorAddress: string,
 ): Promise<Tokens> => {
   const response = await client.request<{tokens: Tokens}>(
-    GET_CREATOR_TOKENS_QUERY,
+    GET_USER_CREATOR_TOKENS_QUERY,
     {creatorAddress},
   )
   return response.tokens
 }
 
+const getPoolsQuery = async (chainId: number): Promise<Pools> => {
+  const response = await client.request<{pools: Pools}>(GET_POOLS_QUERY, {
+    chainId: chainId.toString(),
+  })
+  return response.pools
+}
+
 export const useDopplerPonder = (creatorAddress: string) => {
-  const getCreatorTokens = useQuery({
+  const getUserCreatorTokens = useQuery({
     queryKey: ['creatorTokens', creatorAddress],
-    queryFn: () => getCreatorTokensQuery(creatorAddress),
+    queryFn: () => getUserCreatorTokensQuery(creatorAddress),
   })
 
   return {
-    getCreatorTokens,
-    creatorTokens: getCreatorTokens.data?.items,
+    getUserCreatorTokens,
+    getPoolsQuery,
+    creatorTokens: getUserCreatorTokens.data?.items,
   }
 }
