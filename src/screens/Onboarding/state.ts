@@ -3,14 +3,21 @@ import {msg} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
 
 import {logger} from '#/logger'
-import {AvatarColor, Emoji} from '#/screens/Onboarding/StepProfile/types'
+import {
+  type AvatarColor,
+  type Emoji,
+} from '#/screens/Onboarding/StepProfile/types'
 
 export type OnboardingState = {
   hasPrev: boolean
   totalSteps: number
-  activeStep: 'profile' | 'interests' | 'finished'
+  activeStep: 'ens' | 'profile' | 'interests' | 'finished'
   activeStepIndex: number
 
+  ensStepResults: {
+    claimed: boolean
+    subdomain?: string
+  }
   interestsStepResults: {
     selectedInterests: string[]
     apiResponse: ApiResponseMap
@@ -42,6 +49,11 @@ export type OnboardingAction =
     }
   | {
       type: 'finish'
+    }
+  | {
+      type: 'setEnsStepResults'
+      claimed: boolean
+      subdomain?: string
     }
   | {
       type: 'setInterestsStepResults'
@@ -120,10 +132,14 @@ export function useInterestsDisplayNames() {
 
 export const initialState: OnboardingState = {
   hasPrev: false,
-  totalSteps: 3,
-  activeStep: 'profile',
+  totalSteps: 4,
+  activeStep: 'ens',
   activeStepIndex: 1,
 
+  ensStepResults: {
+    claimed: false,
+    subdomain: undefined,
+  },
   interestsStepResults: {
     selectedInterests: [],
     apiResponse: {
@@ -156,27 +172,40 @@ export function reducer(
 
   switch (a.type) {
     case 'next': {
-      if (s.activeStep === 'profile') {
-        next.activeStep = 'interests'
+      if (s.activeStep === 'ens') {
+        next.activeStep = 'profile'
         next.activeStepIndex = 2
+      } else if (s.activeStep === 'profile') {
+        next.activeStep = 'interests'
+        next.activeStepIndex = 3
       } else if (s.activeStep === 'interests') {
         next.activeStep = 'finished'
-        next.activeStepIndex = 3
+        next.activeStepIndex = 4
       }
       break
     }
     case 'prev': {
-      if (s.activeStep === 'interests') {
-        next.activeStep = 'profile'
+      if (s.activeStep === 'profile') {
+        next.activeStep = 'ens'
         next.activeStepIndex = 1
+      } else if (s.activeStep === 'interests') {
+        next.activeStep = 'profile'
+        next.activeStepIndex = 2
       } else if (s.activeStep === 'finished') {
         next.activeStep = 'interests'
-        next.activeStepIndex = 2
+        next.activeStepIndex = 3
       }
       break
     }
     case 'finish': {
       next = initialState
+      break
+    }
+    case 'setEnsStepResults': {
+      next.ensStepResults = {
+        claimed: a.claimed,
+        subdomain: a.subdomain,
+      }
       break
     }
     case 'setInterestsStepResults': {
@@ -200,13 +229,14 @@ export function reducer(
 
   const state = {
     ...next,
-    hasPrev: next.activeStep !== 'profile',
+    hasPrev: next.activeStep !== 'ens',
   }
 
   logger.debug(`onboarding`, {
     hasPrev: state.hasPrev,
     activeStep: state.activeStep,
     activeStepIndex: state.activeStepIndex,
+    ensStepResults: state.ensStepResults,
     interestsStepResults: {
       selectedInterests: state.interestsStepResults.selectedInterests,
     },

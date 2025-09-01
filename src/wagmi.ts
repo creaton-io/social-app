@@ -1,14 +1,15 @@
-import {getDefaultConfig} from '@rainbow-me/rainbowkit'
-import {http} from 'wagmi'
-import {baseSepolia, goerli, mainnet} from 'wagmi/chains'
+import {createConfig, http} from 'wagmi'
+import {base} from 'wagmi/chains'
+import {baseAccount} from 'wagmi/connectors'
 
-export const wagmiConfig = getDefaultConfig({
-  appName: 'Creaton',
-  projectId: 'YOUR_PROJECT_ID', // Get your project ID from WalletConnect Cloud
-  chains: [baseSepolia, mainnet, goerli],
+export const config = createConfig({
+  chains: [base],
+  connectors: [
+    baseAccount({
+      appName: 'Base App',
+    }),
+  ],
   transports: {
-    [baseSepolia.id]: http(),
-    [mainnet.id]: http(),
-    [goerli.id]: http(),
+    [base.id]: http(),
   },
 })

@@ -1,36 +1,63 @@
-import {
-  Address,
-  Avatar,
-  EthBalance,
-  Identity,
-  Name,
-} from '@coinbase/onchainkit/identity'
-import {color} from '@coinbase/onchainkit/theme'
-import {
-  ConnectWallet,
-  Wallet,
-  WalletDropdown,
-  WalletDropdownDisconnect,
-} from '@coinbase/onchainkit/wallet'
+import {View} from 'react-native'
+import {Trans} from '@lingui/macro'
+import {useAccount, useConnect, useDisconnect} from 'wagmi'
+
+import {atoms as a, useTheme} from '#/alf'
+import {Button, ButtonText} from '#/components/Button'
+import {Text} from '#/components/Typography'
 
 export function WalletComponents() {
+  const {isConnected, address} = useAccount()
+  const {connectAsync, connectors} = useConnect()
+  const {disconnect} = useDisconnect()
+  const t = useTheme()
+
+  const baseAccountConnector = connectors.find(
+    connector => connector.id === 'baseAccount',
+  )
+
+  const handleConnect = async () => {
+    if (baseAccountConnector) {
+      try {
+        await connectAsync({connector: baseAccountConnector})
+      } catch (error) {
+        console.error('Failed to connect:', error)
+      }
+    }
+  }
+
+  if (isConnected && address) {
+    return (
+      <View style={[a.flex_1, a.align_center, a.gap_md]}>
+        <Text style={[a.text_sm, t.atoms.text_contrast_medium]}>
+          Connected: {address.slice(0, 6)}...{address.slice(-4)}
+        </Text>
+        <Button
+          onPress={() => disconnect()}
+          variant="solid"
+          color="secondary"
+          label="Disconnect Wallet">
+          <ButtonText>
+            <Trans>Disconnect Wallet</Trans>
+          </ButtonText>
+        </Button>
+      </View>
+    )
+  }
+
   return (
-    <div className="flex justify-start">
-      <Wallet>
-        <ConnectWallet>
-          <Avatar className="h-6 w-6" />
-          <Name />
-        </ConnectWallet>
-        <WalletDropdown>
-          <Identity className="px-4 pt-3 pb-2" hasCopyAddressOnClick>
-            <Avatar />
-            <Name />
-            <Address className={color.foregroundMuted} />
-            <EthBalance />
-          </Identity>
-          <WalletDropdownDisconnect />
-        </WalletDropdown>
-      </Wallet>
-    </div>
+    <View style={[a.flex_1, a.align_center, a.gap_md]}>
+      {baseAccountConnector && (
+        <Button
+          onPress={handleConnect}
+          variant="solid"
+          color="primary"
+          label="Connect with Base Account">
+          <ButtonText>
+            <Trans>Connect or create Base Account</Trans>
+          </ButtonText>
+        </Button>
+      )}
+    </View>
   )
 }

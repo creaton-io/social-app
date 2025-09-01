@@ -17,7 +17,7 @@ import {ArrowLeft_Stroke2_Corner0_Rounded as ArrowLeft} from '#/components/icons
 import * as Layout from '#/components/Layout'
 import {Text as TypographyText} from '#/components/Typography'
 import {navigate} from '#/Navigation'
-import {useXMTP} from './useXmtp'
+import {useInitializeXMTP, useXMTP} from './useXmtp'
 
 type Props = NativeStackScreenProps<any, 'XmtpConversation'>
 
@@ -33,9 +33,24 @@ export function XmtpConversationScreen({route}: Props) {
   const t = useTheme()
   const conversationId = route.params?.conversation
   const {client, sendMessage} = useXMTP()
+  const {initializeIfNeeded} = useInitializeXMTP()
   const [messages, setMessages] = useState<XmtpMessage[]>([])
   const [newMessage, setNewMessage] = useState('')
   const [conversation, setConversation] = useState<Conversation | null>(null)
+
+  useEffect(() => {
+    // Initialize XMTP when entering the conversation screen
+    const initialize = async () => {
+      if (!client) {
+        try {
+          await initializeIfNeeded()
+        } catch (error) {
+          console.error('Failed to initialize XMTP:', error)
+        }
+      }
+    }
+    initialize()
+  }, [client, initializeIfNeeded])
 
   useEffect(() => {
     async function fetchConversation() {

@@ -6,9 +6,9 @@ import {
 } from '@atproto/api'
 import {msg} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
-import {signMessage} from '@wagmi/core'
 import * as EmailValidator from 'email-validator'
 import {useAccount} from 'wagmi'
+import {useSignMessage} from 'wagmi'
 
 import {DEFAULT_SERVICE} from '#/lib/constants'
 import {cleanError} from '#/lib/strings/errors'
@@ -18,7 +18,6 @@ import {logger} from '#/logger'
 import {useAgent} from '#/state/session'
 import {useSessionApi} from '#/state/session'
 import {useOnboardingDispatch} from '#/state/shell'
-import {wagmiConfig} from '#/wagmi'
 
 export type ServiceDescription = ComAtprotoServerDescribeServer.OutputSchema
 
@@ -265,6 +264,7 @@ export function useSubmitSignup() {
   const onboardingDispatch = useOnboardingDispatch()
   const agent = useAgent()
   const {address} = useAccount()
+  const {signMessageAsync} = useSignMessage()
 
   return useCallback(
     async (state: SignupState, dispatch: (action: SignupAction) => void) => {
@@ -325,7 +325,7 @@ export function useSubmitSignup() {
 
       const siweMessage = siweResult.data.siweMessage
 
-      const siweSigned = await signMessage(wagmiConfig, {message: siweMessage})
+      const siweSigned = await signMessageAsync({message: siweMessage})
 
       if (!siweSigned) {
         return dispatch({
@@ -395,6 +395,13 @@ export function useSubmitSignup() {
         dispatch({type: 'setIsLoading', value: false})
       }
     },
-    [agent.com.atproto.server, address, _, createAccount, onboardingDispatch],
+    [
+      agent.com.atproto.server,
+      address,
+      _,
+      createAccount,
+      onboardingDispatch,
+      signMessageAsync,
+    ],
   )
 }

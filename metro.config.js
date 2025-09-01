@@ -45,6 +45,10 @@ cfg.resolver.resolveRequest = (context, moduleName, platform) => {
       )
     }
   }
+  // Handle stream polyfill for all platforms
+  if (moduleName === 'stream') {
+    return context.resolveRequest(context, 'readable-stream', platform)
+  }
   return context.resolveRequest(context, moduleName, platform)
 }
 

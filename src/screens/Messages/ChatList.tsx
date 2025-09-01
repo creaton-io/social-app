@@ -21,6 +21,7 @@ import {useListConvosQuery} from '#/state/queries/messages/list-conversations'
 import {useSession} from '#/state/session'
 import {List, type ListRef} from '#/view/com/util/List'
 import {ChatListLoadingPlaceholder} from '#/view/com/util/LoadingPlaceholder'
+import {useInitializeXMTP} from '#/screens/Xmtp/useXmtp'
 import {atoms as a, useBreakpoints, useTheme} from '#/alf'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
 import {type DialogControlProps, useDialogControl} from '#/components/Dialog'
@@ -70,6 +71,18 @@ export function MessagesScreen({navigation, route}: Props) {
   const newChatControl = useDialogControl()
   const scrollElRef: ListRef = useAnimatedRef()
   const pushToConversation = route.params?.pushToConversation
+
+  // Initialize XMTP when entering the Messages screen
+  const {initializeIfNeeded} = useInitializeXMTP()
+
+  // Initialize XMTP on screen mount
+  useEffect(() => {
+    if (currentAccount) {
+      initializeIfNeeded().catch(error => {
+        logger.error('Failed to initialize XMTP', {message: error})
+      })
+    }
+  }, [currentAccount, initializeIfNeeded])
 
   // Whenever we have `pushToConversation` set, it means we pressed a notification for a chat without being on
   // this tab. We should immediately push to the conversation after pressing the notification.
@@ -142,7 +155,7 @@ export function MessagesScreen({navigation, route}: Props) {
 
   const conversations = useMemo(() => {
     if (data?.pages) {
-      const conversations = data.pages
+      const convos = data.pages
         .flatMap(page => page.convos)
         // filter out convos that are actively being left
         .filter(convo => !leftConvos.includes(convo.id))
@@ -153,7 +166,7 @@ export function MessagesScreen({navigation, route}: Props) {
           count: inboxPreviewConvos.length,
           profiles: inboxPreviewConvos.slice(0, 3),
         },
-        ...conversations.map(
+        ...convos.map(
           convo => ({type: 'CONVERSATION', conversation: convo} as const),
         ),
       ] satisfies ListItem[]

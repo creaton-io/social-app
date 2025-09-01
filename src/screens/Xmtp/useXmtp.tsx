@@ -34,20 +34,25 @@ export type XMTPContextValue = {
   /**
    * The XMTP client instance
    */
-  client?: Client
+  client?: Client<any>
   /**
    * Set the XMTP client instance
    */
-  setClient: React.Dispatch<React.SetStateAction<Client | undefined>>
-  initialize: (options: InitializeClientOptions) => Promise<Client | undefined>
+  setClient: React.Dispatch<React.SetStateAction<Client<any> | undefined>>
+  initialize: (
+    options: InitializeClientOptions,
+  ) => Promise<Client<any> | undefined>
   initializing: boolean
   error: Error | null
   disconnect: () => void
   newConversation: (
     inboxIdOrAddress: string[],
     options?: {groupName?: string; groupDescription?: string},
-  ) => Promise<Conversation | undefined>
-  sendMessage: (conversation: Conversation, content: string) => Promise<void>
+  ) => Promise<Conversation<any> | undefined>
+  sendMessage: (
+    conversation: Conversation<any>,
+    content: string,
+  ) => Promise<void>
   createSCWSigner: (
     address: `0x${string}`,
     signMessage: (message: string) => Promise<string> | string,
@@ -73,17 +78,23 @@ export type XMTPProviderProps = React.PropsWithChildren & {
   /**
    * Initial XMTP client instance
    */
-  client?: Client
+  client?: Client<any>
 }
 
 export const XMTPProvider: React.FC<XMTPProviderProps> = ({
   children,
   client: initialClient,
 }) => {
-  const [client, setClient] = useState<Client | undefined>(initialClient)
+  const [client, setClient] = useState<Client<any> | undefined>(initialClient)
   const [initializing, setInitializing] = useState(false)
   const [error, setError] = useState<Error | null>(null)
   const initializingRef = useRef(false)
+
+  console.log('XMTPProvider render:', {
+    hasClient: !!client,
+    initializing,
+    error: error?.message,
+  })
 
   const account = useAccount()
   const {switchChain} = useSwitchChain()
@@ -114,7 +125,7 @@ export const XMTPProvider: React.FC<XMTPProviderProps> = ({
         // reset initializing state
         setInitializing(true)
 
-        let xmtpClient: Client
+        let xmtpClient: Client<any>
 
         try {
           // create a new XMTP client
@@ -185,7 +196,7 @@ export const XMTPProvider: React.FC<XMTPProviderProps> = ({
   )
 
   const sendMessage = useCallback(
-    async (conversation: Conversation, content: string) => {
+    async (conversation: Conversation<any>, content: string) => {
       if (!client) {
         console.error('XMTP client not initialized')
         return
@@ -246,20 +257,8 @@ export const XMTPProvider: React.FC<XMTPProviderProps> = ({
   )
 
   useEffect(() => {
-    if (!account.address) return
-
-    const signer = createSCWSigner(
-      account.address,
-      (message: string) => signMessageAsync({message}),
-      account.chainId,
-    )
-
-    initialize({
-      dbEncryptionKey: window.crypto.getRandomValues(new Uint8Array(32)),
-      env: 'dev',
-      loggingLevel: 'debug',
-      signer,
-    })
+    // XMTP initialization is now manual - call initialize() when needed
+    // This effect has been removed to prevent automatic initialization
   }, [
     account.address,
     account.chainId,
@@ -268,6 +267,9 @@ export const XMTPProvider: React.FC<XMTPProviderProps> = ({
     initialize,
     createSCWSigner,
   ])
+
+  // XMTP initialization is now manual - removed auto-initialization
+  // to prevent signing prompts when users don't access chat features
 
   // memo-ize the context value to prevent unnecessary re-renders
   const value = useMemo(
@@ -299,6 +301,73 @@ export const XMTPProvider: React.FC<XMTPProviderProps> = ({
 
 export const useXMTP = () => {
   return useContext(XMTPContext)
+}
+
+/**
+ * Hook to initialize XMTP client when entering chat-related screens
+ * This prevents automatic initialization and signing prompts when users
+ * aren't using chat features
+ */
+export const useInitializeXMTP = () => {
+  const {client, initialize, initializing, createSCWSigner} = useXMTP()
+  const account = useAccount()
+  const {signMessageAsync} = useSignMessage()
+  const [hasAttemptedInit, setHasAttemptedInit] = useState(false)
+
+  const initializeIfNeeded = useCallback(async () => {
+    if (!account.address || client || initializing || hasAttemptedInit) {
+      return
+    }
+
+    console.log('Initializing XMTP for chat access...')
+    setHasAttemptedInit(true)
+
+    try {
+      const signer = createSCWSigner(
+        account.address,
+        (message: string) => signMessageAsync({message}),
+        account.chainId ?? 1,
+      )
+
+      const dbEncryptionKey =
+        typeof window !== 'undefined'
+          ? window.crypto.getRandomValues(new Uint8Array(32))
+          : new Uint8Array(32) // Fallback for native
+
+      await initialize({
+        dbEncryptionKey,
+        env: 'dev',
+        loggingLevel: 'debug',
+        signer,
+      })
+    } catch (error) {
+      console.error('XMTP initialization failed:', error)
+      // Reset hasAttemptedInit so user can try again
+      setHasAttemptedInit(false)
+      throw error
+    }
+  }, [
+    account.address,
+    account.chainId,
+    client,
+    initializing,
+    hasAttemptedInit,
+    initialize,
+    createSCWSigner,
+    signMessageAsync,
+  ])
+
+  // Reset attempt flag when account changes
+  useEffect(() => {
+    setHasAttemptedInit(false)
+  }, [account.address])
+
+  return {
+    initializeIfNeeded,
+    isInitialized: !!client,
+    isInitializing: initializing,
+    hasAttemptedInit,
+  }
 }
 
 export const isValidEthereumAddress = (

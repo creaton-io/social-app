@@ -15,7 +15,7 @@ import * as Layout from '#/components/Layout'
 import {Text as TypographyText} from '#/components/Typography'
 import {navigate} from '#/Navigation'
 import {ConversationsListItem} from './ConversationsListItem'
-import {useXMTP} from './useXmtp'
+import {useInitializeXMTP, useXMTP} from './useXmtp'
 
 type Props = NativeStackScreenProps<any, 'Xmtp'>
 
@@ -24,11 +24,26 @@ export function XmtpScreen({}: Props) {
   const t = useTheme()
   const [conversations, setConversations] = useState<Conversation[]>([])
   const {client, newConversation} = useXMTP()
+  const {initializeIfNeeded} = useInitializeXMTP()
   const [newChatAddress, setNewChatAddress] = useState('')
   const dialogControl = Dialog.useDialogControl()
   const [isGroupChat, setIsGroupChat] = useState(false)
   const [groupName, setGroupName] = useState('')
   const [groupDescription, setGroupDescription] = useState('')
+
+  useEffect(() => {
+    // Initialize XMTP when entering the XMTP screen
+    const initialize = async () => {
+      if (!client) {
+        try {
+          await initializeIfNeeded()
+        } catch (error) {
+          console.error('Failed to initialize XMTP:', error)
+        }
+      }
+    }
+    initialize()
+  }, [client, initializeIfNeeded])
 
   useEffect(() => {
     async function fetchConversations() {

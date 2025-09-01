@@ -4,6 +4,7 @@ import {useLingui} from '@lingui/react'
 
 import {Layout, OnboardingControls} from '#/screens/Onboarding/Layout'
 import {Context, initialState, reducer} from '#/screens/Onboarding/state'
+import {StepEns} from '#/screens/Onboarding/StepEns'
 import {StepFinished} from '#/screens/Onboarding/StepFinished'
 import {StepInterests} from '#/screens/Onboarding/StepInterests'
 import {StepProfile} from '#/screens/Onboarding/StepProfile'
@@ -51,6 +52,7 @@ export function Onboarding() {
             [state, dispatch, interestsDisplayNames],
           )}>
           <Layout>
+            {state.activeStep === 'ens' && <StepEns />}
             {state.activeStep === 'profile' && <StepProfile />}
             {state.activeStep === 'interests' && <StepInterests />}
             {state.activeStep === 'finished' && <StepFinished />}

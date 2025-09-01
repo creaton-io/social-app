@@ -92,6 +92,7 @@ import {Wizard} from '#/screens/StarterPack/Wizard'
 import {TokensScreen} from '#/screens/Tokens'
 import {VideoFeed} from '#/screens/VideoFeed'
 import {XmtpScreen} from '#/screens/Xmtp'
+import {XMTPProvider} from '#/screens/Xmtp/useXmtp'
 import {useTheme} from '#/alf'
 import {router} from '#/routes'
 import {Referrer} from '../modules/expo-bluesky-swiss-army'
@@ -601,24 +602,26 @@ function MyProfileTabNavigator() {
 function MessagesTabNavigator() {
   const t = useTheme()
   return (
-    <MessagesTab.Navigator
-      screenOptions={{
-        animationDuration: 285,
-        gestureEnabled: true,
-        fullScreenGestureEnabled: true,
-        headerShown: false,
-        contentStyle: t.atoms.bg,
-      }}>
-      <MessagesTab.Screen
-        name="Messages"
-        getComponent={() => MessagesScreen}
-        options={({route}) => ({
-          requireAuth: true,
-          animationTypeForReplace: route.params?.animation ?? 'push',
-        })}
-      />
-      {commonScreens(MessagesTab as typeof HomeTab)}
-    </MessagesTab.Navigator>
+    <XMTPProvider>
+      <MessagesTab.Navigator
+        screenOptions={{
+          animationDuration: 285,
+          gestureEnabled: true,
+          fullScreenGestureEnabled: true,
+          headerShown: false,
+          contentStyle: t.atoms.bg,
+        }}>
+        <MessagesTab.Screen
+          name="Messages"
+          getComponent={() => MessagesScreen}
+          options={({route}) => ({
+            requireAuth: true,
+            animationTypeForReplace: route.params?.animation ?? 'push',
+          })}
+        />
+        {commonScreens(MessagesTab as typeof HomeTab)}
+      </MessagesTab.Navigator>
+    </XMTPProvider>
   )
 }
 

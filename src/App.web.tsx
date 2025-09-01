@@ -1,19 +1,14 @@
 import '#/logger/sentry/setup' // must be near top
 import '#/view/icons'
 import './style.css'
-import '@rainbow-me/rainbowkit/styles.css'
-import '@coinbase/onchainkit/styles.css'
 
 import React, {useEffect, useState} from 'react'
 import {RootSiblingParent} from 'react-native-root-siblings'
 import {SafeAreaProvider} from 'react-native-safe-area-context'
-import {OnchainKitProvider} from '@coinbase/onchainkit'
 import {msg} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
-import {RainbowKitProvider} from '@rainbow-me/rainbowkit'
 import * as Sentry from '@sentry/react-native'
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query'
-import {baseSepolia} from 'viem/chains'
 import {WagmiProvider} from 'wagmi'
 
 import {QueryProvider} from '#/lib/react-query'
@@ -69,9 +64,8 @@ import {useStarterPackEntry} from '#/components/hooks/useStarterPackEntry'
 import {Provider as IntentDialogProvider} from '#/components/intents/IntentDialogs'
 import {Provider as PortalProvider} from '#/components/Portal'
 import {BackgroundNotificationPreferencesProvider} from '../modules/expo-background-notification-handler/src/BackgroundNotificationHandlerProvider'
-import {NEXT_PUBLIC_ONCHAINKIT_API_KEY} from './env'
 import {XMTPProvider} from './screens/Xmtp/useXmtp'
-import {wagmiConfig} from './wagmi'
+import {config} from './wagmi'
 
 const queryClient = new QueryClient()
 
@@ -146,38 +140,13 @@ function InnerApp() {
                                                 <TrendingConfigProvider>
                                                   <IntentDialogProvider>
                                                     <WagmiProvider
-                                                      config={wagmiConfig}>
-                                                      <RainbowKitProvider>
-                                                        <QueryClientProvider
-                                                          client={queryClient}>
-                                                          <OnchainKitProvider
-                                                            apiKey={
-                                                              NEXT_PUBLIC_ONCHAINKIT_API_KEY
-                                                            }
-                                                            chain={baseSepolia}
-                                                            config={{
-                                                              appearance: {
-                                                                name: 'Creaton', // Displayed in modal header
-                                                                logo: 'https://your-logo.com', // Displayed in modal header
-                                                                mode: 'auto', // 'light' | 'dark' | 'auto'
-                                                                theme:
-                                                                  'default', // 'default' or custom theme
-                                                              },
-                                                              wallet: {
-                                                                display:
-                                                                  'modal',
-                                                                termsUrl:
-                                                                  'https://...',
-                                                                privacyUrl:
-                                                                  'https://...',
-                                                              },
-                                                            }}>
-                                                            <XMTPProvider>
-                                                              <Shell />
-                                                            </XMTPProvider>
-                                                          </OnchainKitProvider>
-                                                        </QueryClientProvider>
-                                                      </RainbowKitProvider>
+                                                      config={config}>
+                                                      <QueryClientProvider
+                                                        client={queryClient}>
+                                                        <XMTPProvider>
+                                                          <Shell />
+                                                        </XMTPProvider>
+                                                      </QueryClientProvider>
                                                     </WagmiProvider>
                                                     <NuxDialogs />
                                                   </IntentDialogProvider>

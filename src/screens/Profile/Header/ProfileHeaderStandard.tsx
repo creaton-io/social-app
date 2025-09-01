@@ -24,7 +24,7 @@ import {useResolveDidDocQuery} from '#/state/queries/resolve-uri'
 import {useRequireAuth, useSession} from '#/state/session'
 import {ProfileMenu} from '#/view/com/profile/ProfileMenu'
 import * as Toast from '#/view/com/util/Toast'
-import {useXMTP} from '#/screens/Xmtp/useXmtp'
+import {useInitializeXMTP, useXMTP} from '#/screens/Xmtp/useXmtp'
 import {atoms as a} from '#/alf'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
 import * as Dialog from '#/components/Dialog'
@@ -90,6 +90,7 @@ let ProfileHeaderStandard = ({
   const createTokenControl = useDialogControl()
   const tokenDetailsControl = useDialogControl()
   const {client, newConversation} = useXMTP()
+  const {initializeIfNeeded} = useInitializeXMTP()
 
   const onPressEditProfile = React.useCallback(() => {
     if (isWeb) {
@@ -184,11 +185,19 @@ let ProfileHeaderStandard = ({
   )
 
   const onPressChat = useCallback(async () => {
-    if (!client) {
-      console.error('XMTP client not initialized')
-      return
-    }
     try {
+      // Initialize XMTP if not already done
+      if (!client) {
+        console.log('Initializing XMTP for chat...')
+        await initializeIfNeeded()
+      }
+
+      // Check again after potential initialization
+      if (!client) {
+        console.error('XMTP client not initialized')
+        return
+      }
+
       let conversation: Conversation | undefined = await newConversation(
         fullEthAddress.split(','),
       )
@@ -202,7 +211,7 @@ let ProfileHeaderStandard = ({
     } catch (error) {
       console.error('Error creating new conversation:', error)
     }
-  }, [client, newConversation, fullEthAddress])
+  }, [client, newConversation, fullEthAddress, initializeIfNeeded])
 
   return (
     <ProfileHeaderShell
