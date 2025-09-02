@@ -1,6 +1,6 @@
 import {
-  AppBskyFeedDefs,
-  AppBskyFeedGetFeed as GetCustomFeed,
+  type AppBskyFeedDefs,
+  type AppBskyFeedGetFeed as GetCustomFeed,
   BskyAgent,
   jsonStringToLex,
 } from '@atproto/api'
@@ -9,7 +9,7 @@ import {
   getAppLanguageAsContentLanguage,
   getContentLanguages,
 } from '#/state/preferences/languages'
-import {FeedAPI, FeedAPIResponse} from './types'
+import {type FeedAPI, type FeedAPIResponse} from './types'
 import {createBskyTopicsHeader, isBlueskyOwnedFeed} from './utils'
 
 export class CustomFeedAPI implements FeedAPI {
@@ -51,11 +51,12 @@ export class CustomFeedAPI implements FeedAPI {
     limit: number
   }): Promise<FeedAPIResponse> {
     const contentLangs = getContentLanguages().join(',')
-    const agent = this.agent
     const isBlueskyOwned = isBlueskyOwnedFeed(this.params.feed)
 
-    const res = agent.did
-      ? await this.agent.app.bsky.feed.getFeed(
+    const feedAgent = new BskyAgent({service: 'https://api.bsky.app'})
+
+    const res = feedAgent.did
+      ? await feedAgent.app.bsky.feed.getFeed(
           {
             ...this.params,
             cursor,
