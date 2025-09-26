@@ -61,7 +61,7 @@ export function StepEns() {
           ],
         }
 
-        return await fetch('http://localhost:3000/subdomains', {
+        return await fetch('https://subdomain.creaton.io/subdomains', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

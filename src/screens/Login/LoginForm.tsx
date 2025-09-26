@@ -56,7 +56,7 @@ export function LoginForm({
   setServiceUrl: (v: string) => void
   onPressRetryConnect: () => void
   onPressBack: () => void
-  onPressSignSIWE: () => Promise<string>
+  onPressSignSIWE: (currentIdentifier: string) => Promise<string>
   onPressForgotPassword: () => void
   onAttemptSuccess: () => void
   onAttemptFailed: () => void
@@ -459,14 +459,23 @@ export function LoginForm({
               <Button
                 testID="signSIWEButton"
                 onPress={() => {
-                  onPressSignSIWE()
+                  const currentIdentifier = identifierValueRef.current
+                    .toLowerCase()
+                    .trim()
+                  if (!currentIdentifier) {
+                    setError(_(msg`Please enter your username first`))
+                    return
+                  }
+                  onPressSignSIWE(currentIdentifier)
                     .then(signature => {
                       siweSignatureValueRef.current = signature
                       onPressNext()
                       console.log('Signature: ', signature)
                     })
                     .catch(signError => {
-                      siweSignatureValueRef.current = 'Error, try again!'
+                      setError(
+                        signError.message || 'Failed to sign with wallet',
+                      )
                       console.log('Error: ', signError)
                     })
                 }}

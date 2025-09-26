@@ -18,7 +18,8 @@ msgstr ""
 "X-Crowdin-File: /main/src/locale/locales/en/messages.po\n"
 "X-Crowdin-File-ID: 11\n"
 
-#: src/components/ProgressGuide/FollowDialog.tsx:567
+#: src/components/ProgressGuide/FollowDialog.tsx:515
+#: src/screens/Search/modules/ExploreSuggestedAccounts.tsx:119
 msgid "(active)"
 msgstr "(ενεργό)"
 
@@ -116,6 +117,21 @@ msgstr "{0, plural, one {πάραθεση} other {παραθέσεις}}"
 msgid "{0, plural, one {repost} other {reposts}}"
 msgstr "{0, plural, one {αναδημοσίευση} other {αναδημοσιεύσεις}}"
 
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:78
+msgid "{0, plural, other {{1} posts}}"
+msgstr ""
+
+#. Number of users (always at least 25) who have joined Bluesky using a specific starter pack
+#: src/screens/StarterPack/StarterPackScreen.tsx:485
+msgid "{0, plural, other {# people have}} used this starter pack!"
+msgstr ""
+
+#: src/screens/Login/LoginForm.tsx:518
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:266
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:274
+msgid "{0}"
+msgstr ""
+
 #. Pattern: {wordValue} in tags
 #: src/components/dialogs/MutedWords.tsx:475
 msgid "{0} <0>in <1>tags</1></0>"
@@ -139,11 +155,15 @@ msgstr "{0} από {1}"
 msgid "{0} out of 50"
 msgstr ""
 
-#: src/screens/StarterPack/StarterPackScreen.tsx:485
-msgid "{0} people have used this starter pack!"
-msgstr "{0} άτομα έχουν χρησιμοποιήσει αυτό το Starter Pack!"
+#: src/components/dms/MessageItem.tsx:143
+msgid "{0} reacted {1}"
+msgstr ""
 
-#: src/view/com/util/UserAvatar.tsx:445
+#: src/screens/Messages/components/ChatListItem.tsx:226
+msgid "{0} reacted {1} to {2}"
+msgstr ""
+
+#: src/view/com/util/UserAvatar.tsx:464
 msgid "{0}'s avatar"
 msgstr "Η εικόνα προφίλ του {0}"
 
@@ -175,7 +195,7 @@ msgstr "{0}λ."
 msgid "{0}s"
 msgstr "{0}δευτ."
 
-#: src/view/shell/desktop/LeftNav.tsx:382
+#: src/view/shell/desktop/LeftNav.tsx:383
 msgid "{count, plural, one {# unread item} other {# unread items}}"
 msgstr ""
 
@@ -183,6 +203,10 @@ msgstr ""
 #: src/screens/StarterPack/Wizard/index.tsx:178
 msgid "{displayName}'s Starter Pack"
 msgstr "Το Starter Pack του {displayName}"
+
+#: src/screens/Onboarding/StepEns/index.tsx:144
+msgid "{ensSubdomain}"
+msgstr ""
 
 #: src/screens/SignupQueued.tsx:216
 msgid "{estimatedTimeHrs, plural, one {hour} other {hours}}"
@@ -289,6 +313,11 @@ msgstr "{following} ακόλουθοι"
 msgid "{handle} can't be messaged"
 msgstr "Δεν είναι δυνατόν να στείλετε μήνυμα στον/ην {handle}"
 
+#. Number of users (always at least 50) who have joined Bluesky using a specific starter pack
+#: src/components/StarterPack/StarterPackCard.tsx:101
+msgid "{joinedAllTimeCount, plural, other {# users have}} joined!"
+msgstr ""
+
 #: src/view/shell/bottom-bar/BottomBarWeb.tsx:270
 msgid "{notificationCount, plural, one {# unread item} other {# unread items}}"
 msgstr ""
@@ -300,6 +329,21 @@ msgstr "Ο/Η {profileName} εντάχθηκε στο Bluesky πριν από {0
 #: src/components/NewskieDialog.tsx:111
 msgid "{profileName} joined Bluesky using a starter pack {0} ago"
 msgstr "Ο/Η {profileName} εντάχθηκε στο Bluesky με starter pack πριν από {0}"
+
+#. The trending topic rank, i.e. "1. March Madness", "2. The Bachelor"
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:107
+msgid "{rank}."
+msgstr ""
+
+#. trending topic time spent trending. should be as short as possible to fit in a pill
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:202
+msgid "{type}h ago"
+msgstr ""
+
+#. Indicates the number of additional profiles are in the Starter Pack e.g. +12
+#: src/screens/Search/components/StarterPackCard.tsx:249
+msgid "+{computedTotal}"
+msgstr ""
 
 #: src/screens/StarterPack/Wizard/index.tsx:449
 msgctxt "profiles"
@@ -343,15 +387,23 @@ msgstr "<0>Πειραματικό:</0> Όταν αυτή η ρύθμιση εί�
 msgid "<0>You</0> and<1> </1><2>{0} </2>are included in your starter pack"
 msgstr "<0>Εσείς</0> και <1> </1><2>{0} </2>περιλαμβάνονται στο πακέτο εκκίνησής σας"
 
-#: src/screens/Profile/Header/Handle.tsx:52
+#: src/screens/Profile/Header/Handle.tsx:69
 msgid "⚠Invalid Handle"
 msgstr "⚠Μη έγκυρο όνομα χρήστη"
+
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:273
+msgid "0.00"
+msgstr ""
 
 #: src/components/dialogs/MutedWords.tsx:193
 msgid "24 hours"
 msgstr "24 ώρες"
 
-#: src/screens/Login/LoginForm.tsx:268
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:190
+msgid "24h Change"
+msgstr ""
+
+#: src/screens/Login/LoginForm.tsx:384
 msgid "2FA Confirmation"
 msgstr "Επιβεβαίωση 2FA"
 
@@ -363,7 +415,12 @@ msgstr "30 ημέρες"
 msgid "7 days"
 msgstr "7 ημέρες"
 
-#: src/Navigation.tsx:383
+#. If last message does not contain text, fall back to "{user} reacted to {a message}"
+#: src/screens/Messages/components/ChatListItem.tsx:205
+msgid "a message"
+msgstr ""
+
+#: src/Navigation.tsx:405
 #: src/screens/Settings/AboutSettings.tsx:34
 #: src/screens/Settings/Settings.tsx:215
 #: src/screens/Settings/Settings.tsx:218
@@ -390,12 +447,12 @@ msgstr ""
 msgid "Accessibility"
 msgstr "Προσβασιμότητα"
 
-#: src/Navigation.tsx:343
+#: src/Navigation.tsx:357
 msgid "Accessibility Settings"
 msgstr "Ρυθμίσεις Προσβασιμότητας"
 
-#: src/Navigation.tsx:359
-#: src/screens/Login/LoginForm.tsx:194
+#: src/Navigation.tsx:373
+#: src/screens/Login/LoginForm.tsx:306
 #: src/screens/Settings/AccountSettings.tsx:45
 #: src/screens/Settings/Settings.tsx:153
 #: src/screens/Settings/Settings.tsx:156
@@ -437,7 +494,10 @@ msgstr "Επιλογές λογαριασμού"
 msgid "Account removed from quick access"
 msgstr "Λογαριασμός αφαιρέθηκε από την γρήγορη πρόσβαση"
 
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:137
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:173
+msgid "Account unblocked"
+msgstr ""
+
 #: src/view/com/profile/ProfileMenu.tsx:131
 msgctxt "toast"
 msgid "Account unblocked"
@@ -473,8 +533,8 @@ msgstr "Προσθήκη {displayName} στο starter pack"
 msgid "Add a content warning"
 msgstr "Προσθήκη προειδοποίησης περιεχομένου"
 
-#: src/view/screens/ProfileList.tsx:917
-#: src/view/screens/ProfileList.tsx:935
+#: src/view/screens/ProfileList.tsx:916
+#: src/view/screens/ProfileList.tsx:934
 msgid "Add a user to this list"
 msgstr "Προσθήκη χρήστη σε αυτήν τη λίστα"
 
@@ -485,7 +545,7 @@ msgstr "Προσθήκη λογαριασμού"
 
 #: src/view/com/composer/GifAltText.tsx:76
 #: src/view/com/composer/GifAltText.tsx:144
-#: src/view/com/composer/GifAltText.tsx:207
+#: src/view/com/composer/GifAltText.tsx:210
 #: src/view/com/composer/photos/Gallery.tsx:169
 #: src/view/com/composer/photos/Gallery.tsx:216
 #: src/view/com/composer/photos/ImageAltTextDialog.tsx:88
@@ -499,12 +559,12 @@ msgstr "Προσθήκη εναλλακτικού κειμένου (προαιρ
 
 #: src/screens/Settings/Settings.tsx:373
 #: src/screens/Settings/Settings.tsx:376
-#: src/view/shell/desktop/LeftNav.tsx:280
-#: src/view/shell/desktop/LeftNav.tsx:284
+#: src/view/shell/desktop/LeftNav.tsx:281
+#: src/view/shell/desktop/LeftNav.tsx:285
 msgid "Add another account"
 msgstr "Προσθήκη άλλου λογαριασμού"
 
-#: src/view/com/composer/Composer.tsx:743
+#: src/view/com/composer/Composer.tsx:752
 msgid "Add another post"
 msgstr "Προσθήκη άλλης ανάρτησης"
 
@@ -517,6 +577,10 @@ msgstr "Προσθήκη κωδικού πρόσβασης εφαρμογής"
 #: src/screens/Settings/components/AddAppPasswordDialog.tsx:111
 msgid "Add App Password"
 msgstr "Προσθήκη κωδικού πρόσβασης εφαρμογής"
+
+#: src/components/dms/EmojiReactionPicker.web.tsx:35
+msgid "Add emoji reaction"
+msgstr ""
 
 #: src/components/moderation/ReportDialog/index.tsx:392
 #: src/components/moderation/ReportDialog/index.tsx:396
@@ -531,14 +595,18 @@ msgstr ""
 msgid "Add muted words and tags"
 msgstr "Προσθήκη λέξεων και ετικετών που θα είναι σε σίγαση"
 
-#: src/view/com/composer/Composer.tsx:1258
+#: src/view/com/composer/Composer.tsx:1306
 msgid "Add new post"
 msgstr "Προσθήκη νέας ανάρτησης"
 
-#: src/view/screens/ProfileList.tsx:925
-#: src/view/screens/ProfileList.tsx:943
+#: src/view/screens/ProfileList.tsx:924
+#: src/view/screens/ProfileList.tsx:942
 msgid "Add people"
 msgstr "Προσθήκη ατόμων"
+
+#: src/components/dms/EmojiPopup.android.tsx:55
+msgid "Add Reaction"
+msgstr ""
 
 #: src/screens/Home/NoFeedsPinned.tsx:99
 msgid "Add recommended feeds"
@@ -556,7 +624,7 @@ msgstr "Προσθήκη της προεπιλεγμένης ροής μόνο �
 msgid "Add the following DNS record to your domain:"
 msgstr "Προσθέστε το ακόλουθο αρχείο DNS στο domain σας:"
 
-#: src/components/FeedCard.tsx:295
+#: src/components/FeedCard.tsx:305
 msgid "Add this feed to your feeds"
 msgstr "Προσθήκη αυτού της ροής στις ροές σας"
 
@@ -582,14 +650,14 @@ msgstr "Προστέθηκε στις ροές μου"
 msgid "Additional details (limit 300 characters)"
 msgstr ""
 
-#: src/view/com/composer/labels/LabelsBtn.tsx:160
+#: src/view/com/composer/labels/LabelsBtn.tsx:159
 msgid "Adult"
 msgstr "Ενήλικες"
 
 #: src/components/moderation/ContentHider.tsx:113
 #: src/lib/moderation/useGlobalLabelStrings.ts:34
 #: src/lib/moderation/useModerationCauseDescription.ts:148
-#: src/view/com/composer/labels/LabelsBtn.tsx:128
+#: src/view/com/composer/labels/LabelsBtn.tsx:127
 msgid "Adult Content"
 msgstr "Περιεχόμενο για ενηλίκους"
 
@@ -601,8 +669,8 @@ msgstr "Το περιεχόμενο για ενηλίκους μπορεί να 
 msgid "Adult content is disabled."
 msgstr "Το περιεχόμενο για ενηλίκους είναι απενεργοποιημένο."
 
-#: src/view/com/composer/labels/LabelsBtn.tsx:139
-#: src/view/com/composer/labels/LabelsBtn.tsx:197
+#: src/view/com/composer/labels/LabelsBtn.tsx:138
+#: src/view/com/composer/labels/LabelsBtn.tsx:196
 msgid "Adult Content labels"
 msgstr "Ετικέτες περιεχομένου για ενηλίκους"
 
@@ -618,9 +686,9 @@ msgstr "Όλα"
 msgid "All accounts have been followed!"
 msgstr "Όλοι οι λογαριασμοί έχουν ακολουθηθεί!"
 
-#: src/view/screens/Search/Search.tsx:370
-#: src/view/screens/Search/Search.tsx:405
-#: src/view/screens/Search/Search.tsx:407
+#: src/screens/Search/components/SearchLanguageDropdown.tsx:64
+#: src/screens/Search/components/SearchLanguageDropdown.tsx:99
+#: src/screens/Search/components/SearchLanguageDropdown.tsx:101
 msgid "All languages"
 msgstr "Όλες οι γλώσσες"
 
@@ -685,8 +753,16 @@ msgstr "Το εναλλακτικό κείμενο περιγράφει εικό
 
 #: src/view/com/composer/GifAltText.tsx:179
 #: src/view/com/composer/photos/ImageAltTextDialog.tsx:139
-msgid "Alt text will be truncated. Limit: {0} characters."
-msgstr "Το εναλλακτικό κείμενο θα περικοπεί. Όριο: {0} χαρακτήρες."
+msgid "Alt text will be truncated. {MAX_ALT_TEXT, plural, other {Limit: {0} characters.}}"
+msgstr ""
+
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:272
+msgid "Amount"
+msgstr ""
+
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:259
+msgid "Amount ({0})"
+msgstr ""
 
 #: src/screens/Settings/components/DisableEmail2FADialog.tsx:93
 #: src/view/com/modals/VerifyEmail.tsx:132
@@ -713,7 +789,11 @@ msgstr "Παρουσιάστηκε σφάλμα"
 msgid "An error occurred while compressing the video."
 msgstr "Παρουσιάστηκε σφάλμα κατά τη συμπίεση του βίντεο."
 
-#: src/components/StarterPack/ProfileStarterPacks.tsx:331
+#: src/state/queries/explore-feed-previews.tsx:183
+msgid "An error occurred while fetching the feed."
+msgstr ""
+
+#: src/components/StarterPack/ProfileStarterPacks.tsx:336
 msgid "An error occurred while generating your starter pack. Want to try again?"
 msgstr "Παρουσιάστηκε σφάλμα κατά τη δημιουργία του πακέτου έναρξής σας. Θέλετε να δοκιμάσετε ξανά;"
 
@@ -758,8 +838,8 @@ msgstr "Παρουσιάστηκε πρόβλημα κατά την προσπά
 
 #: src/components/hooks/useFollowMethods.ts:35
 #: src/components/hooks/useFollowMethods.ts:50
-#: src/components/ProfileCard.tsx:332
-#: src/components/ProfileCard.tsx:353
+#: src/components/ProfileCard.tsx:339
+#: src/components/ProfileCard.tsx:360
 #: src/view/com/profile/FollowButton.tsx:38
 #: src/view/com/profile/FollowButton.tsx:48
 msgid "An issue occurred, please try again."
@@ -778,8 +858,8 @@ msgstr "άγνωστος ετικετοποιητής"
 msgid "and"
 msgstr "και"
 
-#: src/screens/Onboarding/index.tsx:29
-#: src/screens/Onboarding/state.ts:94
+#: src/screens/Onboarding/index.tsx:30
+#: src/screens/Onboarding/state.ts:106
 msgid "Animals"
 msgstr "Ζώα"
 
@@ -796,7 +876,7 @@ msgstr "Αντικοινωνική Συμπεριφορά"
 msgid "Anybody can interact"
 msgstr "Ο καθένας μπορεί να αλληλεπιδράσει"
 
-#: src/Navigation.tsx:391
+#: src/Navigation.tsx:413
 #: src/screens/Settings/AppIconSettings/index.tsx:67
 #: src/screens/Settings/AppIconSettings/SettingsListItem.tsx:18
 #: src/screens/Settings/AppIconSettings/SettingsListItem.tsx:23
@@ -833,7 +913,7 @@ msgstr "Τα ονόματα κωδικών πρόσβασης εφαρμογής
 msgid "App passwords"
 msgstr "Κωδικοί πρόσβασης εφαρμογής"
 
-#: src/Navigation.tsx:311
+#: src/Navigation.tsx:325
 #: src/screens/Settings/AppPasswords.tsx:51
 msgid "App Passwords"
 msgstr "Κωδικοί Πρόσβασης Εφαρμογής"
@@ -869,7 +949,7 @@ msgstr ""
 msgid "Appeal this decision"
 msgstr "Εφεση σε αυτήν την απόφαση"
 
-#: src/Navigation.tsx:351
+#: src/Navigation.tsx:365
 #: src/screens/Settings/AppearanceSettings.tsx:85
 #: src/screens/Settings/Settings.tsx:183
 #: src/screens/Settings/Settings.tsx:186
@@ -894,11 +974,11 @@ msgstr "Αρχειοθετημένη ανάρτηση"
 msgid "Are you sure you want to delete the app password \"{0}\"?"
 msgstr "Είστε σίγουροι ότι θέλετε να διαγράψετε τον κωδικό πρόσβασης εφαρμογής;"
 
-#: src/components/dms/MessageMenu.tsx:152
+#: src/components/dms/MessageContextMenu.tsx:178
 msgid "Are you sure you want to delete this message? The message will be deleted for you, but not for the other participant."
 msgstr "Θέλετε σίγουρα να διαγράψετε αυτό το μήνυμα; Το μήνυμα θα διαγραφεί για εσάς, αλλά όχι για τον άλλο συμμετέχοντα."
 
-#: src/screens/StarterPack/StarterPackScreen.tsx:638
+#: src/screens/StarterPack/StarterPackScreen.tsx:641
 msgid "Are you sure you want to delete this starter pack?"
 msgstr "Είστε σίγουροι ότι θέλετε να διαγράψετε αυτό το Starter Pack;"
 
@@ -918,15 +998,15 @@ msgstr "Θέλετε σίγουρα να αποχωρήσετε από αυτή 
 msgid "Are you sure you want to remove {0} from your feeds?"
 msgstr "Θέλετε σίγουρα να αφαιρέσετε τον/την {0} από τις ροές σας;"
 
-#: src/components/FeedCard.tsx:312
+#: src/components/FeedCard.tsx:340
 msgid "Are you sure you want to remove this from your feeds?"
 msgstr "Είστε σίγουροι ότι θέλετε να αφαιρέσετε αυτό από τις ροές σας;"
 
-#: src/view/com/composer/Composer.tsx:694
+#: src/view/com/composer/Composer.tsx:703
 msgid "Are you sure you'd like to discard this draft?"
 msgstr "Είστε σίγουροι ότι θέλετε να απορρίψετε αυτό το προσχέδιο;"
 
-#: src/view/com/composer/Composer.tsx:868
+#: src/view/com/composer/Composer.tsx:882
 msgid "Are you sure you'd like to discard this post?"
 msgstr "Είστε σίγουροι ότι θέλετε να απορρίψετε αυτήν την ανάρτηση;"
 
@@ -938,16 +1018,16 @@ msgstr "Είστε σίγουροι;"
 msgid "Are you writing in <0>{suggestedLanguageName}</0>?"
 msgstr ""
 
-#: src/screens/Onboarding/index.tsx:23
-#: src/screens/Onboarding/state.ts:95
+#: src/screens/Onboarding/index.tsx:24
+#: src/screens/Onboarding/state.ts:107
 msgid "Art"
 msgstr "Τέχνη"
 
-#: src/view/com/composer/labels/LabelsBtn.tsx:172
+#: src/view/com/composer/labels/LabelsBtn.tsx:171
 msgid "Artistic or non-erotic nudity."
 msgstr "Καλλιτεχνική ή μη ερωτική γυμνότητα."
 
-#: src/screens/Signup/StepHandle.tsx:182
+#: src/screens/Signup/StepHandle.tsx:194
 msgid "At least 3 characters"
 msgstr "Τουλάχιστον 3 χαρακτήρες"
 
@@ -960,8 +1040,8 @@ msgstr ""
 msgid "Autoplay options have moved to the <0>Content and Media settings</0>."
 msgstr "Οι επιλογές αυτόματης αναπαραγωγής έχουν μετακινηθεί στις <0>Ρυθμίσεις περιεχομένου και μέσων</0>."
 
-#: src/screens/Settings/ContentAndMediaSettings.tsx:107
-#: src/screens/Settings/ContentAndMediaSettings.tsx:113
+#: src/screens/Settings/ContentAndMediaSettings.tsx:116
+#: src/screens/Settings/ContentAndMediaSettings.tsx:122
 msgid "Autoplay videos and GIFs"
 msgstr "Αυτόματη αναπαραγωγή βίντεο και GIF"
 
@@ -972,8 +1052,8 @@ msgstr "Αυτόματη αναπαραγωγή βίντεο και GIF"
 #: src/screens/Login/ChooseAccountForm.tsx:95
 #: src/screens/Login/ForgotPasswordForm.tsx:123
 #: src/screens/Login/ForgotPasswordForm.tsx:129
-#: src/screens/Login/LoginForm.tsx:310
-#: src/screens/Login/LoginForm.tsx:316
+#: src/screens/Login/LoginForm.tsx:426
+#: src/screens/Login/LoginForm.tsx:432
 #: src/screens/Login/SetNewPasswordForm.tsx:164
 #: src/screens/Login/SetNewPasswordForm.tsx:170
 #: src/screens/Messages/components/ChatDisabled.tsx:133
@@ -981,10 +1061,12 @@ msgstr "Αυτόματη αναπαραγωγή βίντεο και GIF"
 #: src/screens/Profile/Header/Shell.tsx:115
 #: src/screens/Signup/BackNextButtons.tsx:41
 #: src/screens/StarterPack/Wizard/index.tsx:286
+#: src/screens/Xmtp/Conversation.tsx:159
+#: src/screens/Xmtp/Conversation.tsx:167
 msgid "Back"
 msgstr "Πίσω"
 
-#: src/screens/Messages/Inbox.tsx:238
+#: src/screens/Messages/Inbox.tsx:244
 msgid "Back to Chats"
 msgstr ""
 
@@ -993,23 +1075,22 @@ msgstr ""
 msgid "Before creating a list, you must first verify your email."
 msgstr "Πριν δημιουργήσετε μια λίστα, πρέπει πρώτα να επαληθεύσετε το email σας."
 
-#: src/view/com/composer/Composer.tsx:621
+#: src/view/com/composer/Composer.tsx:629
 msgid "Before creating a post, you must first verify your email."
 msgstr "Πριν δημιουργήσετε μια ανάρτηση, πρέπει πρώτα να επαληθεύσετε το email σας."
 
-#: src/components/StarterPack/ProfileStarterPacks.tsx:338
+#: src/components/StarterPack/ProfileStarterPacks.tsx:343
 msgid "Before creating a starter pack, you must first verify your email."
 msgstr "Πριν δημιουργήσετε ένα Starter Pack, πρέπει πρώτα να επαληθεύσετε το email σας."
 
 #: src/components/dms/dialogs/NewChatDialog.tsx:79
 #: src/components/dms/MessageProfileButton.tsx:110
-#: src/screens/Messages/Conversation.tsx:212
+#: src/screens/Messages/Conversation.tsx:221
 msgid "Before you may message another user, you must first verify your email."
 msgstr "Πριν στείλετε μήνυμα σε άλλον χρήστη, πρέπει πρώτα να επαληθεύσετε το email σας."
 
-#: src/screens/Search/components/ExploreTrendingTopics.tsx:74
-#: src/screens/Search/components/ExploreTrendingVideos.tsx:111
-msgid "BETA"
+#: src/screens/Signup/StepInfo/index.tsx:411
+msgid "Beginner-friendly"
 msgstr ""
 
 #: src/components/dialogs/BirthDateSettings.tsx:103
@@ -1017,7 +1098,7 @@ msgstr ""
 msgid "Birthday"
 msgstr "Ημερομηνία γέννησης"
 
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:283
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:413
 #: src/view/com/profile/ProfileMenu.tsx:399
 #: src/view/com/util/forms/PostDropdownBtnMenuItems.tsx:832
 msgid "Block"
@@ -1039,7 +1120,7 @@ msgstr "Αποκλεισμός λογαριασμού"
 msgid "Block Account?"
 msgstr "Αποκλεισμός λογαριασμού;"
 
-#: src/view/screens/ProfileList.tsx:662
+#: src/view/screens/ProfileList.tsx:661
 msgid "Block accounts"
 msgstr "Αποκλεισμός λογαριασμών"
 
@@ -1051,7 +1132,7 @@ msgstr ""
 msgid "Block and/or delete this conversation"
 msgstr ""
 
-#: src/view/screens/ProfileList.tsx:782
+#: src/view/screens/ProfileList.tsx:781
 msgid "Block list"
 msgstr "Λίστα αποκλεισμένων"
 
@@ -1059,7 +1140,7 @@ msgstr "Λίστα αποκλεισμένων"
 msgid "Block or report"
 msgstr ""
 
-#: src/view/screens/ProfileList.tsx:777
+#: src/view/screens/ProfileList.tsx:776
 msgid "Block these accounts?"
 msgstr "Αποκλεισμός αυτών των λογαριασμών;"
 
@@ -1080,7 +1161,7 @@ msgstr "Αποκλεισμένος"
 msgid "Blocked accounts"
 msgstr "Αποκλεισμένοι λογαριασμοί"
 
-#: src/Navigation.tsx:160
+#: src/Navigation.tsx:174
 #: src/view/screens/ModerationBlockedAccounts.tsx:101
 msgid "Blocked Accounts"
 msgstr "Αποκλεισμένοι Λογαριασμοί"
@@ -1102,7 +1183,7 @@ msgstr "Αποκλεισμένη ανάρτηση."
 msgid "Blocking does not prevent this labeler from placing labels on your account."
 msgstr "Ο αποκλεισμός δεν εμποδίζει αυτόν τον ετικετοποιητή από το να τοποθετεί ετικέτες στον λογαριασμό σας."
 
-#: src/view/screens/ProfileList.tsx:779
+#: src/view/screens/ProfileList.tsx:778
 msgid "Blocking is public. Blocked accounts cannot reply in your threads, mention you, or otherwise interact with you."
 msgstr "Ο αποκλεισμός είναι δημόσιος. Οι αποκλεισμένοι λογαριασμοί δεν μπορούν να απαντήσουν στις συζητήσεις σας, να σας αναφέρουν ή να αλληλεπιδράσουν με άλλο τρόπο μαζί σας."
 
@@ -1110,14 +1191,9 @@ msgstr "Ο αποκλεισμός είναι δημόσιος. Οι αποκλε
 msgid "Blocking will not prevent labels from being applied on your account, but it will stop this account from replying in your threads or interacting with you."
 msgstr "Ο αποκλεισμός δεν θα εμποδίσει την εφαρμογή ετικετών στον λογαριασμό σας, αλλά θα σταματήσει αυτόν τον λογαριασμό από το να απαντά στις συζητήσεις σας ή να αλληλεπιδρά μαζί σας."
 
-#: src/view/com/auth/SplashScreen.web.tsx:173
+#: src/view/com/auth/SplashScreen.web.tsx:177
 msgid "Blog"
 msgstr "Ιστολόγιο"
-
-#: src/view/com/auth/server-input/index.tsx:136
-#: src/view/com/auth/server-input/index.tsx:137
-msgid "Bluesky"
-msgstr "Bluesky"
 
 #: src/view/com/post-thread/PostThreadItem.tsx:870
 msgid "Bluesky cannot confirm the authenticity of the claimed date."
@@ -1128,24 +1204,11 @@ msgctxt "Name of app icon variant"
 msgid "Bluesky Classic™"
 msgstr ""
 
-#: src/view/com/auth/server-input/index.tsx:212
-msgid "Bluesky is an open network where you can choose your hosting provider. If you're a developer, you can host your own server."
-msgstr "Το Bluesky είναι ένα ανοιχτό δίκτυο όπου μπορείτε να επιλέξετε τον πάροχο φιλοξενίας σας. Αν είστε προγραμματιστής, μπορείτε να φιλοξενήσετε τον δικό σας διακομιστή."
-
-#: src/view/com/auth/server-input/index.tsx:149
-msgid "Bluesky is an open network where you can choose your own provider. If you're new here, we recommend sticking with the default Bluesky Social option."
-msgstr ""
-
-#: src/components/ProgressGuide/List.tsx:53
-#: src/components/ProgressGuide/List.tsx:70
-msgid "Bluesky is better with friends!"
-msgstr "Το Bluesky είναι καλύτερο με φίλους!"
-
 #: src/screens/Takendown.tsx:217
 msgid "Bluesky Social Terms of Service"
 msgstr ""
 
-#: src/components/StarterPack/ProfileStarterPacks.tsx:298
+#: src/components/StarterPack/ProfileStarterPacks.tsx:303
 msgid "Bluesky will choose a set of recommended accounts from people in your network."
 msgstr "Το Bluesky θα επιλέξει μια σειρά από προτεινόμενους λογαριασμούς από άτομα στο δίκτυό σας."
 
@@ -1169,28 +1232,28 @@ msgstr "Θόλωμα εικόνων"
 msgid "Blur images and filter from feeds"
 msgstr "Θολώστε εικόνες και φιλτράρετε από τις ροές"
 
-#: src/screens/Onboarding/index.tsx:30
-#: src/screens/Onboarding/state.ts:96
+#: src/screens/Onboarding/index.tsx:31
+#: src/screens/Onboarding/state.ts:108
 msgid "Books"
 msgstr "Βιβλία"
 
-#: src/components/FeedInterstitials.tsx:372
+#: src/components/FeedInterstitials.tsx:373
 msgid "Browse more accounts on the Explore page"
 msgstr "Περιηγηθείτε σε περισσότερους λογαριασμούς στην σελίδα Εξερεύνησης"
 
-#: src/components/FeedInterstitials.tsx:509
+#: src/components/FeedInterstitials.tsx:511
 msgid "Browse more feeds on the Explore page"
 msgstr "Περιηγηθείτε σε περισσότερες ροές στην σελίδα Εξερεύνησης"
 
 #: src/components/FeedInterstitials.tsx:353
 #: src/components/FeedInterstitials.tsx:356
-#: src/components/FeedInterstitials.tsx:490
-#: src/components/FeedInterstitials.tsx:493
+#: src/components/FeedInterstitials.tsx:492
+#: src/components/FeedInterstitials.tsx:495
 msgid "Browse more suggestions"
 msgstr "Περιηγηθείτε σε περισσότερες προτάσεις"
 
-#: src/components/FeedInterstitials.tsx:380
-#: src/components/FeedInterstitials.tsx:518
+#: src/components/FeedInterstitials.tsx:381
+#: src/components/FeedInterstitials.tsx:520
 msgid "Browse more suggestions on the Explore page"
 msgstr "Περιηγηθείτε σε περισσότερες προτάσεις στην σελίδα Εξερεύνησης"
 
@@ -1211,16 +1274,27 @@ msgstr ""
 msgid "Browse starter pack {displayName}"
 msgstr ""
 
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:89
+msgid "Browse topic {0}"
+msgstr ""
+
 #: src/components/TrendingTopics.tsx:232
 msgid "Browse topic {displayName}"
 msgstr ""
 
-#: src/view/com/auth/SplashScreen.web.tsx:168
+#: src/view/com/auth/SplashScreen.web.tsx:172
 msgid "Business"
 msgstr "Επιχειρήσεις"
 
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:234
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:241
+msgid "Buy"
+msgstr ""
+
 #: src/components/LabelingServiceCard/index.tsx:62
 #: src/components/moderation/ReportDialog/index.tsx:672
+#: src/screens/Search/components/StarterPackCard.tsx:106
+#: src/screens/Search/Explore.tsx:810
 msgid "By {0}"
 msgstr "Από {0}"
 
@@ -1240,16 +1314,27 @@ msgstr "Δημιουργώντας λογαριασμό συμφωνείτε μ�
 msgid "By creating an account you agree to the <0>Terms of Service</0>."
 msgstr "Δημιουργώντας λογαριασμό συμφωνείτε με τους <0>Όρους Χρήσης</0>."
 
+#: src/screens/Search/components/StarterPackCard.tsx:105
+msgid "By you"
+msgstr ""
+
 #: src/view/com/composer/photos/OpenCameraBtn.tsx:72
 msgid "Camera"
 msgstr "Κάμερα"
 
-#: src/components/Menu/index.tsx:304
+#: src/components/Menu/index.tsx:306
 #: src/components/Prompt.tsx:130
 #: src/components/Prompt.tsx:132
 #: src/screens/Deactivated.tsx:158
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:133
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:141
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:244
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:247
 #: src/screens/Profile/Header/EditProfileDialog.tsx:220
 #: src/screens/Profile/Header/EditProfileDialog.tsx:228
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:121
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:129
+#: src/screens/Search/Shell.tsx:349
 #: src/screens/Settings/AppIconSettings/index.tsx:44
 #: src/screens/Settings/AppIconSettings/index.tsx:225
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:76
@@ -1257,7 +1342,9 @@ msgstr "Κάμερα"
 #: src/screens/Settings/Settings.tsx:260
 #: src/screens/Takendown.tsx:99
 #: src/screens/Takendown.tsx:102
-#: src/view/com/composer/Composer.tsx:931
+#: src/screens/Xmtp/index.tsx:217
+#: src/view/com/composer/Composer.tsx:937
+#: src/view/com/composer/Composer.tsx:948
 #: src/view/com/modals/ChangeEmail.tsx:213
 #: src/view/com/modals/ChangeEmail.tsx:215
 #: src/view/com/modals/ChangePassword.tsx:279
@@ -1272,8 +1359,7 @@ msgstr "Κάμερα"
 #: src/view/com/modals/VerifyEmail.tsx:255
 #: src/view/com/modals/VerifyEmail.tsx:261
 #: src/view/com/util/post-ctrls/RepostButton.tsx:213
-#: src/view/screens/Search/Search.tsx:890
-#: src/view/shell/desktop/LeftNav.tsx:208
+#: src/view/shell/desktop/LeftNav.tsx:209
 msgid "Cancel"
 msgstr "Ακύρωση"
 
@@ -1305,8 +1391,8 @@ msgstr "Ακύρωση αναδημοσίευσης"
 msgid "Cancel reactivation and sign out"
 msgstr ""
 
+#: src/screens/Search/Shell.tsx:341
 #: src/view/com/modals/ListAddRemoveUsers.tsx:88
-#: src/view/screens/Search/Search.tsx:882
 msgid "Cancel search"
 msgstr "Ακύρωση αναζήτησης"
 
@@ -1392,13 +1478,15 @@ msgid "Changes app icon"
 msgstr ""
 
 #: src/components/forms/HostingProvider.tsx:50
-#: src/components/forms/HostingProvider.tsx:70
+#: src/components/forms/HostingProvider.tsx:68
 msgid "Changes hosting provider"
 msgstr ""
 
-#: src/Navigation.tsx:408
+#: src/Navigation.tsx:430
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:243
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:246
 #: src/view/shell/bottom-bar/BottomBar.tsx:205
-#: src/view/shell/desktop/LeftNav.tsx:534
+#: src/view/shell/desktop/LeftNav.tsx:535
 #: src/view/shell/Drawer.tsx:422
 msgid "Chat"
 msgstr "Συνομιλία"
@@ -1414,20 +1502,19 @@ msgctxt "toast"
 msgid "Chat muted"
 msgstr "Σίγαση συνομιλίας"
 
-#: src/Navigation.tsx:418
+#: src/Navigation.tsx:440
 #: src/screens/Messages/components/InboxPreview.tsx:24
 msgid "Chat request inbox"
 msgstr ""
 
 #: src/screens/Messages/components/InboxPreview.tsx:64
-#: src/screens/Messages/Inbox.tsx:77
+#: src/screens/Messages/Inbox.tsx:83
 msgid "Chat requests"
 msgstr ""
 
 #: src/components/dms/ConvoMenu.tsx:75
-#: src/components/dms/MessageMenu.tsx:83
-#: src/Navigation.tsx:413
-#: src/screens/Messages/ChatList.tsx:328
+#: src/Navigation.tsx:435
+#: src/screens/Messages/ChatList.tsx:341
 msgid "Chat settings"
 msgstr "Ρυθμίσεις συνομιλίας"
 
@@ -1440,8 +1527,8 @@ msgctxt "toast"
 msgid "Chat unmuted"
 msgstr "Αφαίρεση σίγασης συνομιλίας"
 
-#: src/screens/Messages/ChatList.tsx:344
-#: src/screens/Messages/ChatList.tsx:368
+#: src/screens/Messages/ChatList.tsx:357
+#: src/screens/Messages/ChatList.tsx:381
 msgid "Chats"
 msgstr ""
 
@@ -1450,7 +1537,7 @@ msgstr ""
 msgid "Check my status"
 msgstr "Έλεγχος κατάστασης"
 
-#: src/screens/Login/LoginForm.tsx:301
+#: src/screens/Login/LoginForm.tsx:417
 msgid "Check your email for a sign in code and enter it here."
 msgstr ""
 
@@ -1466,21 +1553,25 @@ msgstr "Επιλέξτε μέθοδο επαλήθευσης domain"
 msgid "Choose Feeds"
 msgstr "Επιλέξτε Ροές"
 
-#: src/components/StarterPack/ProfileStarterPacks.tsx:306
+#: src/components/StarterPack/ProfileStarterPacks.tsx:311
 msgid "Choose for me"
 msgstr "Επιλέξτε για μένα"
+
+#: src/screens/Signup/StepInfo/index.tsx:247
+msgid "Choose how to sign in"
+msgstr ""
 
 #: src/screens/StarterPack/Wizard/index.tsx:190
 msgid "Choose People"
 msgstr "Επιλέξτε Άτομα"
 
-#: src/view/com/composer/labels/LabelsBtn.tsx:115
-msgid "Choose self-labels that are applicable for the media you are posting. If none are selected, this post is suitable for all audiences."
-msgstr "Επιλέξτε αυτο-ετικέτες που ισχύουν για τα μέσα που δημοσιεύετε. Εάν δεν επιλεγεί καμία, αυτή η ανάρτηση είναι κατάλληλη για όλα τα κοινά."
-
 #: src/screens/Onboarding/StepFinished.tsx:298
 msgid "Choose the algorithms that power your custom feeds."
 msgstr "Επιλέξτε τους αλγορίθμους που τροφοδοτούν τις προσαρμοσμένες ροές σας."
+
+#: src/screens/Login/LoginForm.tsx:219
+msgid "Choose the wallet you used to create your account"
+msgstr ""
 
 #: src/screens/Onboarding/StepProfile/AvatarCreatorItems.tsx:107
 msgid "Choose this color as your avatar"
@@ -1491,16 +1582,27 @@ msgid "Choose your account provider"
 msgstr ""
 
 #: src/view/screens/Feeds.tsx:728
-#: src/view/screens/Search/Explore.tsx:427
 msgid "Choose your own timeline! Feeds built by the community help you find content you love."
 msgstr ""
 
-#: src/screens/Signup/StepInfo/index.tsx:238
-msgid "Choose your password"
-msgstr "Επιλέξτε τον κωδικό σας"
-
-#: src/screens/Signup/index.tsx:146
+#: src/screens/Signup/index.tsx:160
 msgid "Choose your username"
+msgstr ""
+
+#: src/screens/Onboarding/StepEns/index.tsx:185
+msgid "Claim {ensSubdomain}"
+msgstr ""
+
+#: src/screens/Onboarding/StepEns/index.tsx:188
+msgid "Claim ENS"
+msgstr ""
+
+#: src/screens/Onboarding/StepEns/index.tsx:120
+msgid "Claim your ENS subdomain"
+msgstr ""
+
+#: src/screens/Onboarding/StepEns/index.tsx:188
+msgid "Claiming..."
 msgstr ""
 
 #: src/screens/Settings/Settings.tsx:351
@@ -1531,11 +1633,11 @@ msgstr "Κάντε κλικ για να ενεργοποιήσετε τις αν
 msgid "Click to open tag menu for {tag}"
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:241
+#: src/components/dms/MessageItem.tsx:317
 msgid "Click to retry failed message"
 msgstr "Κάντε κλικ για να επαναλάβετε το αποτυχημένο μήνυμα"
 
-#: src/screens/Onboarding/index.tsx:32
+#: src/screens/Onboarding/index.tsx:33
 msgid "Climate"
 msgstr "Κλίμα"
 
@@ -1546,11 +1648,12 @@ msgstr ""
 #: src/components/dialogs/GifSelect.tsx:281
 #: src/components/dialogs/VerifyEmailDialog.tsx:289
 #: src/components/dms/dialogs/SearchablePeopleList.tsx:269
+#: src/components/dms/EmojiPopup.android.tsx:58
 #: src/components/dms/ReportDialog.tsx:381
 #: src/components/dms/ReportDialog.tsx:390
 #: src/components/NewskieDialog.tsx:146
 #: src/components/NewskieDialog.tsx:153
-#: src/components/ProgressGuide/FollowDialog.tsx:429
+#: src/components/ProgressGuide/FollowDialog.tsx:385
 #: src/components/StarterPack/Wizard/WizardEditListDialog.tsx:117
 #: src/components/StarterPack/Wizard/WizardEditListDialog.tsx:123
 #: src/view/com/modals/ChangePassword.tsx:279
@@ -1597,13 +1700,23 @@ msgstr "Κλείσιμο εικόνας"
 msgid "Close image viewer"
 msgstr "Κλείσιμο προγράμματος προβολής εικόνας"
 
-#: src/components/Menu/index.tsx:298
+#: src/components/ContextMenu/Backdrop.ios.tsx:53
+#: src/components/ContextMenu/Backdrop.ios.tsx:79
+#: src/components/ContextMenu/Backdrop.tsx:45
+msgid "Close menu"
+msgstr ""
+
+#: src/components/Menu/index.tsx:300
 msgid "Close this dialog"
 msgstr "Κλείσιμο αυτού του διαλόγου"
 
 #: src/screens/Login/PasswordUpdatedForm.tsx:32
 msgid "Closes password update alert"
 msgstr "Κλείνει την ειδοποίηση ενημέρωσης κωδικού πρόσβασης"
+
+#: src/view/com/composer/Composer.tsx:945
+msgid "Closes post composer and discards post draft"
+msgstr ""
 
 #: src/view/com/composer/text-input/web/EmojiPicker.web.tsx:138
 #: src/view/com/composer/text-input/web/EmojiPicker.web.tsx:174
@@ -1631,17 +1744,17 @@ msgstr "Λειτουργία χρώματος"
 msgid "Color theme"
 msgstr ""
 
-#: src/screens/Onboarding/index.tsx:38
-#: src/screens/Onboarding/state.ts:97
+#: src/screens/Onboarding/index.tsx:39
+#: src/screens/Onboarding/state.ts:109
 msgid "Comedy"
 msgstr "Κωμωδία"
 
-#: src/screens/Onboarding/index.tsx:24
-#: src/screens/Onboarding/state.ts:98
+#: src/screens/Onboarding/index.tsx:25
+#: src/screens/Onboarding/state.ts:110
 msgid "Comics"
 msgstr "Κόμικς"
 
-#: src/Navigation.tsx:301
+#: src/Navigation.tsx:315
 #: src/view/screens/CommunityGuidelines.tsx:34
 msgid "Community Guidelines"
 msgstr "Οδηγίες Κοινότητας"
@@ -1650,23 +1763,23 @@ msgstr "Οδηγίες Κοινότητας"
 msgid "Complete onboarding and start using your account"
 msgstr "Ολοκληρώστε την εισαγωγή και ξεκινήστε να χρησιμοποιείτε τον λογαριασμό σας"
 
-#: src/screens/Signup/index.tsx:148
+#: src/screens/Signup/index.tsx:162
 msgid "Complete the challenge"
 msgstr "Ολοκλήρωση της πρόκλησης"
 
-#: src/view/shell/desktop/LeftNav.tsx:499
+#: src/view/shell/desktop/LeftNav.tsx:500
 msgid "Compose new post"
 msgstr "Σύνταξη νέας ανάρτησης"
 
-#: src/view/com/composer/Composer.tsx:834
-msgid "Compose posts up to {MAX_GRAPHEME_LENGTH} characters in length"
-msgstr "Σύνταξη αναρτήσεων έως {MAX_GRAPHEME_LENGTH} χαρακτήρες σε μήκος"
+#: src/view/com/composer/Composer.tsx:846
+msgid "Compose posts up to {0, plural, other {# characters}} in length"
+msgstr ""
 
 #: src/view/com/post-thread/PostThreadComposePrompt.tsx:34
 msgid "Compose reply"
 msgstr "Σύνταξη απάντησης"
 
-#: src/view/com/composer/Composer.tsx:1652
+#: src/view/com/composer/Composer.tsx:1689
 msgid "Compressing video..."
 msgstr "Συμπίεση βίντεο..."
 
@@ -1703,6 +1816,10 @@ msgstr "Επιβεβαίωση ρυθμίσεων γλώσσας περιεχο�
 msgid "Confirm delete account"
 msgstr "Επιβεβαίωση διαγραφής λογαριασμού"
 
+#: src/screens/Signup/StepInfo/index.tsx:522
+msgid "Confirm Password"
+msgstr ""
+
 #: src/screens/Moderation/index.tsx:303
 msgid "Confirm your age:"
 msgstr "Επιβεβαιώστε την ηλικία σας:"
@@ -1711,8 +1828,12 @@ msgstr "Επιβεβαιώστε την ηλικία σας:"
 msgid "Confirm your birthdate"
 msgstr "Επιβεβαιώστε την ημερομηνία γέννησής σας"
 
+#: src/screens/Signup/StepInfo/index.tsx:531
+msgid "Confirm your password"
+msgstr ""
+
 #: src/components/dialogs/VerifyEmailDialog.tsx:214
-#: src/screens/Login/LoginForm.tsx:274
+#: src/screens/Login/LoginForm.tsx:390
 #: src/screens/Settings/components/DisableEmail2FADialog.tsx:144
 #: src/screens/Settings/components/DisableEmail2FADialog.tsx:150
 #: src/view/com/modals/ChangeEmail.tsx:152
@@ -1726,16 +1847,24 @@ msgstr "Κωδικός επιβεβαίωσης"
 msgid "Confirmation Code"
 msgstr "Κωδικός Επιβεβαίωσης"
 
-#: src/screens/Login/LoginForm.tsx:337
+#: src/screens/Login/LoginWallet.tsx:57
+msgid "Connect or create Base Account"
+msgstr ""
+
+#: src/screens/Signup/StepInfo/index.tsx:367
+msgid "Connect or create your crypto wallet"
+msgstr ""
+
+#: src/screens/Login/LoginForm.tsx:453
 msgid "Connecting..."
 msgstr "Σύνδεση..."
 
-#: src/screens/Signup/index.tsx:179
-#: src/screens/Signup/index.tsx:182
+#: src/screens/Signup/index.tsx:193
+#: src/screens/Signup/index.tsx:196
 msgid "Contact support"
 msgstr "Επικοινωνία με την υποστήριξη"
 
-#: src/screens/Settings/ContentAndMediaSettings.tsx:50
+#: src/screens/Settings/ContentAndMediaSettings.tsx:51
 msgid "Content & Media"
 msgstr ""
 
@@ -1745,7 +1874,7 @@ msgstr ""
 msgid "Content and media"
 msgstr "Περιεχόμενο και μέσα"
 
-#: src/Navigation.tsx:375
+#: src/Navigation.tsx:389
 msgid "Content and Media"
 msgstr "Περιεχόμενο και Μέσα"
 
@@ -1757,7 +1886,7 @@ msgstr "Αποκλεισμένο Περιεχόμενο"
 msgid "Content filters"
 msgstr "Φίλτρα περιεχομένου"
 
-#: src/screens/Search/components/ExploreRecommendations.tsx:57
+#: src/screens/Search/modules/ExploreRecommendations.tsx:59
 msgid "Content from across the network we think you might like."
 msgstr ""
 
@@ -1782,7 +1911,7 @@ msgstr "Προειδοποίηση Περιεχομένου"
 msgid "Content warnings"
 msgstr "Προειδοποιήσεις περιεχομένου"
 
-#: src/components/Menu/index.web.tsx:83
+#: src/components/Menu/index.web.tsx:85
 msgid "Context menu backdrop, click to close the menu."
 msgstr "Φόντο μενού περιβάλλοντος, κάντε κλικ για να κλείσετε το μενού."
 
@@ -1811,11 +1940,11 @@ msgctxt "toast"
 msgid "Conversation deleted"
 msgstr "Διαγραμμένη συνομιλία"
 
-#: src/screens/Messages/components/ChatListItem.tsx:189
+#: src/screens/Messages/components/ChatListItem.tsx:191
 msgid "Conversation deleted"
 msgstr "Διαγραμμένη συνομιλία"
 
-#: src/screens/Onboarding/index.tsx:41
+#: src/screens/Onboarding/index.tsx:42
 msgid "Cooking"
 msgstr "Μαγειρική"
 
@@ -1827,7 +1956,7 @@ msgstr "Αντιγράφηκε"
 msgid "Copied build version to clipboard"
 msgstr "Η έκδοση build αντιγράφηκε στο πρόχειρο"
 
-#: src/components/dms/MessageMenu.tsx:57
+#: src/components/dms/MessageContextMenu.tsx:55
 #: src/lib/sharing.ts:25
 #: src/lib/sharing.ts:41
 #: src/view/com/modals/InviteCodes.tsx:153
@@ -1886,7 +2015,7 @@ msgstr "Αντιγραφή συνδέσμου"
 msgid "Copy Link"
 msgstr "Αντιγραφή Συνδέσμου"
 
-#: src/view/screens/ProfileList.tsx:506
+#: src/view/screens/ProfileList.tsx:505
 msgid "Copy link to list"
 msgstr "Αντιγραφή συνδέσμου στη λίστα"
 
@@ -1895,8 +2024,8 @@ msgstr "Αντιγραφή συνδέσμου στη λίστα"
 msgid "Copy link to post"
 msgstr "Αντιγραφή συνδέσμου στην ανάρτηση"
 
-#: src/components/dms/MessageMenu.tsx:112
-#: src/components/dms/MessageMenu.tsx:114
+#: src/components/dms/MessageContextMenu.tsx:139
+#: src/components/dms/MessageContextMenu.tsx:142
 msgid "Copy message text"
 msgstr "Αντιγραφή κειμένου μηνύματος"
 
@@ -1918,7 +2047,7 @@ msgstr "Αντιγραφή QR κώδικα"
 msgid "Copy TXT record value"
 msgstr "Αντιγραφή τιμής εγγραφής TXT"
 
-#: src/Navigation.tsx:306
+#: src/Navigation.tsx:320
 #: src/view/screens/CopyrightPolicy.tsx:31
 msgid "Copyright Policy"
 msgstr "Πολιτική Πνευματικών Δικαιωμάτων"
@@ -1932,7 +2061,7 @@ msgstr "Δεν ήταν δυνατή η αποχώρηση από τη συνο�
 msgid "Could not load feed"
 msgstr "Δεν ήταν δυνατή η φόρτωση της ροής"
 
-#: src/view/screens/ProfileList.tsx:1022
+#: src/view/screens/ProfileList.tsx:1021
 msgid "Could not load list"
 msgstr "Δεν ήταν δυνατή η φόρτωση της λίστας"
 
@@ -1944,26 +2073,32 @@ msgstr "Δεν ήταν δυνατή η σίγαση της συνομιλίας
 msgid "Could not process your video"
 msgstr "Δεν ήταν δυνατή η επεξεργασία του βίντεο σας"
 
-#: src/components/StarterPack/ProfileStarterPacks.tsx:288
+#: src/components/StarterPack/ProfileStarterPacks.tsx:293
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:151
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:165
 msgid "Create"
 msgstr "Δημιουργία"
+
+#: src/screens/Signup/StepInfo/index.tsx:513
+msgid "Create a password"
+msgstr ""
 
 #: src/components/StarterPack/QrCodeDialog.tsx:159
 msgid "Create a QR code for a starter pack"
 msgstr "Δημιουργία QR κώδικα για ένα starter pack"
 
-#: src/components/StarterPack/ProfileStarterPacks.tsx:173
-#: src/components/StarterPack/ProfileStarterPacks.tsx:269
-#: src/Navigation.tsx:443
+#: src/components/StarterPack/ProfileStarterPacks.tsx:178
+#: src/components/StarterPack/ProfileStarterPacks.tsx:274
+#: src/Navigation.tsx:465
 msgid "Create a starter pack"
 msgstr "Δημιουργία starter pack"
 
-#: src/components/StarterPack/ProfileStarterPacks.tsx:250
+#: src/components/StarterPack/ProfileStarterPacks.tsx:255
 msgid "Create a starter pack for me"
 msgstr "Δημιουργία starter pack για μένα"
 
 #: src/view/com/auth/SplashScreen.tsx:55
-#: src/view/com/auth/SplashScreen.web.tsx:117
+#: src/view/com/auth/SplashScreen.web.tsx:121
 #: src/view/shell/bottom-bar/BottomBar.tsx:315
 #: src/view/shell/bottom-bar/BottomBar.tsx:320
 #: src/view/shell/bottom-bar/BottomBarWeb.tsx:199
@@ -1973,7 +2108,7 @@ msgstr "Δημιουργία starter pack για μένα"
 msgid "Create account"
 msgstr "Εγγραφή"
 
-#: src/screens/Signup/index.tsx:94
+#: src/screens/Signup/index.tsx:108
 msgid "Create Account"
 msgstr "Δημιουργία Λογαριασμού"
 
@@ -1982,34 +2117,72 @@ msgstr "Δημιουργία Λογαριασμού"
 msgid "Create an account"
 msgstr "Δημιουργία λογαριασμού"
 
+#: src/screens/StarterPack/StarterPackLandingScreen.tsx:303
+#: src/screens/StarterPack/StarterPackLandingScreen.tsx:310
+msgid "Create an account without using this starter pack"
+msgstr ""
+
 #: src/screens/Onboarding/StepProfile/index.tsx:292
 msgid "Create an avatar instead"
 msgstr "Δημιουργήστε μια εικόνα προφίλ εωαλλακτικά"
 
-#: src/components/StarterPack/ProfileStarterPacks.tsx:180
+#: src/components/StarterPack/ProfileStarterPacks.tsx:185
 msgid "Create another"
 msgstr "Δημιουργία άλλου"
 
 #: src/view/com/auth/SplashScreen.tsx:47
-#: src/view/com/auth/SplashScreen.web.tsx:109
+#: src/view/com/auth/SplashScreen.web.tsx:113
 msgid "Create new account"
 msgstr "Δημιουργία νέου λογαριασμού"
+
+#: src/view/com/auth/SplashScreen.web.tsx:103
+msgid "Create onchain"
+msgstr ""
 
 #: src/components/moderation/ReportDialog/index.tsx:574
 #: src/components/ReportDialog/SelectReportOptionView.tsx:99
 msgid "Create report for {0}"
 msgstr "Δημιουργία αναφοράς για {0}"
 
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:176
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:182
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:230
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:233
+msgid "Create Token"
+msgstr ""
+
 #: src/screens/Settings/AppPasswords.tsx:174
 msgid "Created {0}"
 msgstr "Δημιουργήθηκε {0}"
+
+#: src/view/com/auth/server-input/index.tsx:136
+#: src/view/com/auth/server-input/index.tsx:137
+msgid "Creaton"
+msgstr ""
+
+#: src/view/com/auth/server-input/index.tsx:149
+msgid "Creaton is an open network where you can choose your own provider. If you're new here, we recommend sticking with the default Creaton Social option."
+msgstr ""
+
+#: src/components/ProgressGuide/List.tsx:53
+#: src/components/ProgressGuide/List.tsx:70
+msgid "Creaton is better with friends!"
+msgstr ""
+
+#: src/view/com/auth/server-input/index.tsx:212
+msgid "Creaton uses AT Protocol where you can choose your hosting provider. If you're a developer, you can host your own server."
+msgstr ""
 
 #: src/screens/List/ListHiddenScreen.tsx:127
 msgid "Creator has been blocked"
 msgstr ""
 
-#: src/screens/Onboarding/index.tsx:26
-#: src/screens/Onboarding/state.ts:99
+#: src/screens/Signup/StepInfo/index.tsx:395
+msgid "Crypto Wallet"
+msgstr ""
+
+#: src/screens/Onboarding/index.tsx:27
+#: src/screens/Onboarding/state.ts:111
 msgid "Culture"
 msgstr "Πολιτισμός"
 
@@ -2050,7 +2223,7 @@ msgstr "Σκοτεινή λειτουργία"
 msgid "Dark theme"
 msgstr "Σκοτεινό θέμα"
 
-#: src/screens/Signup/StepInfo/index.tsx:266
+#: src/screens/Signup/StepInfo/index.tsx:554
 msgid "Date of birth"
 msgstr "Ημερομηνία γέννησης"
 
@@ -2076,14 +2249,14 @@ msgstr "Προεπιλογή"
 msgid "Default icons"
 msgstr ""
 
-#: src/components/dms/MessageMenu.tsx:154
+#: src/components/dms/MessageContextMenu.tsx:180
 #: src/screens/Messages/components/ChatStatusInfo.tsx:55
 #: src/screens/Settings/AppPasswords.tsx:212
-#: src/screens/StarterPack/StarterPackScreen.tsx:591
-#: src/screens/StarterPack/StarterPackScreen.tsx:669
-#: src/screens/StarterPack/StarterPackScreen.tsx:741
+#: src/screens/StarterPack/StarterPackScreen.tsx:594
+#: src/screens/StarterPack/StarterPackScreen.tsx:672
+#: src/screens/StarterPack/StarterPackScreen.tsx:744
 #: src/view/com/util/forms/PostDropdownBtnMenuItems.tsx:750
-#: src/view/screens/ProfileList.tsx:761
+#: src/view/screens/ProfileList.tsx:760
 msgid "Delete"
 msgstr "Διαγραφή"
 
@@ -2124,19 +2297,19 @@ msgstr ""
 msgid "Delete Conversation"
 msgstr ""
 
-#: src/components/dms/MessageMenu.tsx:126
+#: src/components/dms/MessageContextMenu.tsx:153
 msgid "Delete for me"
 msgstr "Διαγραφή για μένα"
 
-#: src/view/screens/ProfileList.tsx:549
-msgid "Delete List"
-msgstr "Διαγραφή Λίστας"
+#: src/view/screens/ProfileList.tsx:548
+msgid "Delete list"
+msgstr ""
 
-#: src/components/dms/MessageMenu.tsx:150
+#: src/components/dms/MessageContextMenu.tsx:176
 msgid "Delete message"
 msgstr "Διαγραφή μηνύματος"
 
-#: src/components/dms/MessageMenu.tsx:124
+#: src/components/dms/MessageContextMenu.tsx:151
 msgid "Delete message for me"
 msgstr "Διαγραφή μηνύματος για μένα"
 
@@ -2144,22 +2317,22 @@ msgstr "Διαγραφή μηνύματος για μένα"
 msgid "Delete my account"
 msgstr "Διαγραφή του λογαριασμού μου"
 
-#: src/view/com/composer/Composer.tsx:842
+#: src/view/com/composer/Composer.tsx:856
 #: src/view/com/util/forms/PostDropdownBtnMenuItems.tsx:709
 #: src/view/com/util/forms/PostDropdownBtnMenuItems.tsx:711
 msgid "Delete post"
 msgstr "Διαγραφή ανάρτησης"
 
-#: src/screens/StarterPack/StarterPackScreen.tsx:585
-#: src/screens/StarterPack/StarterPackScreen.tsx:732
+#: src/screens/StarterPack/StarterPackScreen.tsx:588
+#: src/screens/StarterPack/StarterPackScreen.tsx:735
 msgid "Delete starter pack"
 msgstr "Διαγραφή starter pack"
 
-#: src/screens/StarterPack/StarterPackScreen.tsx:635
+#: src/screens/StarterPack/StarterPackScreen.tsx:638
 msgid "Delete starter pack?"
 msgstr "Διαγραφή starter pack;"
 
-#: src/view/screens/ProfileList.tsx:756
+#: src/view/screens/ProfileList.tsx:755
 msgid "Delete this list?"
 msgstr "Διαγραφή αυτής της λίστας;"
 
@@ -2180,7 +2353,7 @@ msgstr "Διαγραμμένος Λογαριασμός"
 msgid "Deleted post."
 msgstr "Διαγραμμένη ανάρτηση."
 
-#: src/screens/Profile/Header/EditProfileDialog.tsx:344
+#: src/screens/Profile/Header/EditProfileDialog.tsx:347
 #: src/view/com/modals/CreateOrEditList.tsx:280
 #: src/view/com/modals/CreateOrEditList.tsx:301
 #: src/view/com/modals/EditProfile.tsx:193
@@ -2188,13 +2361,13 @@ msgstr "Διαγραμμένη ανάρτηση."
 msgid "Description"
 msgstr "Περιγραφή"
 
-#: src/screens/Profile/Header/EditProfileDialog.tsx:364
+#: src/screens/Profile/Header/EditProfileDialog.tsx:367
 msgid "Description is too long"
 msgstr "Η περιγραφή είναι πολύ μεγάλη"
 
-#: src/screens/Profile/Header/EditProfileDialog.tsx:365
-msgid "Description is too long. The maximum number of characters is {DESCRIPTION_MAX_GRAPHEMES}."
-msgstr "Η περιγραφή είναι πολύ μεγάλη. Ο μέγιστος αριθμός χαρακτήρων είναι {DESCRIPTION_MAX_GRAPHEMES}."
+#: src/screens/Profile/Header/EditProfileDialog.tsx:368
+msgid "Description is too long. {DESCRIPTION_MAX_GRAPHEMES, plural, other {The maximum number of characters is #.}}"
+msgstr ""
 
 #: src/view/com/composer/GifAltText.tsx:150
 #: src/view/com/composer/photos/ImageAltTextDialog.tsx:114
@@ -2233,6 +2406,10 @@ msgstr "Διάλογος: ρυθμίστε ποιοι μπορούν να αλλ
 msgid "Dim"
 msgstr "Ντιμαρισμένο"
 
+#: src/screens/Xmtp/ConversationsListItem.tsx:56
+msgid "Direct Message"
+msgstr ""
+
 #: src/screens/Settings/components/DisableEmail2FADialog.tsx:89
 msgid "Disable Email 2FA"
 msgstr "Απενεργοποίηση Email 2FA"
@@ -2256,8 +2433,8 @@ msgid "Disabled"
 msgstr "Απενεργοποιημένο"
 
 #: src/screens/Profile/Header/EditProfileDialog.tsx:84
-#: src/view/com/composer/Composer.tsx:696
-#: src/view/com/composer/Composer.tsx:875
+#: src/view/com/composer/Composer.tsx:705
+#: src/view/com/composer/Composer.tsx:889
 msgid "Discard"
 msgstr "Απόρριψη"
 
@@ -2265,27 +2442,31 @@ msgstr "Απόρριψη"
 msgid "Discard changes?"
 msgstr "Απόρριψη αλλαγών;"
 
-#: src/view/com/composer/Composer.tsx:693
+#: src/view/com/composer/Composer.tsx:702
 msgid "Discard draft?"
 msgstr "Απόρριψη προσχεδίου;"
 
-#: src/view/com/composer/Composer.tsx:867
+#: src/view/com/composer/Composer.tsx:881
 msgid "Discard post?"
 msgstr "Απόρριψη ανάρτησης;"
+
+#: src/screens/Login/LoginWallet.tsx:41
+msgid "Disconnect Wallet"
+msgstr ""
 
 #: src/screens/Settings/components/PwiOptOut.tsx:87
 #: src/screens/Settings/components/PwiOptOut.tsx:91
 msgid "Discourage apps from showing my account to logged-out users"
 msgstr "Αποθάρρυνση των εφαρμογών από την εμφάνιση του λογαριασμού μου σε χρήστες που δεν έχουν συνδεθεί"
 
+#: src/screens/Search/Explore.tsx:406
+msgid "Discover Feeds"
+msgstr ""
+
 #: src/view/com/posts/FollowingEmptyState.tsx:70
 #: src/view/com/posts/FollowingEndOfFeed.tsx:71
 msgid "Discover new custom feeds"
 msgstr "Ανακαλύψτε νέες προσαρμοσμένες ροές"
-
-#: src/view/screens/Search/Explore.tsx:425
-msgid "Discover new feeds"
-msgstr "Ανακαλύψτε νέες ροές"
 
 #: src/view/screens/Feeds.tsx:725
 msgid "Discover New Feeds"
@@ -2295,13 +2476,17 @@ msgstr "Ανακαλύψτε Νέες Ροές"
 msgid "Dismiss"
 msgstr "Απόρριψη"
 
-#: src/view/com/composer/Composer.tsx:1576
+#: src/view/com/composer/Composer.tsx:1613
 msgid "Dismiss error"
 msgstr "Απόρριψη σφάλματος"
 
 #: src/components/ProgressGuide/List.tsx:42
 msgid "Dismiss getting started guide"
 msgstr "Απόρριψη οδηγού Starter Pack"
+
+#: src/screens/Search/modules/ExploreInterestsCard.tsx:43
+msgid "Dismiss interests"
+msgstr ""
 
 #: src/components/interstitials/TrendingVideos.tsx:92
 msgid "Dismiss this section"
@@ -2314,7 +2499,7 @@ msgstr "Εμφάνιση μεγαλύτερων ετικετών εναλλακ�
 
 #: src/screens/Profile/Header/EditProfileDialog.tsx:314
 #: src/screens/Profile/Header/EditProfileDialog.tsx:320
-#: src/screens/Profile/Header/EditProfileDialog.tsx:351
+#: src/screens/Profile/Header/EditProfileDialog.tsx:354
 #: src/view/com/modals/EditProfile.tsx:187
 msgid "Display name"
 msgstr "Εμφανιζόμενο όνομα"
@@ -2328,8 +2513,8 @@ msgid "Display name is too long"
 msgstr "Το όνομα προβολής είναι πολύ μεγάλο"
 
 #: src/screens/Profile/Header/EditProfileDialog.tsx:334
-msgid "Display name is too long. The maximum number of characters is {DISPLAY_NAME_MAX_GRAPHEMES}."
-msgstr "Το όνομα προβολής είναι πολύ μεγάλο. Ο μέγιστος αριθμός χαρακτήρων είναι {DISPLAY_NAME_MAX_GRAPHEMES}."
+msgid "Display name is too long. {DISPLAY_NAME_MAX_GRAPHEMES, plural, other {The maximum number of characters is #.}}"
+msgstr ""
 
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:373
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:375
@@ -2344,7 +2529,7 @@ msgstr "Μην εφαρμόσετε αυτήν την λέξη σίγασης σ
 msgid "Does not include nudity."
 msgstr "Δεν περιλαμβάνει γυμνό."
 
-#: src/screens/Signup/StepHandle.tsx:165
+#: src/screens/Signup/StepHandle.tsx:173
 msgid "Doesn't begin or end with a hyphen"
 msgstr "Δεν ξεκινάει ή τελειώνει με παύλα"
 
@@ -2363,8 +2548,8 @@ msgstr "Το domain σας επαληθεύτηκε!"
 #: src/screens/Settings/components/AddAppPasswordDialog.tsx:222
 #: src/view/com/auth/server-input/index.tsx:232
 #: src/view/com/auth/server-input/index.tsx:233
-#: src/view/com/composer/labels/LabelsBtn.tsx:224
-#: src/view/com/composer/labels/LabelsBtn.tsx:231
+#: src/view/com/composer/labels/LabelsBtn.tsx:223
+#: src/view/com/composer/labels/LabelsBtn.tsx:230
 #: src/view/com/composer/videos/SubtitleDialog.tsx:169
 #: src/view/com/composer/videos/SubtitleDialog.tsx:179
 #: src/view/com/modals/CropImage.web.tsx:112
@@ -2384,6 +2569,10 @@ msgstr "Ολοκληρώθηκε"
 #: src/view/com/modals/lang-settings/ConfirmLanguagesButton.tsx:42
 msgid "Done{extraText}"
 msgstr "Ολοκληρώθηκε{extraText}"
+
+#: src/components/dms/MessageItem.tsx:161
+msgid "Double tap or long press the message to add a reaction"
+msgstr ""
 
 #: src/components/Dialog/index.tsx:324
 msgid "Double tap to close the dialog"
@@ -2438,6 +2627,14 @@ msgstr "Π.χ. καλλιτεχνικά γυμνά."
 msgid "e.g. Great Posters"
 msgstr "π.χ. Σπουδαίες αφίσες"
 
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:215
+msgid "e.g. MCT"
+msgstr ""
+
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:199
+msgid "e.g. My Creator Token"
+msgstr ""
+
 #: src/view/com/modals/CreateOrEditList.tsx:264
 msgid "e.g. Spammers"
 msgstr "π.χ. Spammers"
@@ -2455,7 +2652,7 @@ msgid "Each code works once. You'll receive more invite codes periodically."
 msgstr "Κάθε κωδικός λειτουργεί μία φορά. Θα λαμβάνετε περισσότερους κωδικούς πρόσκλησης περιοδικά."
 
 #: src/screens/Settings/AccountSettings.tsx:112
-#: src/screens/StarterPack/StarterPackScreen.tsx:580
+#: src/screens/StarterPack/StarterPackScreen.tsx:583
 #: src/screens/StarterPack/Wizard/index.tsx:534
 #: src/screens/StarterPack/Wizard/index.tsx:541
 msgid "Edit"
@@ -2466,7 +2663,7 @@ msgctxt "action"
 msgid "Edit"
 msgstr "Επεξεργασία"
 
-#: src/view/com/util/UserAvatar.tsx:344
+#: src/view/com/util/UserAvatar.tsx:363
 #: src/view/com/util/UserBanner.tsx:95
 msgid "Edit avatar"
 msgstr "Επεξεργασία εικόνας προφίλ"
@@ -2486,7 +2683,12 @@ msgstr "Επεξεργασία εικόνας"
 msgid "Edit interaction settings"
 msgstr "Επεξεργασία ρυθμίσεων αλληλεπίδρασης"
 
-#: src/view/screens/ProfileList.tsx:537
+#: src/screens/Search/modules/ExploreInterestsCard.tsx:98
+#: src/screens/Search/modules/ExploreInterestsCard.tsx:105
+msgid "Edit interests"
+msgstr ""
+
+#: src/view/screens/ProfileList.tsx:536
 msgid "Edit list details"
 msgstr "Επεξεργασία λεπτομερειών λίστας"
 
@@ -2494,7 +2696,7 @@ msgstr "Επεξεργασία λεπτομερειών λίστας"
 msgid "Edit Moderation List"
 msgstr "Επεξεργασία λίστας διαχείρισης"
 
-#: src/Navigation.tsx:316
+#: src/Navigation.tsx:330
 #: src/view/screens/Feeds.tsx:515
 msgid "Edit My Feeds"
 msgstr "Επεξεργασία των ροών μου"
@@ -2515,16 +2717,16 @@ msgstr "Επεξεργασία ρυθμίσεων αλληλεπίδρασης �
 #: src/screens/Profile/Header/EditProfileDialog.tsx:269
 #: src/screens/Profile/Header/EditProfileDialog.tsx:275
 #: src/screens/Profile/Header/ProfileHeaderLabeler.tsx:196
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:179
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:297
 msgid "Edit profile"
 msgstr "Επεξεργασία προφίλ"
 
 #: src/screens/Profile/Header/ProfileHeaderLabeler.tsx:199
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:182
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:300
 msgid "Edit Profile"
 msgstr "Επεξεργασία προφίλ"
 
-#: src/screens/StarterPack/StarterPackScreen.tsx:572
+#: src/screens/StarterPack/StarterPackScreen.tsx:575
 msgid "Edit starter pack"
 msgstr "Επεξεργασία starter pack"
 
@@ -2544,12 +2746,12 @@ msgstr "Επεξεργασία του ονόματος προβολής σας"
 msgid "Edit your profile description"
 msgstr "Επεξεργασία της περιγραφής του προφίλ σας"
 
-#: src/Navigation.tsx:448
+#: src/Navigation.tsx:470
 msgid "Edit your starter pack"
 msgstr "Επεξεργασία του starter pack σας"
 
-#: src/screens/Onboarding/index.tsx:31
-#: src/screens/Onboarding/state.ts:101
+#: src/screens/Onboarding/index.tsx:32
+#: src/screens/Onboarding/state.ts:113
 msgid "Education"
 msgstr "Εκπαίδευση"
 
@@ -2558,7 +2760,7 @@ msgid "Either the creator of this list has blocked you or you have blocked the c
 msgstr ""
 
 #: src/screens/Settings/AccountSettings.tsx:60
-#: src/screens/Signup/StepInfo/index.tsx:190
+#: src/screens/Signup/StepInfo/index.tsx:224
 #: src/view/com/modals/ChangeEmail.tsx:136
 msgid "Email"
 msgstr ""
@@ -2657,16 +2859,16 @@ msgstr "Ενεργοποίηση υπότιτλων"
 msgid "Enable this source only"
 msgstr "Ενεργοποίηση μόνο αυτής της πηγής"
 
-#: src/screens/Settings/ContentAndMediaSettings.tsx:123
-#: src/screens/Settings/ContentAndMediaSettings.tsx:137
+#: src/screens/Settings/ContentAndMediaSettings.tsx:132
+#: src/screens/Settings/ContentAndMediaSettings.tsx:146
 msgid "Enable trending topics"
 msgstr ""
 
-#: src/screens/Settings/ContentAndMediaSettings.tsx:158
+#: src/screens/Settings/ContentAndMediaSettings.tsx:167
 msgid "Enable trending videos in your Discover feed"
 msgstr ""
 
-#: src/screens/Settings/ContentAndMediaSettings.tsx:144
+#: src/screens/Settings/ContentAndMediaSettings.tsx:153
 msgid "Enable trending videos in your Discover feed."
 msgstr ""
 
@@ -2693,6 +2895,10 @@ msgstr "Εισάγετε έναν κωδικό πρόσβασης"
 msgid "Enter a word or tag"
 msgstr "Εισάγετε μια λέξη ή ετικέτα"
 
+#: src/screens/Xmtp/index.tsx:159
+msgid "Enter an Ethereum address or inbox ID to start a new conversation"
+msgstr ""
+
 #: src/components/dialogs/VerifyEmailDialog.tsx:89
 msgid "Enter Code"
 msgstr "Εισάγετε κωδικό"
@@ -2717,12 +2923,16 @@ msgstr "Εισάγετε το domain που θέλετε να χρησιμοπο
 msgid "Enter the email you used to create your account. We'll send you a \"reset code\" so you can set a new password."
 msgstr "Εισάγετε το email που χρησιμοποιήσατε για τη δημιουργία του λογαριασμού σας. Θα σας στείλουμε έναν “κωδικό επαναφοράς” για να ορίσετε νέο κωδικό πρόσβασης."
 
+#: src/screens/Login/LoginForm.tsx:332
+msgid "Enter the username or email address you used when you created your account"
+msgstr ""
+
 #: src/components/dialogs/BirthDateSettings.tsx:104
 msgid "Enter your birth date"
 msgstr "Εισάγετε την ημερομηνία γέννησης σας"
 
 #: src/screens/Login/ForgotPasswordForm.tsx:99
-#: src/screens/Signup/StepInfo/index.tsx:210
+#: src/screens/Signup/StepInfo/index.tsx:236
 msgid "Enter your email address"
 msgstr "Εισάγετε την διεύθυνση email σας"
 
@@ -2734,11 +2944,11 @@ msgstr "Εισάγετε το νέο σας email παραπάνω"
 msgid "Enter your new email address below."
 msgstr "Εισάγετε τη νέα σας διεύθυνση email παρακάτω."
 
-#: src/screens/Login/LoginForm.tsx:243
+#: src/screens/Login/LoginForm.tsx:358
 msgid "Enter your password"
 msgstr ""
 
-#: src/screens/Login/index.tsx:123
+#: src/screens/Login/index.tsx:149
 msgid "Enter your username and password"
 msgstr "Εισάγετε το όνομα χρήστη και τον κωδικό πρόσβασης σας"
 
@@ -2746,23 +2956,39 @@ msgstr "Εισάγετε το όνομα χρήστη και τον κωδικό
 msgid "Enters full screen"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1661
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:235
+msgid "Entertainment"
+msgstr ""
+
+#: src/view/com/composer/Composer.tsx:1698
 #: src/view/com/util/error/ErrorScreen.tsx:42
 msgid "Error"
 msgstr "Σφάλμα"
+
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:103
+msgctxt "toast"
+msgid "Error deploying token"
+msgstr ""
 
 #: src/screens/Settings/components/ExportCarDialog.tsx:47
 msgid "Error occurred while saving file"
 msgstr "Παρουσιάστηκε σφάλμα κατά την αποθήκευση του αρχείου"
 
-#: src/screens/Signup/StepCaptcha/index.tsx:56
+#: src/screens/Signup/StepCaptcha/index.tsx:55
 msgid "Error receiving captcha response."
 msgstr "Σφάλμα λήψης απάντησης captcha."
 
 #: src/screens/Onboarding/StepInterests/index.tsx:183
-#: src/view/screens/Search/Search.tsx:114
 msgid "Error:"
 msgstr "Σφάλμα:"
+
+#: src/screens/Search/SearchResults.tsx:131
+msgid "Error: {error}"
+msgstr ""
+
+#: src/screens/Signup/StepInfo/index.tsx:281
+msgid "Ethereum Wallet"
+msgstr ""
 
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:394
 msgid "Everybody"
@@ -2870,6 +3096,13 @@ msgstr "Γυμνό ή ενδεχομένως ενοχλητικό μέσο."
 msgid "Explicit sexual images."
 msgstr "Γυμνές σεξουαλικές εικόνες."
 
+#: src/Navigation.tsx:656
+#: src/screens/Search/Shell.tsx:307
+#: src/view/shell/desktop/LeftNav.tsx:617
+#: src/view/shell/Drawer.tsx:370
+msgid "Explore"
+msgstr ""
+
 #: src/screens/Settings/AccountSettings.tsx:137
 #: src/screens/Settings/AccountSettings.tsx:141
 msgid "Export my data"
@@ -2879,8 +3112,8 @@ msgstr "Εξαγωγή των δεδομένων μου"
 msgid "Export My Data"
 msgstr "Εξαγωγή των δεδομένων μου"
 
-#: src/screens/Settings/ContentAndMediaSettings.tsx:83
-#: src/screens/Settings/ContentAndMediaSettings.tsx:86
+#: src/screens/Settings/ContentAndMediaSettings.tsx:84
+#: src/screens/Settings/ContentAndMediaSettings.tsx:87
 msgid "External media"
 msgstr "Εξωτερικό μέσο"
 
@@ -2894,7 +3127,7 @@ msgstr "Εξωτερικό μέσο"
 msgid "External media may allow websites to collect information about you and your device. No information is sent or requested until you press the \"play\" button."
 msgstr "Τα εξωτερικά μέσα ενδέχεται να επιτρέπουν σε ιστοσελίδες να συλλέγουν πληροφορίες για εσάς και τη συσκευή σας. Καμία πληροφορία δεν αποστέλλεται ή ζητείται μέχρι να πατήσετε το κουμπί \"αναπαραγωγή\"."
 
-#: src/Navigation.tsx:335
+#: src/Navigation.tsx:349
 #: src/screens/Settings/ExternalMediaPreferences.tsx:31
 msgid "External Media Preferences"
 msgstr "Προτιμήσεις εξωτερικού μέσου"
@@ -2904,9 +3137,18 @@ msgctxt "toast"
 msgid "Failed to accept chat"
 msgstr ""
 
+#: src/components/dms/ActionsWrapper.web.tsx:67
+#: src/components/dms/MessageContextMenu.tsx:93
+msgid "Failed to add emoji reaction"
+msgstr ""
+
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:568
 msgid "Failed to change handle. Please try again."
 msgstr "Απέτυχε η αλλαγή του ονόματος χρήστη. Παρακαλώ δοκιμάστε ξανά."
+
+#: src/screens/Onboarding/StepEns/index.tsx:101
+msgid "Failed to claim subdomain. Please try again."
+msgstr ""
 
 #: src/screens/Settings/components/AddAppPasswordDialog.tsx:173
 msgid "Failed to create app password. Please try again."
@@ -2931,7 +3173,7 @@ msgctxt "toast"
 msgid "Failed to delete chat"
 msgstr ""
 
-#: src/components/dms/MessageMenu.tsx:75
+#: src/components/dms/MessageContextMenu.tsx:73
 msgid "Failed to delete message"
 msgstr "Απέτυχε η διαγραφή μηνύματος"
 
@@ -2939,17 +3181,17 @@ msgstr "Απέτυχε η διαγραφή μηνύματος"
 msgid "Failed to delete post, please try again"
 msgstr "Απέτυχε η διαγραφή ανάρτησης, παρακαλώ δοκιμάστε ξανά"
 
-#: src/screens/StarterPack/StarterPackScreen.tsx:703
+#: src/screens/StarterPack/StarterPackScreen.tsx:706
 msgid "Failed to delete starter pack"
 msgstr "Απέτυχε η διαγραφή starter pack"
 
-#: src/screens/Messages/ChatList.tsx:243
-#: src/screens/Messages/Inbox.tsx:187
+#: src/screens/Messages/ChatList.tsx:256
+#: src/screens/Messages/Inbox.tsx:193
 msgid "Failed to load conversations"
 msgstr ""
 
-#: src/view/screens/Search/Explore.tsx:463
-#: src/view/screens/Search/Explore.tsx:491
+#: src/screens/Search/Explore.tsx:445
+#: src/screens/Search/Explore.tsx:484
 msgid "Failed to load feeds preferences"
 msgstr "Απέτυχε η φόρτωση προτιμήσεων ροών"
 
@@ -2961,23 +3203,28 @@ msgstr "Απέτυχε η φόρτωση GIFs"
 msgid "Failed to load past messages"
 msgstr "Απέτυχε η φόρτωση παλαιότερων μηνυμάτων"
 
-#: src/view/screens/Search/Explore.tsx:456
-#: src/view/screens/Search/Explore.tsx:484
+#: src/screens/Search/Explore.tsx:438
+#: src/screens/Search/Explore.tsx:477
 msgid "Failed to load suggested feeds"
 msgstr "Απέτυχε η φόρτωση προτεινόμενων ροών"
 
-#: src/view/screens/Search/Explore.tsx:414
+#: src/screens/Search/Explore.tsx:347
 msgid "Failed to load suggested follows"
 msgstr "Απέτυχε η φόρτωση προτεινόμενων ακολουθιών"
 
-#: src/screens/Messages/Inbox.tsx:295
-#: src/screens/Messages/Inbox.tsx:318
+#: src/screens/Messages/Inbox.tsx:301
+#: src/screens/Messages/Inbox.tsx:324
 msgid "Failed to mark all requests as read"
 msgstr ""
 
 #: src/state/queries/pinned-post.ts:75
 msgid "Failed to pin post"
 msgstr "Απέτυχε το καρφίτσωμα ανάρτησης"
+
+#: src/components/dms/ActionsWrapper.web.tsx:61
+#: src/components/dms/MessageContextMenu.tsx:87
+msgid "Failed to remove emoji reaction"
+msgstr ""
 
 #: src/view/com/lightbox/Lightbox.tsx:46
 msgid "Failed to save image: {0}"
@@ -2991,9 +3238,18 @@ msgstr "Απέτυχε η αποθήκευση προτιμήσεων ειδοπ
 msgid "Failed to save settings. Please try again."
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:234
+#: src/screens/Settings/SettingsInterests.tsx:133
+msgctxt "toast"
+msgid "Failed to save your interests."
+msgstr ""
+
+#: src/components/dms/MessageItem.tsx:310
 msgid "Failed to send"
 msgstr "Απέτυχε η αποστολή"
+
+#: src/screens/Signup/state.ts:333
+msgid "Failed to sign message"
+msgstr ""
 
 #: src/components/moderation/LabelsOnMeDialog.tsx:254
 #: src/screens/Messages/components/ChatDisabled.tsx:87
@@ -3004,7 +3260,7 @@ msgstr "Απέτυχε η υποβολή ένστασης, παρακαλώ δο
 msgid "Failed to toggle thread mute, please try again"
 msgstr "Απέτυχε η εναλλαγή σίγασης συνομιλίας, παρακαλώ δοκιμάστε ξανά"
 
-#: src/components/FeedCard.tsx:275
+#: src/components/FeedCard.tsx:285
 msgid "Failed to update feeds"
 msgstr "Απέτυχε η ενημέρωση ροών"
 
@@ -3023,11 +3279,11 @@ msgstr "Απέτυχε η μεταφόρτωση βίντεο"
 msgid "Failed to verify handle. Please try again."
 msgstr "Απέτυχε η επαλήθευση του ονόματος χρήστη. Παρακαλώ δοκιμάστε ξανά."
 
-#: src/Navigation.tsx:251
+#: src/Navigation.tsx:265
 msgid "Feed"
 msgstr "Ροή"
 
-#: src/components/FeedCard.tsx:134
+#: src/components/FeedCard.tsx:139
 #: src/view/com/feeds/FeedSourceCard.tsx:253
 msgid "Feed by {0}"
 msgstr "Ροή από {0}"
@@ -3040,8 +3296,6 @@ msgstr ""
 msgid "Feed toggle"
 msgstr "Εναλλαγή ροής"
 
-#: src/view/shell/desktop/RightNav.tsx:97
-#: src/view/shell/desktop/RightNav.tsx:98
 #: src/view/shell/Drawer.tsx:324
 msgid "Feedback"
 msgstr "Σχόλια"
@@ -3052,13 +3306,13 @@ msgctxt "toast"
 msgid "Feedback sent!"
 msgstr "Τα σχόλια στάλθηκαν!"
 
-#: src/Navigation.tsx:428
+#: src/Navigation.tsx:450
+#: src/screens/Search/SearchResults.tsx:68
 #: src/screens/StarterPack/StarterPackScreen.tsx:185
 #: src/view/screens/Feeds.tsx:508
 #: src/view/screens/Profile.tsx:227
 #: src/view/screens/SavedFeeds.tsx:96
-#: src/view/screens/Search/Search.tsx:531
-#: src/view/shell/desktop/LeftNav.tsx:651
+#: src/view/shell/desktop/LeftNav.tsx:655
 #: src/view/shell/Drawer.tsx:486
 msgid "Feeds"
 msgstr "Ροές"
@@ -3067,13 +3321,13 @@ msgstr "Ροές"
 msgid "Feeds are custom algorithms that users build with a little coding expertise. <0/> for more information."
 msgstr "Οι ροές είναι προσαρμοσμένοι αλγόριθμοι που δημιουργούν οι χρήστες μικρής προγραμματιστικής εμπειρίας. <0/> για περισσότερες πληροφορίες."
 
-#: src/components/FeedCard.tsx:272
+#: src/components/FeedCard.tsx:282
 #: src/view/screens/SavedFeeds.tsx:82
 msgctxt "toast"
 msgid "Feeds updated!"
 msgstr "Οι ροές ενημερώθηκαν!"
 
-#: src/screens/Search/components/ExploreRecommendations.tsx:63
+#: src/screens/Search/modules/ExploreRecommendations.tsx:65
 msgid "Feeds we think you might like."
 msgstr ""
 
@@ -3089,11 +3343,11 @@ msgstr "Το αρχείο αποθηκεύτηκε με επιτυχία!"
 msgid "Filter from feeds"
 msgstr "Φίλτρο από ροές"
 
-#: src/view/screens/Search/Search.tsx:403
+#: src/screens/Search/components/SearchLanguageDropdown.tsx:97
 msgid "Filter search by language"
 msgstr ""
 
-#: src/view/screens/Search/Search.tsx:376
+#: src/screens/Search/components/SearchLanguageDropdown.tsx:70
 msgid "Filter search by language (currently: {currentLanguageLabel})"
 msgstr ""
 
@@ -3107,13 +3361,13 @@ msgstr "Ολοκλήρωση"
 msgid "Find accounts to follow"
 msgstr "Βρείτε λογαριασμούς για να ακολουθήσετε"
 
-#: src/components/ProgressGuide/FollowDialog.tsx:78
-#: src/components/ProgressGuide/FollowDialog.tsx:88
-#: src/components/ProgressGuide/FollowDialog.tsx:417
+#: src/components/ProgressGuide/FollowDialog.tsx:77
+#: src/components/ProgressGuide/FollowDialog.tsx:87
+#: src/components/ProgressGuide/FollowDialog.tsx:373
 msgid "Find people to follow"
 msgstr ""
 
-#: src/view/screens/Search/Search.tsx:582
+#: src/screens/Search/Shell.tsx:476
 msgid "Find posts, users, and feeds on Bluesky"
 msgstr ""
 
@@ -3121,7 +3375,7 @@ msgstr ""
 msgid "Finish"
 msgstr "Τέλος"
 
-#: src/screens/Onboarding/index.tsx:35
+#: src/screens/Onboarding/index.tsx:36
 msgid "Fitness"
 msgstr "Φυσική κατάσταση"
 
@@ -3145,10 +3399,10 @@ msgid "Flexible"
 msgstr "Ευέλικτο"
 
 #. User is not following this account, click to follow
-#: src/components/ProfileCard.tsx:365
+#: src/components/ProfileCard.tsx:372
 #: src/components/ProfileHoverCard/index.web.tsx:449
 #: src/components/ProfileHoverCard/index.web.tsx:460
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:234
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:364
 #: src/screens/VideoFeed/index.tsx:829
 #: src/view/com/post-thread/PostThreadFollowBtn.tsx:131
 msgid "Follow"
@@ -3159,7 +3413,7 @@ msgctxt "action"
 msgid "Follow"
 msgstr "Ακολουθήστε"
 
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:218
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:348
 #: src/view/com/post-thread/PostThreadFollowBtn.tsx:113
 msgid "Follow {0}"
 msgstr "Ακολουθήστε {0}"
@@ -3191,7 +3445,7 @@ msgstr ""
 msgid "Follow all"
 msgstr "Ακολουθήστε τους όλους"
 
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:232
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:362
 #: src/view/com/post-thread/PostThreadFollowBtn.tsx:129
 msgid "Follow Back"
 msgstr "Κάντε follow back"
@@ -3200,10 +3454,6 @@ msgstr "Κάντε follow back"
 msgctxt "action"
 msgid "Follow Back"
 msgstr "Κάντε follow back"
-
-#: src/view/screens/Search/Explore.tsx:370
-msgid "Follow more accounts to get connected to your interests and build your network."
-msgstr "Ακολουθήστε περισσότερους λογαριασμούς για να συνδεθείτε με τα ενδιαφέροντά σας και να δημιουργήσετε το δίκτυό σας."
 
 #: src/components/KnownFollowers.tsx:234
 msgid "Followed by <0>{0}</0>"
@@ -3221,7 +3471,7 @@ msgstr "Ακολουθείται από <0>{0}</0> και <1>{1}</1>"
 msgid "Followed by <0>{0}</0>, <1>{1}</1>, and {2, plural, one {# other} other {# others}}"
 msgstr "Ακολουθείται από <0>{0}</0>, <1>{1}</1>, και {2, plural, one {# άλλον} other {# άλλους}}"
 
-#: src/Navigation.tsx:205
+#: src/Navigation.tsx:219
 msgid "Followers of @{0} that you know"
 msgstr "Ακολούθοι του/της @{0} που γνωρίζετε"
 
@@ -3231,10 +3481,10 @@ msgid "Followers you know"
 msgstr "Ακολούθοι που γνωρίζετε"
 
 #. User is following this account, click to unfollow
-#: src/components/ProfileCard.tsx:359
+#: src/components/ProfileCard.tsx:366
 #: src/components/ProfileHoverCard/index.web.tsx:448
 #: src/components/ProfileHoverCard/index.web.tsx:459
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:230
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:360
 #: src/screens/VideoFeed/index.tsx:827
 #: src/view/com/post-thread/PostThreadFollowBtn.tsx:134
 #: src/view/screens/Feeds.tsx:599
@@ -3242,8 +3492,8 @@ msgstr "Ακολούθοι που γνωρίζετε"
 msgid "Following"
 msgstr "Ακολουθείτε"
 
-#: src/components/ProfileCard.tsx:322
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:98
+#: src/components/ProfileCard.tsx:329
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:134
 msgid "Following {0}"
 msgstr "Ακολουθείτε {0}"
 
@@ -3255,17 +3505,17 @@ msgstr ""
 msgid "Following {name}"
 msgstr "Ακολουθείτε {name}"
 
-#: src/screens/Settings/ContentAndMediaSettings.tsx:75
-#: src/screens/Settings/ContentAndMediaSettings.tsx:78
+#: src/screens/Settings/ContentAndMediaSettings.tsx:76
+#: src/screens/Settings/ContentAndMediaSettings.tsx:79
 msgid "Following feed preferences"
 msgstr "Προτιμήσεις της ροής Ακολουθείτε"
 
-#: src/Navigation.tsx:322
+#: src/Navigation.tsx:336
 #: src/screens/Settings/FollowingFeedPreferences.tsx:53
 msgid "Following Feed Preferences"
 msgstr "Προτιμήσεις της ροής Ακολουθείτε"
 
-#: src/screens/Profile/Header/Handle.tsx:32
+#: src/screens/Profile/Header/Handle.tsx:49
 msgid "Follows you"
 msgstr "Σας ακολουθεί"
 
@@ -3281,8 +3531,8 @@ msgstr "Γραμματοσειρά"
 msgid "Font size"
 msgstr "Μέγεθος γραμματοσειράς"
 
-#: src/screens/Onboarding/index.tsx:40
-#: src/screens/Onboarding/state.ts:102
+#: src/screens/Onboarding/index.tsx:41
+#: src/screens/Onboarding/state.ts:114
 msgid "Food"
 msgstr "Φαγητό"
 
@@ -3298,20 +3548,24 @@ msgstr "Για λόγους ασφαλείας, δεν θα μπορείτε ν�
 msgid "For the best experience, we recommend using the theme font."
 msgstr "Για την καλύτερη εμπειρία, σας προτείνουμε να χρησιμοποιήσετε τη γραμματοσειρά του θέματος."
 
+#: src/screens/Search/modules/ExploreSuggestedAccounts.tsx:87
+msgid "For You"
+msgstr ""
+
 #: src/components/dialogs/MutedWords.tsx:178
 msgid "Forever"
 msgstr "Για πάντα"
 
-#: src/screens/Login/index.tsx:153
-#: src/screens/Login/index.tsx:168
+#: src/screens/Login/index.tsx:180
+#: src/screens/Login/index.tsx:195
 msgid "Forgot Password"
 msgstr "Ξεχάσατε τον κωδικό σας?"
 
-#: src/screens/Login/LoginForm.tsx:248
+#: src/screens/Login/LoginForm.tsx:363
 msgid "Forgot password?"
 msgstr "Ξεχάσατε τον κωδικό σας;"
 
-#: src/screens/Login/LoginForm.tsx:259
+#: src/screens/Login/LoginForm.tsx:374
 msgid "Forgot?"
 msgstr "Ξεχάσατε;"
 
@@ -3333,7 +3587,7 @@ msgstr "Από <0/>"
 msgid "Gallery"
 msgstr "Εικόνες"
 
-#: src/components/StarterPack/ProfileStarterPacks.tsx:295
+#: src/components/StarterPack/ProfileStarterPacks.tsx:300
 msgid "Generate a starter pack"
 msgstr "Δημιουργήστε ένα starter pack"
 
@@ -3345,6 +3599,10 @@ msgstr "Λάβετε βοήθεια"
 #: src/view/com/modals/VerifyEmail.tsx:199
 msgid "Get Started"
 msgstr "Ξεκινήστε"
+
+#: src/screens/Onboarding/StepEns/index.tsx:124
+msgid "Get your own creaton.eth subdomain to make receiving payments and messages easier."
+msgstr ""
 
 #: src/components/ProgressGuide/List.tsx:35
 msgid "Getting started"
@@ -3363,17 +3621,17 @@ msgstr "Δώστε στο προφίλ σας ένα πρόσωπο"
 msgid "Glaring violations of law or terms of service"
 msgstr "Φανοφανείς παραβιάσεις του νόμου ή των όρων παροχής υπηρεσιών"
 
-#: src/components/Layout/Header/index.tsx:126
+#: src/components/Layout/Header/index.tsx:127
 #: src/components/moderation/ScreenHider.tsx:154
 #: src/components/moderation/ScreenHider.tsx:163
-#: src/screens/Messages/Inbox.tsx:228
+#: src/screens/Messages/Inbox.tsx:234
 #: src/screens/Profile/ProfileFeed/index.tsx:89
 #: src/screens/VideoFeed/components/Header.tsx:163
 #: src/screens/VideoFeed/index.tsx:1108
 #: src/screens/VideoFeed/index.tsx:1112
 #: src/view/com/auth/LoggedOut.tsx:72
 #: src/view/screens/NotFound.tsx:57
-#: src/view/screens/ProfileList.tsx:1031
+#: src/view/screens/ProfileList.tsx:1030
 msgid "Go back"
 msgstr "Πίσω"
 
@@ -3382,9 +3640,9 @@ msgstr "Πίσω"
 #: src/screens/Profile/ErrorState.tsx:62
 #: src/screens/Profile/ErrorState.tsx:66
 #: src/screens/Profile/ProfileFeed/index.tsx:94
-#: src/screens/StarterPack/StarterPackScreen.tsx:754
+#: src/screens/StarterPack/StarterPackScreen.tsx:757
 #: src/view/screens/NotFound.tsx:56
-#: src/view/screens/ProfileList.tsx:1036
+#: src/view/screens/ProfileList.tsx:1035
 msgid "Go Back"
 msgstr "Πίσω"
 
@@ -3405,7 +3663,7 @@ msgstr "Αρχική"
 msgid "Go Home"
 msgstr "Αρχική"
 
-#: src/screens/Messages/components/ChatListItem.tsx:294
+#: src/screens/Messages/components/ChatListItem.tsx:355
 msgid "Go to conversation with {0}"
 msgstr "Μετάβαση στην συνομιλία με {0}"
 
@@ -3424,10 +3682,14 @@ msgstr "Προφίλ χρήστη"
 
 #: src/lib/moderation/useGlobalLabelStrings.ts:46
 #: src/lib/moderation/useGlobalLabelStrings.ts:50
-#: src/view/com/composer/labels/LabelsBtn.tsx:202
-#: src/view/com/composer/labels/LabelsBtn.tsx:205
+#: src/view/com/composer/labels/LabelsBtn.tsx:201
+#: src/view/com/composer/labels/LabelsBtn.tsx:204
 msgid "Graphic Media"
 msgstr "Εικονικά μέσα"
+
+#: src/screens/Xmtp/ConversationsListItem.tsx:62
+msgid "Group Chat"
+msgstr ""
 
 #: src/state/shell/progress-guide.tsx:218
 #: src/state/shell/progress-guide.tsx:228
@@ -3461,7 +3723,7 @@ msgstr "Απτικές αντιδράσεις"
 msgid "Harassment, trolling, or intolerance"
 msgstr "Παρενοχλήσεις, τρολάρισμα ή μισαλλοδοξία"
 
-#: src/Navigation.tsx:398
+#: src/Navigation.tsx:420
 msgid "Hashtag"
 msgstr ""
 
@@ -3469,14 +3731,12 @@ msgstr ""
 msgid "Hashtag {tag}"
 msgstr ""
 
-#: src/screens/Signup/index.tsx:177
+#: src/screens/Signup/index.tsx:191
 msgid "Having trouble?"
 msgstr "Έχετε πρόβλημα;"
 
 #: src/screens/Settings/Settings.tsx:207
 #: src/screens/Settings/Settings.tsx:211
-#: src/view/shell/desktop/RightNav.tsx:115
-#: src/view/shell/desktop/RightNav.tsx:116
 #: src/view/shell/Drawer.tsx:337
 msgid "Help"
 msgstr "Βοήθεια"
@@ -3506,12 +3766,11 @@ msgstr "Κρυφή λίστα"
 #: src/components/interstitials/TrendingVideos.tsx:140
 #: src/components/moderation/ContentHider.tsx:200
 #: src/components/moderation/LabelPreference.tsx:135
-#: src/components/moderation/PostHider.tsx:122
+#: src/components/moderation/PostHider.tsx:124
 #: src/lib/moderation/useLabelBehaviorDescription.ts:15
 #: src/lib/moderation/useLabelBehaviorDescription.ts:20
 #: src/lib/moderation/useLabelBehaviorDescription.ts:25
 #: src/lib/moderation/useLabelBehaviorDescription.ts:30
-#: src/screens/Search/components/ExploreTrendingTopics.tsx:137
 #: src/view/com/util/forms/PostDropdownBtnMenuItems.tsx:761
 #: src/view/shell/desktop/SidebarTrendingTopics.tsx:110
 msgid "Hide"
@@ -3541,6 +3800,10 @@ msgstr "Απόκρυψη απάντησης για όλους"
 msgid "Hide reply for me"
 msgstr "Απόκρυψη απάντησης για μένα"
 
+#: src/screens/Search/modules/ExploreInterestsCard.tsx:110
+msgid "Hide this card"
+msgstr ""
+
 #: src/view/com/util/forms/PostDropdownBtnMenuItems.tsx:756
 msgid "Hide this post?"
 msgstr "Απόκρυψη αυτής της ανάρτησης;"
@@ -3551,13 +3814,11 @@ msgid "Hide this reply?"
 msgstr "Απόκρυψη αυτής της απάντησης;"
 
 #: src/components/interstitials/Trending.tsx:113
-#: src/screens/Search/components/ExploreTrendingTopics.tsx:83
 #: src/view/shell/desktop/SidebarTrendingTopics.tsx:62
 msgid "Hide trending topics"
 msgstr ""
 
 #: src/components/interstitials/Trending.tsx:129
-#: src/screens/Search/components/ExploreTrendingTopics.tsx:135
 #: src/view/shell/desktop/SidebarTrendingTopics.tsx:108
 msgid "Hide trending topics?"
 msgstr ""
@@ -3607,10 +3868,14 @@ msgstr "Χμμμ, δεν καταφέραμε να φορτώσουμε αυτή
 msgid "Hold up! We’re gradually giving access to video, and you’re still waiting in line. Check back soon!"
 msgstr "Περιμένετε! Δίνουμε σταδιακά πρόσβαση στο βίντεο και εσείς περιμένετε στην ουρά. Ελέγξτε ξανά σύντομα!"
 
-#: src/Navigation.tsx:627
-#: src/Navigation.tsx:647
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:215
+msgid "Holder Count"
+msgstr ""
+
+#: src/Navigation.tsx:651
+#: src/Navigation.tsx:671
 #: src/view/shell/bottom-bar/BottomBar.tsx:162
-#: src/view/shell/desktop/LeftNav.tsx:595
+#: src/view/shell/desktop/LeftNav.tsx:599
 #: src/view/shell/Drawer.tsx:396
 msgid "Home"
 msgstr "Αρχική"
@@ -3620,14 +3885,19 @@ msgid "Host:"
 msgstr "Διεύθυνση:"
 
 #: src/screens/Login/ForgotPasswordForm.tsx:83
-#: src/screens/Login/LoginForm.tsx:184
+#: src/screens/Login/LoginForm.tsx:296
+#: src/screens/Signup/StepInfo/index.tsx:173
 msgid "Hosting provider"
 msgstr "Πάροχος φιλοξενίας"
 
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:190
+msgid "Hot"
+msgstr ""
+
 #: src/screens/Settings/ThreadPreferences.tsx:67
 #: src/screens/Settings/ThreadPreferences.tsx:70
-#: src/view/com/post-thread/PostThread.tsx:656
-#: src/view/com/post-thread/PostThread.tsx:661
+#: src/view/com/post-thread/PostThread.tsx:655
+#: src/view/com/post-thread/PostThread.tsx:660
 msgid "Hot replies first"
 msgstr ""
 
@@ -3664,11 +3934,11 @@ msgstr "Κατανοώ"
 msgid "If alt text is long, toggles alt text expanded state"
 msgstr "Εάν το εναλλακτικό κείμενο είναι μακρύ, ενεργοποιεί/απενεργοποιεί το επεκταμένο εναλλακτικό κείμενο"
 
-#: src/screens/Signup/StepInfo/Policies.tsx:110
+#: src/screens/Signup/StepInfo/Policies.tsx:112
 msgid "If you are not yet an adult according to the laws of your country, your parent or legal guardian must read these Terms on your behalf."
 msgstr "Εάν δεν είστε ακόμη ενήλικας σύμφωνα με τους νόμους της χώρας σας, ο γονέας ή ο νόμιμος κηδεμόνας σας πρέπει να διαβάσει αυτούς τους Όρους εκ μέρους σας."
 
-#: src/view/screens/ProfileList.tsx:758
+#: src/view/screens/ProfileList.tsx:757
 msgid "If you delete this list, you won't be able to recover it."
 msgstr "Εάν διαγράψετε αυτήν τη λίστα, δεν θα μπορείτε να την ανακτήσετε."
 
@@ -3679,6 +3949,10 @@ msgstr ""
 #: src/view/com/util/forms/PostDropdownBtnMenuItems.tsx:747
 msgid "If you remove this post, you won't be able to recover it."
 msgstr "Εάν καταργήσετε αυτήν την ανάρτηση, δεν θα μπορείτε να την ανακτήσετε."
+
+#: src/screens/Login/LoginForm.tsx:225
+msgid "If you used a password, click on \"Use password instead\""
+msgstr ""
 
 #: src/view/com/modals/ChangePassword.tsx:160
 msgid "If you want to change your password, we will send you a code to verify that this is your account."
@@ -3721,11 +3995,11 @@ msgid "Inappropriate messages or explicit links"
 msgstr "Ανάρμοστα μηνύματα ή ακατάλληλοι σύνδεσμοι"
 
 #. Title message shown in chat requests inbox when it's empty
-#: src/screens/Messages/Inbox.tsx:208
+#: src/screens/Messages/Inbox.tsx:214
 msgid "Inbox zero!"
 msgstr ""
 
-#: src/screens/Login/LoginForm.tsx:164
+#: src/screens/Login/LoginForm.tsx:174
 msgid "Incorrect username or password"
 msgstr "Μη έγκυρο όνομα χρήστη ή κωδικός πρόσβασης"
 
@@ -3745,13 +4019,9 @@ msgstr "Εισαγάγετε νέο κωδικό πρόσβασης"
 msgid "Input password for account deletion"
 msgstr "Εισαγάγετε τον κωδικό πρόσβασης για διαγραφή λογαριασμού"
 
-#: src/screens/Login/LoginForm.tsx:289
+#: src/screens/Login/LoginForm.tsx:405
 msgid "Input the code which has been emailed to you"
 msgstr "Εισαγάγετε τον κωδικό που σας στάλθηκε μέσω email"
-
-#: src/screens/Login/LoginForm.tsx:218
-msgid "Input the username or email address you used at signup"
-msgstr "Εισαγάγετε το όνομα χρήστη ή τη διεύθυνση email που χρησιμοποιήσατε κατά την εγγραφή"
 
 #: src/view/com/composer/threadgate/ThreadgateBtn.tsx:49
 msgid "Interaction limited"
@@ -3761,7 +4031,7 @@ msgstr "Περιορισμένη αλληλεπίδραση"
 msgid "Interaction settings"
 msgstr ""
 
-#: src/screens/Login/LoginForm.tsx:156
+#: src/screens/Login/LoginForm.tsx:166
 #: src/screens/Settings/components/DisableEmail2FADialog.tsx:70
 msgid "Invalid 2FA confirmation code."
 msgstr "Μη έγκυρος κωδικός επιβεβαίωσης 2FA."
@@ -3786,11 +4056,7 @@ msgstr "Μη έγκυρος κωδικός επαλήθευσης"
 msgid "Invite a Friend"
 msgstr "Προσκαλέστε έναν φίλο"
 
-#: src/screens/Signup/StepInfo/index.tsx:160
-msgid "Invite code"
-msgstr "Κωδικός πρόσκλησης"
-
-#: src/screens/Signup/state.ts:276
+#: src/screens/Signup/state.ts:371
 msgid "Invite code not accepted. Check that you input it correctly and try again."
 msgstr "Ο κωδικός πρόσκλησης δεν έγινε δεκτός. Βεβαιωθείτε ότι τον εισάγατε σωστά και δοκιμάστε ξανά."
 
@@ -3814,7 +4080,11 @@ msgstr "Προσκαλέστε τους φίλους σας να ακολουθ�
 msgid "Invites, but personal"
 msgstr "Προσκλήσεις, αλλά προσωπικές"
 
-#: src/screens/Signup/StepInfo/index.tsx:286
+#: src/screens/Signup/StepInfo/index.tsx:91
+msgid "It looks like you may have entered your email address incorrectly. Are you sure it's right?"
+msgstr ""
+
+#: src/screens/Signup/StepInfo/index.tsx:573
 msgid "It's correct"
 msgstr "Είναι σωστό"
 
@@ -3822,12 +4092,12 @@ msgstr "Είναι σωστό"
 msgid "It's just you right now! Add more people to your starter pack by searching above."
 msgstr "Είστε μόνοι σας αυτή τη στιγμή! Προσθέστε περισσότερους ανθρώπους στο starter pack σας κάνοντας αναζήτηση παραπάνω."
 
-#: src/view/com/composer/Composer.tsx:1595
+#: src/view/com/composer/Composer.tsx:1632
 msgid "Job ID: {0}"
 msgstr "ID εργασίας: {0}"
 
 #. Link to a page with job openings at Bluesky
-#: src/view/com/auth/SplashScreen.web.tsx:178
+#: src/view/com/auth/SplashScreen.web.tsx:182
 msgid "Jobs"
 msgstr "Εργασίες"
 
@@ -3843,8 +4113,8 @@ msgstr "Εγγραφείτε στο Bluesky"
 msgid "Join the conversation"
 msgstr "Συμμετάσχετε στη συζήτηση"
 
-#: src/screens/Onboarding/index.tsx:21
-#: src/screens/Onboarding/state.ts:104
+#: src/screens/Onboarding/index.tsx:22
+#: src/screens/Onboarding/state.ts:116
 msgid "Journalism"
 msgstr "Δημοσιογραφία"
 
@@ -3881,7 +4151,7 @@ msgstr "Οι Ετικέτες στο περιεχόμενό σας"
 msgid "Language selection"
 msgstr "Επιλογή γλώσσας"
 
-#: src/Navigation.tsx:178
+#: src/Navigation.tsx:192
 msgid "Language Settings"
 msgstr "Ρυθμίσεις γλώσσας"
 
@@ -3896,8 +4166,8 @@ msgid "Larger"
 msgstr "Μεγαλύτερο"
 
 #: src/screens/Hashtag.tsx:95
+#: src/screens/Search/SearchResults.tsx:52
 #: src/screens/Topic.tsx:77
-#: src/view/screens/Search/Search.tsx:515
 msgid "Latest"
 msgstr "Πιο πρόσφατα"
 
@@ -3909,7 +4179,7 @@ msgstr "μαθετε περισσότερα"
 msgid "Learn More"
 msgstr "Μάθετε περισσότερα"
 
-#: src/view/com/auth/SplashScreen.web.tsx:166
+#: src/view/com/auth/SplashScreen.web.tsx:170
 msgid "Learn more about Bluesky"
 msgstr "Μάθετε περισσότερα για το Bluesky"
 
@@ -3969,12 +4239,12 @@ msgstr "Αποχώρηση από το Bluesky"
 msgid "left to go."
 msgstr "απομένουν."
 
-#: src/components/StarterPack/ProfileStarterPacks.tsx:311
+#: src/components/StarterPack/ProfileStarterPacks.tsx:316
 msgid "Let me choose"
 msgstr "Αφήστε με να διαλέξω"
 
-#: src/screens/Login/index.tsx:154
-#: src/screens/Login/index.tsx:169
+#: src/screens/Login/index.tsx:181
+#: src/screens/Login/index.tsx:196
 msgid "Let's get your password reset!"
 msgstr "Ας επαναφέρουμε τον κωδικό σας!"
 
@@ -4019,8 +4289,8 @@ msgid "Like this labeler"
 msgstr ""
 
 #: src/components/LikesDialog.tsx:85
-#: src/Navigation.tsx:256
-#: src/Navigation.tsx:261
+#: src/Navigation.tsx:270
+#: src/Navigation.tsx:275
 msgid "Liked by"
 msgstr "\"Μου αρέσει\" από"
 
@@ -4030,7 +4300,7 @@ msgstr "\"Μου αρέσει\" από"
 msgid "Liked By"
 msgstr "\"Μου αρέσει\" από"
 
-#: src/components/FeedCard.tsx:213
+#: src/components/FeedCard.tsx:218
 #: src/view/com/feeds/FeedSourceCard.tsx:303
 msgid "Liked by {0, plural, one {# user} other {# users}}"
 msgstr ""
@@ -4050,12 +4320,12 @@ msgstr "\"Μου αρέσει\""
 msgid "Likes on this post"
 msgstr "\"Μου αρέσει\" σε αυτήν την ανάρτηση"
 
-#: src/view/com/post-thread/PostThread.tsx:630
-#: src/view/com/post-thread/PostThread.tsx:635
+#: src/view/com/post-thread/PostThread.tsx:629
+#: src/view/com/post-thread/PostThread.tsx:634
 msgid "Linear"
 msgstr ""
 
-#: src/Navigation.tsx:211
+#: src/Navigation.tsx:225
 msgid "List"
 msgstr "Λίστα"
 
@@ -4063,7 +4333,7 @@ msgstr "Λίστα"
 msgid "List Avatar"
 msgstr "Εικόνα λίστας"
 
-#: src/view/screens/ProfileList.tsx:431
+#: src/view/screens/ProfileList.tsx:430
 msgctxt "toast"
 msgid "List blocked"
 msgstr "Λίστα μπλοκαρισμένη"
@@ -4081,7 +4351,7 @@ msgstr ""
 msgid "List by you"
 msgstr ""
 
-#: src/view/screens/ProfileList.tsx:478
+#: src/view/screens/ProfileList.tsx:477
 msgctxt "toast"
 msgid "List deleted"
 msgstr "Λίστα διαγραμμένη"
@@ -4090,11 +4360,11 @@ msgstr "Λίστα διαγραμμένη"
 msgid "List has been hidden"
 msgstr "Η λίστα έχει κρυφτεί"
 
-#: src/view/screens/ProfileList.tsx:173
+#: src/view/screens/ProfileList.tsx:172
 msgid "List Hidden"
 msgstr "Λίστα κρυφή"
 
-#: src/view/screens/ProfileList.tsx:395
+#: src/view/screens/ProfileList.tsx:394
 msgctxt "toast"
 msgid "List muted"
 msgstr "Λίστα σε σίγαση"
@@ -4103,21 +4373,21 @@ msgstr "Λίστα σε σίγαση"
 msgid "List Name"
 msgstr "Όνομα λίστας"
 
-#: src/view/screens/ProfileList.tsx:449
+#: src/view/screens/ProfileList.tsx:448
 msgctxt "toast"
 msgid "List unblocked"
 msgstr "Λίστα ξεμπλοκαρισμένη"
 
-#: src/view/screens/ProfileList.tsx:413
+#: src/view/screens/ProfileList.tsx:412
 msgctxt "toast"
 msgid "List unmuted"
 msgstr "Λίστα αφαίρεση σίγασης"
 
-#: src/Navigation.tsx:140
+#: src/Navigation.tsx:154
 #: src/view/screens/Lists.tsx:62
 #: src/view/screens/Profile.tsx:221
 #: src/view/screens/Profile.tsx:229
-#: src/view/shell/desktop/LeftNav.tsx:669
+#: src/view/shell/desktop/LeftNav.tsx:673
 #: src/view/shell/Drawer.tsx:501
 msgid "Lists"
 msgstr "Λίστες"
@@ -4126,17 +4396,13 @@ msgstr "Λίστες"
 msgid "Lists blocking this user:"
 msgstr "Λίστες που μπλοκάρουν αυτόν τον χρήστη:"
 
-#: src/view/screens/Search/Explore.tsx:135
+#: src/screens/Search/Explore.tsx:82
 msgid "Load more"
 msgstr "Φόρτωση περισσότερων"
 
-#: src/view/screens/Search/Explore.tsx:224
+#: src/screens/Search/Explore.tsx:466
 msgid "Load more suggested feeds"
 msgstr "Φόρτωση περισσότερων προτεινόμενων ροών"
-
-#: src/view/screens/Search/Explore.tsx:222
-msgid "Load more suggested follows"
-msgstr "Φόρτωση περισσότερων προτεινόμενων ακολουθιών"
 
 #: src/view/screens/Notifications.tsx:270
 msgid "Load new notifications"
@@ -4145,7 +4411,7 @@ msgstr "Φόρτωση νέων ειδοποιήσεων"
 #: src/screens/Profile/ProfileFeed/index.tsx:221
 #: src/screens/Profile/Sections/Feed.tsx:98
 #: src/view/com/feeds/FeedPage.tsx:155
-#: src/view/screens/ProfileList.tsx:871
+#: src/view/screens/ProfileList.tsx:870
 msgid "Load new posts"
 msgstr "Φόρτωση νέων αναρτήσεων"
 
@@ -4153,19 +4419,23 @@ msgstr "Φόρτωση νέων αναρτήσεων"
 msgid "Loading..."
 msgstr "Φόρτωση..."
 
-#: src/Navigation.tsx:281
+#: src/Navigation.tsx:295
 msgid "Log"
 msgstr "Ημερολόγιο"
+
+#: src/screens/Login/LoginForm.tsx:484
+msgid "Log in with wallet signature"
+msgstr ""
 
 #: src/screens/Settings/PrivacyAndSecuritySettings.tsx:78
 msgid "Logged-out visibility"
 msgstr "Ορατότητα κατά την αποσύνδεση"
 
-#: src/view/shell/desktop/RightNav.tsx:125
+#: src/view/shell/desktop/RightNav.tsx:141
 msgid "Logo by @sawaratsuki.bsky.social"
 msgstr ""
 
-#: src/view/shell/desktop/RightNav.tsx:122
+#: src/view/shell/desktop/RightNav.tsx:138
 #: src/view/shell/Drawer.tsx:639
 msgid "Logo by <0>@sawaratsuki.bsky.social</0>"
 msgstr "Λογότυπο από <0>@sawaratsuki.bsky.social</0>"
@@ -4190,7 +4460,7 @@ msgstr "Φαίνεται ότι ξεκαρφώσατε όλες τις ροές 
 msgid "Looks like you're missing a following feed. <0>Click here to add one.</0>"
 msgstr "Φαίνεται ότι λείπει μια ροή που ακολουθείτε. <0>Κάντε κλικ εδώ για να προσθέσετε μια.</0>"
 
-#: src/components/StarterPack/ProfileStarterPacks.tsx:264
+#: src/components/StarterPack/ProfileStarterPacks.tsx:269
 msgid "Make one for me"
 msgstr "Φτιάξε ένα για μένα"
 
@@ -4198,8 +4468,8 @@ msgstr "Φτιάξε ένα για μένα"
 msgid "Make sure this is where you intend to go!"
 msgstr "Βεβαιωθείτε ότι αυτό είναι το μέρος που θέλετε να πάτε!"
 
-#: src/screens/Settings/ContentAndMediaSettings.tsx:59
-#: src/screens/Settings/ContentAndMediaSettings.tsx:62
+#: src/screens/Settings/ContentAndMediaSettings.tsx:60
+#: src/screens/Settings/ContentAndMediaSettings.tsx:63
 msgid "Manage saved feeds"
 msgstr "Διαχείριση αποθηκευμένων ροών"
 
@@ -4207,9 +4477,9 @@ msgstr "Διαχείριση αποθηκευμένων ροών"
 msgid "Manage your muted words and tags"
 msgstr "Διαχειριστείτε τις λέξεις και ετικέτες σας σε σίγαση"
 
-#: src/screens/Messages/Inbox.tsx:305
-#: src/screens/Messages/Inbox.tsx:324
-#: src/screens/Messages/Inbox.tsx:331
+#: src/screens/Messages/Inbox.tsx:311
+#: src/screens/Messages/Inbox.tsx:330
+#: src/screens/Messages/Inbox.tsx:337
 msgid "Mark all as read"
 msgstr ""
 
@@ -4218,16 +4488,20 @@ msgstr ""
 msgid "Mark as read"
 msgstr "Σημείωση ως ανάγνωση"
 
-#: src/screens/Messages/Inbox.tsx:292
-#: src/screens/Messages/Inbox.tsx:315
+#: src/screens/Messages/Inbox.tsx:298
+#: src/screens/Messages/Inbox.tsx:321
 msgid "Marked all as read"
+msgstr ""
+
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:177
+msgid "Market Cap"
 msgstr ""
 
 #: src/view/screens/Profile.tsx:224
 msgid "Media"
 msgstr "Μέσα"
 
-#: src/view/com/composer/labels/LabelsBtn.tsx:211
+#: src/view/com/composer/labels/LabelsBtn.tsx:210
 msgid "Media that may be disturbing or inappropriate for some audiences."
 msgstr "Μέσα που μπορεί να είναι ενοχλητικά ή ακατάλληλα για ορισμένα ακροατήρια."
 
@@ -4243,7 +4517,7 @@ msgstr "Αναφερόμενοι χρήστες"
 msgid "Mentions"
 msgstr ""
 
-#: src/components/Menu/index.tsx:103
+#: src/components/Menu/index.tsx:105
 msgid "Menu"
 msgstr "Μενού"
 
@@ -4251,14 +4525,18 @@ msgstr "Μενού"
 msgid "Message {0}"
 msgstr "Μήνυμα {0}"
 
-#: src/components/dms/MessageMenu.tsx:73
+#: src/components/dms/MessageContextMenu.tsx:71
 msgctxt "toast"
 msgid "Message deleted"
 msgstr "Το μήνυμα διαγράφηκε"
 
-#: src/screens/Messages/components/ChatListItem.tsx:190
+#: src/screens/Messages/components/ChatListItem.tsx:192
 msgid "Message deleted"
 msgstr "Το μήνυμα διαγράφηκε"
+
+#: src/components/dms/MessageContextMenu.tsx:119
+msgid "Message from @{0}: {1}"
+msgstr ""
 
 #: src/view/com/posts/PostFeedErrorMessage.tsx:201
 msgid "Message from server: {0}"
@@ -4273,7 +4551,11 @@ msgstr "Πεδίο εισαγωγής μηνύματος"
 msgid "Message is too long"
 msgstr "Το μήνυμα είναι πολύ μακρύ"
 
-#: src/Navigation.tsx:642
+#: src/components/dms/MessageContextMenu.tsx:117
+msgid "Message options"
+msgstr ""
+
+#: src/Navigation.tsx:666
 msgid "Messages"
 msgstr "Μηνύματα"
 
@@ -4292,7 +4574,7 @@ msgstr "Παραπλανητικός Λογαριασμός"
 msgid "Misleading Post"
 msgstr "Παραπλανητική Δημοσίευση"
 
-#: src/Navigation.tsx:145
+#: src/Navigation.tsx:159
 #: src/screens/Moderation/index.tsx:89
 #: src/screens/Settings/Settings.tsx:167
 #: src/screens/Settings/Settings.tsx:170
@@ -4331,7 +4613,7 @@ msgstr "Η Λίστα διαχείρισης ενημερώθηκε"
 msgid "Moderation lists"
 msgstr "Λίστες διαχείρισης"
 
-#: src/Navigation.tsx:150
+#: src/Navigation.tsx:164
 #: src/view/screens/ModerationModlists.tsx:62
 msgid "Moderation Lists"
 msgstr "Λίστες Διαχείρισης"
@@ -4340,7 +4622,7 @@ msgstr "Λίστες Διαχείρισης"
 msgid "moderation settings"
 msgstr "ρυθμίσεις διαχείρισης"
 
-#: src/Navigation.tsx:271
+#: src/Navigation.tsx:285
 msgid "Moderation states"
 msgstr "Καταστάσεις διαχείρισης"
 
@@ -4364,7 +4646,7 @@ msgstr "Περισσότερες ροές"
 
 #: src/view/com/profile/ProfileMenu.tsx:194
 #: src/view/com/profile/ProfileMenu.tsx:200
-#: src/view/screens/ProfileList.tsx:743
+#: src/view/screens/ProfileList.tsx:742
 msgid "More options"
 msgstr "Περισσότερες επιλογές"
 
@@ -4373,16 +4655,16 @@ msgid "Most-liked first"
 msgstr "Τα Πιο πολύ αγαπημένα πρώτα"
 
 #: src/screens/Settings/ThreadPreferences.tsx:91
-#: src/view/com/post-thread/PostThread.tsx:686
-#: src/view/com/post-thread/PostThread.tsx:691
+#: src/view/com/post-thread/PostThread.tsx:685
+#: src/view/com/post-thread/PostThread.tsx:690
 msgid "Most-liked replies first"
 msgstr "Πιο πολύ αγαπημένες απαντήσεις πρώτα"
 
-#: src/screens/Onboarding/state.ts:105
+#: src/screens/Onboarding/state.ts:117
 msgid "Movies"
 msgstr "Ταινίες"
 
-#: src/screens/Onboarding/state.ts:106
+#: src/screens/Onboarding/state.ts:118
 msgid "Music"
 msgstr "Μουσική"
 
@@ -4404,7 +4686,7 @@ msgstr ""
 msgid "Mute account"
 msgstr ""
 
-#: src/view/screens/ProfileList.tsx:650
+#: src/view/screens/ProfileList.tsx:649
 msgid "Mute accounts"
 msgstr "Σίγαση λογαριασμών"
 
@@ -4417,11 +4699,11 @@ msgstr "Σίγαση συνομιλίας"
 msgid "Mute in:"
 msgstr "Σίγαση σε:"
 
-#: src/view/screens/ProfileList.tsx:772
+#: src/view/screens/ProfileList.tsx:771
 msgid "Mute list"
 msgstr "Λίστα σίγασης"
 
-#: src/view/screens/ProfileList.tsx:767
+#: src/view/screens/ProfileList.tsx:766
 msgid "Mute these accounts?"
 msgstr "Σίγαση αυτών των λογαριασμών;"
 
@@ -4463,7 +4745,7 @@ msgstr "Σίγαση λέξεων & ετικετών"
 msgid "Muted accounts"
 msgstr "Λογαριασμοί σε σίγαση"
 
-#: src/Navigation.tsx:155
+#: src/Navigation.tsx:169
 #: src/view/screens/ModerationMutedAccounts.tsx:100
 msgid "Muted Accounts"
 msgstr "Λογαριασμοί σε σίγαση"
@@ -4480,7 +4762,7 @@ msgstr "Σε σίγαση από  “{0}”"
 msgid "Muted words & tags"
 msgstr "Λέξεις & ετικέτες σε σίγαση"
 
-#: src/view/screens/ProfileList.tsx:769
+#: src/view/screens/ProfileList.tsx:768
 msgid "Muting is private. Muted accounts can interact with you, but you will not see their posts or receive notifications from them."
 msgstr "Η σίγαση είναι ιδιωτική. Οι λογαριασμοί σε σίγαση μπορούν να αλληλεπιδράσουν μαζί σας, αλλά δεν θα βλέπετε τις δημοσιεύσεις τους ούτε θα λαμβάνετε ειδοποιήσεις από αυτούς."
 
@@ -4512,17 +4794,22 @@ msgstr "Απαιτείται όνομα"
 msgid "Name or Description Violates Community Standards"
 msgstr "Το όνομα ή η περιγραφή παραβιάζει τους κανόνες της κοινότητας"
 
-#: src/screens/Onboarding/index.tsx:22
-#: src/screens/Onboarding/state.ts:107
+#: src/screens/Onboarding/index.tsx:23
+#: src/screens/Onboarding/state.ts:119
 msgid "Nature"
 msgstr "Φύση"
 
 #: src/components/StarterPack/StarterPackCard.tsx:130
+#: src/components/StarterPack/StarterPackCard.tsx:161
 msgid "Navigate to {0}"
 msgstr "Μετάβαση σε {0}"
 
+#: src/components/StarterPack/StarterPackCard.tsx:131
+msgid "Navigate to starter pack"
+msgstr ""
+
 #: src/screens/Login/ForgotPasswordForm.tsx:166
-#: src/screens/Login/LoginForm.tsx:344
+#: src/screens/Login/LoginForm.tsx:492
 #: src/view/com/modals/ChangePassword.tsx:180
 msgid "Navigates to the next screen"
 msgstr "Μεταβαίνει στην επόμενη οθόνη"
@@ -4548,6 +4835,10 @@ msgstr "Μην χάσετε ποτέ την πρόσβαση στους ακόλ
 msgid "Nevermind, create a handle for me"
 msgstr "Δεν πειράζει, δημιουργήστε ένα όνομα χρήστη για μένα"
 
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:195
+msgid "New"
+msgstr ""
+
 #: src/view/screens/Lists.tsx:74
 #: src/view/screens/ModerationModlists.tsx:74
 msgctxt "action"
@@ -4555,8 +4846,10 @@ msgid "New"
 msgstr "Νέο"
 
 #: src/components/dms/dialogs/NewChatDialog.tsx:65
-#: src/screens/Messages/ChatList.tsx:351
-#: src/screens/Messages/ChatList.tsx:358
+#: src/screens/Messages/ChatList.tsx:364
+#: src/screens/Messages/ChatList.tsx:371
+#: src/screens/Xmtp/index.tsx:105
+#: src/screens/Xmtp/index.tsx:112
 msgid "New chat"
 msgstr "Νέα συνομιλία"
 
@@ -4591,8 +4884,8 @@ msgstr "Νέος Κωδικός Πρόσβασης"
 #: src/view/screens/Feeds.tsx:549
 #: src/view/screens/Notifications.tsx:165
 #: src/view/screens/Profile.tsx:507
-#: src/view/screens/ProfileList.tsx:253
-#: src/view/screens/ProfileList.tsx:286
+#: src/view/screens/ProfileList.tsx:252
+#: src/view/screens/ProfileList.tsx:285
 msgid "New post"
 msgstr "Νέα δημοσίευση"
 
@@ -4601,7 +4894,7 @@ msgctxt "action"
 msgid "New post"
 msgstr "Νέα δημοσίευση"
 
-#: src/view/shell/desktop/LeftNav.tsx:507
+#: src/view/shell/desktop/LeftNav.tsx:508
 msgctxt "action"
 msgid "New Post"
 msgstr "Νέα Δημοσίευση"
@@ -4616,20 +4909,21 @@ msgstr "Νέα λίστα χρηστών"
 
 #: src/screens/Settings/ThreadPreferences.tsx:83
 #: src/screens/Settings/ThreadPreferences.tsx:86
-#: src/view/com/post-thread/PostThread.tsx:676
-#: src/view/com/post-thread/PostThread.tsx:681
+#: src/view/com/post-thread/PostThread.tsx:675
+#: src/view/com/post-thread/PostThread.tsx:680
 msgid "Newest replies first"
 msgstr "Πιο πρόσφατες απαντήσεις πρώτα"
 
-#: src/screens/Onboarding/index.tsx:20
-#: src/screens/Onboarding/state.ts:108
+#: src/screens/Onboarding/index.tsx:21
+#: src/screens/Onboarding/state.ts:120
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:237
 msgid "News"
 msgstr "Ειδήσεις"
 
 #: src/screens/Login/ForgotPasswordForm.tsx:137
 #: src/screens/Login/ForgotPasswordForm.tsx:143
-#: src/screens/Login/LoginForm.tsx:343
-#: src/screens/Login/LoginForm.tsx:350
+#: src/screens/Login/LoginForm.tsx:491
+#: src/screens/Login/LoginForm.tsx:498
 #: src/screens/Login/SetNewPasswordForm.tsx:178
 #: src/screens/Login/SetNewPasswordForm.tsx:184
 #: src/screens/Settings/components/AddAppPasswordDialog.tsx:157
@@ -4670,13 +4964,13 @@ msgstr "Δεν βρέθηκαν ροές. Δοκιμάστε να αναζητή
 msgid "No likes yet"
 msgstr "Δεν υπάρχουν ακόμη \"Μου αρέσει\""
 
-#: src/components/ProfileCard.tsx:344
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:119
+#: src/components/ProfileCard.tsx:351
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:155
 msgid "No longer following {0}"
 msgstr "Δεν ακολουθώ πλέον τον {0}"
 
-#: src/screens/Signup/StepHandle.tsx:176
-msgid "No longer than {MAX_SERVICE_HANDLE_LENGTH} characters"
+#: src/screens/Signup/StepHandle.tsx:184
+msgid "No longer than {MAX_SERVICE_HANDLE_LENGTH, plural, other {# characters}}"
 msgstr ""
 
 #: src/screens/Messages/components/ChatListItem.tsx:134
@@ -4714,9 +5008,13 @@ msgid "No result"
 msgstr "Χωρίς αποτέλεσμα"
 
 #: src/components/dms/dialogs/SearchablePeopleList.tsx:204
-#: src/components/ProgressGuide/FollowDialog.tsx:235
+#: src/components/ProgressGuide/FollowDialog.tsx:211
 msgid "No results"
 msgstr "Χωρίς αποτελέσματα"
+
+#: src/screens/Search/Explore.tsx:677
+msgid "No results for \"{selectedInterest}\"."
+msgstr ""
 
 #: src/components/Lists.tsx:189
 msgid "No results found"
@@ -4726,10 +5024,10 @@ msgstr "Δεν βρέθηκαν αποτελέσματα"
 msgid "No results found for \"{query}\""
 msgstr "Δεν βρέθηκαν αποτελέσματα για “{query}”"
 
+#: src/screens/Search/SearchResults.tsx:248
+#: src/screens/Search/SearchResults.tsx:286
+#: src/screens/Search/SearchResults.tsx:331
 #: src/view/com/modals/ListAddRemoveUsers.tsx:128
-#: src/view/screens/Search/Search.tsx:231
-#: src/view/screens/Search/Search.tsx:269
-#: src/view/screens/Search/Search.tsx:314
 msgid "No results found for {query}"
 msgstr "Δεν βρέθηκαν αποτελέσματα για {query}"
 
@@ -4772,7 +5070,7 @@ msgstr "Μη σεξουαλικό γυμνό"
 msgid "Not followed by anyone you're following"
 msgstr ""
 
-#: src/Navigation.tsx:135
+#: src/Navigation.tsx:139
 #: src/view/screens/Profile.tsx:122
 msgid "Not Found"
 msgstr "Δεν Βρέθηκε"
@@ -4792,7 +5090,8 @@ msgstr "Σημείωση σχετικά με την κοινή χρήση"
 msgid "Note: Bluesky is an open and public network. This setting only limits the visibility of your content on the Bluesky app and website, and other apps may not respect this setting. Your content may still be shown to logged-out users by other apps and websites."
 msgstr "Σημείωση: Το Bluesky είναι ένα ανοιχτό και δημόσιο δίκτυο. Αυτή η ρύθμιση περιορίζει μόνο την ορατότητα του περιεχομένου σας στην εφαρμογή και τον ιστότοπο Bluesky, και άλλες εφαρμογές ενδέχεται να μην σεβαστούν αυτήν τη ρύθμιση. Το περιεχόμενό σας μπορεί να εξακολουθεί να εμφανίζεται σε χρήστες που δεν έχουν συνδεθεί από άλλες εφαρμογές και ιστότοπους."
 
-#: src/screens/Messages/ChatList.tsx:264
+#: src/screens/Messages/ChatList.tsx:277
+#: src/screens/Xmtp/index.tsx:123
 msgid "Nothing here"
 msgstr "Τίποτα εδώ"
 
@@ -4800,7 +5099,7 @@ msgstr "Τίποτα εδώ"
 msgid "Notification filters"
 msgstr "Φίλτρα ειδοποιήσεων"
 
-#: src/Navigation.tsx:423
+#: src/Navigation.tsx:445
 #: src/view/screens/Notifications.tsx:134
 msgid "Notification settings"
 msgstr "Ρυθμίσεις ειδοποιήσεων"
@@ -4817,10 +5116,10 @@ msgstr "Ήχοι ειδοποιήσεων"
 msgid "Notification Sounds"
 msgstr "Ήχοι Ειδοποιήσεων"
 
-#: src/Navigation.tsx:637
+#: src/Navigation.tsx:661
 #: src/view/screens/Notifications.tsx:128
 #: src/view/shell/bottom-bar/BottomBar.tsx:236
-#: src/view/shell/desktop/LeftNav.tsx:632
+#: src/view/shell/desktop/LeftNav.tsx:636
 #: src/view/shell/Drawer.tsx:449
 msgid "Notifications"
 msgstr "Ειδοποιήσεις"
@@ -4829,12 +5128,12 @@ msgstr "Ειδοποιήσεις"
 msgid "now"
 msgstr "τώρα"
 
-#: src/components/dms/MessageItem.tsx:198
+#: src/components/dms/MessageItem.tsx:274
 msgid "Now"
 msgstr "Τώρα"
 
-#: src/view/com/composer/labels/LabelsBtn.tsx:151
-#: src/view/com/composer/labels/LabelsBtn.tsx:154
+#: src/view/com/composer/labels/LabelsBtn.tsx:150
+#: src/view/com/composer/labels/LabelsBtn.tsx:153
 msgid "Nudity"
 msgstr "Γύμνια"
 
@@ -4856,7 +5155,9 @@ msgstr "Ωχ όχι!"
 msgid "Oh no! Something went wrong."
 msgstr "Ωχ όχι! Κάτι πήγε στραβά."
 
+#. Confirm button text.
 #: src/screens/Profile/Header/ProfileHeaderLabeler.tsx:362
+#: src/screens/Search/modules/ExploreInterestsCard.tsx:48
 #: src/screens/Settings/AppIconSettings/index.tsx:48
 #: src/screens/Settings/AppIconSettings/index.tsx:229
 msgid "OK"
@@ -4869,8 +5170,8 @@ msgstr "Εντάξει"
 
 #: src/screens/Settings/ThreadPreferences.tsx:75
 #: src/screens/Settings/ThreadPreferences.tsx:78
-#: src/view/com/post-thread/PostThread.tsx:666
-#: src/view/com/post-thread/PostThread.tsx:671
+#: src/view/com/post-thread/PostThread.tsx:665
+#: src/view/com/post-thread/PostThread.tsx:670
 msgid "Oldest replies first"
 msgstr "Πιο παλιές απαντήσεις πρώτα"
 
@@ -4882,15 +5183,15 @@ msgstr ""
 msgid "Onboarding reset"
 msgstr "Επαναφορά onboardin"
 
-#: src/view/com/composer/Composer.tsx:346
+#: src/view/com/composer/Composer.tsx:354
 msgid "One or more GIFs is missing alt text."
 msgstr "Ένα ή περισσότερα GIF λείπουν το εναλλακτικό κείμενο."
 
-#: src/view/com/composer/Composer.tsx:343
+#: src/view/com/composer/Composer.tsx:351
 msgid "One or more images is missing alt text."
 msgstr "Μία ή περισσότερες εικόνες λείπουν το εναλλακτικό κείμενο."
 
-#: src/view/com/composer/Composer.tsx:353
+#: src/view/com/composer/Composer.tsx:361
 msgid "One or more videos is missing alt text."
 msgstr "Ένα ή περισσότερα βίντεο λείπουν το εναλλακτικό κείμενο."
 
@@ -4902,7 +5203,7 @@ msgstr "Υποστηρίζονται μόνο αρχεία .jpg και .png"
 msgid "Only {0} can reply."
 msgstr "Μόνο ο/η {0} μπορεί να απαντήσει."
 
-#: src/screens/Signup/StepHandle.tsx:158
+#: src/screens/Signup/StepHandle.tsx:166
 msgid "Only contains letters, numbers, and hyphens"
 msgstr "Περιέχει μόνο γράμματα, αριθμούς και παύλες"
 
@@ -4919,8 +5220,8 @@ msgid "Oops, something went wrong!"
 msgstr "Ουπς, κάτι πήγε στραβά!"
 
 #: src/components/Lists.tsx:173
-#: src/components/StarterPack/ProfileStarterPacks.tsx:320
-#: src/components/StarterPack/ProfileStarterPacks.tsx:329
+#: src/components/StarterPack/ProfileStarterPacks.tsx:325
+#: src/components/StarterPack/ProfileStarterPacks.tsx:334
 #: src/screens/Settings/AppPasswords.tsx:59
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:104
 #: src/screens/Settings/NotificationSettings.tsx:54
@@ -4940,17 +5241,17 @@ msgstr "Άνοιγμα μενού συντόμευσης προφίλ {name}"
 msgid "Open avatar creator"
 msgstr "Άνοιγμα δημιουργού εικόνας προφίλ"
 
-#: src/screens/Messages/components/ChatListItem.tsx:302
-#: src/screens/Messages/components/ChatListItem.tsx:303
+#: src/screens/Messages/components/ChatListItem.tsx:363
+#: src/screens/Messages/components/ChatListItem.tsx:364
 msgid "Open conversation options"
 msgstr "Άνοιγμα επιλογών συνομιλίας"
 
-#: src/components/Layout/Header/index.tsx:158
+#: src/components/Layout/Header/index.tsx:159
 msgid "Open drawer menu"
 msgstr ""
 
 #: src/screens/Messages/components/MessageInput.web.tsx:181
-#: src/view/com/composer/Composer.tsx:1244
+#: src/view/com/composer/Composer.tsx:1292
 msgid "Open emoji picker"
 msgstr "Άνοιγμα επιλογέα emoji"
 
@@ -4963,11 +5264,15 @@ msgstr ""
 msgid "Open feed options menu"
 msgstr "Άνοιγμα μενού επιλογών ροών"
 
-#: src/view/com/util/post-embeds/ExternalLinkEmbed.tsx:71
+#: src/components/dms/EmojiPopup.android.tsx:28
+msgid "Open full emoji list"
+msgstr ""
+
+#: src/view/com/util/post-embeds/ExternalLinkEmbed.tsx:79
 msgid "Open link to {niceUrl}"
 msgstr "Άνοιγμα συνδέσμου προς {niceUrl}"
 
-#: src/components/dms/ActionsWrapper.tsx:90
+#: src/components/dms/ActionsWrapper.tsx:35
 msgid "Open message options"
 msgstr "Άνοιγμα επιλογών μηνύματος"
 
@@ -4979,11 +5284,15 @@ msgstr "Άνοιγμα σελίδας εντοπισμού σφαλμάτων δ
 msgid "Open muted words and tags settings"
 msgstr "Άνοιγμα ρυθμίσεων λέξεων και ετικετών σε σίγαση"
 
+#: src/screens/Search/components/StarterPackCard.tsx:119
+msgid "Open pack"
+msgstr ""
+
 #: src/view/com/util/forms/PostDropdownBtn.tsx:70
 msgid "Open post options menu"
 msgstr "Άνοιγμα μενού επιλογών δημοσίευσης"
 
-#: src/screens/StarterPack/StarterPackScreen.tsx:558
+#: src/screens/StarterPack/StarterPackScreen.tsx:561
 msgid "Open starter pack menu"
 msgstr "Άνοιγμα μενού starter pack"
 
@@ -5036,18 +5345,24 @@ msgstr "Ανοίγει το εργαλείο σύνταξης κειμένου"
 msgid "Opens device photo gallery"
 msgstr "Ανοίγει τη συλλογή φωτογραφιών της συσκευής"
 
-#: src/view/com/composer/Composer.tsx:1245
+#: src/view/com/composer/Composer.tsx:1293
 msgid "Opens emoji picker"
 msgstr ""
 
-#: src/view/com/auth/SplashScreen.tsx:49
-#: src/view/com/auth/SplashScreen.web.tsx:111
+#: src/view/com/auth/SplashScreen.web.tsx:115
 msgid "Opens flow to create a new Bluesky account"
 msgstr "Ανοίγει τη διαδικασία για να δημιουργήσετε ένα νέο λογαριασμό Bluesky"
 
-#: src/view/com/auth/SplashScreen.tsx:63
-#: src/view/com/auth/SplashScreen.web.tsx:125
+#: src/view/com/auth/SplashScreen.tsx:49
+msgid "Opens flow to create a new Creaton account"
+msgstr ""
+
+#: src/view/com/auth/SplashScreen.web.tsx:129
 msgid "Opens flow to sign in to your existing Bluesky account"
+msgstr ""
+
+#: src/view/com/auth/SplashScreen.tsx:63
+msgid "Opens flow to sign into your existing Creaton account"
 msgstr ""
 
 #: src/view/com/composer/photos/SelectGifBtn.tsx:36
@@ -5062,7 +5377,7 @@ msgstr ""
 msgid "Opens list of invite codes"
 msgstr "Ανοίγει τη λίστα με τους κωδικούς πρόσκλησης"
 
-#: src/screens/Login/LoginForm.tsx:249
+#: src/screens/Login/LoginForm.tsx:364
 msgid "Opens password reset form"
 msgstr "Ανοίγει τη φόρμα επαναφοράς κωδικού πρόσβασης"
 
@@ -5071,7 +5386,7 @@ msgid "Opens the linked website"
 msgstr "Ανοίγει τον συνδεδεμένο ιστότοπο"
 
 #: src/view/com/notifications/NotificationFeedItem.tsx:683
-#: src/view/com/util/UserAvatar.tsx:446
+#: src/view/com/util/UserAvatar.tsx:465
 msgid "Opens this profile"
 msgstr "Ανοίγει αυτό το προφίλ"
 
@@ -5118,7 +5433,7 @@ msgstr ""
 
 #: src/components/moderation/ReportDialog/utils/useReportOptions.ts:27
 #: src/lib/moderation/useReportOptions.ts:27
-#: src/view/com/composer/labels/LabelsBtn.tsx:186
+#: src/view/com/composer/labels/LabelsBtn.tsx:185
 msgid "Other"
 msgstr "Άλλο"
 
@@ -5147,10 +5462,11 @@ msgstr "Η σελίδα δεν βρέθηκε"
 msgid "Page Not Found"
 msgstr "Η Σελίδα Δεν Βρέθηκε"
 
-#: src/screens/Login/LoginForm.tsx:228
+#: src/screens/Login/LoginForm.tsx:343
 #: src/screens/Settings/AccountSettings.tsx:117
 #: src/screens/Settings/AccountSettings.tsx:121
-#: src/screens/Signup/StepInfo/index.tsx:225
+#: src/screens/Signup/StepInfo/index.tsx:336
+#: src/screens/Signup/StepInfo/index.tsx:504
 #: src/view/com/modals/DeleteAccount.tsx:239
 #: src/view/com/modals/DeleteAccount.tsx:246
 msgid "Password"
@@ -5164,13 +5480,21 @@ msgstr "Κωδικός πρόσβασης Αλλαγμένος"
 msgid "Password must be at least 8 characters long."
 msgstr ""
 
-#: src/screens/Login/index.tsx:181
+#: src/screens/Signup/StepInfo/index.tsx:142
+msgid "Password must be at least 8 characters."
+msgstr ""
+
+#: src/screens/Login/index.tsx:208
 msgid "Password updated"
 msgstr "Ο κωδικός πρόσβασης ενημερώθηκε"
 
 #: src/screens/Login/PasswordUpdatedForm.tsx:23
 msgid "Password updated!"
 msgstr "Ο κωδικός πρόσβασης ενημερώθηκε!"
+
+#: src/screens/Signup/StepInfo/index.tsx:148
+msgid "Passwords do not match."
+msgstr ""
 
 #: src/view/com/util/post-embeds/GifEmbed.tsx:43
 #: src/view/com/util/post-embeds/VideoEmbedInner/VideoEmbedInnerNative.tsx:140
@@ -5182,16 +5506,17 @@ msgstr "Παύση"
 msgid "Pause video"
 msgstr "Παύση βίντεο"
 
+#: src/screens/Search/SearchResults.tsx:62
 #: src/screens/StarterPack/StarterPackScreen.tsx:184
-#: src/view/screens/Search/Search.tsx:525
+#: src/view/screens/ProfileList.tsx:166
 msgid "People"
 msgstr "Άτομα"
 
-#: src/Navigation.tsx:198
+#: src/Navigation.tsx:212
 msgid "People followed by @{0}"
 msgstr "Άτομα που ακολουθούν τον/την @{0}"
 
-#: src/Navigation.tsx:191
+#: src/Navigation.tsx:205
 msgid "People following @{0}"
 msgstr "Άτομα που ακολουθούνται από τον/την @{0}"
 
@@ -5207,34 +5532,29 @@ msgstr "Η άδεια πρόσβασης στο άλμπουμ της κάμερ
 msgid "Person toggle"
 msgstr "Εναλλαγή προσώπου"
 
-#: src/screens/Onboarding/index.tsx:28
-#: src/screens/Onboarding/state.ts:109
+#: src/screens/Onboarding/index.tsx:29
+#: src/screens/Onboarding/state.ts:121
 msgid "Pets"
 msgstr "Κατοικίδια"
 
-#: src/screens/Onboarding/state.ts:110
+#: src/screens/Onboarding/state.ts:122
 msgid "Photography"
 msgstr "Φωτογραφία"
 
-#: src/view/com/composer/labels/LabelsBtn.tsx:170
+#: src/view/com/composer/labels/LabelsBtn.tsx:169
 msgid "Pictures meant for adults."
 msgstr "Εικόνες για ενήλικες."
-
-#: src/screens/Search/components/ExploreTrendingVideos.tsx:173
-#: src/screens/Search/components/ExploreTrendingVideos.tsx:178
-msgid "Pin"
-msgstr ""
 
 #: src/screens/Profile/components/ProfileFeedHeader.tsx:515
 #: src/screens/Profile/components/ProfileFeedHeader.tsx:522
 msgid "Pin feed"
 msgstr ""
 
-#: src/screens/Search/components/ExploreTrendingVideos.tsx:167
-msgid "Pin the trending videos feed to your home screen for easy access"
+#: src/components/FeedCard.tsx:329
+msgid "Pin Feed"
 msgstr ""
 
-#: src/view/screens/ProfileList.tsx:707
+#: src/view/screens/ProfileList.tsx:706
 msgid "Pin to home"
 msgstr "Καρφίτσωμα στην αρχική"
 
@@ -5260,7 +5580,7 @@ msgstr ""
 msgid "Pinned Feeds"
 msgstr "Καρφιτσωμένες ροές"
 
-#: src/view/screens/ProfileList.tsx:354
+#: src/view/screens/ProfileList.tsx:353
 msgid "Pinned to your feeds"
 msgstr "Καρφιτσωμένο στις ροές σας"
 
@@ -5299,16 +5619,19 @@ msgstr "Αναπαράγει το GIF"
 msgid "Plays the video"
 msgstr ""
 
-#: src/screens/Signup/state.ts:235
+#: src/view/com/composer/labels/LabelsBtn.tsx:115
+msgid "Please add any content warning labels that are applicable for the media you are posting."
+msgstr ""
+
+#: src/screens/Signup/state.ts:301
 msgid "Please choose your handle."
 msgstr "Παρακαλώ επιλέξτε το όνομα χρήστη σας."
 
-#: src/screens/Signup/state.ts:228
-#: src/screens/Signup/StepInfo/index.tsx:121
-msgid "Please choose your password."
-msgstr "Παρακαλώ επιλέξτε τον κωδικό πρόσβασης σας."
+#: src/screens/Signup/state.ts:292
+msgid "Please choose your password or connect a crypto wallet."
+msgstr ""
 
-#: src/screens/Signup/state.ts:249
+#: src/screens/Signup/state.ts:316
 msgid "Please complete the verification captcha."
 msgstr "Παρακαλώ ολοκληρώστε τον έλεγχο captcha."
 
@@ -5316,11 +5639,12 @@ msgstr "Παρακαλώ ολοκληρώστε τον έλεγχο captcha."
 msgid "Please confirm your email before changing it. This is a temporary requirement while email-updating tools are added, and it will soon be removed."
 msgstr "Παρακαλώ επιβεβαιώστε το email σας πριν το αλλάξετε. Αυτή είναι μια προσωρινή απαίτηση ενώ προστίθενται εργαλεία ενημέρωσης email και σύντομα θα καταργηθεί."
 
-#: src/screens/Signup/StepInfo/index.tsx:110
-msgid "Please double-check that you have entered your email address correctly."
+#: src/screens/Signup/StepInfo/index.tsx:127
+msgid "Please connect or create a wallet"
 msgstr ""
 
 #: src/screens/Login/SetNewPasswordForm.tsx:58
+#: src/screens/Signup/StepInfo/index.tsx:136
 msgid "Please enter a password."
 msgstr ""
 
@@ -5336,16 +5660,16 @@ msgstr "Παρακαλώ εισάγετε ένα μοναδικό όνομα γ�
 msgid "Please enter a valid word, tag, or phrase to mute"
 msgstr "Παρακαλώ εισάγετε μια έγκυρη λέξη, ετικέτα ή φράση για να θέσετε σε σίγαση"
 
-#: src/screens/Signup/state.ts:214
-#: src/screens/Signup/StepInfo/index.tsx:92
+#: src/screens/Signup/state.ts:275
+#: src/screens/Signup/StepInfo/index.tsx:113
 msgid "Please enter your email."
 msgstr "Παρακαλώ εισάγετε το email σας."
 
-#: src/screens/Signup/StepInfo/index.tsx:85
+#: src/screens/Signup/StepInfo/index.tsx:107
 msgid "Please enter your invite code."
 msgstr "Παρακαλώ εισάγετε τον κωδικό πρόσκλησης σας."
 
-#: src/screens/Login/LoginForm.tsx:99
+#: src/screens/Login/LoginForm.tsx:103
 msgid "Please enter your password"
 msgstr ""
 
@@ -5353,8 +5677,12 @@ msgstr ""
 msgid "Please enter your password as well:"
 msgstr "Παρακαλώ εισάγετε και τον κωδικό πρόσβασης σας:"
 
-#: src/screens/Login/LoginForm.tsx:94
+#: src/screens/Login/LoginForm.tsx:98
 msgid "Please enter your username"
+msgstr ""
+
+#: src/screens/Login/LoginForm.tsx:464
+msgid "Please enter your username first"
 msgstr ""
 
 #: src/components/moderation/LabelsOnMeDialog.tsx:290
@@ -5378,24 +5706,25 @@ msgstr ""
 msgid "Please sign in as @{0}"
 msgstr "Παρακαλώ συνδεθείτε ως @{0}"
 
+#: src/screens/Login/LoginForm.tsx:108
+msgid "Please sign with your wallet"
+msgstr ""
+
 #: src/view/com/modals/VerifyEmail.tsx:109
 msgid "Please Verify Your Email"
 msgstr "Παρακαλώ Επιβεβαιώστε το Email Σας"
 
-#: src/screens/Onboarding/index.tsx:34
-#: src/screens/Onboarding/state.ts:111
+#: src/screens/Onboarding/index.tsx:35
+#: src/screens/Onboarding/state.ts:123
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:231
 msgid "Politics"
 msgstr "Πολιτική"
 
-#: src/screens/Search/components/ExploreTrendingVideos.tsx:116
-msgid "Popular videos in your network."
-msgstr ""
-
-#: src/view/com/composer/labels/LabelsBtn.tsx:157
+#: src/view/com/composer/labels/LabelsBtn.tsx:156
 msgid "Porn"
 msgstr "Πορνογραφία"
 
-#: src/view/com/composer/Composer.tsx:959
+#: src/view/com/composer/Composer.tsx:1008
 msgctxt "action"
 msgid "Post"
 msgstr "Δημοσίευση"
@@ -5405,7 +5734,7 @@ msgctxt "description"
 msgid "Post"
 msgstr "Δημοσίευση"
 
-#: src/view/com/composer/Composer.tsx:957
+#: src/view/com/composer/Composer.tsx:1006
 msgctxt "action"
 msgid "Post All"
 msgstr "Δημοσίευση Όλων"
@@ -5414,10 +5743,10 @@ msgstr "Δημοσίευση Όλων"
 msgid "Post by {0}"
 msgstr "Δημοσίευση από {0}"
 
-#: src/Navigation.tsx:224
-#: src/Navigation.tsx:231
 #: src/Navigation.tsx:238
 #: src/Navigation.tsx:245
+#: src/Navigation.tsx:252
+#: src/Navigation.tsx:259
 msgid "Post by @{0}"
 msgstr "Δημοσίευση από @{0}"
 
@@ -5452,7 +5781,7 @@ msgstr "Δημοσίευση κρυμμένη από εσάς"
 msgid "Post interaction settings"
 msgstr "Ρυθμίσεις αλληλεπίδρασης δημοσίευσης"
 
-#: src/Navigation.tsx:166
+#: src/Navigation.tsx:180
 #: src/screens/ModerationInteractionSettings/index.tsx:34
 msgid "Post Interaction Settings"
 msgstr ""
@@ -5482,6 +5811,7 @@ msgstr "Δημοσίευση ξεκαρφιτσωμένη"
 
 #: src/screens/StarterPack/StarterPackScreen.tsx:186
 #: src/view/screens/Profile.tsx:222
+#: src/view/screens/ProfileList.tsx:166
 msgid "Posts"
 msgstr "Δημοσιεύσεις"
 
@@ -5534,22 +5864,17 @@ msgstr "Προτεραιότητα σε όσους λογαριασμούς ακ
 msgid "Priority notifications"
 msgstr "Προτεραιότητες ειδοποιήσεων"
 
-#: src/view/shell/desktop/RightNav.tsx:105
-#: src/view/shell/desktop/RightNav.tsx:106
-msgid "Privacy"
-msgstr "Απόρρητο"
-
 #: src/screens/Settings/Settings.tsx:161
 #: src/screens/Settings/Settings.tsx:164
 msgid "Privacy and security"
 msgstr "Απόρρητο και ασφάλεια"
 
-#: src/Navigation.tsx:367
+#: src/Navigation.tsx:381
 #: src/screens/Settings/PrivacyAndSecuritySettings.tsx:36
 msgid "Privacy and Security"
 msgstr "Απόρρητο και Ασφάλεια"
 
-#: src/Navigation.tsx:291
+#: src/Navigation.tsx:305
 #: src/screens/Settings/AboutSettings.tsx:51
 #: src/screens/Settings/AboutSettings.tsx:54
 #: src/view/screens/PrivacyPolicy.tsx:31
@@ -5558,7 +5883,7 @@ msgstr "Απόρρητο και Ασφάλεια"
 msgid "Privacy Policy"
 msgstr "Πολιτική Απορρήτου"
 
-#: src/view/com/composer/Composer.tsx:1658
+#: src/view/com/composer/Composer.tsx:1695
 msgid "Processing video..."
 msgstr "Επεξεργασία βίντεο..."
 
@@ -5573,7 +5898,7 @@ msgid "profile"
 msgstr "προφίλ"
 
 #: src/view/shell/bottom-bar/BottomBar.tsx:286
-#: src/view/shell/desktop/LeftNav.tsx:687
+#: src/view/shell/desktop/LeftNav.tsx:691
 #: src/view/shell/Drawer.tsx:71
 #: src/view/shell/Drawer.tsx:526
 msgid "Profile"
@@ -5595,6 +5920,26 @@ msgstr ""
 
 #: src/view/com/lists/MyLists.tsx:72
 msgid "Public, sharable lists which can be used to drive feeds."
+msgstr ""
+
+#. Accessibility label for button to publish a single post
+#: src/view/com/composer/Composer.tsx:988
+msgid "Publish post"
+msgstr ""
+
+#. Accessibility label for button to publish multiple posts in a thread
+#: src/view/com/composer/Composer.tsx:981
+msgid "Publish posts"
+msgstr ""
+
+#. Accessibility label for button to publish multiple replies in a thread
+#: src/view/com/composer/Composer.tsx:966
+msgid "Publish replies"
+msgstr ""
+
+#. Accessibility label for button to publish a single reply
+#: src/view/com/composer/Composer.tsx:973
+msgid "Publish reply"
 msgstr ""
 
 #: src/components/StarterPack/QrCodeDialog.tsx:134
@@ -5645,8 +5990,8 @@ msgstr "Παραθέσεις αυτής της δημοσίευσης"
 
 #: src/screens/Settings/ThreadPreferences.tsx:99
 #: src/screens/Settings/ThreadPreferences.tsx:102
-#: src/view/com/post-thread/PostThread.tsx:696
-#: src/view/com/post-thread/PostThread.tsx:701
+#: src/view/com/post-thread/PostThread.tsx:695
+#: src/view/com/post-thread/PostThread.tsx:700
 msgid "Random (aka \"Poster's Roulette\")"
 msgstr "Τυχαίο (aka “Poster’s Roulette”)"
 
@@ -5658,6 +6003,10 @@ msgstr ""
 #: src/view/com/util/forms/PostDropdownBtnMenuItems.tsx:622
 msgid "Re-attach quote"
 msgstr "Προσθήκη παράθεσης ξανά"
+
+#: src/components/dms/EmojiReactionPicker.tsx:85
+msgid "React with {emoji}"
+msgstr ""
 
 #: src/screens/Deactivated.tsx:141
 msgid "Reactivate your account"
@@ -5671,7 +6020,7 @@ msgstr ""
 msgid "Read more"
 msgstr ""
 
-#: src/view/com/auth/SplashScreen.web.tsx:171
+#: src/view/com/auth/SplashScreen.web.tsx:175
 msgid "Read the Bluesky blog"
 msgstr "Διαβάστε το blog του Bluesky"
 
@@ -5694,11 +6043,11 @@ msgstr ""
 msgid "Reason:"
 msgstr "Λόγος:"
 
-#: src/view/screens/Search/Search.tsx:1036
+#: src/screens/Search/components/SearchHistory.tsx:44
 msgid "Recent Searches"
 msgstr "Πρόσφατες Αναζητήσεις"
 
-#: src/screens/Search/components/ExploreRecommendations.tsx:52
+#: src/screens/Search/modules/ExploreRecommendations.tsx:54
 msgid "Recommended"
 msgstr ""
 
@@ -5715,13 +6064,13 @@ msgstr ""
 msgid "Reject chat request"
 msgstr ""
 
-#: src/screens/Messages/ChatList.tsx:247
-#: src/screens/Messages/Inbox.tsx:191
+#: src/screens/Messages/ChatList.tsx:260
+#: src/screens/Messages/Inbox.tsx:197
 msgid "Reload conversations"
 msgstr "Επαναφόρτωση συνομιλιών"
 
 #: src/components/dialogs/MutedWords.tsx:438
-#: src/components/FeedCard.tsx:315
+#: src/components/FeedCard.tsx:343
 #: src/components/StarterPack/Wizard/WizardListCard.tsx:102
 #: src/components/StarterPack/Wizard/WizardListCard.tsx:109
 #: src/screens/Settings/Settings.tsx:468
@@ -5736,7 +6085,7 @@ msgstr "Αφαίρεση"
 msgid "Remove {displayName} from starter pack"
 msgstr "Αφαίρεση του/της {displayName} από το starter pack"
 
-#: src/view/screens/Search/Search.tsx:1110
+#: src/screens/Search/components/SearchHistory.tsx:120
 msgid "Remove {historyItem}"
 msgstr ""
 
@@ -5749,8 +6098,8 @@ msgstr "Αφαίρεση λογαριασμού"
 msgid "Remove attachment"
 msgstr "Αφαίρεση συνημμένου"
 
-#: src/view/com/util/UserAvatar.tsx:397
-#: src/view/com/util/UserAvatar.tsx:400
+#: src/view/com/util/UserAvatar.tsx:416
+#: src/view/com/util/UserAvatar.tsx:419
 msgid "Remove Avatar"
 msgstr "Αφαίρεση φωτογραφίας προφίλ"
 
@@ -5777,7 +6126,7 @@ msgstr "Αφαίρεση ροής;"
 #: src/screens/Profile/components/ProfileFeedHeader.tsx:320
 #: src/view/com/feeds/FeedSourceCard.tsx:190
 #: src/view/com/feeds/FeedSourceCard.tsx:268
-#: src/view/screens/ProfileList.tsx:521
+#: src/view/screens/ProfileList.tsx:520
 #: src/view/screens/SavedFeeds.tsx:342
 msgid "Remove from my feeds"
 msgstr "Αφαίρεση από τις ροές μου"
@@ -5791,7 +6140,7 @@ msgstr "Αφαίρεση από την γρήγορη πρόσβαση;"
 msgid "Remove from saved feeds"
 msgstr "Αφαίρεση από τις αποθηκευμένες ροές"
 
-#: src/components/FeedCard.tsx:310
+#: src/components/FeedCard.tsx:338
 #: src/view/com/feeds/FeedSourceCard.tsx:317
 msgid "Remove from your feeds?"
 msgstr ""
@@ -5804,7 +6153,7 @@ msgstr "Αφαίρεση εικόνας"
 msgid "Remove mute word from your list"
 msgstr "Αφαίρεση λέξης σε σίγαση από τη λίστα σας"
 
-#: src/view/screens/Search/Search.tsx:1084
+#: src/screens/Search/components/SearchHistory.tsx:93
 msgid "Remove profile"
 msgstr "Αφαίρεση προφίλ"
 
@@ -5848,11 +6197,11 @@ msgstr "Αφαιρέθηκε από τις αποθηκευμένες ροές"
 
 #: src/screens/Profile/components/ProfileFeedHeader.tsx:122
 #: src/view/com/posts/FeedShutdownMsg.tsx:44
-#: src/view/screens/ProfileList.tsx:385
+#: src/view/screens/ProfileList.tsx:384
 msgid "Removed from your feeds"
 msgstr "Αφαιρέθηκε από τις ροές σας"
 
-#: src/view/screens/Search/Search.tsx:1086
+#: src/screens/Search/components/SearchHistory.tsx:95
 msgid "Removes profile from search history"
 msgstr ""
 
@@ -5877,7 +6226,7 @@ msgstr "Οι απαντήσεις είναι απενεργοποιημένες"
 msgid "Replies to this post are disabled."
 msgstr "Οι απαντήσεις σε αυτή τη δημοσίευση είναι απενεργοποιημένες."
 
-#: src/view/com/composer/Composer.tsx:955
+#: src/view/com/composer/Composer.tsx:1004
 msgctxt "action"
 msgid "Reply"
 msgstr "Απάντηση"
@@ -5904,7 +6253,7 @@ msgstr "Ρυθμίσεις απαντήσεων"
 msgid "Reply settings are chosen by the author of the thread"
 msgstr "Οι ρυθμίσεις απαντήσεων επιλέγονται από τον δημιουργό του νήματος"
 
-#: src/view/com/post-thread/PostThread.tsx:652
+#: src/view/com/post-thread/PostThread.tsx:651
 msgid "Reply sorting"
 msgstr ""
 
@@ -5939,7 +6288,7 @@ msgstr "Η ορατότητα απάντησης ενημερώθηκε"
 msgid "Reply was successfully hidden"
 msgstr "Η απάντηση κρύφτηκε επιτυχώς"
 
-#: src/components/dms/MessageMenu.tsx:134
+#: src/components/dms/MessageContextMenu.tsx:161
 #: src/components/dms/MessagesListBlockedFooter.tsx:85
 #: src/components/dms/MessagesListBlockedFooter.tsx:92
 msgid "Report"
@@ -5969,11 +6318,11 @@ msgstr "Παράθυρο αναφοράς"
 msgid "Report feed"
 msgstr "Αναφορά ροής"
 
-#: src/view/screens/ProfileList.tsx:563
-msgid "Report List"
-msgstr "Αναφορά Λίστας"
+#: src/view/screens/ProfileList.tsx:562
+msgid "Report list"
+msgstr ""
 
-#: src/components/dms/MessageMenu.tsx:132
+#: src/components/dms/MessageContextMenu.tsx:159
 msgid "Report message"
 msgstr "Αναφορά μηνύματος"
 
@@ -5982,8 +6331,8 @@ msgstr "Αναφορά μηνύματος"
 msgid "Report post"
 msgstr "Αναφορά δημοσίευσης"
 
-#: src/screens/StarterPack/StarterPackScreen.tsx:611
 #: src/screens/StarterPack/StarterPackScreen.tsx:614
+#: src/screens/StarterPack/StarterPackScreen.tsx:617
 msgid "Report starter pack"
 msgstr "Αναφορά starter pack"
 
@@ -6042,7 +6391,7 @@ msgstr "Αναδημοσίευση"
 msgid "Repost ({0, plural, one {# repost} other {# reposts}})"
 msgstr ""
 
-#: src/screens/StarterPack/StarterPackScreen.tsx:553
+#: src/screens/StarterPack/StarterPackScreen.tsx:556
 #: src/view/com/util/post-ctrls/RepostButton.tsx:148
 #: src/view/com/util/post-ctrls/RepostButton.web.tsx:49
 #: src/view/com/util/post-ctrls/RepostButton.web.tsx:104
@@ -6089,7 +6438,7 @@ msgstr "Απαιτείται εναλλακτικό κείμενο πριν τη
 msgid "Require an email code to sign in to your account."
 msgstr ""
 
-#: src/screens/Signup/StepInfo/index.tsx:174
+#: src/screens/Signup/StepInfo/index.tsx:213
 msgid "Required for this provider"
 msgstr "Απαιτείται για αυτόν τον πάροχο"
 
@@ -6129,7 +6478,7 @@ msgstr ""
 msgid "Reset password"
 msgstr "Επαναφορά κωδικού πρόσβασης"
 
-#: src/screens/Login/LoginForm.tsx:324
+#: src/screens/Login/LoginForm.tsx:440
 msgid "Retries signing in"
 msgstr ""
 
@@ -6138,16 +6487,16 @@ msgstr ""
 msgid "Retries the last action, which errored out"
 msgstr "Επανάληψη της τελευταίας ενέργειας, η οποία παρουσίασε σφάλμα"
 
-#: src/components/dms/MessageItem.tsx:245
+#: src/components/dms/MessageItem.tsx:321
 #: src/components/Error.tsx:65
 #: src/components/Lists.tsx:110
 #: src/components/moderation/ReportDialog/index.tsx:221
-#: src/components/StarterPack/ProfileStarterPacks.tsx:334
-#: src/screens/Login/LoginForm.tsx:323
-#: src/screens/Login/LoginForm.tsx:330
-#: src/screens/Messages/ChatList.tsx:253
+#: src/components/StarterPack/ProfileStarterPacks.tsx:339
+#: src/screens/Login/LoginForm.tsx:439
+#: src/screens/Login/LoginForm.tsx:446
+#: src/screens/Messages/ChatList.tsx:266
 #: src/screens/Messages/components/MessageListError.tsx:25
-#: src/screens/Messages/Inbox.tsx:197
+#: src/screens/Messages/Inbox.tsx:203
 #: src/screens/Onboarding/StepInterests/index.tsx:217
 #: src/screens/Onboarding/StepInterests/index.tsx:220
 #: src/screens/Signup/BackNextButtons.tsx:53
@@ -6164,7 +6513,7 @@ msgstr ""
 
 #: src/components/Error.tsx:73
 #: src/screens/List/ListHiddenScreen.tsx:219
-#: src/screens/StarterPack/StarterPackScreen.tsx:748
+#: src/screens/StarterPack/StarterPackScreen.tsx:751
 msgid "Return to previous page"
 msgstr "Επιστροφή στην προηγούμενη σελίδα"
 
@@ -6176,7 +6525,7 @@ msgstr "Επιστροφή στην αρχική σελίδα"
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:540
 #: src/screens/VideoFeed/index.tsx:1109
 #: src/view/screens/NotFound.tsx:60
-#: src/view/screens/ProfileList.tsx:1032
+#: src/view/screens/ProfileList.tsx:1031
 msgid "Returns to previous page"
 msgstr "Επιστροφή στην προηγούμενη σελίδα"
 
@@ -6191,12 +6540,12 @@ msgstr ""
 #: src/screens/Profile/Header/EditProfileDialog.tsx:238
 #: src/screens/Profile/Header/EditProfileDialog.tsx:252
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:243
-#: src/view/com/composer/GifAltText.tsx:190
-#: src/view/com/composer/GifAltText.tsx:199
+#: src/view/com/composer/GifAltText.tsx:193
+#: src/view/com/composer/GifAltText.tsx:202
 #: src/view/com/composer/photos/EditImageDialog.web.tsx:77
 #: src/view/com/composer/photos/EditImageDialog.web.tsx:83
-#: src/view/com/composer/photos/ImageAltTextDialog.tsx:150
-#: src/view/com/composer/photos/ImageAltTextDialog.tsx:160
+#: src/view/com/composer/photos/ImageAltTextDialog.tsx:153
+#: src/view/com/composer/photos/ImageAltTextDialog.tsx:163
 #: src/view/com/modals/CreateOrEditList.tsx:317
 #: src/view/com/modals/EditProfile.tsx:219
 #: src/view/screens/SavedFeeds.tsx:109
@@ -6253,7 +6602,7 @@ msgid "Saved to your camera roll"
 msgstr "Αποθηκεύτηκε στο άλμπουμ της κάμεράς σας"
 
 #: src/screens/Profile/components/ProfileFeedHeader.tsx:131
-#: src/view/screens/ProfileList.tsx:365
+#: src/view/screens/ProfileList.tsx:364
 msgid "Saved to your feeds"
 msgstr "Αποθηκεύτηκε στις ροές σας"
 
@@ -6272,34 +6621,31 @@ msgstr "Αποθηκεύει τις ρυθμίσεις περικοπής εικ
 msgid "Say hello!"
 msgstr "Πείτε γεια!"
 
-#: src/screens/Onboarding/index.tsx:33
-#: src/screens/Onboarding/state.ts:112
+#: src/screens/Onboarding/index.tsx:34
+#: src/screens/Onboarding/state.ts:124
 msgid "Science"
 msgstr "Επιστήμη"
 
-#: src/view/screens/ProfileList.tsx:989
+#: src/view/screens/ProfileList.tsx:988
 msgid "Scroll to top"
 msgstr "Μετακίνηση στην κορυφή"
 
 #: src/components/dms/dialogs/SearchablePeopleList.tsx:491
 #: src/components/forms/SearchInput.tsx:34
 #: src/components/forms/SearchInput.tsx:36
-#: src/Navigation.tsx:632
+#: src/screens/Search/Shell.tsx:307
+#: src/screens/Search/Shell.tsx:464
 #: src/view/com/modals/ListAddRemoveUsers.tsx:76
-#: src/view/screens/Search/Search.tsx:570
-#: src/view/screens/Search/Search.tsx:848
 #: src/view/shell/bottom-bar/BottomBar.tsx:182
-#: src/view/shell/desktop/LeftNav.tsx:613
-#: src/view/shell/Drawer.tsx:370
 msgid "Search"
 msgstr "Αναζήτηση"
 
-#: src/Navigation.tsx:217
-#: src/screens/Profile/ProfileSearch.tsx:34
+#: src/Navigation.tsx:231
+#: src/screens/Profile/ProfileSearch.tsx:37
 msgid "Search @{0}'s posts"
 msgstr ""
 
-#: src/components/ProgressGuide/FollowDialog.tsx:745
+#: src/components/ProgressGuide/FollowDialog.tsx:682
 msgid "Search by name or interest"
 msgstr ""
 
@@ -6307,7 +6653,8 @@ msgstr ""
 msgid "Search feeds"
 msgstr ""
 
-#: src/components/ProgressGuide/FollowDialog.tsx:575
+#: src/components/ProgressGuide/FollowDialog.tsx:523
+#: src/screens/Search/modules/ExploreSuggestedAccounts.tsx:127
 msgid "Search for \"{interestsDisplayName}\"{activeText}"
 msgstr ""
 
@@ -6315,7 +6662,7 @@ msgstr ""
 msgid "Search for \"{query}\""
 msgstr "Αναζήτησή για “{query}”"
 
-#: src/view/screens/Search/Search.tsx:982
+#: src/screens/Search/components/AutocompleteResults.tsx:44
 msgid "Search for \"{searchText}\""
 msgstr "Αναζήτησή για “{searchText}”"
 
@@ -6323,7 +6670,15 @@ msgstr "Αναζήτησή για “{searchText}”"
 msgid "Search for feeds that you want to suggest to others."
 msgstr "Αναζητήστε ροές που θέλετε να προτείνετε σε άλλους."
 
-#: src/view/screens/Search/Search.tsx:875
+#: src/screens/Search/Explore.tsx:335
+msgid "Search for more accounts"
+msgstr ""
+
+#: src/screens/Search/Explore.tsx:409
+msgid "Search for more feeds"
+msgstr ""
+
+#: src/screens/Search/Shell.tsx:334
 msgid "Search for posts, users, or feeds"
 msgstr ""
 
@@ -6335,7 +6690,7 @@ msgstr "Αναζήτηση χρηστών"
 msgid "Search GIFs"
 msgstr "Αναζήτηση GIFs"
 
-#: src/screens/Profile/ProfileSearch.tsx:33
+#: src/screens/Profile/ProfileSearch.tsx:36
 msgid "Search my posts"
 msgstr ""
 
@@ -6345,7 +6700,7 @@ msgid "Search posts"
 msgstr ""
 
 #: src/components/dms/dialogs/SearchablePeopleList.tsx:511
-#: src/components/ProgressGuide/FollowDialog.tsx:764
+#: src/components/ProgressGuide/FollowDialog.tsx:701
 msgid "Search profiles"
 msgstr "Αναζήτηση προφίλ"
 
@@ -6353,12 +6708,12 @@ msgstr "Αναζήτηση προφίλ"
 msgid "Search Tenor"
 msgstr "Αναζήτηση Tenor"
 
-#: src/screens/Profile/ProfileSearch.tsx:35
+#: src/screens/Profile/ProfileSearch.tsx:38
 msgid "Search..."
 msgstr ""
 
 #: src/components/dms/dialogs/SearchablePeopleList.tsx:512
-#: src/components/ProgressGuide/FollowDialog.tsx:765
+#: src/components/ProgressGuide/FollowDialog.tsx:702
 msgid "Searches for profiles"
 msgstr ""
 
@@ -6382,7 +6737,7 @@ msgstr ""
 msgid "See #{tag} posts by user"
 msgstr ""
 
-#: src/view/com/auth/SplashScreen.web.tsx:176
+#: src/view/com/auth/SplashScreen.web.tsx:180
 msgid "See jobs at Bluesky"
 msgstr "Δείτε θέσεις εργασίας στο Bluesky"
 
@@ -6414,7 +6769,7 @@ msgstr "Επιλογή emoji"
 msgid "Select content languages"
 msgstr "Επιλογή γλωσσών περιεχομένου"
 
-#: src/screens/Login/index.tsx:144
+#: src/screens/Login/index.tsx:171
 msgid "Select from an existing account"
 msgstr "Επιλογή από υπάρχοντα λογαριασμό"
 
@@ -6475,11 +6830,12 @@ msgstr ""
 msgid "Select which languages you want your subscribed feeds to include. If none are selected, all languages will be shown."
 msgstr "Επιλέξτε ποιες γλώσσες θέλετε να περιλαμβάνονται στις ροές που ακολουθείτε. Εάν δεν επιλεγεί καμία, θα εμφανίζονται όλες οι γλώσσες."
 
-#: src/screens/Signup/StepInfo/index.tsx:267
+#: src/screens/Signup/StepInfo/index.tsx:555
 msgid "Select your date of birth"
 msgstr "Επιλέξτε την ημερομηνία γέννησής σας"
 
 #: src/screens/Onboarding/StepInterests/index.tsx:192
+#: src/screens/Settings/SettingsInterests.tsx:162
 msgid "Select your interests from the options below"
 msgstr "Επιλέξτε τα ενδιαφέροντά σας από τις παρακάτω επιλογές"
 
@@ -6489,6 +6845,16 @@ msgstr "Επιλέξτε την προτιμώμενη γλώσσα σας γι�
 
 #: src/view/com/util/forms/DropdownButton.tsx:297
 msgid "Selects option {0} of {numItems}"
+msgstr ""
+
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:245
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:252
+msgid "Sell"
+msgstr ""
+
+#: src/screens/Xmtp/Conversation.tsx:248
+#: src/screens/Xmtp/Conversation.tsx:257
+msgid "Send"
 msgstr ""
 
 #: src/components/dms/ChatEmptyPill.tsx:38
@@ -6575,6 +6941,10 @@ msgstr "Ορισμός ημερομηνίας γέννησης"
 msgid "Set new password"
 msgstr "Ορισμός νέου κωδικού πρόσβασης"
 
+#: src/screens/Signup/StepInfo/index.tsx:421
+msgid "Set up or sign in with your Base smart contract wallet"
+msgstr ""
+
 #: src/screens/Onboarding/Layout.tsx:47
 msgid "Set up your account"
 msgstr "Ρύθμιση του λογαριασμού σας"
@@ -6583,9 +6953,9 @@ msgstr "Ρύθμιση του λογαριασμού σας"
 msgid "Sets email for password reset"
 msgstr "Ορίζει email για επαναφορά κωδικού πρόσβασης"
 
-#: src/Navigation.tsx:173
+#: src/Navigation.tsx:187
 #: src/screens/Settings/Settings.tsx:80
-#: src/view/shell/desktop/LeftNav.tsx:705
+#: src/view/shell/desktop/LeftNav.tsx:709
 #: src/view/shell/Drawer.tsx:539
 msgid "Settings"
 msgstr "Ρυθμίσεις"
@@ -6595,7 +6965,7 @@ msgctxt "toast"
 msgid "Settings saved"
 msgstr "Οι ρυθμίσεις αποθηκεύτηκαν"
 
-#: src/view/com/composer/labels/LabelsBtn.tsx:174
+#: src/view/com/composer/labels/LabelsBtn.tsx:173
 msgid "Sexual activity or erotic nudity."
 msgstr "Σεξουαλική δραστηριότητα ή ερωτικό γυμνό."
 
@@ -6606,14 +6976,14 @@ msgstr "Σεξουαλικά προκλητικό"
 #: src/components/StarterPack/QrCodeDialog.tsx:181
 #: src/screens/Hashtag.tsx:126
 #: src/screens/StarterPack/StarterPackScreen.tsx:428
-#: src/screens/StarterPack/StarterPackScreen.tsx:600
+#: src/screens/StarterPack/StarterPackScreen.tsx:603
 #: src/screens/Topic.tsx:102
 #: src/view/com/profile/ProfileMenu.tsx:216
 #: src/view/com/profile/ProfileMenu.tsx:225
 #: src/view/com/util/forms/PostDropdownBtnMenuItems.tsx:481
 #: src/view/com/util/forms/PostDropdownBtnMenuItems.tsx:490
 #: src/view/com/util/post-ctrls/PostCtrls.tsx:350
-#: src/view/screens/ProfileList.tsx:506
+#: src/view/screens/ProfileList.tsx:505
 msgid "Share"
 msgstr "Κοινή χρήση"
 
@@ -6638,7 +7008,7 @@ msgstr "Κοινή χρήση ούτως ή άλλως"
 
 #: src/components/StarterPack/ShareDialog.tsx:123
 #: src/components/StarterPack/ShareDialog.tsx:130
-#: src/screens/StarterPack/StarterPackScreen.tsx:604
+#: src/screens/StarterPack/StarterPackScreen.tsx:607
 msgid "Share link"
 msgstr "Κοινή χρήση συνδέσμου"
 
@@ -6672,7 +7042,7 @@ msgstr "Μοιραστείτε αυτό το Starter Pack και βοηθήστ�
 msgid "Share your favorite feed!"
 msgstr "Κοινή χρήση της αγαπημένης σας ροής!"
 
-#: src/Navigation.tsx:276
+#: src/Navigation.tsx:290
 msgid "Shared Preferences Tester"
 msgstr "Ελεγκτής κοινών προτιμήσεων"
 
@@ -6682,7 +7052,7 @@ msgstr "Κοινή χρήση της συνδεδεμένης ιστοσελίδ
 
 #: src/components/moderation/ContentHider.tsx:200
 #: src/components/moderation/LabelPreference.tsx:137
-#: src/components/moderation/PostHider.tsx:122
+#: src/components/moderation/PostHider.tsx:124
 msgid "Show"
 msgstr "Εμφάνιση"
 
@@ -6749,7 +7119,7 @@ msgstr ""
 msgid "Show replies"
 msgstr "Εμφάνιση απαντήσεων"
 
-#: src/view/com/post-thread/PostThread.tsx:626
+#: src/view/com/post-thread/PostThread.tsx:625
 msgid "Show replies as"
 msgstr ""
 
@@ -6799,13 +7169,13 @@ msgstr ""
 
 #: src/components/dialogs/Signin.tsx:97
 #: src/components/dialogs/Signin.tsx:99
-#: src/screens/Login/index.tsx:122
-#: src/screens/Login/index.tsx:143
-#: src/screens/Login/LoginForm.tsx:181
+#: src/screens/Login/index.tsx:148
+#: src/screens/Login/index.tsx:170
+#: src/screens/Login/LoginForm.tsx:191
 #: src/view/com/auth/SplashScreen.tsx:61
 #: src/view/com/auth/SplashScreen.tsx:69
-#: src/view/com/auth/SplashScreen.web.tsx:123
-#: src/view/com/auth/SplashScreen.web.tsx:131
+#: src/view/com/auth/SplashScreen.web.tsx:127
+#: src/view/com/auth/SplashScreen.web.tsx:135
 #: src/view/shell/bottom-bar/BottomBar.tsx:325
 #: src/view/shell/bottom-bar/BottomBar.tsx:330
 #: src/view/shell/bottom-bar/BottomBarWeb.tsx:209
@@ -6823,14 +7193,14 @@ msgstr "Σύνδεση ως {0}"
 msgid "Sign in as..."
 msgstr "Σύνδεση ως..."
 
+#: src/screens/Deactivated.tsx:203
+#: src/screens/Deactivated.tsx:209
+msgid "Sign in or create an account"
+msgstr ""
+
 #: src/components/dialogs/Signin.tsx:75
 msgid "Sign in or create your account to join the conversation!"
 msgstr "Συνδεθείτε ή δημιουργήστε λογαριασμό για να συμμετάσχετε στη συζήτηση!"
-
-#: src/screens/Deactivated.tsx:203
-#: src/screens/Deactivated.tsx:209
-msgid "Sign in or sign up"
-msgstr ""
 
 #: src/components/AccountList.tsx:65
 msgid "Sign in to account that is not listed"
@@ -6840,15 +7210,19 @@ msgstr ""
 msgid "Sign in to Bluesky or create a new account"
 msgstr ""
 
+#: src/screens/Signup/StepInfo/index.tsx:303
+msgid "Sign in with your crypto wallet."
+msgstr ""
+
 #: src/screens/Settings/Settings.tsx:225
 #: src/screens/Settings/Settings.tsx:227
 #: src/screens/Settings/Settings.tsx:259
 #: src/screens/SignupQueued.tsx:93
 #: src/screens/SignupQueued.tsx:96
 #: src/screens/Takendown.tsx:85
-#: src/view/shell/desktop/LeftNav.tsx:207
-#: src/view/shell/desktop/LeftNav.tsx:287
-#: src/view/shell/desktop/LeftNav.tsx:290
+#: src/view/shell/desktop/LeftNav.tsx:208
+#: src/view/shell/desktop/LeftNav.tsx:288
+#: src/view/shell/desktop/LeftNav.tsx:291
 msgid "Sign out"
 msgstr "Αποσύνδεση"
 
@@ -6857,9 +7231,17 @@ msgid "Sign Out"
 msgstr ""
 
 #: src/screens/Settings/Settings.tsx:256
-#: src/view/shell/desktop/LeftNav.tsx:204
+#: src/view/shell/desktop/LeftNav.tsx:205
 msgid "Sign out?"
 msgstr "Αποσύνδεση;"
+
+#: src/screens/Login/LoginForm.tsx:478
+msgid "Sign SIWE"
+msgstr ""
+
+#: src/screens/Login/LoginForm.tsx:479
+msgid "Sign SIWE to log in"
+msgstr ""
 
 #: src/components/moderation/ScreenHider.tsx:91
 #: src/lib/moderation/useGlobalLabelStrings.ts:28
@@ -6871,19 +7253,23 @@ msgstr "Απαιτείται σύνδεση"
 msgid "Signed in as @{0}"
 msgstr "Συνδεδεμένος ως @{0}"
 
-#: src/screens/StarterPack/StarterPackLandingScreen.tsx:303
-#: src/screens/StarterPack/StarterPackLandingScreen.tsx:310
-msgid "Signup without a starter pack"
-msgstr "Εγγραφή χωρίς starter pack"
-
 #: src/components/FeedInterstitials.tsx:337
 msgid "Similar accounts"
 msgstr "Παρόμοιοι λογαριασμοί"
+
+#: src/screens/Signup/StepInfo/index.tsx:352
+msgid "Simple"
+msgstr ""
 
 #: src/screens/Onboarding/StepInterests/index.tsx:231
 #: src/screens/StarterPack/Wizard/index.tsx:195
 msgid "Skip"
 msgstr "Παράλειψη"
+
+#: src/screens/Onboarding/StepEns/index.tsx:173
+#: src/screens/Onboarding/StepEns/index.tsx:176
+msgid "Skip for now"
+msgstr ""
 
 #: src/screens/Onboarding/StepInterests/index.tsx:228
 msgid "Skip this flow"
@@ -6893,12 +7279,12 @@ msgstr "Παράλειψη αυτής της ροής"
 msgid "Smaller"
 msgstr "Μικρότερο"
 
-#: src/screens/Onboarding/index.tsx:37
-#: src/screens/Onboarding/state.ts:100
+#: src/screens/Onboarding/index.tsx:38
+#: src/screens/Onboarding/state.ts:112
 msgid "Software Dev"
 msgstr "Ανάπτυξη λογισμικού"
 
-#: src/components/FeedInterstitials.tsx:472
+#: src/components/FeedInterstitials.tsx:474
 msgid "Some other feeds you might like"
 msgstr "Κάποιες άλλες ροές που μπορεί να σας αρέσουν"
 
@@ -6906,11 +7292,19 @@ msgstr "Κάποιες άλλες ροές που μπορεί να σας αρ�
 msgid "Some people can reply"
 msgstr ""
 
+#: src/components/dms/MessageItem.tsx:148
+msgid "Someone reacted {0}"
+msgstr ""
+
+#: src/screens/Messages/components/ChatListItem.tsx:236
+msgid "Someone reacted {0} to {1}"
+msgstr ""
+
 #: src/components/moderation/ReportDialog/index.tsx:76
 msgid "Something wasn't quite right with the data you're trying to report. Please contact support."
 msgstr ""
 
-#: src/screens/Messages/Conversation.tsx:117
+#: src/screens/Messages/Conversation.tsx:126
 msgid "Something went wrong"
 msgstr "Κάτι πήγε στραβά"
 
@@ -6939,8 +7333,8 @@ msgstr ""
 msgid "Something wrong? Let us know."
 msgstr ""
 
-#: src/App.native.tsx:122
-#: src/App.web.tsx:98
+#: src/App.native.tsx:124
+#: src/App.web.tsx:105
 msgid "Sorry! Your session expired. Please sign in again."
 msgstr ""
 
@@ -6973,8 +7367,9 @@ msgstr ""
 msgid "Spam; excessive mentions or replies"
 msgstr "Spam; υπερβολικές αναφορές ή απαντήσεις"
 
-#: src/screens/Onboarding/index.tsx:27
-#: src/screens/Onboarding/state.ts:113
+#: src/screens/Onboarding/index.tsx:28
+#: src/screens/Onboarding/state.ts:125
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:229
 msgid "Sports"
 msgstr "Αθλήματα"
 
@@ -6982,27 +7377,31 @@ msgstr "Αθλήματα"
 msgid "Start a new chat"
 msgstr "Έναρξη νέας συνομιλίας"
 
-#: src/view/screens/ProfileList.tsx:839
-#: src/view/screens/ProfileList.tsx:960
+#: src/view/screens/ProfileList.tsx:838
+#: src/view/screens/ProfileList.tsx:959
 msgid "Start adding people"
 msgstr ""
 
-#: src/view/screens/ProfileList.tsx:846
-#: src/view/screens/ProfileList.tsx:967
+#: src/view/screens/ProfileList.tsx:845
+#: src/view/screens/ProfileList.tsx:966
 msgid "Start adding people!"
+msgstr ""
+
+#: src/screens/Xmtp/index.tsx:227
+msgid "Start Chat"
 msgstr ""
 
 #: src/components/dms/dialogs/SearchablePeopleList.tsx:357
 msgid "Start chat with {displayName}"
 msgstr "Έναρξη συνομιλίας με {displayName}"
 
-#: src/Navigation.tsx:433
-#: src/Navigation.tsx:438
+#: src/Navigation.tsx:455
+#: src/Navigation.tsx:460
 #: src/screens/StarterPack/Wizard/index.tsx:186
 msgid "Starter Pack"
 msgstr "starter pack"
 
-#: src/components/StarterPack/StarterPackCard.tsx:87
+#: src/components/StarterPack/StarterPackCard.tsx:90
 msgid "Starter pack by {0}"
 msgstr "starter pack από {0}"
 
@@ -7010,20 +7409,21 @@ msgstr "starter pack από {0}"
 msgid "Starter pack by <0/>"
 msgstr ""
 
-#: src/components/StarterPack/StarterPackCard.tsx:86
+#: src/components/StarterPack/StarterPackCard.tsx:89
 #: src/view/com/profile/ProfileSubpageHeader.tsx:180
 msgid "Starter pack by you"
 msgstr "starter pack από εσάς"
 
-#: src/screens/StarterPack/StarterPackScreen.tsx:712
+#: src/screens/StarterPack/StarterPackScreen.tsx:715
 msgid "Starter pack is invalid"
 msgstr "Το starter pack είναι άκυρο"
 
+#: src/screens/Search/Explore.tsx:508
 #: src/view/screens/Profile.tsx:228
 msgid "Starter Packs"
 msgstr ""
 
-#: src/components/StarterPack/ProfileStarterPacks.tsx:242
+#: src/components/StarterPack/ProfileStarterPacks.tsx:247
 msgid "Starter packs let you easily share your favorite feeds and people with your friends."
 msgstr "Τα Starter Packs σας επιτρέπουν να μοιράζεστε εύκολα τις αγαπημένες σας ροές και άτομα με τους φίλους σας."
 
@@ -7032,7 +7432,7 @@ msgstr "Τα Starter Packs σας επιτρέπουν να μοιράζεστε
 msgid "Status Page"
 msgstr "Σελίδα κατάστασης"
 
-#: src/screens/Signup/index.tsx:134
+#: src/screens/Signup/index.tsx:148
 msgid "Step {0} of {1}"
 msgstr "Βήμα {0} από {1}"
 
@@ -7040,7 +7440,7 @@ msgstr "Βήμα {0} από {1}"
 msgid "Storage cleared, you need to restart the app now."
 msgstr "Η αποθήκευση εκκαθαρίστηκε, πρέπει να επανεκκινήσετε την εφαρμογή τώρα."
 
-#: src/Navigation.tsx:266
+#: src/Navigation.tsx:280
 #: src/screens/Settings/Settings.tsx:325
 msgid "Storybook"
 msgstr ""
@@ -7066,7 +7466,7 @@ msgstr ""
 msgid "Submit report"
 msgstr ""
 
-#: src/view/screens/ProfileList.tsx:734
+#: src/view/screens/ProfileList.tsx:733
 msgid "Subscribe"
 msgstr "Εγγραφή"
 
@@ -7082,7 +7482,7 @@ msgstr "Εγγραφείτε στον ετικετογράφο"
 msgid "Subscribe to this labeler"
 msgstr "Εγγραφείτε σε αυτόν τον δημιουργό ετικετών"
 
-#: src/view/screens/ProfileList.tsx:730
+#: src/view/screens/ProfileList.tsx:729
 msgid "Subscribe to this list"
 msgstr "Εγγραφείτε σε αυτήν τη λίστα"
 
@@ -7090,16 +7490,16 @@ msgstr "Εγγραφείτε σε αυτήν τη λίστα"
 msgid "Success!"
 msgstr "Επιτυχία!"
 
-#: src/view/screens/Search/Explore.tsx:368
-msgid "Suggested accounts"
-msgstr "Προτεινόμενοι λογαριασμοί"
+#: src/screens/Search/Explore.tsx:332
+msgid "Suggested Accounts"
+msgstr ""
 
 #: src/components/FeedInterstitials.tsx:339
 msgid "Suggested for you"
 msgstr "Προτεινόμενα για εσάς"
 
-#: src/view/com/composer/labels/LabelsBtn.tsx:145
-#: src/view/com/composer/labels/LabelsBtn.tsx:148
+#: src/view/com/composer/labels/LabelsBtn.tsx:144
+#: src/view/com/composer/labels/LabelsBtn.tsx:147
 msgid "Suggestive"
 msgstr "Προκλητικό"
 
@@ -7113,16 +7513,21 @@ msgctxt "Name of app icon variant"
 msgid "Sunset"
 msgstr ""
 
-#: src/Navigation.tsx:286
+#: src/Navigation.tsx:300
 #: src/view/screens/Support.tsx:31
 #: src/view/screens/Support.tsx:34
 msgid "Support"
 msgstr "Υποστήριξη"
 
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:296
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:299
+msgid "Swap"
+msgstr ""
+
 #: src/screens/Settings/Settings.tsx:102
 #: src/screens/Settings/Settings.tsx:116
 #: src/screens/Settings/Settings.tsx:412
-#: src/view/shell/desktop/LeftNav.tsx:242
+#: src/view/shell/desktop/LeftNav.tsx:243
 msgid "Switch account"
 msgstr "Αλλαγή λογαριασμού"
 
@@ -7131,12 +7536,22 @@ msgstr "Αλλαγή λογαριασμού"
 msgid "Switch Account"
 msgstr "Αλλαγή λογαριασμού"
 
-#: src/view/shell/desktop/LeftNav.tsx:106
+#: src/view/shell/desktop/LeftNav.tsx:107
 msgid "Switch accounts"
 msgstr ""
 
-#: src/view/shell/desktop/LeftNav.tsx:250
+#: src/view/shell/desktop/LeftNav.tsx:251
 msgid "Switch to {0}"
+msgstr ""
+
+#: src/screens/Login/LoginForm.tsx:512
+#: src/screens/Login/LoginForm.tsx:515
+msgid "Switch to {0} login"
+msgstr ""
+
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:207
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:214
+msgid "Symbol"
 msgstr ""
 
 #: src/components/dialogs/Embed.tsx:157
@@ -7156,6 +7571,12 @@ msgstr "Λογαριασμός συστήματος"
 msgid "Tags only"
 msgstr "Μόνο ετικέτες"
 
+#: src/components/ContextMenu/Backdrop.ios.tsx:54
+#: src/components/ContextMenu/Backdrop.ios.tsx:80
+#: src/components/ContextMenu/Backdrop.tsx:46
+msgid "Tap to close context menu"
+msgstr ""
+
 #: src/components/ProgressGuide/Toast.tsx:156
 msgid "Tap to dismiss"
 msgstr "Πατήστε για να απορρίψετε"
@@ -7172,8 +7593,8 @@ msgstr "Η εργασία ολοκληρώθηκε - 10 \"Μου αρέσει\"!
 msgid "Teach our algorithm what you like"
 msgstr "Μάθετε στον αλγόριθμό μας τι σας αρέσει"
 
-#: src/screens/Onboarding/index.tsx:36
-#: src/screens/Onboarding/state.ts:114
+#: src/screens/Onboarding/index.tsx:37
+#: src/screens/Onboarding/state.ts:126
 msgid "Tech"
 msgstr "Τεχνολογία"
 
@@ -7181,7 +7602,7 @@ msgstr "Τεχνολογία"
 msgid "Tell a joke!"
 msgstr "Πες ένα αστείο!"
 
-#: src/screens/Profile/Header/EditProfileDialog.tsx:352
+#: src/screens/Profile/Header/EditProfileDialog.tsx:355
 msgid "Tell us a bit about yourself"
 msgstr "Πες μας λίγα πράγματα για τον εαυτό σου"
 
@@ -7189,12 +7610,7 @@ msgstr "Πες μας λίγα πράγματα για τον εαυτό σου"
 msgid "Tell us a little more"
 msgstr "Πες μας λίγα ακόμη"
 
-#: src/view/shell/desktop/RightNav.tsx:111
-#: src/view/shell/desktop/RightNav.tsx:112
-msgid "Terms"
-msgstr "Όροι"
-
-#: src/Navigation.tsx:296
+#: src/Navigation.tsx:310
 #: src/screens/Settings/AboutSettings.tsx:43
 #: src/screens/Settings/AboutSettings.tsx:46
 #: src/view/screens/TermsOfService.tsx:31
@@ -7264,7 +7680,7 @@ msgstr "Αυτά ήταν όλα, παιδιά!"
 msgid "That's everything!"
 msgstr ""
 
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:279
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:409
 #: src/view/com/profile/ProfileMenu.tsx:387
 msgid "The account will be able to interact with you after unblocking."
 msgstr "Ο λογαριασμός θα μπορεί να αλληλεπιδράσει μαζί σας μετά την απελευθέρωση."
@@ -7336,9 +7752,13 @@ msgstr ""
 msgid "The server appears to be experiencing issues. Please try again in a few moments."
 msgstr "Ο διακομιστής φαίνεται να αντιμετωπίζει προβλήματα. Παρακαλούμε δοκιμάστε ξανά σε λίγα λεπτά."
 
-#: src/screens/StarterPack/StarterPackScreen.tsx:722
+#: src/screens/StarterPack/StarterPackScreen.tsx:725
 msgid "The starter pack that you are trying to view is invalid. You may delete this starter pack instead."
 msgstr "Το starter pack που προσπαθείτε να δείτε είναι άκυρο. Μπορείτε να διαγράψετε αυτό το starter pack αντίθετα."
+
+#: src/components/ContextMenu/index.tsx:433
+msgid "The subject of the context menu"
+msgstr ""
 
 #: src/view/screens/Support.tsx:37
 msgid "The support form has been moved. If you need help, please <0/> or visit {HELP_DESK_URL} to get in touch with us."
@@ -7365,8 +7785,8 @@ msgid "There was an issue connecting to Tenor."
 msgstr "Παρουσιάστηκε πρόβλημα σύνδεσης με το Tenor."
 
 #: src/screens/Profile/components/ProfileFeedHeader.tsx:173
-#: src/view/screens/ProfileList.tsx:368
-#: src/view/screens/ProfileList.tsx:387
+#: src/view/screens/ProfileList.tsx:367
+#: src/view/screens/ProfileList.tsx:386
 #: src/view/screens/SavedFeeds.tsx:85
 msgid "There was an issue contacting the server"
 msgstr "Παρουσιάστηκε πρόβλημα επικοινωνίας με τον διακομιστή"
@@ -7385,7 +7805,8 @@ msgstr "Παρουσιάστηκε πρόβλημα επικοινωνίας μ�
 msgid "There was an issue fetching notifications. Tap here to try again."
 msgstr "Παρουσιάστηκε πρόβλημα λήψης ειδοποιήσεων. Πατήστε εδώ για να δοκιμάσετε ξανά."
 
-#: src/view/com/posts/PostFeed.tsx:592
+#: src/screens/Search/Explore.tsx:865
+#: src/view/com/posts/PostFeed.tsx:607
 msgid "There was an issue fetching posts. Tap here to try again."
 msgstr "Παρουσιάστηκε πρόβλημα λήψης αναρτήσεων. Πατήστε εδώ για να δοκιμάσετε ξανά."
 
@@ -7397,8 +7818,8 @@ msgstr "Παρουσιάστηκε πρόβλημα λήψης της λίστα
 msgid "There was an issue fetching your app passwords"
 msgstr "Παρουσιάστηκε πρόβλημα λήψης των κωδικών πρόσβασης της εφαρμογής σας"
 
-#: src/view/com/feeds/ProfileFeedgens.tsx:155
-#: src/view/com/lists/ProfileLists.tsx:154
+#: src/view/com/feeds/ProfileFeedgens.tsx:151
+#: src/view/com/lists/ProfileLists.tsx:150
 msgid "There was an issue fetching your lists. Tap here to try again."
 msgstr "Παρουσιάστηκε πρόβλημα λήψης των λιστών σας. Πατήστε εδώ για να δοκιμάσετε ξανά."
 
@@ -7421,9 +7842,9 @@ msgstr "Παρουσιάστηκε πρόβλημα κατά την αποστο
 msgid "There was an issue updating your feeds, please check your internet connection and try again."
 msgstr "Παρουσιάστηκε πρόβλημα κατά την ενημέρωση των ροών σας, παρακαλούμε ελέγξτε τη σύνδεσή σας στο internet και δοκιμάστε ξανά."
 
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:107
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:128
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:141
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:143
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:164
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:177
 #: src/view/com/post-thread/PostThreadFollowBtn.tsx:90
 #: src/view/com/post-thread/PostThreadFollowBtn.tsx:101
 #: src/view/com/profile/ProfileMenu.tsx:111
@@ -7442,10 +7863,10 @@ msgstr "Παρουσιάστηκε πρόβλημα! {0}"
 #: src/screens/List/ListHiddenScreen.tsx:63
 #: src/screens/List/ListHiddenScreen.tsx:77
 #: src/screens/List/ListHiddenScreen.tsx:99
-#: src/view/screens/ProfileList.tsx:404
-#: src/view/screens/ProfileList.tsx:422
-#: src/view/screens/ProfileList.tsx:440
-#: src/view/screens/ProfileList.tsx:458
+#: src/view/screens/ProfileList.tsx:403
+#: src/view/screens/ProfileList.tsx:421
+#: src/view/screens/ProfileList.tsx:439
+#: src/view/screens/ProfileList.tsx:457
 msgid "There was an issue. Please check your internet connection and try again."
 msgstr "Παρουσιάστηκε πρόβλημα. Παρακαλούμε ελέγξτε τη σύνδεσή σας στο internet και δοκιμάστε ξανά."
 
@@ -7507,7 +7928,7 @@ msgstr "Αυτό το περιεχόμενο δεν είναι διαθέσιμ�
 msgid "This content is not viewable without a Bluesky account."
 msgstr "Αυτό το περιεχόμενο δεν είναι ορατό χωρίς λογαριασμό Bluesky."
 
-#: src/screens/Messages/components/ChatListItem.tsx:296
+#: src/screens/Messages/components/ChatListItem.tsx:357
 msgid "This conversation is with a deleted or a deactivated account. Press for options"
 msgstr ""
 
@@ -7529,7 +7950,7 @@ msgstr "Αυτή η ροή είναι άδεια! Ίσως χρειαστεί ν
 
 #: src/components/StarterPack/Main/PostsList.tsx:36
 #: src/screens/Profile/ProfileFeed/index.tsx:189
-#: src/view/screens/ProfileList.tsx:836
+#: src/view/screens/ProfileList.tsx:835
 msgid "This feed is empty."
 msgstr "Αυτή η ροή είναι άδεια."
 
@@ -7573,7 +7994,7 @@ msgstr ""
 msgid "This list – created by you – contains possible violations of Bluesky's community guidelines in its name or description."
 msgstr ""
 
-#: src/view/screens/ProfileList.tsx:955
+#: src/view/screens/ProfileList.tsx:954
 msgid "This list is empty."
 msgstr ""
 
@@ -7602,7 +8023,7 @@ msgstr ""
 msgid "This post will be hidden from feeds and threads. This cannot be undone."
 msgstr "Αυτή η ανάρτηση θα κρυφτεί από τις ροές και τα νήματα. Αυτό δεν μπορεί να αναιρεθεί."
 
-#: src/view/com/composer/Composer.tsx:428
+#: src/view/com/composer/Composer.tsx:436
 msgid "This post's author has disabled quote posts."
 msgstr ""
 
@@ -7667,13 +8088,13 @@ msgstr "Αυτό θα αφαιρέσει τον @{0} από τη λίστα γρ
 msgid "This will remove your post from this quote post for all users, and replace it with a placeholder."
 msgstr ""
 
-#: src/view/com/post-thread/PostThread.tsx:610
-#: src/view/com/post-thread/PostThread.tsx:613
+#: src/view/com/post-thread/PostThread.tsx:609
+#: src/view/com/post-thread/PostThread.tsx:612
 msgid "Thread options"
 msgstr ""
 
-#: src/screens/Settings/ContentAndMediaSettings.tsx:67
-#: src/screens/Settings/ContentAndMediaSettings.tsx:70
+#: src/screens/Settings/ContentAndMediaSettings.tsx:68
+#: src/screens/Settings/ContentAndMediaSettings.tsx:71
 msgid "Thread preferences"
 msgstr "Προτιμήσεις νήματος"
 
@@ -7681,8 +8102,8 @@ msgstr "Προτιμήσεις νήματος"
 msgid "Thread Preferences"
 msgstr "Προτιμήσεις Νήματος"
 
-#: src/view/com/post-thread/PostThread.tsx:640
-#: src/view/com/post-thread/PostThread.tsx:645
+#: src/view/com/post-thread/PostThread.tsx:639
+#: src/view/com/post-thread/PostThread.tsx:644
 msgid "Threaded"
 msgstr ""
 
@@ -7690,7 +8111,7 @@ msgstr ""
 msgid "Threaded mode"
 msgstr "Λειτουργία νήματος"
 
-#: src/Navigation.tsx:329
+#: src/Navigation.tsx:343
 msgid "Threads Preferences"
 msgstr "Προτιμήσεις Νημάτων"
 
@@ -7730,18 +8151,50 @@ msgstr "Εναλλαγή για να ενεργοποιήσετε ή να απε
 msgid "Toggles the sound"
 msgstr ""
 
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:99
+msgctxt "toast"
+msgid "Token created successfully"
+msgstr ""
+
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:140
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:146
+msgid "Token Details"
+msgstr ""
+
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:191
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:198
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:167
+msgid "Token Name"
+msgstr ""
+
+#: src/Navigation.tsx:676
+msgid "Tokens"
+msgstr ""
+
 #: src/screens/Hashtag.tsx:84
+#: src/screens/Search/SearchResults.tsx:42
 #: src/screens/Topic.tsx:71
-#: src/view/screens/Search/Search.tsx:505
 msgid "Top"
 msgstr "Κορυφή"
 
-#: src/Navigation.tsx:403
+#: src/screens/Tokens.tsx:33
+msgid "Top Pools"
+msgstr ""
+
+#: src/Navigation.tsx:425
 msgid "Topic"
 msgstr ""
 
-#: src/components/dms/MessageMenu.tsx:105
-#: src/components/dms/MessageMenu.tsx:107
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:203
+msgid "Total Supply"
+msgstr ""
+
+#: src/screens/Signup/StepInfo/index.tsx:358
+msgid "Traditional email and password login."
+msgstr ""
+
+#: src/components/dms/MessageContextMenu.tsx:132
+#: src/components/dms/MessageContextMenu.tsx:134
 #: src/view/com/post-thread/PostThreadItem.tsx:778
 #: src/view/com/post-thread/PostThreadItem.tsx:781
 #: src/view/com/util/forms/PostDropdownBtnMenuItems.tsx:451
@@ -7749,13 +8202,15 @@ msgstr ""
 msgid "Translate"
 msgstr "Μετάφραση"
 
-#: src/screens/Search/components/ExploreTrendingTopics.tsx:69
 #: src/view/shell/desktop/SidebarTrendingTopics.tsx:59
 msgid "Trending"
 msgstr ""
 
+#: src/screens/Search/Explore.tsx:576
+msgid "Trending topics"
+msgstr ""
+
 #: src/components/interstitials/TrendingVideos.tsx:88
-#: src/screens/Search/components/ExploreTrendingVideos.tsx:106
 msgid "Trending Videos"
 msgstr ""
 
@@ -7764,7 +8219,7 @@ msgctxt "action"
 msgid "Try again"
 msgstr "Προσπαθήστε ξανά"
 
-#: src/screens/Onboarding/state.ts:115
+#: src/screens/Onboarding/state.ts:127
 msgid "TV"
 msgstr ""
 
@@ -7772,7 +8227,7 @@ msgstr ""
 msgid "Two-factor authentication (2FA)"
 msgstr ""
 
-#: src/screens/Signup/StepHandle.tsx:118
+#: src/screens/Signup/StepHandle.tsx:126
 msgid "Type your desired username"
 msgstr ""
 
@@ -7784,21 +8239,13 @@ msgstr "Πληκτρολογήστε το μήνυμά σας εδώ"
 msgid "Type:"
 msgstr "Τύπος:"
 
-#: src/view/screens/ProfileList.tsx:613
-msgid "Un-block list"
-msgstr "Ακύρωση μπλοκαρίσματος λίστας"
-
-#: src/view/screens/ProfileList.tsx:598
-msgid "Un-mute list"
-msgstr "Ακύρωση σίγασης λίστας"
-
 #: src/lib/strings/errors.ts:11
 msgid "Unable to connect. Please check your internet connection and try again."
 msgstr "Αδυναμία σύνδεσης. Παρακαλούμε ελέγξτε τη σύνδεσή σας στο διαδίκτυο και προσπαθήστε ξανά."
 
 #: src/screens/Login/ForgotPasswordForm.tsx:68
-#: src/screens/Login/index.tsx:79
-#: src/screens/Login/LoginForm.tsx:169
+#: src/screens/Login/index.tsx:84
+#: src/screens/Login/LoginForm.tsx:179
 #: src/screens/Login/SetNewPasswordForm.tsx:81
 #: src/screens/Signup/index.tsx:72
 #: src/view/com/modals/ChangePassword.tsx:71
@@ -7806,7 +8253,7 @@ msgstr "Αδυναμία σύνδεσης. Παρακαλούμε ελέγξτε
 msgid "Unable to contact your service. Please check your Internet connection."
 msgstr "Αδυναμία επικοινωνίας με την υπηρεσία σας. Παρακαλούμε ελέγξτε τη σύνδεσή σας στο διαδίκτυο."
 
-#: src/screens/StarterPack/StarterPackScreen.tsx:654
+#: src/screens/StarterPack/StarterPackScreen.tsx:657
 msgid "Unable to delete"
 msgstr "Αδυναμία διαγραφής"
 
@@ -7814,14 +8261,14 @@ msgstr "Αδυναμία διαγραφής"
 #: src/components/dms/MessagesListBlockedFooter.tsx:104
 #: src/components/dms/MessagesListBlockedFooter.tsx:112
 #: src/components/dms/MessagesListBlockedFooter.tsx:119
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:197
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:283
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:315
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:413
 #: src/view/com/profile/ProfileMenu.tsx:399
-#: src/view/screens/ProfileList.tsx:716
+#: src/view/screens/ProfileList.tsx:715
 msgid "Unblock"
 msgstr "Ξεμπλοκάρισμα"
 
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:202
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:320
 msgctxt "action"
 msgid "Unblock"
 msgstr "Ξεμπλοκάρισμα"
@@ -7833,10 +8280,14 @@ msgstr "Ξεμπλοκάρισμα"
 msgid "Unblock account"
 msgstr "Ξεμπλοκάρισμα λογαριασμού"
 
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:277
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:407
 #: src/view/com/profile/ProfileMenu.tsx:381
 msgid "Unblock Account?"
 msgstr "Ξεμπλοκάρισμα Λογαριασμού;"
+
+#: src/view/screens/ProfileList.tsx:612
+msgid "Unblock list"
+msgstr ""
 
 #: src/view/com/util/post-ctrls/RepostButton.web.tsx:72
 #: src/view/com/util/post-ctrls/RepostButton.web.tsx:76
@@ -7852,7 +8303,7 @@ msgctxt "action"
 msgid "Unfollow"
 msgstr "Διακοπή παρακολούθησης"
 
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:217
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:347
 msgid "Unfollow {0}"
 msgstr "Διακοπή παρακολούθησης {0}"
 
@@ -7883,7 +8334,7 @@ msgctxt "video"
 msgid "Unmute"
 msgstr ""
 
-#: src/view/screens/ProfileList.tsx:723
+#: src/view/screens/ProfileList.tsx:722
 msgid "Unmute"
 msgstr "Ακύρωση Σίγασης"
 
@@ -7903,6 +8354,10 @@ msgstr ""
 msgid "Unmute conversation"
 msgstr "Ακύρωση Σίγασης συνομιλίας"
 
+#: src/view/screens/ProfileList.tsx:597
+msgid "Unmute list"
+msgstr ""
+
 #: src/view/com/util/forms/PostDropdownBtnMenuItems.tsx:536
 #: src/view/com/util/forms/PostDropdownBtnMenuItems.tsx:540
 msgid "Unmute thread"
@@ -7912,13 +8367,17 @@ msgstr "Ακύρωση Σίγασης νήματος"
 msgid "Unmute video"
 msgstr "Ακύρωση Σίγασης βίντεο"
 
-#: src/view/screens/ProfileList.tsx:707
+#: src/view/screens/ProfileList.tsx:706
 msgid "Unpin"
 msgstr "Αφαίρεση καρφιτσωμένου"
 
 #: src/screens/Profile/components/ProfileFeedHeader.tsx:515
 #: src/screens/Profile/components/ProfileFeedHeader.tsx:522
 msgid "Unpin feed"
+msgstr ""
+
+#: src/components/FeedCard.tsx:320
+msgid "Unpin Feed"
 msgstr ""
 
 #: src/screens/Profile/components/ProfileFeedHeader.tsx:305
@@ -7931,7 +8390,7 @@ msgstr "Αφαίρεση καρφιτσωμένου από την αρχική �
 msgid "Unpin from profile"
 msgstr "Αφαίρεση καρφιτσωμένου από το προφίλ"
 
-#: src/view/screens/ProfileList.tsx:578
+#: src/view/screens/ProfileList.tsx:577
 msgid "Unpin moderation list"
 msgstr "Αφαίρεση καρφιτσωμένου από τη λίστα διαχείρισης"
 
@@ -7939,7 +8398,7 @@ msgstr "Αφαίρεση καρφιτσωμένου από τη λίστα δι�
 msgid "Unpinned {0} from Home"
 msgstr ""
 
-#: src/view/screens/ProfileList.tsx:355
+#: src/view/screens/ProfileList.tsx:354
 msgid "Unpinned from your feeds"
 msgstr "Αφαιρέθηκε το καρφιτσωμένο από τις ροές σας"
 
@@ -7960,7 +8419,7 @@ msgstr "Απεγγραφή από αυτόν τον ετικετογράφο"
 msgid "Unsubscribed from list"
 msgstr "Απεγγραφή από αυτήν την λίστα"
 
-#: src/view/com/composer/Composer.tsx:781
+#: src/view/com/composer/Composer.tsx:790
 msgid "Unsupported video type"
 msgstr ""
 
@@ -8011,20 +8470,20 @@ msgstr "Αντ'αυτού, ανεβάστε μια φωτογραφία"
 msgid "Upload a text file to:"
 msgstr "Ανεβάστε ένα αρχείο κειμένου στο:"
 
-#: src/view/com/util/UserAvatar.tsx:368
-#: src/view/com/util/UserAvatar.tsx:371
+#: src/view/com/util/UserAvatar.tsx:387
+#: src/view/com/util/UserAvatar.tsx:390
 #: src/view/com/util/UserBanner.tsx:123
 #: src/view/com/util/UserBanner.tsx:126
 msgid "Upload from Camera"
 msgstr "Ανεβάστε από την κάμερα"
 
-#: src/view/com/util/UserAvatar.tsx:385
+#: src/view/com/util/UserAvatar.tsx:404
 #: src/view/com/util/UserBanner.tsx:140
 msgid "Upload from Files"
 msgstr "Ανεβάστε από αρχεία"
 
-#: src/view/com/util/UserAvatar.tsx:379
-#: src/view/com/util/UserAvatar.tsx:383
+#: src/view/com/util/UserAvatar.tsx:398
+#: src/view/com/util/UserAvatar.tsx:402
 #: src/view/com/util/UserBanner.tsx:134
 #: src/view/com/util/UserBanner.tsx:138
 msgid "Upload from Library"
@@ -8039,7 +8498,7 @@ msgstr "Ανεβάζω εικόνες..."
 msgid "Uploading link thumbnail..."
 msgstr "Ανεβάζω μικρογραφία συνδέσμου..."
 
-#: src/view/com/composer/Composer.tsx:1655
+#: src/view/com/composer/Composer.tsx:1692
 msgid "Uploading video..."
 msgstr "Ανεβάζω βίντεο..."
 
@@ -8056,8 +8515,8 @@ msgstr "Χρησιμοποιήστε τον προεπιλεγμένο πάρο�
 msgid "Use in-app browser"
 msgstr "Χρησιμοποιήστε το ενσωματωμένο πρόγραμμα περιήγησης"
 
-#: src/screens/Settings/ContentAndMediaSettings.tsx:93
-#: src/screens/Settings/ContentAndMediaSettings.tsx:99
+#: src/screens/Settings/ContentAndMediaSettings.tsx:102
+#: src/screens/Settings/ContentAndMediaSettings.tsx:108
 msgid "Use in-app browser to open links"
 msgstr "Χρησιμοποιήστε το ενσωματωμένο πρόγραμμα περιήγησης για να ανοίξετε συνδέσμους"
 
@@ -8126,7 +8585,7 @@ msgctxt "toast"
 msgid "User list updated"
 msgstr "Η λίστα χρηστών ενημερώθηκε"
 
-#: src/screens/Login/LoginForm.tsx:201
+#: src/screens/Login/LoginForm.tsx:313
 msgid "Username or email address"
 msgstr "Όνομα χρήστη ή διεύθυνση email"
 
@@ -8211,7 +8670,7 @@ msgstr "Βίντεο"
 msgid "Video failed to process"
 msgstr "Αποτυχία επεξεργασίας βίντεο"
 
-#: src/Navigation.tsx:454
+#: src/Navigation.tsx:476
 msgid "Video Feed"
 msgstr ""
 
@@ -8219,8 +8678,9 @@ msgstr ""
 msgid "Video from {0}: {text}"
 msgstr ""
 
-#: src/screens/Onboarding/index.tsx:39
-#: src/screens/Onboarding/state.ts:103
+#: src/screens/Onboarding/index.tsx:40
+#: src/screens/Onboarding/state.ts:115
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:233
 msgid "Video Games"
 msgstr "Βιντεοπαιχνίδια"
 
@@ -8240,7 +8700,7 @@ msgstr "Το βίντεο δεν βρέθηκε."
 msgid "Video settings"
 msgstr "Ρυθμίσεις βίντεο"
 
-#: src/view/com/composer/Composer.tsx:1665
+#: src/view/com/composer/Composer.tsx:1702
 msgid "Video uploaded"
 msgstr "Το βίντεο ανέβηκε"
 
@@ -8261,7 +8721,7 @@ msgstr ""
 msgid "View {0}'s avatar"
 msgstr "Προβολή εικόνας προφίλ του/της {0}"
 
-#: src/components/ProfileCard.tsx:110
+#: src/components/ProfileCard.tsx:115
 #: src/screens/Profile/components/ProfileFeedHeader.tsx:446
 #: src/screens/VideoFeed/index.tsx:769
 #: src/view/com/notifications/NotificationFeedItem.tsx:413
@@ -8305,8 +8765,8 @@ msgstr "Προβολή πληροφοριών σχετικά με αυτές τ�
 
 #: src/components/interstitials/TrendingVideos.tsx:191
 #: src/components/interstitials/TrendingVideos.tsx:210
-#: src/screens/Search/components/ExploreTrendingVideos.tsx:231
-#: src/screens/Search/components/ExploreTrendingVideos.tsx:250
+#: src/screens/Search/modules/ExploreTrendingVideos.tsx:194
+#: src/screens/Search/modules/ExploreTrendingVideos.tsx:213
 msgid "View more"
 msgstr ""
 
@@ -8375,6 +8835,10 @@ msgstr "Επισκεφθείτε την τοποθεσία"
 msgid "Volume"
 msgstr ""
 
+#: src/screens/Login/LoginForm.tsx:195
+msgid "Wallet"
+msgstr ""
+
 #: src/components/moderation/LabelPreference.tsx:136
 #: src/lib/moderation/useLabelBehaviorDescription.ts:17
 #: src/lib/moderation/useLabelBehaviorDescription.ts:22
@@ -8397,7 +8861,7 @@ msgstr "Δεν μπορέσαμε να βρούμε αποτελέσματα γ�
 msgid "We couldn't find any results for that topic."
 msgstr ""
 
-#: src/screens/Messages/Conversation.tsx:118
+#: src/screens/Messages/Conversation.tsx:127
 msgid "We couldn't load this conversation"
 msgstr "Δεν μπορέσαμε να φορτώσουμε αυτήν τη συνομιλία"
 
@@ -8410,12 +8874,16 @@ msgid "We have sent another verification email to <0>{0}</0>."
 msgstr "Στείλαμε ένα νέο email επαλήθευσης στη διεύθυνση <0>{0}</0>."
 
 #: src/screens/Onboarding/StepFinished.tsx:256
-msgid "We hope you have a wonderful time. Remember, Bluesky is:"
-msgstr "Ελπίζουμε να περάσετε υπέροχα. Θυμηθείτε, το Bluesky είναι:"
+msgid "We hope you have a wonderful time. Remember, Creaton is:"
+msgstr ""
 
 #: src/view/com/posts/DiscoverFallbackHeader.tsx:29
 msgid "We ran out of posts from your follows. Here's the latest from <0/>."
 msgstr "Δεν έχουμε άλλες αναρτήσεις από αυτούς που ακολουθείτε. Ακολουθούν οι πιο πρόσφατες από <0/>."
+
+#: src/screens/Settings/SettingsInterests.tsx:155
+msgid "We recommend selecting at least two interests."
+msgstr ""
 
 #: src/view/com/composer/state/video.ts:417
 msgid "We were unable to determine if you are allowed to upload videos. Please try again."
@@ -8442,15 +8910,15 @@ msgid "We'll use this to help customize your experience."
 msgstr "Θα το χρησιμοποιήσουμε για να προσαρμόσουμε την εμπειρία σας."
 
 #: src/components/dms/dialogs/SearchablePeopleList.tsx:92
-#: src/components/ProgressGuide/FollowDialog.tsx:157
+#: src/components/ProgressGuide/FollowDialog.tsx:171
 msgid "We're having network issues, try again"
 msgstr "Αντιμετωπίζουμε προβλήματα δικτύου, δοκιμάστε ξανά"
 
-#: src/screens/Signup/index.tsx:95
+#: src/screens/Signup/index.tsx:109
 msgid "We're so excited to have you join us!"
 msgstr "Είμαστε τόσο ενθουσιασμένοι που θα γίνετε μέλος μας!"
 
-#: src/view/screens/ProfileList.tsx:115
+#: src/view/screens/ProfileList.tsx:113
 msgid "We're sorry, but we were unable to resolve this list. If this persists, please contact the list creator, @{handleOrDid}."
 msgstr "Λυπούμαστε, αλλά δεν μπορέσαμε να επιλύσουμε αυτήν τη λίστα. Εάν αυτό συνεχιστεί, επικοινωνήστε με τον δημιουργό της λίστας, @{handleOrDid}."
 
@@ -8458,11 +8926,11 @@ msgstr "Λυπούμαστε, αλλά δεν μπορέσαμε να επιλύ
 msgid "We're sorry, but we weren't able to load your muted words at this time. Please try again."
 msgstr "Λυπούμαστε, αλλά δεν μπορέσαμε να φορτώσουμε τις λέξεις που έχετε σε σίγαση αυτήν τη στιγμή. Παρακαλώ προσπαθήστε ξανά."
 
-#: src/view/screens/Search/Search.tsx:205
+#: src/screens/Search/SearchResults.tsx:222
 msgid "We're sorry, but your search could not be completed. Please try again in a few minutes."
 msgstr "Λυπούμαστε, αλλά η αναζήτησή σας δεν μπόρεσε να ολοκληρωθεί. Παρακαλώ προσπαθήστε ξανά σε λίγα λεπτά."
 
-#: src/view/com/composer/Composer.tsx:425
+#: src/view/com/composer/Composer.tsx:433
 msgid "We're sorry! The post you are replying to has been deleted."
 msgstr "Λυπούμαστε! Η ανάρτηση στην οποία απαντάτε έχει διαγραφεί."
 
@@ -8474,6 +8942,10 @@ msgstr "Λυπούμαστε! Δεν μπορούμε να βρούμε τη σ�
 #: src/screens/Profile/Header/ProfileHeaderLabeler.tsx:356
 msgid "We're sorry! You can only subscribe to twenty labelers, and you've reached your limit of twenty."
 msgstr "Λυπούμαστε! Μπορείτε να εγγραφείτε μόνο σε είκοσι ετικετογράφους και έχετε φτάσει στο όριο των είκοσι."
+
+#: src/screens/Signup/StepInfo/index.tsx:297
+msgid "Web3"
+msgstr ""
 
 #: src/screens/Deactivated.tsx:125
 msgid "Welcome back!"
@@ -8491,13 +8963,8 @@ msgstr "Ποια είναι τα ενδιαφέροντά σας;"
 msgid "What do you want to call your starter pack?"
 msgstr "Πώς θέλετε να ονομάσετε το starter pack σας;"
 
-#: src/screens/Search/components/ExploreTrendingTopics.tsx:79
-msgid "What people are posting about."
-msgstr ""
-
 #: src/view/com/auth/SplashScreen.tsx:38
-#: src/view/com/auth/SplashScreen.web.tsx:99
-#: src/view/com/composer/Composer.tsx:744
+#: src/view/com/composer/Composer.tsx:753
 msgid "What's up?"
 msgstr "Τι συμβαίνει;"
 
@@ -8518,13 +8985,13 @@ msgid "Who can reply"
 msgstr "Ποιος μπορεί να απαντήσει"
 
 #: src/screens/Home/NoFeedsPinned.tsx:79
-#: src/screens/Messages/ChatList.tsx:231
-#: src/screens/Messages/Inbox.tsx:176
+#: src/screens/Messages/ChatList.tsx:244
+#: src/screens/Messages/Inbox.tsx:182
 msgid "Whoops!"
 msgstr "Ουπς!"
 
 #: src/components/interstitials/TrendingVideos.tsx:127
-#: src/screens/Search/components/ExploreTrendingVideos.tsx:147
+#: src/screens/Search/modules/ExploreTrendingVideos.tsx:108
 msgid "Whoops! Trending videos failed to load."
 msgstr ""
 
@@ -8571,23 +9038,33 @@ msgstr "Γιατί πρέπει να ελεγχθεί αυτός ο χρήστη
 msgid "Write a message"
 msgstr "Γράψτε ένα μήνυμα"
 
-#: src/view/com/composer/Composer.tsx:832
+#: src/view/com/composer/Composer.tsx:844
 msgid "Write post"
 msgstr "Γράψτε ανάρτηση"
 
-#: src/view/com/composer/Composer.tsx:742
+#: src/view/com/composer/Composer.tsx:751
 #: src/view/com/post-thread/PostThreadComposePrompt.tsx:69
 msgid "Write your reply"
 msgstr "Γράψτε την απάντησή σας"
 
-#: src/screens/Onboarding/index.tsx:25
-#: src/screens/Onboarding/state.ts:116
+#: src/screens/Onboarding/index.tsx:26
+#: src/screens/Onboarding/state.ts:128
 msgid "Writers"
 msgstr "Συγγραφείς"
 
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:337
 msgid "Wrong DID returned from server. Received: {0}"
 msgstr "Επιστράφηκε λάθος DID από τον διακομιστή. Ελήφθη: {0}"
+
+#: src/Navigation.tsx:149
+#: src/screens/Xmtp/Conversation.tsx:154
+msgid "XMTP Chat"
+msgstr ""
+
+#: src/Navigation.tsx:144
+#: src/screens/Xmtp/index.tsx:100
+msgid "XMTP Messages"
+msgstr ""
 
 #: src/view/com/composer/select-language/SuggestedLanguage.tsx:86
 msgid "Yes"
@@ -8598,7 +9075,7 @@ msgstr "Ναι"
 msgid "Yes, deactivate"
 msgstr "Ναι, απενεργοποίηση"
 
-#: src/screens/StarterPack/StarterPackScreen.tsx:666
+#: src/screens/StarterPack/StarterPackScreen.tsx:669
 msgid "Yes, delete this starter pack"
 msgstr "Ναι, διαγράψτε αυτό το starter pack"
 
@@ -8623,7 +9100,7 @@ msgid "You"
 msgstr "Εσείς"
 
 #: src/components/forms/HostingProvider.tsx:46
-msgid "You are creating an account on"
+msgid "You are creating an account on <0><1>{0}</1><2/></0>"
 msgstr ""
 
 #: src/screens/SignupQueued.tsx:157
@@ -8638,6 +9115,10 @@ msgstr "Δεν επιτρέπεται να ανεβάζετε βίντεο."
 msgid "You are not following anyone."
 msgstr "Δεν ακολουθείτε κανέναν."
 
+#: src/screens/Search/modules/ExploreInterestsCard.tsx:45
+msgid "You can adjust your interests at any time from \"Content and media\" settings."
+msgstr ""
+
 #: src/view/com/posts/FollowingEmptyState.tsx:63
 #: src/view/com/posts/FollowingEndOfFeed.tsx:64
 msgid "You can also discover new Custom Feeds to follow."
@@ -8651,7 +9132,7 @@ msgstr "Μπορείτε επίσης να απενεργοποιήσετε πρ
 msgid "You can continue ongoing conversations regardless of which setting you choose."
 msgstr "Μπορείτε να συνεχίσετε τις τρέχουσες συνομιλίες ανεξάρτητα από τη ρύθμιση που θα επιλέξετε."
 
-#: src/screens/Login/index.tsx:182
+#: src/screens/Login/index.tsx:209
 #: src/screens/Login/PasswordUpdatedForm.tsx:26
 msgid "You can now sign in with your new password."
 msgstr "Τώρα μπορείτε να συνδεθείτε με τον νέο σας κωδικό πρόσβασης."
@@ -8666,7 +9147,6 @@ msgstr ""
 
 #: src/components/interstitials/Trending.tsx:130
 #: src/components/interstitials/TrendingVideos.tsx:139
-#: src/screens/Search/components/ExploreTrendingTopics.tsx:136
 #: src/view/shell/desktop/SidebarTrendingTopics.tsx:109
 msgid "You can update this later from your settings."
 msgstr ""
@@ -8679,7 +9159,7 @@ msgstr "Δεν έχετε ακόλουθους."
 msgid "You don't follow any users who follow @{name}."
 msgstr "Δεν ακολουθείτε κανέναν χρήστη που ακολουθεί τον/την @{name}."
 
-#: src/screens/Messages/Inbox.tsx:220
+#: src/screens/Messages/Inbox.tsx:226
 msgid "You don't have any chat requests at the moment."
 msgstr ""
 
@@ -8733,18 +9213,22 @@ msgstr "Έχετε θέσει αυτόν τον λογαριασμό σε σίγ
 msgid "You have muted this user"
 msgstr "Έχετε θέσει αυτόν τον χρήστη σε σίγαση"
 
-#: src/screens/Messages/ChatList.tsx:274
+#: src/screens/Messages/ChatList.tsx:287
 msgid "You have no conversations yet. Start one!"
 msgstr "Δεν έχετε ακόμη συνομιλίες. Ξεκινήστε μία!"
 
-#: src/view/com/feeds/ProfileFeedgens.tsx:143
+#: src/view/com/feeds/ProfileFeedgens.tsx:139
 msgid "You have no feeds."
 msgstr "Δεν έχετε ροές."
 
 #: src/view/com/lists/MyLists.tsx:81
-#: src/view/com/lists/ProfileLists.tsx:139
+#: src/view/com/lists/ProfileLists.tsx:135
 msgid "You have no lists."
 msgstr "Δεν έχετε λίστες."
+
+#: src/screens/Xmtp/index.tsx:133
+msgid "You have no XMTP conversations yet."
+msgstr ""
 
 #: src/view/screens/ModerationBlockedAccounts.tsx:129
 msgid "You have not blocked any accounts yet. To block an account, go to their profile and select \"Block account\" from the menu on their account."
@@ -8762,7 +9246,7 @@ msgstr "Φτάσατε στο τέλος"
 msgid "You have temporarily reached the limit for video uploads. Please try again later."
 msgstr "Έχετε φτάσει προσωρινά το όριο για μεταφορτώσεις βίντεο. Παρακαλώ προσπαθήστε ξανά αργότερα."
 
-#: src/components/StarterPack/ProfileStarterPacks.tsx:239
+#: src/components/StarterPack/ProfileStarterPacks.tsx:244
 msgid "You haven't created a starter pack yet!"
 msgstr "Δεν έχετε δημιουργήσει ακόμη starter pack!"
 
@@ -8784,10 +9268,10 @@ msgid "You may appeal these labels if you feel they were placed in error."
 msgstr "Μπορείτε να ασκήσετε ένσταση για αυτές τις ετικέτες εάν πιστεύετε ότι τοποθετήθηκαν κατά λάθος."
 
 #: src/screens/StarterPack/Wizard/State.tsx:76
-msgid "You may only add up to {STARTER_PACK_MAX_SIZE} profiles"
-msgstr "Μπορείτε να προσθέσετε έως και {STARTER_PACK_MAX_SIZE} προφίλ"
+msgid "You may only add up to {STARTER_PACK_MAX_SIZE, plural, other {{STARTER_PACK_MAX_SIZE} profiles}}"
+msgstr ""
 
-#: src/screens/StarterPack/Wizard/State.tsx:94
+#: src/screens/StarterPack/Wizard/State.tsx:95
 msgid "You may only add up to 3 feeds"
 msgstr "Μπορείτε να προσθέσετε έως και 3 ροές"
 
@@ -8796,10 +9280,10 @@ msgid "You may only select up to 4 images"
 msgstr "Μπορείτε να επιλέξετε έως και 4 εικόνες"
 
 #: src/screens/Signup/StepInfo/Policies.tsx:106
-msgid "You must be 13 years of age or older to sign up."
-msgstr "Πρέπει να είστε 13 ετών και άνω για να εγγραφείτε."
+msgid "You must be 13 years of age or older to create an account."
+msgstr ""
 
-#: src/components/StarterPack/ProfileStarterPacks.tsx:322
+#: src/components/StarterPack/ProfileStarterPacks.tsx:327
 msgid "You must be following at least seven other people to generate a starter pack."
 msgstr "Πρέπει να ακολουθείτε τουλάχιστον επτά άλλα άτομα για να δημιουργήσετε ένα starter pack."
 
@@ -8819,8 +9303,16 @@ msgstr "Πρέπει να επιλέξετε τουλάχιστον έναν ε�
 msgid "You previously deactivated @{0}."
 msgstr "Προηγουμένως απενεργοποιήσατε τον @{0}."
 
+#: src/components/dms/MessageItem.tsx:135
+msgid "You reacted {0}"
+msgstr ""
+
+#: src/screens/Messages/components/ChatListItem.tsx:213
+msgid "You reacted {0} to {1}"
+msgstr ""
+
 #: src/screens/Settings/Settings.tsx:257
-#: src/view/shell/desktop/LeftNav.tsx:205
+#: src/view/shell/desktop/LeftNav.tsx:206
 msgid "You will be signed out of all your accounts."
 msgstr "Θα αποσυνδεθείτε από όλους τους λογαριασμούς σας."
 
@@ -8848,11 +9340,11 @@ msgstr "Εσείς: {defaultEmbeddedContentMessage}"
 msgid "You: {short}"
 msgstr "Εσείς: {short}"
 
-#: src/screens/Signup/index.tsx:111
+#: src/screens/Signup/index.tsx:125
 msgid "You'll follow the suggested users and feeds once you finish creating your account!"
 msgstr "Θα ακολουθήσετε τους προτεινόμενους χρήστες και τις ροές μόλις ολοκληρώσετε τη δημιουργία του λογαριασμού σας!"
 
-#: src/screens/Signup/index.tsx:116
+#: src/screens/Signup/index.tsx:130
 msgid "You'll follow the suggested users once you finish creating your account!"
 msgstr "Θα ακολουθήσετε τους προτεινόμενους χρήστες μόλις ολοκληρώσετε τη δημιουργία του λογαριασμού σας!"
 
@@ -8910,7 +9402,7 @@ msgstr "Έχετε φτάσει το ημερήσιο όριο για μεταφ
 msgid "You've run out of videos to watch. Maybe it's a good time to take a break?"
 msgstr ""
 
-#: src/screens/Signup/index.tsx:144
+#: src/screens/Signup/index.tsx:158
 msgid "Your account"
 msgstr "Ο λογαριασμός σας"
 
@@ -8938,7 +9430,7 @@ msgstr ""
 msgid "Your appeal has been submitted. If your appeal succeeds, you will receive an email."
 msgstr ""
 
-#: src/screens/Signup/StepInfo/index.tsx:254
+#: src/screens/Signup/StepInfo/index.tsx:543
 msgid "Your birth date"
 msgstr "Η ημερομηνία γέννησής σας"
 
@@ -8959,8 +9451,8 @@ msgid "Your current handle <0>{0}</0> will automatically remain reserved for you
 msgstr ""
 
 #: src/screens/Login/ForgotPasswordForm.tsx:51
-#: src/screens/Signup/state.ts:221
-#: src/screens/Signup/StepInfo/index.tsx:99
+#: src/screens/Signup/state.ts:283
+#: src/screens/Signup/StepInfo/index.tsx:119
 #: src/view/com/modals/ChangePassword.tsx:55
 msgid "Your email appears to be invalid."
 msgstr "Το email σας φαίνεται να είναι μη έγκυρο."
@@ -8972,6 +9464,10 @@ msgstr "Το email σας έχει ενημερωθεί αλλά δεν έχει
 #: src/view/com/modals/VerifyEmail.tsx:122
 msgid "Your email has not yet been verified. This is an important security step which we recommend."
 msgstr "Το email σας δεν έχει ακόμη επαληθευτεί. Αυτό είναι ένα σημαντικό βήμα ασφαλείας που σας συνιστούμε."
+
+#: src/screens/Onboarding/StepEns/index.tsx:147
+msgid "Your ENS subdomain"
+msgstr ""
 
 #: src/state/shell/progress-guide.tsx:213
 msgid "Your first like!"
@@ -8989,8 +9485,25 @@ msgstr "Η ροή που ακολουθείτε είναι άδεια! Ακολ�
 msgid "Your full handle will be <0>@{0}</0>"
 msgstr "Το πλήρες όνομα χρήστη σας θα είναι <0>@{0}</0>"
 
-#: src/screens/Signup/StepHandle.tsx:129
+#: src/screens/Signup/StepHandle.tsx:137
 msgid "Your full username will be <0>@{0}</0>"
+msgstr ""
+
+#: src/Navigation.tsx:397
+#: src/screens/Search/modules/ExploreInterestsCard.tsx:67
+#: src/screens/Settings/ContentAndMediaSettings.tsx:92
+#: src/screens/Settings/ContentAndMediaSettings.tsx:95
+#: src/screens/Settings/SettingsInterests.tsx:39
+msgid "Your interests"
+msgstr ""
+
+#: src/screens/Settings/SettingsInterests.tsx:124
+msgctxt "toast"
+msgid "Your interests have been updated!"
+msgstr ""
+
+#: src/screens/Search/modules/ExploreInterestsCard.tsx:94
+msgid "Your interests help us find what you like!"
 msgstr ""
 
 #: src/components/dialogs/MutedWords.tsx:369
@@ -9001,15 +9514,11 @@ msgstr "Οι λέξεις σας σε σίγαση"
 msgid "Your password has been changed successfully!"
 msgstr "Ο κωδικός πρόσβασής σας έχει αλλάξει με επιτυχία!"
 
-#: src/screens/Signup/StepInfo/index.tsx:128
-msgid "Your password must be at least 8 characters long."
-msgstr ""
-
-#: src/view/com/composer/Composer.tsx:485
+#: src/view/com/composer/Composer.tsx:493
 msgid "Your post has been published"
 msgstr "Η ανάρτησή σας έχει δημοσιευτεί"
 
-#: src/view/com/composer/Composer.tsx:482
+#: src/view/com/composer/Composer.tsx:490
 msgid "Your posts have been published"
 msgstr "Οι αναρτήσεις σας έχουν δημοσιευτεί"
 
@@ -9021,7 +9530,7 @@ msgstr "Οι αναρτήσεις, τα \"Μου αρέσει\" και οι απ
 msgid "Your profile, posts, feeds, and lists will no longer be visible to other Bluesky users. You can reactivate your account at any time by logging in."
 msgstr "Το προφίλ, οι αναρτήσεις, οι ροές και οι λίστες σας δεν θα είναι πλέον ορατές σε άλλους χρήστες του Bluesky. πορείτε να ενεργοποιήσετε τον λογαριασμό σας ανά πάσα στιγμή πραγματοποιώντας είσοδο."
 
-#: src/view/com/composer/Composer.tsx:484
+#: src/view/com/composer/Composer.tsx:492
 msgid "Your reply has been published"
 msgstr "Η απάντησή σας έχει δημοσιευτεί"
 
@@ -9032,3 +9541,7 @@ msgstr ""
 #: src/components/dms/ReportDialog.tsx:200
 msgid "Your report will be sent to the Bluesky Moderation Service"
 msgstr "Η αναφορά σας θα σταλεί στην Υπηρεσία Διαχείρισης του Bluesky"
+
+#: src/screens/Settings/SettingsInterests.tsx:53
+msgid "Your selected interests help us serve you content you care about."
+msgstr ""

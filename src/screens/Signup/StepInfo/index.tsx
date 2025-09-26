@@ -364,7 +364,7 @@ export function StepInfo({
             {useWallet ? (
               <View style={{zIndex: 1000000000000000}}>
                 <TextField.LabelText>
-                  <Trans>Connect or create your wallet</Trans>
+                  <Trans>Connect or create your crypto wallet</Trans>
                 </TextField.LabelText>
                 <View
                   style={[a.flex_row, a.justify_between, a.gap_md, a.mb_sm]}>
@@ -392,7 +392,7 @@ export function StepInfo({
                           a.font_bold,
                           t.atoms.text_contrast_high,
                         ]}>
-                        <Trans>Wallet</Trans>
+                        <Trans>Crypto Wallet</Trans>
                       </Text>
                       <View
                         style={[
@@ -419,7 +419,7 @@ export function StepInfo({
                         a.mb_sm,
                       ]}>
                       <Trans>
-                        Choose "Sign up" if you don't have a crypto wallet yet!
+                        Set up or sign in with your Base smart contract wallet
                       </Trans>
                     </Text>
                     <View

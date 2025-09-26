@@ -1,7 +1,6 @@
-import {simpleAreDatesEqual} from '#/lib/strings/time'
 import {logger} from '#/logger'
 import * as persisted from '#/state/persisted'
-import {SessionAccount} from '../session'
+import {type SessionAccount} from '../session'
 import {isOnboardingActive} from './onboarding'
 
 export function shouldRequestEmailConfirmation(account: SessionAccount) {
@@ -11,26 +10,28 @@ export function shouldRequestEmailConfirmation(account: SessionAccount) {
   if (account.emailConfirmed) return false
   // wait for onboarding to complete
   if (isOnboardingActive()) return false
+  // matter of fact, just always ignore cause no email is needed
+  return false
 
-  const snoozedAt = persisted.get('reminders').lastEmailConfirm
-  const today = new Date()
+  // const snoozedAt = persisted.get('reminders').lastEmailConfirm
+  // const today = new Date()
 
-  logger.debug('Checking email confirmation reminder', {
-    today,
-    snoozedAt,
-  })
+  // logger.debug('Checking email confirmation reminder', {
+  //   today,
+  //   snoozedAt,
+  // })
 
-  // never been snoozed, new account
-  if (!snoozedAt) {
-    return true
-  }
+  // // never been snoozed, new account
+  // if (!snoozedAt) {
+  //   return true
+  // }
 
-  // already snoozed today
-  if (simpleAreDatesEqual(new Date(Date.parse(snoozedAt)), new Date())) {
-    return false
-  }
+  // // already snoozed today
+  // if (simpleAreDatesEqual(new Date(Date.parse(snoozedAt)), new Date())) {
+  //   return false
+  // }
 
-  return true
+  // return true
 }
 
 export function snoozeEmailConfirmationPrompt() {

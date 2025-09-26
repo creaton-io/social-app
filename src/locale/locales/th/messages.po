@@ -18,7 +18,8 @@ msgstr ""
 "X-Crowdin-File: /main/src/locale/locales/en/messages.po\n"
 "X-Crowdin-File-ID: 11\n"
 
-#: src/components/ProgressGuide/FollowDialog.tsx:567
+#: src/components/ProgressGuide/FollowDialog.tsx:515
+#: src/screens/Search/modules/ExploreSuggestedAccounts.tsx:119
 msgid "(active)"
 msgstr ""
 
@@ -116,6 +117,21 @@ msgstr ""
 msgid "{0, plural, one {repost} other {reposts}}"
 msgstr ""
 
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:78
+msgid "{0, plural, other {{1} posts}}"
+msgstr ""
+
+#. Number of users (always at least 25) who have joined Bluesky using a specific starter pack
+#: src/screens/StarterPack/StarterPackScreen.tsx:485
+msgid "{0, plural, other {# people have}} used this starter pack!"
+msgstr ""
+
+#: src/screens/Login/LoginForm.tsx:518
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:266
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:274
+msgid "{0}"
+msgstr ""
+
 #. Pattern: {wordValue} in tags
 #: src/components/dialogs/MutedWords.tsx:475
 msgid "{0} <0>in <1>tags</1></0>"
@@ -139,11 +155,15 @@ msgstr "{0} จาก {1}"
 msgid "{0} out of 50"
 msgstr ""
 
-#: src/screens/StarterPack/StarterPackScreen.tsx:485
-msgid "{0} people have used this starter pack!"
+#: src/components/dms/MessageItem.tsx:143
+msgid "{0} reacted {1}"
 msgstr ""
 
-#: src/view/com/util/UserAvatar.tsx:445
+#: src/screens/Messages/components/ChatListItem.tsx:226
+msgid "{0} reacted {1} to {2}"
+msgstr ""
+
+#: src/view/com/util/UserAvatar.tsx:464
 msgid "{0}'s avatar"
 msgstr ""
 
@@ -175,7 +195,7 @@ msgstr "{0}น."
 msgid "{0}s"
 msgstr "{0}วินาที"
 
-#: src/view/shell/desktop/LeftNav.tsx:382
+#: src/view/shell/desktop/LeftNav.tsx:383
 msgid "{count, plural, one {# unread item} other {# unread items}}"
 msgstr ""
 
@@ -183,6 +203,10 @@ msgstr ""
 #: src/screens/StarterPack/Wizard/index.tsx:178
 msgid "{displayName}'s Starter Pack"
 msgstr "ชุดเริ่มต้นของ {displayName}"
+
+#: src/screens/Onboarding/StepEns/index.tsx:144
+msgid "{ensSubdomain}"
+msgstr ""
 
 #: src/screens/SignupQueued.tsx:216
 msgid "{estimatedTimeHrs, plural, one {hour} other {hours}}"
@@ -289,6 +313,11 @@ msgstr "{following} ติดตามอยู่"
 msgid "{handle} can't be messaged"
 msgstr "{handle} ไม่สามารถส่งข้อความได้"
 
+#. Number of users (always at least 50) who have joined Bluesky using a specific starter pack
+#: src/components/StarterPack/StarterPackCard.tsx:101
+msgid "{joinedAllTimeCount, plural, other {# users have}} joined!"
+msgstr ""
+
 #: src/view/shell/bottom-bar/BottomBarWeb.tsx:270
 msgid "{notificationCount, plural, one {# unread item} other {# unread items}}"
 msgstr ""
@@ -300,6 +329,21 @@ msgstr "{profileName} เข้าร่วม Bluesky เมื่อ {0} ท�
 #: src/components/NewskieDialog.tsx:111
 msgid "{profileName} joined Bluesky using a starter pack {0} ago"
 msgstr "{profileName} เข้าร่วม Bluesky โดยใช้ชุดเริ่มต้นเมื่อ {0} ที่แล้ว"
+
+#. The trending topic rank, i.e. "1. March Madness", "2. The Bachelor"
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:107
+msgid "{rank}."
+msgstr ""
+
+#. trending topic time spent trending. should be as short as possible to fit in a pill
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:202
+msgid "{type}h ago"
+msgstr ""
+
+#. Indicates the number of additional profiles are in the Starter Pack e.g. +12
+#: src/screens/Search/components/StarterPackCard.tsx:249
+msgid "+{computedTotal}"
+msgstr ""
 
 #: src/screens/StarterPack/Wizard/index.tsx:449
 msgctxt "profiles"
@@ -343,15 +387,23 @@ msgstr ""
 msgid "<0>You</0> and<1> </1><2>{0} </2>are included in your starter pack"
 msgstr "<0>คุณ</0> และ<1> </1><2>{0} </2>ถูกรวมอยู่ในชุดเริ่มต้นของคุณ"
 
-#: src/screens/Profile/Header/Handle.tsx:52
+#: src/screens/Profile/Header/Handle.tsx:69
 msgid "⚠Invalid Handle"
 msgstr "⚠แฮนด์เดิลไม่ถูกต้อง"
+
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:273
+msgid "0.00"
+msgstr ""
 
 #: src/components/dialogs/MutedWords.tsx:193
 msgid "24 hours"
 msgstr "24 ชั่วโมง"
 
-#: src/screens/Login/LoginForm.tsx:268
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:190
+msgid "24h Change"
+msgstr ""
+
+#: src/screens/Login/LoginForm.tsx:384
 msgid "2FA Confirmation"
 msgstr "การยืนยัน 2FA"
 
@@ -363,7 +415,12 @@ msgstr "30 วัน"
 msgid "7 days"
 msgstr "7 วัน"
 
-#: src/Navigation.tsx:383
+#. If last message does not contain text, fall back to "{user} reacted to {a message}"
+#: src/screens/Messages/components/ChatListItem.tsx:205
+msgid "a message"
+msgstr ""
+
+#: src/Navigation.tsx:405
 #: src/screens/Settings/AboutSettings.tsx:34
 #: src/screens/Settings/Settings.tsx:215
 #: src/screens/Settings/Settings.tsx:218
@@ -390,12 +447,12 @@ msgstr ""
 msgid "Accessibility"
 msgstr "การเข้าถึง"
 
-#: src/Navigation.tsx:343
+#: src/Navigation.tsx:357
 msgid "Accessibility Settings"
 msgstr "การตั้งค่าการเข้าถึง"
 
-#: src/Navigation.tsx:359
-#: src/screens/Login/LoginForm.tsx:194
+#: src/Navigation.tsx:373
+#: src/screens/Login/LoginForm.tsx:306
 #: src/screens/Settings/AccountSettings.tsx:45
 #: src/screens/Settings/Settings.tsx:153
 #: src/screens/Settings/Settings.tsx:156
@@ -437,7 +494,10 @@ msgstr "ตัวเลือกบัญชี"
 msgid "Account removed from quick access"
 msgstr "ลบบัญชีออกจากการเข้าถึงด่วนแล้ว"
 
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:137
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:173
+msgid "Account unblocked"
+msgstr ""
+
 #: src/view/com/profile/ProfileMenu.tsx:131
 msgctxt "toast"
 msgid "Account unblocked"
@@ -473,8 +533,8 @@ msgstr "เพิ่ม {displayName} ไปยังชุดเริ่มต
 msgid "Add a content warning"
 msgstr "เพื่มคำเตือนเกี่ยวกับเนื้อหา"
 
-#: src/view/screens/ProfileList.tsx:917
-#: src/view/screens/ProfileList.tsx:935
+#: src/view/screens/ProfileList.tsx:916
+#: src/view/screens/ProfileList.tsx:934
 msgid "Add a user to this list"
 msgstr "เพิ่มผู้ใช้ไปยังลิสต์นี้"
 
@@ -485,7 +545,7 @@ msgstr "เพิ่มบัญชี"
 
 #: src/view/com/composer/GifAltText.tsx:76
 #: src/view/com/composer/GifAltText.tsx:144
-#: src/view/com/composer/GifAltText.tsx:207
+#: src/view/com/composer/GifAltText.tsx:210
 #: src/view/com/composer/photos/Gallery.tsx:169
 #: src/view/com/composer/photos/Gallery.tsx:216
 #: src/view/com/composer/photos/ImageAltTextDialog.tsx:88
@@ -499,12 +559,12 @@ msgstr "เพิ่มข้อความแสดงแทน (ไม่บ�
 
 #: src/screens/Settings/Settings.tsx:373
 #: src/screens/Settings/Settings.tsx:376
-#: src/view/shell/desktop/LeftNav.tsx:280
-#: src/view/shell/desktop/LeftNav.tsx:284
+#: src/view/shell/desktop/LeftNav.tsx:281
+#: src/view/shell/desktop/LeftNav.tsx:285
 msgid "Add another account"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:743
+#: src/view/com/composer/Composer.tsx:752
 msgid "Add another post"
 msgstr ""
 
@@ -517,6 +577,10 @@ msgstr ""
 #: src/screens/Settings/components/AddAppPasswordDialog.tsx:111
 msgid "Add App Password"
 msgstr "เพิ่มรหัสผ่านแอป"
+
+#: src/components/dms/EmojiReactionPicker.web.tsx:35
+msgid "Add emoji reaction"
+msgstr ""
 
 #: src/components/moderation/ReportDialog/index.tsx:392
 #: src/components/moderation/ReportDialog/index.tsx:396
@@ -531,13 +595,17 @@ msgstr ""
 msgid "Add muted words and tags"
 msgstr "เพิ่มคำและแท็กที่ไม่ออกเสียง"
 
-#: src/view/com/composer/Composer.tsx:1258
+#: src/view/com/composer/Composer.tsx:1306
 msgid "Add new post"
 msgstr ""
 
-#: src/view/screens/ProfileList.tsx:925
-#: src/view/screens/ProfileList.tsx:943
+#: src/view/screens/ProfileList.tsx:924
+#: src/view/screens/ProfileList.tsx:942
 msgid "Add people"
+msgstr ""
+
+#: src/components/dms/EmojiPopup.android.tsx:55
+msgid "Add Reaction"
 msgstr ""
 
 #: src/screens/Home/NoFeedsPinned.tsx:99
@@ -556,7 +624,7 @@ msgstr "เพิ่มเป็นฟีตเฉพาะคนที่คุ
 msgid "Add the following DNS record to your domain:"
 msgstr ""
 
-#: src/components/FeedCard.tsx:295
+#: src/components/FeedCard.tsx:305
 msgid "Add this feed to your feeds"
 msgstr "เพิ่มฟีตนี้ในฟีตของคุณ"
 
@@ -582,14 +650,14 @@ msgstr "เพิ่มในฟีตของคุณแล้ว"
 msgid "Additional details (limit 300 characters)"
 msgstr ""
 
-#: src/view/com/composer/labels/LabelsBtn.tsx:160
+#: src/view/com/composer/labels/LabelsBtn.tsx:159
 msgid "Adult"
 msgstr ""
 
 #: src/components/moderation/ContentHider.tsx:113
 #: src/lib/moderation/useGlobalLabelStrings.ts:34
 #: src/lib/moderation/useModerationCauseDescription.ts:148
-#: src/view/com/composer/labels/LabelsBtn.tsx:128
+#: src/view/com/composer/labels/LabelsBtn.tsx:127
 msgid "Adult Content"
 msgstr "เนื้อหาสำหรับผู้ใหญ่ (18+)"
 
@@ -601,8 +669,8 @@ msgstr "เนื้อหาผู้ใหญ่ (18+) สามารถเ�
 msgid "Adult content is disabled."
 msgstr "ปิดเนื้อหาสำหรับผู้ใหญ่"
 
-#: src/view/com/composer/labels/LabelsBtn.tsx:139
-#: src/view/com/composer/labels/LabelsBtn.tsx:197
+#: src/view/com/composer/labels/LabelsBtn.tsx:138
+#: src/view/com/composer/labels/LabelsBtn.tsx:196
 msgid "Adult Content labels"
 msgstr ""
 
@@ -618,9 +686,9 @@ msgstr ""
 msgid "All accounts have been followed!"
 msgstr "บัญชีทั้งหมดได้ถูกติดตามแล้ว"
 
-#: src/view/screens/Search/Search.tsx:370
-#: src/view/screens/Search/Search.tsx:405
-#: src/view/screens/Search/Search.tsx:407
+#: src/screens/Search/components/SearchLanguageDropdown.tsx:64
+#: src/screens/Search/components/SearchLanguageDropdown.tsx:99
+#: src/screens/Search/components/SearchLanguageDropdown.tsx:101
 msgid "All languages"
 msgstr ""
 
@@ -685,8 +753,16 @@ msgstr "ข้อความแสดงแทนอธิบายรูปภ
 
 #: src/view/com/composer/GifAltText.tsx:179
 #: src/view/com/composer/photos/ImageAltTextDialog.tsx:139
-msgid "Alt text will be truncated. Limit: {0} characters."
-msgstr "ตัดทอนข้อความให้เหลือ {0} ตัวอักษร"
+msgid "Alt text will be truncated. {MAX_ALT_TEXT, plural, other {Limit: {0} characters.}}"
+msgstr ""
+
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:272
+msgid "Amount"
+msgstr ""
+
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:259
+msgid "Amount ({0})"
+msgstr ""
 
 #: src/screens/Settings/components/DisableEmail2FADialog.tsx:93
 #: src/view/com/modals/VerifyEmail.tsx:132
@@ -713,7 +789,11 @@ msgstr "เกิดข้อผิดพลาด"
 msgid "An error occurred while compressing the video."
 msgstr "เกิดข้อผิดพลาดขณะบีบอัดวิดีโอ"
 
-#: src/components/StarterPack/ProfileStarterPacks.tsx:331
+#: src/state/queries/explore-feed-previews.tsx:183
+msgid "An error occurred while fetching the feed."
+msgstr ""
+
+#: src/components/StarterPack/ProfileStarterPacks.tsx:336
 msgid "An error occurred while generating your starter pack. Want to try again?"
 msgstr "เกิดข้อผิดพลาดขณะสร้างชุดเริ่มต้นของคุณ ต้องการลองอีกครั้งหรือไม่?"
 
@@ -758,8 +838,8 @@ msgstr "เกิดปัญหาขณะพยายามเปิดกา
 
 #: src/components/hooks/useFollowMethods.ts:35
 #: src/components/hooks/useFollowMethods.ts:50
-#: src/components/ProfileCard.tsx:332
-#: src/components/ProfileCard.tsx:353
+#: src/components/ProfileCard.tsx:339
+#: src/components/ProfileCard.tsx:360
 #: src/view/com/profile/FollowButton.tsx:38
 #: src/view/com/profile/FollowButton.tsx:48
 msgid "An issue occurred, please try again."
@@ -778,8 +858,8 @@ msgstr "ผู้ทำเครื่องหมายที่ไม่รู
 msgid "and"
 msgstr "และ"
 
-#: src/screens/Onboarding/index.tsx:29
-#: src/screens/Onboarding/state.ts:94
+#: src/screens/Onboarding/index.tsx:30
+#: src/screens/Onboarding/state.ts:106
 msgid "Animals"
 msgstr "สัตว์"
 
@@ -796,7 +876,7 @@ msgstr "พฤติกรรมต่อต้านสังคม"
 msgid "Anybody can interact"
 msgstr "ทุกคนสามารถมีส่วนร่วมได้"
 
-#: src/Navigation.tsx:391
+#: src/Navigation.tsx:413
 #: src/screens/Settings/AppIconSettings/index.tsx:67
 #: src/screens/Settings/AppIconSettings/SettingsListItem.tsx:18
 #: src/screens/Settings/AppIconSettings/SettingsListItem.tsx:23
@@ -833,7 +913,7 @@ msgstr ""
 msgid "App passwords"
 msgstr "รหัสผ่านแอป"
 
-#: src/Navigation.tsx:311
+#: src/Navigation.tsx:325
 #: src/screens/Settings/AppPasswords.tsx:51
 msgid "App Passwords"
 msgstr "รหัสผ่านแอป"
@@ -869,7 +949,7 @@ msgstr ""
 msgid "Appeal this decision"
 msgstr "อุทธรณ์การตัดสินใจนี้"
 
-#: src/Navigation.tsx:351
+#: src/Navigation.tsx:365
 #: src/screens/Settings/AppearanceSettings.tsx:85
 #: src/screens/Settings/Settings.tsx:183
 #: src/screens/Settings/Settings.tsx:186
@@ -894,11 +974,11 @@ msgstr ""
 msgid "Are you sure you want to delete the app password \"{0}\"?"
 msgstr ""
 
-#: src/components/dms/MessageMenu.tsx:152
+#: src/components/dms/MessageContextMenu.tsx:178
 msgid "Are you sure you want to delete this message? The message will be deleted for you, but not for the other participant."
 msgstr "คุณแน่ใจหรือว่าต้องการลบข้อความนี้? ข้อความจะถูกลบสำหรับคุณ แต่ไม่ใช่สำหรับผู้เข้าร่วมคนอื่น"
 
-#: src/screens/StarterPack/StarterPackScreen.tsx:638
+#: src/screens/StarterPack/StarterPackScreen.tsx:641
 msgid "Are you sure you want to delete this starter pack?"
 msgstr "คุณแน่ใจหรือว่าต้องการลบชุดเริ่มต้นนี้?"
 
@@ -918,15 +998,15 @@ msgstr "คุณแน่ใจหรือว่าต้องการออ
 msgid "Are you sure you want to remove {0} from your feeds?"
 msgstr "คุณแน่ใจหรือว่าต้องการลบ {0} ออกจากฟีดของคุณ?"
 
-#: src/components/FeedCard.tsx:312
+#: src/components/FeedCard.tsx:340
 msgid "Are you sure you want to remove this from your feeds?"
 msgstr "คุณแน่ใจหรือว่าต้องการลบสิ่งนี้ออกจากฟีดของคุณ?"
 
-#: src/view/com/composer/Composer.tsx:694
+#: src/view/com/composer/Composer.tsx:703
 msgid "Are you sure you'd like to discard this draft?"
 msgstr "คุณแน่ใจหรือว่าต้องการลบร่างนี้?"
 
-#: src/view/com/composer/Composer.tsx:868
+#: src/view/com/composer/Composer.tsx:882
 msgid "Are you sure you'd like to discard this post?"
 msgstr ""
 
@@ -938,16 +1018,16 @@ msgstr "คุณแน่ใจไหม?"
 msgid "Are you writing in <0>{suggestedLanguageName}</0>?"
 msgstr ""
 
-#: src/screens/Onboarding/index.tsx:23
-#: src/screens/Onboarding/state.ts:95
+#: src/screens/Onboarding/index.tsx:24
+#: src/screens/Onboarding/state.ts:107
 msgid "Art"
 msgstr "ศิลปะ"
 
-#: src/view/com/composer/labels/LabelsBtn.tsx:172
+#: src/view/com/composer/labels/LabelsBtn.tsx:171
 msgid "Artistic or non-erotic nudity."
 msgstr "ภาพนู้ดที่เป็นศิลปะหรือไม่ใช่ภาพอนาจาร"
 
-#: src/screens/Signup/StepHandle.tsx:182
+#: src/screens/Signup/StepHandle.tsx:194
 msgid "At least 3 characters"
 msgstr "ต้องมีอย่างน้อย 3 ตัวอักษร"
 
@@ -960,8 +1040,8 @@ msgstr ""
 msgid "Autoplay options have moved to the <0>Content and Media settings</0>."
 msgstr ""
 
-#: src/screens/Settings/ContentAndMediaSettings.tsx:107
-#: src/screens/Settings/ContentAndMediaSettings.tsx:113
+#: src/screens/Settings/ContentAndMediaSettings.tsx:116
+#: src/screens/Settings/ContentAndMediaSettings.tsx:122
 msgid "Autoplay videos and GIFs"
 msgstr ""
 
@@ -972,8 +1052,8 @@ msgstr ""
 #: src/screens/Login/ChooseAccountForm.tsx:95
 #: src/screens/Login/ForgotPasswordForm.tsx:123
 #: src/screens/Login/ForgotPasswordForm.tsx:129
-#: src/screens/Login/LoginForm.tsx:310
-#: src/screens/Login/LoginForm.tsx:316
+#: src/screens/Login/LoginForm.tsx:426
+#: src/screens/Login/LoginForm.tsx:432
 #: src/screens/Login/SetNewPasswordForm.tsx:164
 #: src/screens/Login/SetNewPasswordForm.tsx:170
 #: src/screens/Messages/components/ChatDisabled.tsx:133
@@ -981,10 +1061,12 @@ msgstr ""
 #: src/screens/Profile/Header/Shell.tsx:115
 #: src/screens/Signup/BackNextButtons.tsx:41
 #: src/screens/StarterPack/Wizard/index.tsx:286
+#: src/screens/Xmtp/Conversation.tsx:159
+#: src/screens/Xmtp/Conversation.tsx:167
 msgid "Back"
 msgstr "กลับ"
 
-#: src/screens/Messages/Inbox.tsx:238
+#: src/screens/Messages/Inbox.tsx:244
 msgid "Back to Chats"
 msgstr ""
 
@@ -993,23 +1075,22 @@ msgstr ""
 msgid "Before creating a list, you must first verify your email."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:621
+#: src/view/com/composer/Composer.tsx:629
 msgid "Before creating a post, you must first verify your email."
 msgstr ""
 
-#: src/components/StarterPack/ProfileStarterPacks.tsx:338
+#: src/components/StarterPack/ProfileStarterPacks.tsx:343
 msgid "Before creating a starter pack, you must first verify your email."
 msgstr ""
 
 #: src/components/dms/dialogs/NewChatDialog.tsx:79
 #: src/components/dms/MessageProfileButton.tsx:110
-#: src/screens/Messages/Conversation.tsx:212
+#: src/screens/Messages/Conversation.tsx:221
 msgid "Before you may message another user, you must first verify your email."
 msgstr ""
 
-#: src/screens/Search/components/ExploreTrendingTopics.tsx:74
-#: src/screens/Search/components/ExploreTrendingVideos.tsx:111
-msgid "BETA"
+#: src/screens/Signup/StepInfo/index.tsx:411
+msgid "Beginner-friendly"
 msgstr ""
 
 #: src/components/dialogs/BirthDateSettings.tsx:103
@@ -1017,7 +1098,7 @@ msgstr ""
 msgid "Birthday"
 msgstr "วันเกิด"
 
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:283
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:413
 #: src/view/com/profile/ProfileMenu.tsx:399
 #: src/view/com/util/forms/PostDropdownBtnMenuItems.tsx:832
 msgid "Block"
@@ -1039,7 +1120,7 @@ msgstr "บล็อกบัญชี"
 msgid "Block Account?"
 msgstr "บล็อกบัญชี?"
 
-#: src/view/screens/ProfileList.tsx:662
+#: src/view/screens/ProfileList.tsx:661
 msgid "Block accounts"
 msgstr "บล็อกบัญชี"
 
@@ -1051,7 +1132,7 @@ msgstr ""
 msgid "Block and/or delete this conversation"
 msgstr ""
 
-#: src/view/screens/ProfileList.tsx:782
+#: src/view/screens/ProfileList.tsx:781
 msgid "Block list"
 msgstr "ลิสต์บล็อก"
 
@@ -1059,7 +1140,7 @@ msgstr "ลิสต์บล็อก"
 msgid "Block or report"
 msgstr ""
 
-#: src/view/screens/ProfileList.tsx:777
+#: src/view/screens/ProfileList.tsx:776
 msgid "Block these accounts?"
 msgstr "บล็อกบัญชีเหล่านี้?"
 
@@ -1080,7 +1161,7 @@ msgstr "ถูกบล็อก"
 msgid "Blocked accounts"
 msgstr "บัญชีที่ถูกบล็อก"
 
-#: src/Navigation.tsx:160
+#: src/Navigation.tsx:174
 #: src/view/screens/ModerationBlockedAccounts.tsx:101
 msgid "Blocked Accounts"
 msgstr "บัญชีที่ถูกบล็อก"
@@ -1102,7 +1183,7 @@ msgstr "โพสต์ที่ถูกบล็อก"
 msgid "Blocking does not prevent this labeler from placing labels on your account."
 msgstr "การบล็อกไม่ได้ป้องกันผู้ทำเครื่องหมายนี้จากการวางป้ายบนบัญชีของคุณ"
 
-#: src/view/screens/ProfileList.tsx:779
+#: src/view/screens/ProfileList.tsx:778
 msgid "Blocking is public. Blocked accounts cannot reply in your threads, mention you, or otherwise interact with you."
 msgstr "การบล็อกเป็นสาธารณะ บัญชีที่ถูกบล็อกไม่สามารถตอบในกระทู้ของคุณ, กล่าวถึงคุณ, หรือมีปฏิสัมพันธ์กับคุณได้"
 
@@ -1110,14 +1191,9 @@ msgstr "การบล็อกเป็นสาธารณะ บัญช�
 msgid "Blocking will not prevent labels from being applied on your account, but it will stop this account from replying in your threads or interacting with you."
 msgstr "การบล็อกจะไม่ป้องกันไม่ให้ป้ายถูกวางบนบัญชีของคุณ แต่จะหยุดบัญชีนี้จากการตอบในกระทู้ของคุณหรือมีปฏิสัมพันธ์กับคุณ"
 
-#: src/view/com/auth/SplashScreen.web.tsx:173
+#: src/view/com/auth/SplashScreen.web.tsx:177
 msgid "Blog"
 msgstr "บล็อก"
-
-#: src/view/com/auth/server-input/index.tsx:136
-#: src/view/com/auth/server-input/index.tsx:137
-msgid "Bluesky"
-msgstr "Bluesky"
 
 #: src/view/com/post-thread/PostThreadItem.tsx:870
 msgid "Bluesky cannot confirm the authenticity of the claimed date."
@@ -1128,24 +1204,11 @@ msgctxt "Name of app icon variant"
 msgid "Bluesky Classic™"
 msgstr ""
 
-#: src/view/com/auth/server-input/index.tsx:212
-msgid "Bluesky is an open network where you can choose your hosting provider. If you're a developer, you can host your own server."
-msgstr "Bluesky เป็นเครือข่ายเปิดที่คุณสามารถเลือกผู้ให้บริการโฮสติ้งของคุณได้ หากคุณเป็นนักพัฒนา คุณสามารถโฮสต์เซิร์ฟเวอร์ของคุณเองได้"
-
-#: src/view/com/auth/server-input/index.tsx:149
-msgid "Bluesky is an open network where you can choose your own provider. If you're new here, we recommend sticking with the default Bluesky Social option."
-msgstr ""
-
-#: src/components/ProgressGuide/List.tsx:53
-#: src/components/ProgressGuide/List.tsx:70
-msgid "Bluesky is better with friends!"
-msgstr "Bluesky สนุกยิ่งขึ้นเมื่อมีเพื่อน!"
-
 #: src/screens/Takendown.tsx:217
 msgid "Bluesky Social Terms of Service"
 msgstr ""
 
-#: src/components/StarterPack/ProfileStarterPacks.tsx:298
+#: src/components/StarterPack/ProfileStarterPacks.tsx:303
 msgid "Bluesky will choose a set of recommended accounts from people in your network."
 msgstr "Bluesky จะเลือกชุดบัญชีที่แนะนำจากผู้คนในเครือข่ายของคุณ"
 
@@ -1169,28 +1232,28 @@ msgstr "เบลอภาพ"
 msgid "Blur images and filter from feeds"
 msgstr "เบลอภาพและกรองออกจากฟีด"
 
-#: src/screens/Onboarding/index.tsx:30
-#: src/screens/Onboarding/state.ts:96
+#: src/screens/Onboarding/index.tsx:31
+#: src/screens/Onboarding/state.ts:108
 msgid "Books"
 msgstr "หนังสือ"
 
-#: src/components/FeedInterstitials.tsx:372
+#: src/components/FeedInterstitials.tsx:373
 msgid "Browse more accounts on the Explore page"
 msgstr "เรียกดูบัญชีเพิ่มเติมในหน้าค้นหา"
 
-#: src/components/FeedInterstitials.tsx:509
+#: src/components/FeedInterstitials.tsx:511
 msgid "Browse more feeds on the Explore page"
 msgstr "เรียกดูฟีดเพิ่มเติมในหน้าค้นหา"
 
 #: src/components/FeedInterstitials.tsx:353
 #: src/components/FeedInterstitials.tsx:356
-#: src/components/FeedInterstitials.tsx:490
-#: src/components/FeedInterstitials.tsx:493
+#: src/components/FeedInterstitials.tsx:492
+#: src/components/FeedInterstitials.tsx:495
 msgid "Browse more suggestions"
 msgstr "เรียกดูข้อเสนอเพิ่มเติม"
 
-#: src/components/FeedInterstitials.tsx:380
-#: src/components/FeedInterstitials.tsx:518
+#: src/components/FeedInterstitials.tsx:381
+#: src/components/FeedInterstitials.tsx:520
 msgid "Browse more suggestions on the Explore page"
 msgstr "เรียกดูข้อเสนอเพิ่มเติมในหน้าค้นหา"
 
@@ -1211,16 +1274,27 @@ msgstr ""
 msgid "Browse starter pack {displayName}"
 msgstr ""
 
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:89
+msgid "Browse topic {0}"
+msgstr ""
+
 #: src/components/TrendingTopics.tsx:232
 msgid "Browse topic {displayName}"
 msgstr ""
 
-#: src/view/com/auth/SplashScreen.web.tsx:168
+#: src/view/com/auth/SplashScreen.web.tsx:172
 msgid "Business"
 msgstr "ธุรกิจ"
 
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:234
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:241
+msgid "Buy"
+msgstr ""
+
 #: src/components/LabelingServiceCard/index.tsx:62
 #: src/components/moderation/ReportDialog/index.tsx:672
+#: src/screens/Search/components/StarterPackCard.tsx:106
+#: src/screens/Search/Explore.tsx:810
 msgid "By {0}"
 msgstr "โดย {0}"
 
@@ -1240,16 +1314,27 @@ msgstr ""
 msgid "By creating an account you agree to the <0>Terms of Service</0>."
 msgstr ""
 
+#: src/screens/Search/components/StarterPackCard.tsx:105
+msgid "By you"
+msgstr ""
+
 #: src/view/com/composer/photos/OpenCameraBtn.tsx:72
 msgid "Camera"
 msgstr ""
 
-#: src/components/Menu/index.tsx:304
+#: src/components/Menu/index.tsx:306
 #: src/components/Prompt.tsx:130
 #: src/components/Prompt.tsx:132
 #: src/screens/Deactivated.tsx:158
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:133
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:141
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:244
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:247
 #: src/screens/Profile/Header/EditProfileDialog.tsx:220
 #: src/screens/Profile/Header/EditProfileDialog.tsx:228
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:121
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:129
+#: src/screens/Search/Shell.tsx:349
 #: src/screens/Settings/AppIconSettings/index.tsx:44
 #: src/screens/Settings/AppIconSettings/index.tsx:225
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:76
@@ -1257,7 +1342,9 @@ msgstr ""
 #: src/screens/Settings/Settings.tsx:260
 #: src/screens/Takendown.tsx:99
 #: src/screens/Takendown.tsx:102
-#: src/view/com/composer/Composer.tsx:931
+#: src/screens/Xmtp/index.tsx:217
+#: src/view/com/composer/Composer.tsx:937
+#: src/view/com/composer/Composer.tsx:948
 #: src/view/com/modals/ChangeEmail.tsx:213
 #: src/view/com/modals/ChangeEmail.tsx:215
 #: src/view/com/modals/ChangePassword.tsx:279
@@ -1272,8 +1359,7 @@ msgstr ""
 #: src/view/com/modals/VerifyEmail.tsx:255
 #: src/view/com/modals/VerifyEmail.tsx:261
 #: src/view/com/util/post-ctrls/RepostButton.tsx:213
-#: src/view/screens/Search/Search.tsx:890
-#: src/view/shell/desktop/LeftNav.tsx:208
+#: src/view/shell/desktop/LeftNav.tsx:209
 msgid "Cancel"
 msgstr "ยกเลิก"
 
@@ -1305,8 +1391,8 @@ msgstr "ยกเลิกโพสต์คำคม"
 msgid "Cancel reactivation and sign out"
 msgstr "ยกเลิกการเปิดใช้งานใหม่และออกจากระบบ"
 
+#: src/screens/Search/Shell.tsx:341
 #: src/view/com/modals/ListAddRemoveUsers.tsx:88
-#: src/view/screens/Search/Search.tsx:882
 msgid "Cancel search"
 msgstr "ยกเลิกการค้นหา"
 
@@ -1392,13 +1478,15 @@ msgid "Changes app icon"
 msgstr ""
 
 #: src/components/forms/HostingProvider.tsx:50
-#: src/components/forms/HostingProvider.tsx:70
+#: src/components/forms/HostingProvider.tsx:68
 msgid "Changes hosting provider"
 msgstr ""
 
-#: src/Navigation.tsx:408
+#: src/Navigation.tsx:430
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:243
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:246
 #: src/view/shell/bottom-bar/BottomBar.tsx:205
-#: src/view/shell/desktop/LeftNav.tsx:534
+#: src/view/shell/desktop/LeftNav.tsx:535
 #: src/view/shell/Drawer.tsx:422
 msgid "Chat"
 msgstr "แชท"
@@ -1414,20 +1502,19 @@ msgctxt "toast"
 msgid "Chat muted"
 msgstr "ปิดเสียงแชทแล้ว"
 
-#: src/Navigation.tsx:418
+#: src/Navigation.tsx:440
 #: src/screens/Messages/components/InboxPreview.tsx:24
 msgid "Chat request inbox"
 msgstr ""
 
 #: src/screens/Messages/components/InboxPreview.tsx:64
-#: src/screens/Messages/Inbox.tsx:77
+#: src/screens/Messages/Inbox.tsx:83
 msgid "Chat requests"
 msgstr ""
 
 #: src/components/dms/ConvoMenu.tsx:75
-#: src/components/dms/MessageMenu.tsx:83
-#: src/Navigation.tsx:413
-#: src/screens/Messages/ChatList.tsx:328
+#: src/Navigation.tsx:435
+#: src/screens/Messages/ChatList.tsx:341
 msgid "Chat settings"
 msgstr "ตั้งค่าแชท"
 
@@ -1440,8 +1527,8 @@ msgctxt "toast"
 msgid "Chat unmuted"
 msgstr "เปิดเสียงแชทแล้ว"
 
-#: src/screens/Messages/ChatList.tsx:344
-#: src/screens/Messages/ChatList.tsx:368
+#: src/screens/Messages/ChatList.tsx:357
+#: src/screens/Messages/ChatList.tsx:381
 msgid "Chats"
 msgstr ""
 
@@ -1450,7 +1537,7 @@ msgstr ""
 msgid "Check my status"
 msgstr "เช็คสถานะของฉัน"
 
-#: src/screens/Login/LoginForm.tsx:301
+#: src/screens/Login/LoginForm.tsx:417
 msgid "Check your email for a sign in code and enter it here."
 msgstr "ตรวจสอบอีเมลของคุณเพื่อรับรหัสเข้าสู่ระบบและกรอกที่นี่"
 
@@ -1466,21 +1553,25 @@ msgstr ""
 msgid "Choose Feeds"
 msgstr "เลือกฟีด"
 
-#: src/components/StarterPack/ProfileStarterPacks.tsx:306
+#: src/components/StarterPack/ProfileStarterPacks.tsx:311
 msgid "Choose for me"
 msgstr "เลือกให้ฉัน"
+
+#: src/screens/Signup/StepInfo/index.tsx:247
+msgid "Choose how to sign in"
+msgstr ""
 
 #: src/screens/StarterPack/Wizard/index.tsx:190
 msgid "Choose People"
 msgstr "เลือกผู้คน"
 
-#: src/view/com/composer/labels/LabelsBtn.tsx:115
-msgid "Choose self-labels that are applicable for the media you are posting. If none are selected, this post is suitable for all audiences."
-msgstr ""
-
 #: src/screens/Onboarding/StepFinished.tsx:298
 msgid "Choose the algorithms that power your custom feeds."
 msgstr "เลือกอัลกอริธึมที่ขับเคลื่อนฟีดที่กำหนดเองของคุณ"
+
+#: src/screens/Login/LoginForm.tsx:219
+msgid "Choose the wallet you used to create your account"
+msgstr ""
 
 #: src/screens/Onboarding/StepProfile/AvatarCreatorItems.tsx:107
 msgid "Choose this color as your avatar"
@@ -1491,17 +1582,28 @@ msgid "Choose your account provider"
 msgstr ""
 
 #: src/view/screens/Feeds.tsx:728
-#: src/view/screens/Search/Explore.tsx:427
 msgid "Choose your own timeline! Feeds built by the community help you find content you love."
 msgstr ""
 
-#: src/screens/Signup/StepInfo/index.tsx:238
-msgid "Choose your password"
-msgstr "ป้อนรหัสผ่านของคุณ"
-
-#: src/screens/Signup/index.tsx:146
+#: src/screens/Signup/index.tsx:160
 msgid "Choose your username"
 msgstr "แฮนด์เดิลผู้ใช้ของคุณ"
+
+#: src/screens/Onboarding/StepEns/index.tsx:185
+msgid "Claim {ensSubdomain}"
+msgstr ""
+
+#: src/screens/Onboarding/StepEns/index.tsx:188
+msgid "Claim ENS"
+msgstr ""
+
+#: src/screens/Onboarding/StepEns/index.tsx:120
+msgid "Claim your ENS subdomain"
+msgstr ""
+
+#: src/screens/Onboarding/StepEns/index.tsx:188
+msgid "Claiming..."
+msgstr ""
 
 #: src/screens/Settings/Settings.tsx:351
 msgid "Clear all storage data"
@@ -1531,11 +1633,11 @@ msgstr "คลิกเพื่อเปิดการโพสต์อ้า
 msgid "Click to open tag menu for {tag}"
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:241
+#: src/components/dms/MessageItem.tsx:317
 msgid "Click to retry failed message"
 msgstr "คลิกเพื่อพยายามส่งข้อความที่ล้มเหลวอีกครั้ง"
 
-#: src/screens/Onboarding/index.tsx:32
+#: src/screens/Onboarding/index.tsx:33
 msgid "Climate"
 msgstr "ภูมิอากาศ"
 
@@ -1546,11 +1648,12 @@ msgstr ""
 #: src/components/dialogs/GifSelect.tsx:281
 #: src/components/dialogs/VerifyEmailDialog.tsx:289
 #: src/components/dms/dialogs/SearchablePeopleList.tsx:269
+#: src/components/dms/EmojiPopup.android.tsx:58
 #: src/components/dms/ReportDialog.tsx:381
 #: src/components/dms/ReportDialog.tsx:390
 #: src/components/NewskieDialog.tsx:146
 #: src/components/NewskieDialog.tsx:153
-#: src/components/ProgressGuide/FollowDialog.tsx:429
+#: src/components/ProgressGuide/FollowDialog.tsx:385
 #: src/components/StarterPack/Wizard/WizardEditListDialog.tsx:117
 #: src/components/StarterPack/Wizard/WizardEditListDialog.tsx:123
 #: src/view/com/modals/ChangePassword.tsx:279
@@ -1597,13 +1700,23 @@ msgstr "ปิดภาพ"
 msgid "Close image viewer"
 msgstr "ปิดโปรแกรมดูภาพ"
 
-#: src/components/Menu/index.tsx:298
+#: src/components/ContextMenu/Backdrop.ios.tsx:53
+#: src/components/ContextMenu/Backdrop.ios.tsx:79
+#: src/components/ContextMenu/Backdrop.tsx:45
+msgid "Close menu"
+msgstr ""
+
+#: src/components/Menu/index.tsx:300
 msgid "Close this dialog"
 msgstr "ปิดกล่องโต้ตอบนี้"
 
 #: src/screens/Login/PasswordUpdatedForm.tsx:32
 msgid "Closes password update alert"
 msgstr "ปิดการแจ้งเตือนการอัปเดตรหัสผ่าน"
+
+#: src/view/com/composer/Composer.tsx:945
+msgid "Closes post composer and discards post draft"
+msgstr ""
 
 #: src/view/com/composer/text-input/web/EmojiPicker.web.tsx:138
 #: src/view/com/composer/text-input/web/EmojiPicker.web.tsx:174
@@ -1631,17 +1744,17 @@ msgstr "โหมดสี"
 msgid "Color theme"
 msgstr ""
 
-#: src/screens/Onboarding/index.tsx:38
-#: src/screens/Onboarding/state.ts:97
+#: src/screens/Onboarding/index.tsx:39
+#: src/screens/Onboarding/state.ts:109
 msgid "Comedy"
 msgstr "ตลก"
 
-#: src/screens/Onboarding/index.tsx:24
-#: src/screens/Onboarding/state.ts:98
+#: src/screens/Onboarding/index.tsx:25
+#: src/screens/Onboarding/state.ts:110
 msgid "Comics"
 msgstr "การ์ตูน"
 
-#: src/Navigation.tsx:301
+#: src/Navigation.tsx:315
 #: src/view/screens/CommunityGuidelines.tsx:34
 msgid "Community Guidelines"
 msgstr "แนวทางชุมชน"
@@ -1650,23 +1763,23 @@ msgstr "แนวทางชุมชน"
 msgid "Complete onboarding and start using your account"
 msgstr "เสร็จสิ้นการอบรมและเริ่มใช้งานบัญชีของคุณ"
 
-#: src/screens/Signup/index.tsx:148
+#: src/screens/Signup/index.tsx:162
 msgid "Complete the challenge"
 msgstr "ทำให้สำเร็จตามความท้าทาย"
 
-#: src/view/shell/desktop/LeftNav.tsx:499
+#: src/view/shell/desktop/LeftNav.tsx:500
 msgid "Compose new post"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:834
-msgid "Compose posts up to {MAX_GRAPHEME_LENGTH} characters in length"
-msgstr "สร้างโพสต์ความยาวสูงสุด {MAX_GRAPHEME_LENGTH} ตัวอักษร"
+#: src/view/com/composer/Composer.tsx:846
+msgid "Compose posts up to {0, plural, other {# characters}} in length"
+msgstr ""
 
 #: src/view/com/post-thread/PostThreadComposePrompt.tsx:34
 msgid "Compose reply"
 msgstr "สร้างการตอบกลับ"
 
-#: src/view/com/composer/Composer.tsx:1652
+#: src/view/com/composer/Composer.tsx:1689
 msgid "Compressing video..."
 msgstr ""
 
@@ -1703,6 +1816,10 @@ msgstr "ยืนยันการตั้งค่าภาษาเนื้
 msgid "Confirm delete account"
 msgstr "ยืนยันการลบบัญชี"
 
+#: src/screens/Signup/StepInfo/index.tsx:522
+msgid "Confirm Password"
+msgstr ""
+
 #: src/screens/Moderation/index.tsx:303
 msgid "Confirm your age:"
 msgstr "ยืนยันอายุของคุณ:"
@@ -1711,8 +1828,12 @@ msgstr "ยืนยันอายุของคุณ:"
 msgid "Confirm your birthdate"
 msgstr "ยืนยันวันเกิดของคุณ"
 
+#: src/screens/Signup/StepInfo/index.tsx:531
+msgid "Confirm your password"
+msgstr ""
+
 #: src/components/dialogs/VerifyEmailDialog.tsx:214
-#: src/screens/Login/LoginForm.tsx:274
+#: src/screens/Login/LoginForm.tsx:390
 #: src/screens/Settings/components/DisableEmail2FADialog.tsx:144
 #: src/screens/Settings/components/DisableEmail2FADialog.tsx:150
 #: src/view/com/modals/ChangeEmail.tsx:152
@@ -1726,16 +1847,24 @@ msgstr "รหัสยืนยัน"
 msgid "Confirmation Code"
 msgstr "รหัสยืนยัน"
 
-#: src/screens/Login/LoginForm.tsx:337
+#: src/screens/Login/LoginWallet.tsx:57
+msgid "Connect or create Base Account"
+msgstr ""
+
+#: src/screens/Signup/StepInfo/index.tsx:367
+msgid "Connect or create your crypto wallet"
+msgstr ""
+
+#: src/screens/Login/LoginForm.tsx:453
 msgid "Connecting..."
 msgstr "กำลังเชื่อมต่อ..."
 
-#: src/screens/Signup/index.tsx:179
-#: src/screens/Signup/index.tsx:182
+#: src/screens/Signup/index.tsx:193
+#: src/screens/Signup/index.tsx:196
 msgid "Contact support"
 msgstr "ติดต่อฝ่ายสนับสนุน"
 
-#: src/screens/Settings/ContentAndMediaSettings.tsx:50
+#: src/screens/Settings/ContentAndMediaSettings.tsx:51
 msgid "Content & Media"
 msgstr ""
 
@@ -1745,7 +1874,7 @@ msgstr ""
 msgid "Content and media"
 msgstr ""
 
-#: src/Navigation.tsx:375
+#: src/Navigation.tsx:389
 msgid "Content and Media"
 msgstr ""
 
@@ -1757,7 +1886,7 @@ msgstr "เนื้อหาถูกบล็อก"
 msgid "Content filters"
 msgstr "ตัวกรองเนื้อหา"
 
-#: src/screens/Search/components/ExploreRecommendations.tsx:57
+#: src/screens/Search/modules/ExploreRecommendations.tsx:59
 msgid "Content from across the network we think you might like."
 msgstr ""
 
@@ -1782,7 +1911,7 @@ msgstr "คำเตือนเนื้อหา"
 msgid "Content warnings"
 msgstr "คำเตือนเนื้อหา"
 
-#: src/components/Menu/index.web.tsx:83
+#: src/components/Menu/index.web.tsx:85
 msgid "Context menu backdrop, click to close the menu."
 msgstr "แบ็คดรอปเมนูบริบท คลิกเพื่อปิดเมนู"
 
@@ -1811,11 +1940,11 @@ msgctxt "toast"
 msgid "Conversation deleted"
 msgstr "การสนทนาถูกลบ"
 
-#: src/screens/Messages/components/ChatListItem.tsx:189
+#: src/screens/Messages/components/ChatListItem.tsx:191
 msgid "Conversation deleted"
 msgstr "การสนทนาถูกลบ"
 
-#: src/screens/Onboarding/index.tsx:41
+#: src/screens/Onboarding/index.tsx:42
 msgid "Cooking"
 msgstr "การทำอาหาร"
 
@@ -1827,7 +1956,7 @@ msgstr "คัดลอกแล้ว"
 msgid "Copied build version to clipboard"
 msgstr "คัดลอกเวอร์ชันบิลด์ไปยังคลิปบอร์ดแล้ว"
 
-#: src/components/dms/MessageMenu.tsx:57
+#: src/components/dms/MessageContextMenu.tsx:55
 #: src/lib/sharing.ts:25
 #: src/lib/sharing.ts:41
 #: src/view/com/modals/InviteCodes.tsx:153
@@ -1886,7 +2015,7 @@ msgstr "คัดลอกลิงก์"
 msgid "Copy Link"
 msgstr "คัดลอกลิงก์"
 
-#: src/view/screens/ProfileList.tsx:506
+#: src/view/screens/ProfileList.tsx:505
 msgid "Copy link to list"
 msgstr "คัดลอกลิงก์ไปยังลิสต์"
 
@@ -1895,8 +2024,8 @@ msgstr "คัดลอกลิงก์ไปยังลิสต์"
 msgid "Copy link to post"
 msgstr "คัดลอกลิงก์ไปยังโพสต์"
 
-#: src/components/dms/MessageMenu.tsx:112
-#: src/components/dms/MessageMenu.tsx:114
+#: src/components/dms/MessageContextMenu.tsx:139
+#: src/components/dms/MessageContextMenu.tsx:142
 msgid "Copy message text"
 msgstr "คัดลอกข้อความ"
 
@@ -1918,7 +2047,7 @@ msgstr "คัดลอก QR โค้ด"
 msgid "Copy TXT record value"
 msgstr ""
 
-#: src/Navigation.tsx:306
+#: src/Navigation.tsx:320
 #: src/view/screens/CopyrightPolicy.tsx:31
 msgid "Copyright Policy"
 msgstr "นโยบายลิขสิทธิ์"
@@ -1932,7 +2061,7 @@ msgstr "ไม่สามารถออกจากการสนทนาไ
 msgid "Could not load feed"
 msgstr "ไม่สามารถโหลดฟีดได้"
 
-#: src/view/screens/ProfileList.tsx:1022
+#: src/view/screens/ProfileList.tsx:1021
 msgid "Could not load list"
 msgstr "ไม่สามารถโหลดลิสต์ได้"
 
@@ -1944,26 +2073,32 @@ msgstr "ไม่สามารถปิดเสียงการสนทน
 msgid "Could not process your video"
 msgstr "ไม่สามารถประมวลผลวิดีโอของคุณได้"
 
-#: src/components/StarterPack/ProfileStarterPacks.tsx:288
+#: src/components/StarterPack/ProfileStarterPacks.tsx:293
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:151
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:165
 msgid "Create"
 msgstr "สร้าง"
+
+#: src/screens/Signup/StepInfo/index.tsx:513
+msgid "Create a password"
+msgstr ""
 
 #: src/components/StarterPack/QrCodeDialog.tsx:159
 msgid "Create a QR code for a starter pack"
 msgstr "สร้าง QR โค้ดสำหรับชุดเริ่มต้น"
 
-#: src/components/StarterPack/ProfileStarterPacks.tsx:173
-#: src/components/StarterPack/ProfileStarterPacks.tsx:269
-#: src/Navigation.tsx:443
+#: src/components/StarterPack/ProfileStarterPacks.tsx:178
+#: src/components/StarterPack/ProfileStarterPacks.tsx:274
+#: src/Navigation.tsx:465
 msgid "Create a starter pack"
 msgstr "สร้างชุดเริ่มต้น"
 
-#: src/components/StarterPack/ProfileStarterPacks.tsx:250
+#: src/components/StarterPack/ProfileStarterPacks.tsx:255
 msgid "Create a starter pack for me"
 msgstr "สร้างชุดเริ่มต้นสำหรับฉัน"
 
 #: src/view/com/auth/SplashScreen.tsx:55
-#: src/view/com/auth/SplashScreen.web.tsx:117
+#: src/view/com/auth/SplashScreen.web.tsx:121
 #: src/view/shell/bottom-bar/BottomBar.tsx:315
 #: src/view/shell/bottom-bar/BottomBar.tsx:320
 #: src/view/shell/bottom-bar/BottomBarWeb.tsx:199
@@ -1973,7 +2108,7 @@ msgstr "สร้างชุดเริ่มต้นสำหรับฉั
 msgid "Create account"
 msgstr "สมัครสมาชิก"
 
-#: src/screens/Signup/index.tsx:94
+#: src/screens/Signup/index.tsx:108
 msgid "Create Account"
 msgstr "สร้างบัญชี"
 
@@ -1982,34 +2117,72 @@ msgstr "สร้างบัญชี"
 msgid "Create an account"
 msgstr "สร้างบัญชี"
 
+#: src/screens/StarterPack/StarterPackLandingScreen.tsx:303
+#: src/screens/StarterPack/StarterPackLandingScreen.tsx:310
+msgid "Create an account without using this starter pack"
+msgstr ""
+
 #: src/screens/Onboarding/StepProfile/index.tsx:292
 msgid "Create an avatar instead"
 msgstr "สร้างอวตารแทน"
 
-#: src/components/StarterPack/ProfileStarterPacks.tsx:180
+#: src/components/StarterPack/ProfileStarterPacks.tsx:185
 msgid "Create another"
 msgstr "สร้างอันใหม่"
 
 #: src/view/com/auth/SplashScreen.tsx:47
-#: src/view/com/auth/SplashScreen.web.tsx:109
+#: src/view/com/auth/SplashScreen.web.tsx:113
 msgid "Create new account"
 msgstr "สร้างบัญชีใหม่"
+
+#: src/view/com/auth/SplashScreen.web.tsx:103
+msgid "Create onchain"
+msgstr ""
 
 #: src/components/moderation/ReportDialog/index.tsx:574
 #: src/components/ReportDialog/SelectReportOptionView.tsx:99
 msgid "Create report for {0}"
 msgstr "สร้างรายงานสำหรับ {0}"
 
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:176
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:182
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:230
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:233
+msgid "Create Token"
+msgstr ""
+
 #: src/screens/Settings/AppPasswords.tsx:174
 msgid "Created {0}"
 msgstr "สร้างเมื่อ {0}"
+
+#: src/view/com/auth/server-input/index.tsx:136
+#: src/view/com/auth/server-input/index.tsx:137
+msgid "Creaton"
+msgstr ""
+
+#: src/view/com/auth/server-input/index.tsx:149
+msgid "Creaton is an open network where you can choose your own provider. If you're new here, we recommend sticking with the default Creaton Social option."
+msgstr ""
+
+#: src/components/ProgressGuide/List.tsx:53
+#: src/components/ProgressGuide/List.tsx:70
+msgid "Creaton is better with friends!"
+msgstr ""
+
+#: src/view/com/auth/server-input/index.tsx:212
+msgid "Creaton uses AT Protocol where you can choose your hosting provider. If you're a developer, you can host your own server."
+msgstr ""
 
 #: src/screens/List/ListHiddenScreen.tsx:127
 msgid "Creator has been blocked"
 msgstr ""
 
-#: src/screens/Onboarding/index.tsx:26
-#: src/screens/Onboarding/state.ts:99
+#: src/screens/Signup/StepInfo/index.tsx:395
+msgid "Crypto Wallet"
+msgstr ""
+
+#: src/screens/Onboarding/index.tsx:27
+#: src/screens/Onboarding/state.ts:111
 msgid "Culture"
 msgstr "วัฒนธรรม"
 
@@ -2050,7 +2223,7 @@ msgstr "โหมดมืด"
 msgid "Dark theme"
 msgstr "ธีมมืด"
 
-#: src/screens/Signup/StepInfo/index.tsx:266
+#: src/screens/Signup/StepInfo/index.tsx:554
 msgid "Date of birth"
 msgstr "วันเกิด"
 
@@ -2076,14 +2249,14 @@ msgstr "ค่าเริ่มตัน"
 msgid "Default icons"
 msgstr ""
 
-#: src/components/dms/MessageMenu.tsx:154
+#: src/components/dms/MessageContextMenu.tsx:180
 #: src/screens/Messages/components/ChatStatusInfo.tsx:55
 #: src/screens/Settings/AppPasswords.tsx:212
-#: src/screens/StarterPack/StarterPackScreen.tsx:591
-#: src/screens/StarterPack/StarterPackScreen.tsx:669
-#: src/screens/StarterPack/StarterPackScreen.tsx:741
+#: src/screens/StarterPack/StarterPackScreen.tsx:594
+#: src/screens/StarterPack/StarterPackScreen.tsx:672
+#: src/screens/StarterPack/StarterPackScreen.tsx:744
 #: src/view/com/util/forms/PostDropdownBtnMenuItems.tsx:750
-#: src/view/screens/ProfileList.tsx:761
+#: src/view/screens/ProfileList.tsx:760
 msgid "Delete"
 msgstr "ลบ"
 
@@ -2124,19 +2297,19 @@ msgstr ""
 msgid "Delete Conversation"
 msgstr ""
 
-#: src/components/dms/MessageMenu.tsx:126
+#: src/components/dms/MessageContextMenu.tsx:153
 msgid "Delete for me"
 msgstr "ลบสำหรับฉัน"
 
-#: src/view/screens/ProfileList.tsx:549
-msgid "Delete List"
-msgstr "ลบลิสต์"
+#: src/view/screens/ProfileList.tsx:548
+msgid "Delete list"
+msgstr ""
 
-#: src/components/dms/MessageMenu.tsx:150
+#: src/components/dms/MessageContextMenu.tsx:176
 msgid "Delete message"
 msgstr "ลบข้อความ"
 
-#: src/components/dms/MessageMenu.tsx:124
+#: src/components/dms/MessageContextMenu.tsx:151
 msgid "Delete message for me"
 msgstr "ลบข้อความสำหรับฉัน"
 
@@ -2144,22 +2317,22 @@ msgstr "ลบข้อความสำหรับฉัน"
 msgid "Delete my account"
 msgstr "ลบบัญชีของฉัน"
 
-#: src/view/com/composer/Composer.tsx:842
+#: src/view/com/composer/Composer.tsx:856
 #: src/view/com/util/forms/PostDropdownBtnMenuItems.tsx:709
 #: src/view/com/util/forms/PostDropdownBtnMenuItems.tsx:711
 msgid "Delete post"
 msgstr "ลบโพสต์"
 
-#: src/screens/StarterPack/StarterPackScreen.tsx:585
-#: src/screens/StarterPack/StarterPackScreen.tsx:732
+#: src/screens/StarterPack/StarterPackScreen.tsx:588
+#: src/screens/StarterPack/StarterPackScreen.tsx:735
 msgid "Delete starter pack"
 msgstr "ลบชุดเริ่มต้น"
 
-#: src/screens/StarterPack/StarterPackScreen.tsx:635
+#: src/screens/StarterPack/StarterPackScreen.tsx:638
 msgid "Delete starter pack?"
 msgstr "ลบชุดเริ่มต้นหรือไม่?"
 
-#: src/view/screens/ProfileList.tsx:756
+#: src/view/screens/ProfileList.tsx:755
 msgid "Delete this list?"
 msgstr "ลบลิสต์นี้หรือไม่?"
 
@@ -2180,7 +2353,7 @@ msgstr ""
 msgid "Deleted post."
 msgstr "โพสต์ถูกลบ."
 
-#: src/screens/Profile/Header/EditProfileDialog.tsx:344
+#: src/screens/Profile/Header/EditProfileDialog.tsx:347
 #: src/view/com/modals/CreateOrEditList.tsx:280
 #: src/view/com/modals/CreateOrEditList.tsx:301
 #: src/view/com/modals/EditProfile.tsx:193
@@ -2188,12 +2361,12 @@ msgstr "โพสต์ถูกลบ."
 msgid "Description"
 msgstr "คำอธิบาย"
 
-#: src/screens/Profile/Header/EditProfileDialog.tsx:364
+#: src/screens/Profile/Header/EditProfileDialog.tsx:367
 msgid "Description is too long"
 msgstr ""
 
-#: src/screens/Profile/Header/EditProfileDialog.tsx:365
-msgid "Description is too long. The maximum number of characters is {DESCRIPTION_MAX_GRAPHEMES}."
+#: src/screens/Profile/Header/EditProfileDialog.tsx:368
+msgid "Description is too long. {DESCRIPTION_MAX_GRAPHEMES, plural, other {The maximum number of characters is #.}}"
 msgstr ""
 
 #: src/view/com/composer/GifAltText.tsx:150
@@ -2233,6 +2406,10 @@ msgstr "กล่องโต้ตอบ: ปรับว่าใครสา�
 msgid "Dim"
 msgstr "สว่าง"
 
+#: src/screens/Xmtp/ConversationsListItem.tsx:56
+msgid "Direct Message"
+msgstr ""
+
 #: src/screens/Settings/components/DisableEmail2FADialog.tsx:89
 msgid "Disable Email 2FA"
 msgstr "ปิดการยืนยันตัวตนสองชั้นผ่านอีเมล (2FA)"
@@ -2256,8 +2433,8 @@ msgid "Disabled"
 msgstr "ปิดใช้งาน"
 
 #: src/screens/Profile/Header/EditProfileDialog.tsx:84
-#: src/view/com/composer/Composer.tsx:696
-#: src/view/com/composer/Composer.tsx:875
+#: src/view/com/composer/Composer.tsx:705
+#: src/view/com/composer/Composer.tsx:889
 msgid "Discard"
 msgstr "ละทิ้ง"
 
@@ -2265,12 +2442,16 @@ msgstr "ละทิ้ง"
 msgid "Discard changes?"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:693
+#: src/view/com/composer/Composer.tsx:702
 msgid "Discard draft?"
 msgstr "ละทิ้งร่างข้อความหรือไม่?"
 
-#: src/view/com/composer/Composer.tsx:867
+#: src/view/com/composer/Composer.tsx:881
 msgid "Discard post?"
+msgstr ""
+
+#: src/screens/Login/LoginWallet.tsx:41
+msgid "Disconnect Wallet"
 msgstr ""
 
 #: src/screens/Settings/components/PwiOptOut.tsx:87
@@ -2278,14 +2459,14 @@ msgstr ""
 msgid "Discourage apps from showing my account to logged-out users"
 msgstr "ไม่สนับสนุนแอปให้แสดงบัญชีของฉันต่อผู้ใช้ที่ไม่ได้เข้าสู่ระบบ"
 
+#: src/screens/Search/Explore.tsx:406
+msgid "Discover Feeds"
+msgstr ""
+
 #: src/view/com/posts/FollowingEmptyState.tsx:70
 #: src/view/com/posts/FollowingEndOfFeed.tsx:71
 msgid "Discover new custom feeds"
 msgstr "ค้นพบฟีดที่กำหนดเองใหม่ๆ"
-
-#: src/view/screens/Search/Explore.tsx:425
-msgid "Discover new feeds"
-msgstr "ค้นพบฟีดใหม่ๆ"
 
 #: src/view/screens/Feeds.tsx:725
 msgid "Discover New Feeds"
@@ -2295,13 +2476,17 @@ msgstr "ค้นพบฟีดใหม่"
 msgid "Dismiss"
 msgstr "ปิด"
 
-#: src/view/com/composer/Composer.tsx:1576
+#: src/view/com/composer/Composer.tsx:1613
 msgid "Dismiss error"
 msgstr "ปิดข้อผิดพลาด"
 
 #: src/components/ProgressGuide/List.tsx:42
 msgid "Dismiss getting started guide"
 msgstr "ปิดคู่มือเริ่มต้นใช้งาน"
+
+#: src/screens/Search/modules/ExploreInterestsCard.tsx:43
+msgid "Dismiss interests"
+msgstr ""
 
 #: src/components/interstitials/TrendingVideos.tsx:92
 msgid "Dismiss this section"
@@ -2314,7 +2499,7 @@ msgstr "แสดงป้ายข้อความคำอธิบายภ
 
 #: src/screens/Profile/Header/EditProfileDialog.tsx:314
 #: src/screens/Profile/Header/EditProfileDialog.tsx:320
-#: src/screens/Profile/Header/EditProfileDialog.tsx:351
+#: src/screens/Profile/Header/EditProfileDialog.tsx:354
 #: src/view/com/modals/EditProfile.tsx:187
 msgid "Display name"
 msgstr "ชื่อที่แสดง"
@@ -2328,7 +2513,7 @@ msgid "Display name is too long"
 msgstr ""
 
 #: src/screens/Profile/Header/EditProfileDialog.tsx:334
-msgid "Display name is too long. The maximum number of characters is {DISPLAY_NAME_MAX_GRAPHEMES}."
+msgid "Display name is too long. {DISPLAY_NAME_MAX_GRAPHEMES, plural, other {The maximum number of characters is #.}}"
 msgstr ""
 
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:373
@@ -2344,7 +2529,7 @@ msgstr "ไม่ใช้คำปิดเสียงนี้กับผู
 msgid "Does not include nudity."
 msgstr "ไม่มีเนื้อหาที่เปิดเผย"
 
-#: src/screens/Signup/StepHandle.tsx:165
+#: src/screens/Signup/StepHandle.tsx:173
 msgid "Doesn't begin or end with a hyphen"
 msgstr "ไม่เริ่มหรือจบด้วยขีดกลาง"
 
@@ -2363,8 +2548,8 @@ msgstr "ยืนยันโดเมนแล้ว!"
 #: src/screens/Settings/components/AddAppPasswordDialog.tsx:222
 #: src/view/com/auth/server-input/index.tsx:232
 #: src/view/com/auth/server-input/index.tsx:233
-#: src/view/com/composer/labels/LabelsBtn.tsx:224
-#: src/view/com/composer/labels/LabelsBtn.tsx:231
+#: src/view/com/composer/labels/LabelsBtn.tsx:223
+#: src/view/com/composer/labels/LabelsBtn.tsx:230
 #: src/view/com/composer/videos/SubtitleDialog.tsx:169
 #: src/view/com/composer/videos/SubtitleDialog.tsx:179
 #: src/view/com/modals/CropImage.web.tsx:112
@@ -2384,6 +2569,10 @@ msgstr "เสร็จสิ้น"
 #: src/view/com/modals/lang-settings/ConfirmLanguagesButton.tsx:42
 msgid "Done{extraText}"
 msgstr "เสร็จสิ้น{extraText}"
+
+#: src/components/dms/MessageItem.tsx:161
+msgid "Double tap or long press the message to add a reaction"
+msgstr ""
 
 #: src/components/Dialog/index.tsx:324
 msgid "Double tap to close the dialog"
@@ -2438,6 +2627,14 @@ msgstr "เช่น การเปลือยกายที่เป็น�
 msgid "e.g. Great Posters"
 msgstr "เช่น โปสเตอร์ที่ยอดเยี่ยม"
 
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:215
+msgid "e.g. MCT"
+msgstr ""
+
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:199
+msgid "e.g. My Creator Token"
+msgstr ""
+
 #: src/view/com/modals/CreateOrEditList.tsx:264
 msgid "e.g. Spammers"
 msgstr "เช่น ผู้ส่งสแปม"
@@ -2455,7 +2652,7 @@ msgid "Each code works once. You'll receive more invite codes periodically."
 msgstr "แต่ละรหัสใช้งานได้เพียงครั้งเดียว คุณจะได้รับรหัสเชิญเพิ่มเติมเป็นระยะ"
 
 #: src/screens/Settings/AccountSettings.tsx:112
-#: src/screens/StarterPack/StarterPackScreen.tsx:580
+#: src/screens/StarterPack/StarterPackScreen.tsx:583
 #: src/screens/StarterPack/Wizard/index.tsx:534
 #: src/screens/StarterPack/Wizard/index.tsx:541
 msgid "Edit"
@@ -2466,7 +2663,7 @@ msgctxt "action"
 msgid "Edit"
 msgstr "แก้ไข"
 
-#: src/view/com/util/UserAvatar.tsx:344
+#: src/view/com/util/UserAvatar.tsx:363
 #: src/view/com/util/UserBanner.tsx:95
 msgid "Edit avatar"
 msgstr "แก้ไขรูปประจำตัว"
@@ -2486,7 +2683,12 @@ msgstr "แก้ไขรูปภาพ"
 msgid "Edit interaction settings"
 msgstr "แก้ไขการตั้งค่าการโต้ตอบ"
 
-#: src/view/screens/ProfileList.tsx:537
+#: src/screens/Search/modules/ExploreInterestsCard.tsx:98
+#: src/screens/Search/modules/ExploreInterestsCard.tsx:105
+msgid "Edit interests"
+msgstr ""
+
+#: src/view/screens/ProfileList.tsx:536
 msgid "Edit list details"
 msgstr "แก้ไขรายละเอียดลิสต์"
 
@@ -2494,7 +2696,7 @@ msgstr "แก้ไขรายละเอียดลิสต์"
 msgid "Edit Moderation List"
 msgstr "แก้ไขลิสต์การกลั่นกรอง"
 
-#: src/Navigation.tsx:316
+#: src/Navigation.tsx:330
 #: src/view/screens/Feeds.tsx:515
 msgid "Edit My Feeds"
 msgstr "แก้ไขฟีดของฉัน"
@@ -2515,16 +2717,16 @@ msgstr "แก้ไขการตั้งค่าการโต้ตอบ
 #: src/screens/Profile/Header/EditProfileDialog.tsx:269
 #: src/screens/Profile/Header/EditProfileDialog.tsx:275
 #: src/screens/Profile/Header/ProfileHeaderLabeler.tsx:196
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:179
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:297
 msgid "Edit profile"
 msgstr "แก้ไขโปรไฟล์"
 
 #: src/screens/Profile/Header/ProfileHeaderLabeler.tsx:199
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:182
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:300
 msgid "Edit Profile"
 msgstr "แก้ไขโปรไฟล์"
 
-#: src/screens/StarterPack/StarterPackScreen.tsx:572
+#: src/screens/StarterPack/StarterPackScreen.tsx:575
 msgid "Edit starter pack"
 msgstr "แก้ไขชุดเริ่มต้น"
 
@@ -2544,12 +2746,12 @@ msgstr "แก้ไขชื่อที่แสดงของคุณ"
 msgid "Edit your profile description"
 msgstr "แก้ไขคำอธิบายโปรไฟล์ของคุณ"
 
-#: src/Navigation.tsx:448
+#: src/Navigation.tsx:470
 msgid "Edit your starter pack"
 msgstr "แก้ไขชุดเริ่มต้นของคุณ"
 
-#: src/screens/Onboarding/index.tsx:31
-#: src/screens/Onboarding/state.ts:101
+#: src/screens/Onboarding/index.tsx:32
+#: src/screens/Onboarding/state.ts:113
 msgid "Education"
 msgstr "การศึกษา"
 
@@ -2558,7 +2760,7 @@ msgid "Either the creator of this list has blocked you or you have blocked the c
 msgstr ""
 
 #: src/screens/Settings/AccountSettings.tsx:60
-#: src/screens/Signup/StepInfo/index.tsx:190
+#: src/screens/Signup/StepInfo/index.tsx:224
 #: src/view/com/modals/ChangeEmail.tsx:136
 msgid "Email"
 msgstr "อีเมล"
@@ -2657,16 +2859,16 @@ msgstr "อนุญาตซับไตเติ้ล"
 msgid "Enable this source only"
 msgstr "อนุญาตแหล่งที่มานี้เท่านั้น"
 
-#: src/screens/Settings/ContentAndMediaSettings.tsx:123
-#: src/screens/Settings/ContentAndMediaSettings.tsx:137
+#: src/screens/Settings/ContentAndMediaSettings.tsx:132
+#: src/screens/Settings/ContentAndMediaSettings.tsx:146
 msgid "Enable trending topics"
 msgstr ""
 
-#: src/screens/Settings/ContentAndMediaSettings.tsx:158
+#: src/screens/Settings/ContentAndMediaSettings.tsx:167
 msgid "Enable trending videos in your Discover feed"
 msgstr ""
 
-#: src/screens/Settings/ContentAndMediaSettings.tsx:144
+#: src/screens/Settings/ContentAndMediaSettings.tsx:153
 msgid "Enable trending videos in your Discover feed."
 msgstr ""
 
@@ -2693,6 +2895,10 @@ msgstr "ป้อนรหัสผ่าน"
 msgid "Enter a word or tag"
 msgstr "ป้อนคำหรือแท็ก"
 
+#: src/screens/Xmtp/index.tsx:159
+msgid "Enter an Ethereum address or inbox ID to start a new conversation"
+msgstr ""
+
 #: src/components/dialogs/VerifyEmailDialog.tsx:89
 msgid "Enter Code"
 msgstr "ป้อนรหัส"
@@ -2717,12 +2923,16 @@ msgstr "ใส่โดเมนที่คุณต้องการใช้
 msgid "Enter the email you used to create your account. We'll send you a \"reset code\" so you can set a new password."
 msgstr "ใส่อีเมลที่คุณต้องการสร้างบัญชีนี้ เราจะส่ง \"รหัสยืนยันใหม่\" ดังนั้นคุณสามารถสร้างรหัสผ่านใหม่ได้"
 
+#: src/screens/Login/LoginForm.tsx:332
+msgid "Enter the username or email address you used when you created your account"
+msgstr ""
+
 #: src/components/dialogs/BirthDateSettings.tsx:104
 msgid "Enter your birth date"
 msgstr "ใส่วันเกิดของคุณ"
 
 #: src/screens/Login/ForgotPasswordForm.tsx:99
-#: src/screens/Signup/StepInfo/index.tsx:210
+#: src/screens/Signup/StepInfo/index.tsx:236
 msgid "Enter your email address"
 msgstr "ใส่อีเมลของคุณ"
 
@@ -2734,11 +2944,11 @@ msgstr "ใส่อีเมลใหม่ของคุณด้านบน
 msgid "Enter your new email address below."
 msgstr "ใส่อีเมลใหม่ของคุณที่นี่"
 
-#: src/screens/Login/LoginForm.tsx:243
+#: src/screens/Login/LoginForm.tsx:358
 msgid "Enter your password"
 msgstr ""
 
-#: src/screens/Login/index.tsx:123
+#: src/screens/Login/index.tsx:149
 msgid "Enter your username and password"
 msgstr "ใส่ชื่อผู้ใช้ของคุณและรหัสผ่าน"
 
@@ -2746,23 +2956,39 @@ msgstr "ใส่ชื่อผู้ใช้ของคุณและรห
 msgid "Enters full screen"
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1661
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:235
+msgid "Entertainment"
+msgstr ""
+
+#: src/view/com/composer/Composer.tsx:1698
 #: src/view/com/util/error/ErrorScreen.tsx:42
 msgid "Error"
+msgstr ""
+
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:103
+msgctxt "toast"
+msgid "Error deploying token"
 msgstr ""
 
 #: src/screens/Settings/components/ExportCarDialog.tsx:47
 msgid "Error occurred while saving file"
 msgstr "เกิดข้อผิดพลาดในขณะที่บันทึกไฟล์"
 
-#: src/screens/Signup/StepCaptcha/index.tsx:56
+#: src/screens/Signup/StepCaptcha/index.tsx:55
 msgid "Error receiving captcha response."
 msgstr "เกิดข้อผิดพลาดการตอบสนองของ Captcha"
 
 #: src/screens/Onboarding/StepInterests/index.tsx:183
-#: src/view/screens/Search/Search.tsx:114
 msgid "Error:"
 msgstr "ข้อผิดพลาด :"
+
+#: src/screens/Search/SearchResults.tsx:131
+msgid "Error: {error}"
+msgstr ""
+
+#: src/screens/Signup/StepInfo/index.tsx:281
+msgid "Ethereum Wallet"
+msgstr ""
 
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:394
 msgid "Everybody"
@@ -2870,6 +3096,13 @@ msgstr "สื่อที่ชัดเจนหรืออาจทำให
 msgid "Explicit sexual images."
 msgstr "ภาพเปลือยชัดเจน"
 
+#: src/Navigation.tsx:656
+#: src/screens/Search/Shell.tsx:307
+#: src/view/shell/desktop/LeftNav.tsx:617
+#: src/view/shell/Drawer.tsx:370
+msgid "Explore"
+msgstr ""
+
 #: src/screens/Settings/AccountSettings.tsx:137
 #: src/screens/Settings/AccountSettings.tsx:141
 msgid "Export my data"
@@ -2879,8 +3112,8 @@ msgstr "ส่งออกข้อมูลของฉัน"
 msgid "Export My Data"
 msgstr "ส่งออกข้อมูลของฉัน"
 
-#: src/screens/Settings/ContentAndMediaSettings.tsx:83
-#: src/screens/Settings/ContentAndMediaSettings.tsx:86
+#: src/screens/Settings/ContentAndMediaSettings.tsx:84
+#: src/screens/Settings/ContentAndMediaSettings.tsx:87
 msgid "External media"
 msgstr ""
 
@@ -2894,7 +3127,7 @@ msgstr "สื่อภายนอก"
 msgid "External media may allow websites to collect information about you and your device. No information is sent or requested until you press the \"play\" button."
 msgstr "สื่อภายนอกอาจอนุญาตให้เว็บไซต์รวบรวมข้อมูลเกี่ยวกับคุณและอุปกรณ์ของคุณ ไม่มีข้อมูลใดถูกส่งหรือร้องขอก่อนที่คุณจะกดปุ่ม \"เล่น\""
 
-#: src/Navigation.tsx:335
+#: src/Navigation.tsx:349
 #: src/screens/Settings/ExternalMediaPreferences.tsx:31
 msgid "External Media Preferences"
 msgstr "การตั้งค่าสื่อภายนอก"
@@ -2904,8 +3137,17 @@ msgctxt "toast"
 msgid "Failed to accept chat"
 msgstr ""
 
+#: src/components/dms/ActionsWrapper.web.tsx:67
+#: src/components/dms/MessageContextMenu.tsx:93
+msgid "Failed to add emoji reaction"
+msgstr ""
+
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:568
 msgid "Failed to change handle. Please try again."
+msgstr ""
+
+#: src/screens/Onboarding/StepEns/index.tsx:101
+msgid "Failed to claim subdomain. Please try again."
 msgstr ""
 
 #: src/screens/Settings/components/AddAppPasswordDialog.tsx:173
@@ -2931,7 +3173,7 @@ msgctxt "toast"
 msgid "Failed to delete chat"
 msgstr ""
 
-#: src/components/dms/MessageMenu.tsx:75
+#: src/components/dms/MessageContextMenu.tsx:73
 msgid "Failed to delete message"
 msgstr "การลบข้อความล้มเหลว"
 
@@ -2939,17 +3181,17 @@ msgstr "การลบข้อความล้มเหลว"
 msgid "Failed to delete post, please try again"
 msgstr "การลบโพสต์ล้มเหลว โปรดลองใหม่อีกครั้ง"
 
-#: src/screens/StarterPack/StarterPackScreen.tsx:703
+#: src/screens/StarterPack/StarterPackScreen.tsx:706
 msgid "Failed to delete starter pack"
 msgstr "การลบตัวเริ่มต้นล้มเหลว"
 
-#: src/screens/Messages/ChatList.tsx:243
-#: src/screens/Messages/Inbox.tsx:187
+#: src/screens/Messages/ChatList.tsx:256
+#: src/screens/Messages/Inbox.tsx:193
 msgid "Failed to load conversations"
 msgstr ""
 
-#: src/view/screens/Search/Explore.tsx:463
-#: src/view/screens/Search/Explore.tsx:491
+#: src/screens/Search/Explore.tsx:445
+#: src/screens/Search/Explore.tsx:484
 msgid "Failed to load feeds preferences"
 msgstr "การโหลดฟีตที่ตั้งค่าล้มเหลว"
 
@@ -2961,23 +3203,28 @@ msgstr "การโหลด GIF ล้มเหลว"
 msgid "Failed to load past messages"
 msgstr "การโหลดข้อความเก่าล้มเหลว"
 
-#: src/view/screens/Search/Explore.tsx:456
-#: src/view/screens/Search/Explore.tsx:484
+#: src/screens/Search/Explore.tsx:438
+#: src/screens/Search/Explore.tsx:477
 msgid "Failed to load suggested feeds"
 msgstr "การแนะนำฟีตล้มเหลว"
 
-#: src/view/screens/Search/Explore.tsx:414
+#: src/screens/Search/Explore.tsx:347
 msgid "Failed to load suggested follows"
 msgstr "การแนะนำคนที่คุณควรติดตามล้มเหลว"
 
-#: src/screens/Messages/Inbox.tsx:295
-#: src/screens/Messages/Inbox.tsx:318
+#: src/screens/Messages/Inbox.tsx:301
+#: src/screens/Messages/Inbox.tsx:324
 msgid "Failed to mark all requests as read"
 msgstr ""
 
 #: src/state/queries/pinned-post.ts:75
 msgid "Failed to pin post"
 msgstr "การปักหมุดโพสต์ล้มเหลว"
+
+#: src/components/dms/ActionsWrapper.web.tsx:61
+#: src/components/dms/MessageContextMenu.tsx:87
+msgid "Failed to remove emoji reaction"
+msgstr ""
 
 #: src/view/com/lightbox/Lightbox.tsx:46
 msgid "Failed to save image: {0}"
@@ -2991,9 +3238,18 @@ msgstr "บันทึกการตั้งค่าการแจ้งเ
 msgid "Failed to save settings. Please try again."
 msgstr ""
 
-#: src/components/dms/MessageItem.tsx:234
+#: src/screens/Settings/SettingsInterests.tsx:133
+msgctxt "toast"
+msgid "Failed to save your interests."
+msgstr ""
+
+#: src/components/dms/MessageItem.tsx:310
 msgid "Failed to send"
 msgstr "การส่งล้มเหลว"
+
+#: src/screens/Signup/state.ts:333
+msgid "Failed to sign message"
+msgstr ""
 
 #: src/components/moderation/LabelsOnMeDialog.tsx:254
 #: src/screens/Messages/components/ChatDisabled.tsx:87
@@ -3004,7 +3260,7 @@ msgstr "การยื่นคำอุทธรณ์ล้มเหลว �
 msgid "Failed to toggle thread mute, please try again"
 msgstr "การเปลี่ยนสถานะด้วยการปิดเธรดล้มเหลว โปรดลองอีกครั้ง"
 
-#: src/components/FeedCard.tsx:275
+#: src/components/FeedCard.tsx:285
 msgid "Failed to update feeds"
 msgstr "การอัปเดตฟีตล้มเหลว"
 
@@ -3023,11 +3279,11 @@ msgstr "การอัปโหลดวีดีโอล้มเหลว"
 msgid "Failed to verify handle. Please try again."
 msgstr ""
 
-#: src/Navigation.tsx:251
+#: src/Navigation.tsx:265
 msgid "Feed"
 msgstr "ฟีด"
 
-#: src/components/FeedCard.tsx:134
+#: src/components/FeedCard.tsx:139
 #: src/view/com/feeds/FeedSourceCard.tsx:253
 msgid "Feed by {0}"
 msgstr "ฟีดโดย {0}"
@@ -3040,8 +3296,6 @@ msgstr ""
 msgid "Feed toggle"
 msgstr "สลับฟีต"
 
-#: src/view/shell/desktop/RightNav.tsx:97
-#: src/view/shell/desktop/RightNav.tsx:98
 #: src/view/shell/Drawer.tsx:324
 msgid "Feedback"
 msgstr "ข้อเสนอแนะ"
@@ -3052,13 +3306,13 @@ msgctxt "toast"
 msgid "Feedback sent!"
 msgstr ""
 
-#: src/Navigation.tsx:428
+#: src/Navigation.tsx:450
+#: src/screens/Search/SearchResults.tsx:68
 #: src/screens/StarterPack/StarterPackScreen.tsx:185
 #: src/view/screens/Feeds.tsx:508
 #: src/view/screens/Profile.tsx:227
 #: src/view/screens/SavedFeeds.tsx:96
-#: src/view/screens/Search/Search.tsx:531
-#: src/view/shell/desktop/LeftNav.tsx:651
+#: src/view/shell/desktop/LeftNav.tsx:655
 #: src/view/shell/Drawer.tsx:486
 msgid "Feeds"
 msgstr "ฟีด"
@@ -3067,13 +3321,13 @@ msgstr "ฟีด"
 msgid "Feeds are custom algorithms that users build with a little coding expertise. <0/> for more information."
 msgstr "ฟีต คืออัลกอริทึ่มที่ผู้ใชสามารถสามารถเปลี่ยนแปลงโดยใช้ความชำนาญในการเขียนโค้ตได้ หากต้องการข้อมูลเพิ่มเติมสามารถถาม <0/> ได้เลย"
 
-#: src/components/FeedCard.tsx:272
+#: src/components/FeedCard.tsx:282
 #: src/view/screens/SavedFeeds.tsx:82
 msgctxt "toast"
 msgid "Feeds updated!"
 msgstr "อัปเดตฟีดแล้ว!"
 
-#: src/screens/Search/components/ExploreRecommendations.tsx:63
+#: src/screens/Search/modules/ExploreRecommendations.tsx:65
 msgid "Feeds we think you might like."
 msgstr ""
 
@@ -3089,11 +3343,11 @@ msgstr "บันทึกไฟล์เรียบร้อยแล้ว!"
 msgid "Filter from feeds"
 msgstr "กรองจากฟีด"
 
-#: src/view/screens/Search/Search.tsx:403
+#: src/screens/Search/components/SearchLanguageDropdown.tsx:97
 msgid "Filter search by language"
 msgstr ""
 
-#: src/view/screens/Search/Search.tsx:376
+#: src/screens/Search/components/SearchLanguageDropdown.tsx:70
 msgid "Filter search by language (currently: {currentLanguageLabel})"
 msgstr ""
 
@@ -3107,13 +3361,13 @@ msgstr "กำลังสรุปผล"
 msgid "Find accounts to follow"
 msgstr "ค้นหาบัญชีเพื่อคิดตาม"
 
-#: src/components/ProgressGuide/FollowDialog.tsx:78
-#: src/components/ProgressGuide/FollowDialog.tsx:88
-#: src/components/ProgressGuide/FollowDialog.tsx:417
+#: src/components/ProgressGuide/FollowDialog.tsx:77
+#: src/components/ProgressGuide/FollowDialog.tsx:87
+#: src/components/ProgressGuide/FollowDialog.tsx:373
 msgid "Find people to follow"
 msgstr ""
 
-#: src/view/screens/Search/Search.tsx:582
+#: src/screens/Search/Shell.tsx:476
 msgid "Find posts, users, and feeds on Bluesky"
 msgstr ""
 
@@ -3121,7 +3375,7 @@ msgstr ""
 msgid "Finish"
 msgstr "เสร็จสิ้น"
 
-#: src/screens/Onboarding/index.tsx:35
+#: src/screens/Onboarding/index.tsx:36
 msgid "Fitness"
 msgstr "ฟิตเนส"
 
@@ -3145,10 +3399,10 @@ msgid "Flexible"
 msgstr "ยืดหยุ่น"
 
 #. User is not following this account, click to follow
-#: src/components/ProfileCard.tsx:365
+#: src/components/ProfileCard.tsx:372
 #: src/components/ProfileHoverCard/index.web.tsx:449
 #: src/components/ProfileHoverCard/index.web.tsx:460
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:234
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:364
 #: src/screens/VideoFeed/index.tsx:829
 #: src/view/com/post-thread/PostThreadFollowBtn.tsx:131
 msgid "Follow"
@@ -3159,7 +3413,7 @@ msgctxt "action"
 msgid "Follow"
 msgstr "ติดตาม"
 
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:218
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:348
 #: src/view/com/post-thread/PostThreadFollowBtn.tsx:113
 msgid "Follow {0}"
 msgstr "ติดตาม {0}"
@@ -3191,7 +3445,7 @@ msgstr "ติดตามบัญชี"
 msgid "Follow all"
 msgstr "ติดตามทั้งหมด"
 
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:232
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:362
 #: src/view/com/post-thread/PostThreadFollowBtn.tsx:129
 msgid "Follow Back"
 msgstr "ติดตามคุณกลับ"
@@ -3200,10 +3454,6 @@ msgstr "ติดตามคุณกลับ"
 msgctxt "action"
 msgid "Follow Back"
 msgstr "ติดตามคุณกลับ"
-
-#: src/view/screens/Search/Explore.tsx:370
-msgid "Follow more accounts to get connected to your interests and build your network."
-msgstr "ติดตามบัญชีเพิ่มเติมเพื่อเชื่อมต่อกับความสนใจและสร้างเครือข่ายของคุณ"
 
 #: src/components/KnownFollowers.tsx:234
 msgid "Followed by <0>{0}</0>"
@@ -3221,7 +3471,7 @@ msgstr "ติดตามโดย <0>{0}</0> และ <1>{1}</1>"
 msgid "Followed by <0>{0}</0>, <1>{1}</1>, and {2, plural, one {# other} other {# others}}"
 msgstr "ติดตามโดย <0>{0}</0>, <1>{1}</1> และ {2, plural, one {# other} other {# others}}"
 
-#: src/Navigation.tsx:205
+#: src/Navigation.tsx:219
 msgid "Followers of @{0} that you know"
 msgstr "ผู้ติดตามของ @{0} ที่คุณรู้จัก"
 
@@ -3231,10 +3481,10 @@ msgid "Followers you know"
 msgstr "ผู้ติดตามที่คุณรู้จัก"
 
 #. User is following this account, click to unfollow
-#: src/components/ProfileCard.tsx:359
+#: src/components/ProfileCard.tsx:366
 #: src/components/ProfileHoverCard/index.web.tsx:448
 #: src/components/ProfileHoverCard/index.web.tsx:459
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:230
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:360
 #: src/screens/VideoFeed/index.tsx:827
 #: src/view/com/post-thread/PostThreadFollowBtn.tsx:134
 #: src/view/screens/Feeds.tsx:599
@@ -3242,8 +3492,8 @@ msgstr "ผู้ติดตามที่คุณรู้จัก"
 msgid "Following"
 msgstr "ติดตาม"
 
-#: src/components/ProfileCard.tsx:322
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:98
+#: src/components/ProfileCard.tsx:329
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:134
 msgid "Following {0}"
 msgstr "ติดตาม {0}"
 
@@ -3255,17 +3505,17 @@ msgstr ""
 msgid "Following {name}"
 msgstr "ติดตาม {name}"
 
-#: src/screens/Settings/ContentAndMediaSettings.tsx:75
-#: src/screens/Settings/ContentAndMediaSettings.tsx:78
+#: src/screens/Settings/ContentAndMediaSettings.tsx:76
+#: src/screens/Settings/ContentAndMediaSettings.tsx:79
 msgid "Following feed preferences"
 msgstr "การตั้งค่าฟีดการติดตาม"
 
-#: src/Navigation.tsx:322
+#: src/Navigation.tsx:336
 #: src/screens/Settings/FollowingFeedPreferences.tsx:53
 msgid "Following Feed Preferences"
 msgstr "การตั้งค่าฟีดการติดตาม"
 
-#: src/screens/Profile/Header/Handle.tsx:32
+#: src/screens/Profile/Header/Handle.tsx:49
 msgid "Follows you"
 msgstr "ติดตามคุณ"
 
@@ -3281,8 +3531,8 @@ msgstr "แบบอักษร"
 msgid "Font size"
 msgstr "ขนาดแบบอักษร"
 
-#: src/screens/Onboarding/index.tsx:40
-#: src/screens/Onboarding/state.ts:102
+#: src/screens/Onboarding/index.tsx:41
+#: src/screens/Onboarding/state.ts:114
 msgid "Food"
 msgstr "อาหาร"
 
@@ -3298,20 +3548,24 @@ msgstr ""
 msgid "For the best experience, we recommend using the theme font."
 msgstr "เพื่อประสบการที่ดีของคุณ เราแนะนำให้ใช้ฟอนต์ธีม"
 
+#: src/screens/Search/modules/ExploreSuggestedAccounts.tsx:87
+msgid "For You"
+msgstr ""
+
 #: src/components/dialogs/MutedWords.tsx:178
 msgid "Forever"
 msgstr "ตลอด"
 
-#: src/screens/Login/index.tsx:153
-#: src/screens/Login/index.tsx:168
+#: src/screens/Login/index.tsx:180
+#: src/screens/Login/index.tsx:195
 msgid "Forgot Password"
 msgstr "ลืมรหัสผ่าน"
 
-#: src/screens/Login/LoginForm.tsx:248
+#: src/screens/Login/LoginForm.tsx:363
 msgid "Forgot password?"
 msgstr "ลืมรหัสผ่านใช่ไหม?"
 
-#: src/screens/Login/LoginForm.tsx:259
+#: src/screens/Login/LoginForm.tsx:374
 msgid "Forgot?"
 msgstr "ลืมเหรอ?"
 
@@ -3333,7 +3587,7 @@ msgstr "จาก <0/>"
 msgid "Gallery"
 msgstr "แกลลอรี่"
 
-#: src/components/StarterPack/ProfileStarterPacks.tsx:295
+#: src/components/StarterPack/ProfileStarterPacks.tsx:300
 msgid "Generate a starter pack"
 msgstr "สร้างชุดเริ่มต้น"
 
@@ -3345,6 +3599,10 @@ msgstr "รับความช่วยเหลือ"
 #: src/view/com/modals/VerifyEmail.tsx:199
 msgid "Get Started"
 msgstr "เริ่มต้น"
+
+#: src/screens/Onboarding/StepEns/index.tsx:124
+msgid "Get your own creaton.eth subdomain to make receiving payments and messages easier."
+msgstr ""
 
 #: src/components/ProgressGuide/List.tsx:35
 msgid "Getting started"
@@ -3363,17 +3621,17 @@ msgstr "ทำให้โปรไฟล์ของคุณมีความ
 msgid "Glaring violations of law or terms of service"
 msgstr "การละเมิดกฎหมายหรือข้อกำหนดในการให้บริการ"
 
-#: src/components/Layout/Header/index.tsx:126
+#: src/components/Layout/Header/index.tsx:127
 #: src/components/moderation/ScreenHider.tsx:154
 #: src/components/moderation/ScreenHider.tsx:163
-#: src/screens/Messages/Inbox.tsx:228
+#: src/screens/Messages/Inbox.tsx:234
 #: src/screens/Profile/ProfileFeed/index.tsx:89
 #: src/screens/VideoFeed/components/Header.tsx:163
 #: src/screens/VideoFeed/index.tsx:1108
 #: src/screens/VideoFeed/index.tsx:1112
 #: src/view/com/auth/LoggedOut.tsx:72
 #: src/view/screens/NotFound.tsx:57
-#: src/view/screens/ProfileList.tsx:1031
+#: src/view/screens/ProfileList.tsx:1030
 msgid "Go back"
 msgstr "กลับ"
 
@@ -3382,9 +3640,9 @@ msgstr "กลับ"
 #: src/screens/Profile/ErrorState.tsx:62
 #: src/screens/Profile/ErrorState.tsx:66
 #: src/screens/Profile/ProfileFeed/index.tsx:94
-#: src/screens/StarterPack/StarterPackScreen.tsx:754
+#: src/screens/StarterPack/StarterPackScreen.tsx:757
 #: src/view/screens/NotFound.tsx:56
-#: src/view/screens/ProfileList.tsx:1036
+#: src/view/screens/ProfileList.tsx:1035
 msgid "Go Back"
 msgstr "กลับ"
 
@@ -3405,7 +3663,7 @@ msgstr "กลับเข้าสู่หน้าหลัก"
 msgid "Go Home"
 msgstr "กลับเข้าสู่หน้าหลัก"
 
-#: src/screens/Messages/components/ChatListItem.tsx:294
+#: src/screens/Messages/components/ChatListItem.tsx:355
 msgid "Go to conversation with {0}"
 msgstr "ไปที่การสนทนา {0}"
 
@@ -3424,10 +3682,14 @@ msgstr "ไปที่หน้าโปรไฟล์ผู้ใช้"
 
 #: src/lib/moderation/useGlobalLabelStrings.ts:46
 #: src/lib/moderation/useGlobalLabelStrings.ts:50
-#: src/view/com/composer/labels/LabelsBtn.tsx:202
-#: src/view/com/composer/labels/LabelsBtn.tsx:205
+#: src/view/com/composer/labels/LabelsBtn.tsx:201
+#: src/view/com/composer/labels/LabelsBtn.tsx:204
 msgid "Graphic Media"
 msgstr "กราฟฟิคมีเดีย"
+
+#: src/screens/Xmtp/ConversationsListItem.tsx:62
+msgid "Group Chat"
+msgstr ""
 
 #: src/state/shell/progress-guide.tsx:218
 #: src/state/shell/progress-guide.tsx:228
@@ -3461,7 +3723,7 @@ msgstr "การสัมผัส"
 msgid "Harassment, trolling, or intolerance"
 msgstr "การล่วงละเมิด การกลั่นแกล้ง หรือการไม่ยอมรับการอยู่ร่วมกันในสังคม"
 
-#: src/Navigation.tsx:398
+#: src/Navigation.tsx:420
 msgid "Hashtag"
 msgstr "แฮชแท็ก"
 
@@ -3469,14 +3731,12 @@ msgstr "แฮชแท็ก"
 msgid "Hashtag {tag}"
 msgstr ""
 
-#: src/screens/Signup/index.tsx:177
+#: src/screens/Signup/index.tsx:191
 msgid "Having trouble?"
 msgstr "มีปัญหาใช่ไหม?"
 
 #: src/screens/Settings/Settings.tsx:207
 #: src/screens/Settings/Settings.tsx:211
-#: src/view/shell/desktop/RightNav.tsx:115
-#: src/view/shell/desktop/RightNav.tsx:116
 #: src/view/shell/Drawer.tsx:337
 msgid "Help"
 msgstr "การช่วยเหลือ"
@@ -3506,12 +3766,11 @@ msgstr "ลิสต์ที่ซ่อนไว้"
 #: src/components/interstitials/TrendingVideos.tsx:140
 #: src/components/moderation/ContentHider.tsx:200
 #: src/components/moderation/LabelPreference.tsx:135
-#: src/components/moderation/PostHider.tsx:122
+#: src/components/moderation/PostHider.tsx:124
 #: src/lib/moderation/useLabelBehaviorDescription.ts:15
 #: src/lib/moderation/useLabelBehaviorDescription.ts:20
 #: src/lib/moderation/useLabelBehaviorDescription.ts:25
 #: src/lib/moderation/useLabelBehaviorDescription.ts:30
-#: src/screens/Search/components/ExploreTrendingTopics.tsx:137
 #: src/view/com/util/forms/PostDropdownBtnMenuItems.tsx:761
 #: src/view/shell/desktop/SidebarTrendingTopics.tsx:110
 msgid "Hide"
@@ -3541,6 +3800,10 @@ msgstr "ซ่อนการตอบกลับสำหรับทุกค
 msgid "Hide reply for me"
 msgstr "ซ่อนการสำหรับฉัน"
 
+#: src/screens/Search/modules/ExploreInterestsCard.tsx:110
+msgid "Hide this card"
+msgstr ""
+
 #: src/view/com/util/forms/PostDropdownBtnMenuItems.tsx:756
 msgid "Hide this post?"
 msgstr "ซ่อนโพสต์นี้ใช่ไหม?"
@@ -3551,13 +3814,11 @@ msgid "Hide this reply?"
 msgstr "ซ่อนการตอบกลับใช่ไหม"
 
 #: src/components/interstitials/Trending.tsx:113
-#: src/screens/Search/components/ExploreTrendingTopics.tsx:83
 #: src/view/shell/desktop/SidebarTrendingTopics.tsx:62
 msgid "Hide trending topics"
 msgstr ""
 
 #: src/components/interstitials/Trending.tsx:129
-#: src/screens/Search/components/ExploreTrendingTopics.tsx:135
 #: src/view/shell/desktop/SidebarTrendingTopics.tsx:108
 msgid "Hide trending topics?"
 msgstr ""
@@ -3607,10 +3868,14 @@ msgstr "อื้มมมม... ดูเหมือนว่าเราไ�
 msgid "Hold up! We’re gradually giving access to video, and you’re still waiting in line. Check back soon!"
 msgstr "รอสักครู่! เรากำลังเปิดให้เข้าถึงวิดีโออย่างค่อยเป็นค่อยไป และคุณยังอยู่ในคิว แล้วกลับมาอีกครั้งจ้า"
 
-#: src/Navigation.tsx:627
-#: src/Navigation.tsx:647
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:215
+msgid "Holder Count"
+msgstr ""
+
+#: src/Navigation.tsx:651
+#: src/Navigation.tsx:671
 #: src/view/shell/bottom-bar/BottomBar.tsx:162
-#: src/view/shell/desktop/LeftNav.tsx:595
+#: src/view/shell/desktop/LeftNav.tsx:599
 #: src/view/shell/Drawer.tsx:396
 msgid "Home"
 msgstr "หน้าหลัก"
@@ -3620,14 +3885,19 @@ msgid "Host:"
 msgstr "โฮสต์:"
 
 #: src/screens/Login/ForgotPasswordForm.tsx:83
-#: src/screens/Login/LoginForm.tsx:184
+#: src/screens/Login/LoginForm.tsx:296
+#: src/screens/Signup/StepInfo/index.tsx:173
 msgid "Hosting provider"
 msgstr "ผู้ให้บริการโฮสติ้ง"
 
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:190
+msgid "Hot"
+msgstr ""
+
 #: src/screens/Settings/ThreadPreferences.tsx:67
 #: src/screens/Settings/ThreadPreferences.tsx:70
-#: src/view/com/post-thread/PostThread.tsx:656
-#: src/view/com/post-thread/PostThread.tsx:661
+#: src/view/com/post-thread/PostThread.tsx:655
+#: src/view/com/post-thread/PostThread.tsx:660
 msgid "Hot replies first"
 msgstr ""
 
@@ -3664,11 +3934,11 @@ msgstr "ฉันเข้าใจแล้ว"
 msgid "If alt text is long, toggles alt text expanded state"
 msgstr "หากข้อความแทนภาพยาว จะทำการเปลี่ยนสถานะการขยายข้อความแทนภาพ"
 
-#: src/screens/Signup/StepInfo/Policies.tsx:110
+#: src/screens/Signup/StepInfo/Policies.tsx:112
 msgid "If you are not yet an adult according to the laws of your country, your parent or legal guardian must read these Terms on your behalf."
 msgstr "หากคุณยังไม่บรรลุนิติภาวะตามกฎหมายของประเทศคุณ ควรให้ผู้ปกครองหรือผู้ดูแลตามกฎหมายรับทราบแทน"
 
-#: src/view/screens/ProfileList.tsx:758
+#: src/view/screens/ProfileList.tsx:757
 msgid "If you delete this list, you won't be able to recover it."
 msgstr "หากคุณลบลิสต์นี้ คุณจะไม่สามารถนำกลับคืนมาได้"
 
@@ -3679,6 +3949,10 @@ msgstr ""
 #: src/view/com/util/forms/PostDropdownBtnMenuItems.tsx:747
 msgid "If you remove this post, you won't be able to recover it."
 msgstr "หากคุณลบโพสค์นี้ คุณจะไม่สามารถนำกลับคืนมาได้"
+
+#: src/screens/Login/LoginForm.tsx:225
+msgid "If you used a password, click on \"Use password instead\""
+msgstr ""
 
 #: src/view/com/modals/ChangePassword.tsx:160
 msgid "If you want to change your password, we will send you a code to verify that this is your account."
@@ -3721,11 +3995,11 @@ msgid "Inappropriate messages or explicit links"
 msgstr "ข้อความที่ไม่เหมาะสมหรือการเชื่อมโยงที่ชัดเจน"
 
 #. Title message shown in chat requests inbox when it's empty
-#: src/screens/Messages/Inbox.tsx:208
+#: src/screens/Messages/Inbox.tsx:214
 msgid "Inbox zero!"
 msgstr ""
 
-#: src/screens/Login/LoginForm.tsx:164
+#: src/screens/Login/LoginForm.tsx:174
 msgid "Incorrect username or password"
 msgstr "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง"
 
@@ -3745,13 +4019,9 @@ msgstr "กรอกรหัสผ่านใหม่"
 msgid "Input password for account deletion"
 msgstr "กรอกรหัสผ่านสำหรับการลบบัญชี"
 
-#: src/screens/Login/LoginForm.tsx:289
+#: src/screens/Login/LoginForm.tsx:405
 msgid "Input the code which has been emailed to you"
 msgstr "กรอกรหัสที่ถูกส่งไปยังอีเมลของคุณ"
-
-#: src/screens/Login/LoginForm.tsx:218
-msgid "Input the username or email address you used at signup"
-msgstr "กรอกชื่อผู้ใช้หรือที่อยู่อีเมลที่คุณใช้ในการลงทะเบียน"
 
 #: src/view/com/composer/threadgate/ThreadgateBtn.tsx:49
 msgid "Interaction limited"
@@ -3761,7 +4031,7 @@ msgstr "การโต้ตอบถูกจำกัด"
 msgid "Interaction settings"
 msgstr ""
 
-#: src/screens/Login/LoginForm.tsx:156
+#: src/screens/Login/LoginForm.tsx:166
 #: src/screens/Settings/components/DisableEmail2FADialog.tsx:70
 msgid "Invalid 2FA confirmation code."
 msgstr "รหัสยืนยัน 2FA ไม่ถูกต้อง"
@@ -3786,11 +4056,7 @@ msgstr "รหัสยืนยันนี้ไม่ถูกต้อง"
 msgid "Invite a Friend"
 msgstr "เชิญเพื่อน"
 
-#: src/screens/Signup/StepInfo/index.tsx:160
-msgid "Invite code"
-msgstr "โค้ดคำเชิญ"
-
-#: src/screens/Signup/state.ts:276
+#: src/screens/Signup/state.ts:371
 msgid "Invite code not accepted. Check that you input it correctly and try again."
 msgstr "โค้ดคำเชิญไม่ถูกต้อง โปรดตรวจสอบว่าคุณกรอกถูกต้องหรือยัง แล้วลองอีกครั้ง"
 
@@ -3814,7 +4080,11 @@ msgstr "เชิญเพื่อนของคุณเพื่อติด
 msgid "Invites, but personal"
 msgstr "ยืนยันแต่เป็นส่วนตัว"
 
-#: src/screens/Signup/StepInfo/index.tsx:286
+#: src/screens/Signup/StepInfo/index.tsx:91
+msgid "It looks like you may have entered your email address incorrectly. Are you sure it's right?"
+msgstr ""
+
+#: src/screens/Signup/StepInfo/index.tsx:573
 msgid "It's correct"
 msgstr "ถูกต้อง"
 
@@ -3822,12 +4092,12 @@ msgstr "ถูกต้อง"
 msgid "It's just you right now! Add more people to your starter pack by searching above."
 msgstr "ตอนนี้มีแค่คุณแล้ว! เพิ่มผู้คนในชุดเริ่มต้นของคุณโดยการค้นหาด้านบนนี้"
 
-#: src/view/com/composer/Composer.tsx:1595
+#: src/view/com/composer/Composer.tsx:1632
 msgid "Job ID: {0}"
 msgstr ""
 
 #. Link to a page with job openings at Bluesky
-#: src/view/com/auth/SplashScreen.web.tsx:178
+#: src/view/com/auth/SplashScreen.web.tsx:182
 msgid "Jobs"
 msgstr "งาน"
 
@@ -3843,8 +4113,8 @@ msgstr "เข้าร่วม Bluesky"
 msgid "Join the conversation"
 msgstr "เข้าร่วมการสนทนา"
 
-#: src/screens/Onboarding/index.tsx:21
-#: src/screens/Onboarding/state.ts:104
+#: src/screens/Onboarding/index.tsx:22
+#: src/screens/Onboarding/state.ts:116
 msgid "Journalism"
 msgstr "วารสาร"
 
@@ -3881,7 +4151,7 @@ msgstr "มาร์คในเนื้อหาของคุณ"
 msgid "Language selection"
 msgstr "เลือกภาษา"
 
-#: src/Navigation.tsx:178
+#: src/Navigation.tsx:192
 msgid "Language Settings"
 msgstr "ตั้งค่าภาษา"
 
@@ -3896,8 +4166,8 @@ msgid "Larger"
 msgstr "ใหญ่"
 
 #: src/screens/Hashtag.tsx:95
+#: src/screens/Search/SearchResults.tsx:52
 #: src/screens/Topic.tsx:77
-#: src/view/screens/Search/Search.tsx:515
 msgid "Latest"
 msgstr "ล่าสุด"
 
@@ -3909,7 +4179,7 @@ msgstr ""
 msgid "Learn More"
 msgstr "เรียนรู้เพิ่มเติม"
 
-#: src/view/com/auth/SplashScreen.web.tsx:166
+#: src/view/com/auth/SplashScreen.web.tsx:170
 msgid "Learn more about Bluesky"
 msgstr "เรียนรู้เพิ่มเติมเกี่ยวกับ Bluesky"
 
@@ -3969,12 +4239,12 @@ msgstr "ออก Bluesky"
 msgid "left to go."
 msgstr "ปล่อยไปเถอะ"
 
-#: src/components/StarterPack/ProfileStarterPacks.tsx:311
+#: src/components/StarterPack/ProfileStarterPacks.tsx:316
 msgid "Let me choose"
 msgstr "ให้ฉันเลือกเถอะ"
 
-#: src/screens/Login/index.tsx:154
-#: src/screens/Login/index.tsx:169
+#: src/screens/Login/index.tsx:181
+#: src/screens/Login/index.tsx:196
 msgid "Let's get your password reset!"
 msgstr "ให้รหัสผ่านของคุณถูกรีเซ็ต"
 
@@ -4019,8 +4289,8 @@ msgid "Like this labeler"
 msgstr ""
 
 #: src/components/LikesDialog.tsx:85
-#: src/Navigation.tsx:256
-#: src/Navigation.tsx:261
+#: src/Navigation.tsx:270
+#: src/Navigation.tsx:275
 msgid "Liked by"
 msgstr "ชอบโดย"
 
@@ -4030,7 +4300,7 @@ msgstr "ชอบโดย"
 msgid "Liked By"
 msgstr "ชอบโดย"
 
-#: src/components/FeedCard.tsx:213
+#: src/components/FeedCard.tsx:218
 #: src/view/com/feeds/FeedSourceCard.tsx:303
 msgid "Liked by {0, plural, one {# user} other {# users}}"
 msgstr ""
@@ -4050,12 +4320,12 @@ msgstr "ถูกใจ"
 msgid "Likes on this post"
 msgstr "ชอบในโพสต์นี้"
 
-#: src/view/com/post-thread/PostThread.tsx:630
-#: src/view/com/post-thread/PostThread.tsx:635
+#: src/view/com/post-thread/PostThread.tsx:629
+#: src/view/com/post-thread/PostThread.tsx:634
 msgid "Linear"
 msgstr ""
 
-#: src/Navigation.tsx:211
+#: src/Navigation.tsx:225
 msgid "List"
 msgstr "ลิสต์"
 
@@ -4063,7 +4333,7 @@ msgstr "ลิสต์"
 msgid "List Avatar"
 msgstr "อวาตาร์ลิสต์"
 
-#: src/view/screens/ProfileList.tsx:431
+#: src/view/screens/ProfileList.tsx:430
 msgctxt "toast"
 msgid "List blocked"
 msgstr "ลิสต์ถูกบล็อก"
@@ -4081,7 +4351,7 @@ msgstr ""
 msgid "List by you"
 msgstr ""
 
-#: src/view/screens/ProfileList.tsx:478
+#: src/view/screens/ProfileList.tsx:477
 msgctxt "toast"
 msgid "List deleted"
 msgstr "ลิสต์ถูกลบ"
@@ -4090,11 +4360,11 @@ msgstr "ลิสต์ถูกลบ"
 msgid "List has been hidden"
 msgstr "ลิสต์ถูกซ่อน"
 
-#: src/view/screens/ProfileList.tsx:173
+#: src/view/screens/ProfileList.tsx:172
 msgid "List Hidden"
 msgstr "ลิสต์ถูกซ่อน"
 
-#: src/view/screens/ProfileList.tsx:395
+#: src/view/screens/ProfileList.tsx:394
 msgctxt "toast"
 msgid "List muted"
 msgstr "ลิสต์ถูกปิดเสียง"
@@ -4103,21 +4373,21 @@ msgstr "ลิสต์ถูกปิดเสียง"
 msgid "List Name"
 msgstr "ชื่อลิสต์"
 
-#: src/view/screens/ProfileList.tsx:449
+#: src/view/screens/ProfileList.tsx:448
 msgctxt "toast"
 msgid "List unblocked"
 msgstr "ลิสต์ถูกปลดบล็อก"
 
-#: src/view/screens/ProfileList.tsx:413
+#: src/view/screens/ProfileList.tsx:412
 msgctxt "toast"
 msgid "List unmuted"
 msgstr "ลิสต์เปิดเสียง"
 
-#: src/Navigation.tsx:140
+#: src/Navigation.tsx:154
 #: src/view/screens/Lists.tsx:62
 #: src/view/screens/Profile.tsx:221
 #: src/view/screens/Profile.tsx:229
-#: src/view/shell/desktop/LeftNav.tsx:669
+#: src/view/shell/desktop/LeftNav.tsx:673
 #: src/view/shell/Drawer.tsx:501
 msgid "Lists"
 msgstr "ลิสต์"
@@ -4126,17 +4396,13 @@ msgstr "ลิสต์"
 msgid "Lists blocking this user:"
 msgstr ""
 
-#: src/view/screens/Search/Explore.tsx:135
+#: src/screens/Search/Explore.tsx:82
 msgid "Load more"
 msgstr "โหลดเพิ่มเติม"
 
-#: src/view/screens/Search/Explore.tsx:224
+#: src/screens/Search/Explore.tsx:466
 msgid "Load more suggested feeds"
 msgstr "โหลดฟีดที่แนะนำเพิ่มเติม"
-
-#: src/view/screens/Search/Explore.tsx:222
-msgid "Load more suggested follows"
-msgstr "โหลดการติดตามที่แนะนำเพิ่มเติม"
 
 #: src/view/screens/Notifications.tsx:270
 msgid "Load new notifications"
@@ -4145,7 +4411,7 @@ msgstr "โหลดการแจ้งเตือนใหม่"
 #: src/screens/Profile/ProfileFeed/index.tsx:221
 #: src/screens/Profile/Sections/Feed.tsx:98
 #: src/view/com/feeds/FeedPage.tsx:155
-#: src/view/screens/ProfileList.tsx:871
+#: src/view/screens/ProfileList.tsx:870
 msgid "Load new posts"
 msgstr "โหลดโพสต์ใหม่"
 
@@ -4153,19 +4419,23 @@ msgstr "โหลดโพสต์ใหม่"
 msgid "Loading..."
 msgstr "กำลังโหลด..."
 
-#: src/Navigation.tsx:281
+#: src/Navigation.tsx:295
 msgid "Log"
 msgstr "บันทึก"
+
+#: src/screens/Login/LoginForm.tsx:484
+msgid "Log in with wallet signature"
+msgstr ""
 
 #: src/screens/Settings/PrivacyAndSecuritySettings.tsx:78
 msgid "Logged-out visibility"
 msgstr "การมองเห็นเมื่อออกจากระบบ"
 
-#: src/view/shell/desktop/RightNav.tsx:125
+#: src/view/shell/desktop/RightNav.tsx:141
 msgid "Logo by @sawaratsuki.bsky.social"
 msgstr ""
 
-#: src/view/shell/desktop/RightNav.tsx:122
+#: src/view/shell/desktop/RightNav.tsx:138
 #: src/view/shell/Drawer.tsx:639
 msgid "Logo by <0>@sawaratsuki.bsky.social</0>"
 msgstr ""
@@ -4190,7 +4460,7 @@ msgstr "ดูเหมือนว่าคุณได้ยกเลิกก
 msgid "Looks like you're missing a following feed. <0>Click here to add one.</0>"
 msgstr "ดูเหมือนว่าคุณจะพลาดฟีตที่คุณติดตาม <0> คลิกที่นี่เพื่อเพิ่ม </0>"
 
-#: src/components/StarterPack/ProfileStarterPacks.tsx:264
+#: src/components/StarterPack/ProfileStarterPacks.tsx:269
 msgid "Make one for me"
 msgstr "สร้างสักหนึ่งอันสำหรับฉัน"
 
@@ -4198,8 +4468,8 @@ msgstr "สร้างสักหนึ่งอันสำหรับฉั
 msgid "Make sure this is where you intend to go!"
 msgstr "โปรดตรวจสอบให้แน่ใจว่านี่คือจุดหมายที่คุณต้องการไป"
 
-#: src/screens/Settings/ContentAndMediaSettings.tsx:59
-#: src/screens/Settings/ContentAndMediaSettings.tsx:62
+#: src/screens/Settings/ContentAndMediaSettings.tsx:60
+#: src/screens/Settings/ContentAndMediaSettings.tsx:63
 msgid "Manage saved feeds"
 msgstr ""
 
@@ -4207,9 +4477,9 @@ msgstr ""
 msgid "Manage your muted words and tags"
 msgstr ""
 
-#: src/screens/Messages/Inbox.tsx:305
-#: src/screens/Messages/Inbox.tsx:324
-#: src/screens/Messages/Inbox.tsx:331
+#: src/screens/Messages/Inbox.tsx:311
+#: src/screens/Messages/Inbox.tsx:330
+#: src/screens/Messages/Inbox.tsx:337
 msgid "Mark all as read"
 msgstr ""
 
@@ -4218,16 +4488,20 @@ msgstr ""
 msgid "Mark as read"
 msgstr "ทำเครื่องหมายว่าอ่านแล้ว"
 
-#: src/screens/Messages/Inbox.tsx:292
-#: src/screens/Messages/Inbox.tsx:315
+#: src/screens/Messages/Inbox.tsx:298
+#: src/screens/Messages/Inbox.tsx:321
 msgid "Marked all as read"
+msgstr ""
+
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:177
+msgid "Market Cap"
 msgstr ""
 
 #: src/view/screens/Profile.tsx:224
 msgid "Media"
 msgstr "สื่อ"
 
-#: src/view/com/composer/labels/LabelsBtn.tsx:211
+#: src/view/com/composer/labels/LabelsBtn.tsx:210
 msgid "Media that may be disturbing or inappropriate for some audiences."
 msgstr ""
 
@@ -4243,7 +4517,7 @@ msgstr "ผู้ใช้ที่ถูกกล่าวถึง"
 msgid "Mentions"
 msgstr ""
 
-#: src/components/Menu/index.tsx:103
+#: src/components/Menu/index.tsx:105
 msgid "Menu"
 msgstr "เมนู"
 
@@ -4251,14 +4525,18 @@ msgstr "เมนู"
 msgid "Message {0}"
 msgstr "ส่งข้อความถึง {0}"
 
-#: src/components/dms/MessageMenu.tsx:73
+#: src/components/dms/MessageContextMenu.tsx:71
 msgctxt "toast"
 msgid "Message deleted"
 msgstr "ข้อความถูกลบ"
 
-#: src/screens/Messages/components/ChatListItem.tsx:190
+#: src/screens/Messages/components/ChatListItem.tsx:192
 msgid "Message deleted"
 msgstr "ข้อความถูกลบ"
+
+#: src/components/dms/MessageContextMenu.tsx:119
+msgid "Message from @{0}: {1}"
+msgstr ""
 
 #: src/view/com/posts/PostFeedErrorMessage.tsx:201
 msgid "Message from server: {0}"
@@ -4273,7 +4551,11 @@ msgstr "ช่องกรอกข้อความ"
 msgid "Message is too long"
 msgstr "ข้อความยาวเกินไป"
 
-#: src/Navigation.tsx:642
+#: src/components/dms/MessageContextMenu.tsx:117
+msgid "Message options"
+msgstr ""
+
+#: src/Navigation.tsx:666
 msgid "Messages"
 msgstr "ข้อความ"
 
@@ -4292,7 +4574,7 @@ msgstr "บัญชีที่ทำให้เข้าใจผิด"
 msgid "Misleading Post"
 msgstr "โพสต์ที่ทำให้เข้าใจผิด"
 
-#: src/Navigation.tsx:145
+#: src/Navigation.tsx:159
 #: src/screens/Moderation/index.tsx:89
 #: src/screens/Settings/Settings.tsx:167
 #: src/screens/Settings/Settings.tsx:170
@@ -4331,7 +4613,7 @@ msgstr "การกรองถูกอัพเดต"
 msgid "Moderation lists"
 msgstr "ลิสต์ที่กรอง"
 
-#: src/Navigation.tsx:150
+#: src/Navigation.tsx:164
 #: src/view/screens/ModerationModlists.tsx:62
 msgid "Moderation Lists"
 msgstr "ลิสต์ที่กรอง"
@@ -4340,7 +4622,7 @@ msgstr "ลิสต์ที่กรอง"
 msgid "moderation settings"
 msgstr "การตั้งค่าการกรอง"
 
-#: src/Navigation.tsx:271
+#: src/Navigation.tsx:285
 msgid "Moderation states"
 msgstr "สถานะการกรอง"
 
@@ -4364,7 +4646,7 @@ msgstr "ฟีตเพิ่มเติม"
 
 #: src/view/com/profile/ProfileMenu.tsx:194
 #: src/view/com/profile/ProfileMenu.tsx:200
-#: src/view/screens/ProfileList.tsx:743
+#: src/view/screens/ProfileList.tsx:742
 msgid "More options"
 msgstr "การตั้งค่าเพิ่มเติม"
 
@@ -4373,16 +4655,16 @@ msgid "Most-liked first"
 msgstr ""
 
 #: src/screens/Settings/ThreadPreferences.tsx:91
-#: src/view/com/post-thread/PostThread.tsx:686
-#: src/view/com/post-thread/PostThread.tsx:691
+#: src/view/com/post-thread/PostThread.tsx:685
+#: src/view/com/post-thread/PostThread.tsx:690
 msgid "Most-liked replies first"
 msgstr "แสดงการตอบกลับที่ชอบมากที่สุดก่อน"
 
-#: src/screens/Onboarding/state.ts:105
+#: src/screens/Onboarding/state.ts:117
 msgid "Movies"
 msgstr "วีดีโอ"
 
-#: src/screens/Onboarding/state.ts:106
+#: src/screens/Onboarding/state.ts:118
 msgid "Music"
 msgstr "เพลง"
 
@@ -4404,7 +4686,7 @@ msgstr ""
 msgid "Mute account"
 msgstr "ปิดการมองเห็นการฟีดโพสต์และเรื่องราว"
 
-#: src/view/screens/ProfileList.tsx:650
+#: src/view/screens/ProfileList.tsx:649
 msgid "Mute accounts"
 msgstr "ปิดการมองเห็นการฟีดโพสต์และเรื่องราวของบัญชีต่าง ๆ"
 
@@ -4417,11 +4699,11 @@ msgstr "ปิดการมองเห็นการสนทนา"
 msgid "Mute in:"
 msgstr "ปิดการมองเห็นคำ"
 
-#: src/view/screens/ProfileList.tsx:772
+#: src/view/screens/ProfileList.tsx:771
 msgid "Mute list"
 msgstr "รายชื่อที่ปิดการมองเห็น"
 
-#: src/view/screens/ProfileList.tsx:767
+#: src/view/screens/ProfileList.tsx:766
 msgid "Mute these accounts?"
 msgstr "ต้องการปิดการมองเห็นบัญชีนี้หรือไม่?"
 
@@ -4463,7 +4745,7 @@ msgstr "ปิดการมองเห็นคำและแท็ก"
 msgid "Muted accounts"
 msgstr "ปิดการมองเห็นบัญชี"
 
-#: src/Navigation.tsx:155
+#: src/Navigation.tsx:169
 #: src/view/screens/ModerationMutedAccounts.tsx:100
 msgid "Muted Accounts"
 msgstr "ปิดการมองเห็นบัญชี"
@@ -4480,7 +4762,7 @@ msgstr "ปิดการมองเห็นโดย \"{0}\""
 msgid "Muted words & tags"
 msgstr "ปิดการมองเห็นคำและแท็ก"
 
-#: src/view/screens/ProfileList.tsx:769
+#: src/view/screens/ProfileList.tsx:768
 msgid "Muting is private. Muted accounts can interact with you, but you will not see their posts or receive notifications from them."
 msgstr "การปิดเสียงเป็นเรื่องส่วนตัว บัญชีที่ถูกปิดเสียงสามารถโต้ตอบกับคุณได้ แต่คุณจะไม่เห็นโพสต์หรือได้รับการแจ้งเตือนจากเขา"
 
@@ -4512,17 +4794,22 @@ msgstr "ต้องมีชื่อ"
 msgid "Name or Description Violates Community Standards"
 msgstr "ชื่อหรือคำอธิบายได้ละเมิดมาตรฐานชุมชน"
 
-#: src/screens/Onboarding/index.tsx:22
-#: src/screens/Onboarding/state.ts:107
+#: src/screens/Onboarding/index.tsx:23
+#: src/screens/Onboarding/state.ts:119
 msgid "Nature"
 msgstr ""
 
 #: src/components/StarterPack/StarterPackCard.tsx:130
+#: src/components/StarterPack/StarterPackCard.tsx:161
 msgid "Navigate to {0}"
 msgstr "สำรวจ {0}"
 
+#: src/components/StarterPack/StarterPackCard.tsx:131
+msgid "Navigate to starter pack"
+msgstr ""
+
 #: src/screens/Login/ForgotPasswordForm.tsx:166
-#: src/screens/Login/LoginForm.tsx:344
+#: src/screens/Login/LoginForm.tsx:492
 #: src/view/com/modals/ChangePassword.tsx:180
 msgid "Navigates to the next screen"
 msgstr "ไปยังหน้าถัดไป"
@@ -4548,6 +4835,10 @@ msgstr "ไม่สูญเสียการเข้าถึงผู้ต
 msgid "Nevermind, create a handle for me"
 msgstr "ไม่ต้องห่วง สร้างแฮนเดิ้ลสำหรับฉันได้เลย"
 
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:195
+msgid "New"
+msgstr ""
+
 #: src/view/screens/Lists.tsx:74
 #: src/view/screens/ModerationModlists.tsx:74
 msgctxt "action"
@@ -4555,8 +4846,10 @@ msgid "New"
 msgstr "ใหม่"
 
 #: src/components/dms/dialogs/NewChatDialog.tsx:65
-#: src/screens/Messages/ChatList.tsx:351
-#: src/screens/Messages/ChatList.tsx:358
+#: src/screens/Messages/ChatList.tsx:364
+#: src/screens/Messages/ChatList.tsx:371
+#: src/screens/Xmtp/index.tsx:105
+#: src/screens/Xmtp/index.tsx:112
 msgid "New chat"
 msgstr "แชทใหม่"
 
@@ -4591,8 +4884,8 @@ msgstr "รหัสผ่านใหม่"
 #: src/view/screens/Feeds.tsx:549
 #: src/view/screens/Notifications.tsx:165
 #: src/view/screens/Profile.tsx:507
-#: src/view/screens/ProfileList.tsx:253
-#: src/view/screens/ProfileList.tsx:286
+#: src/view/screens/ProfileList.tsx:252
+#: src/view/screens/ProfileList.tsx:285
 msgid "New post"
 msgstr "โพสต์ใหม่"
 
@@ -4601,7 +4894,7 @@ msgctxt "action"
 msgid "New post"
 msgstr "โพสต์ใหม่"
 
-#: src/view/shell/desktop/LeftNav.tsx:507
+#: src/view/shell/desktop/LeftNav.tsx:508
 msgctxt "action"
 msgid "New Post"
 msgstr "โพสต์ใหม่"
@@ -4616,20 +4909,21 @@ msgstr "ลิสต์บัญชีใหม่"
 
 #: src/screens/Settings/ThreadPreferences.tsx:83
 #: src/screens/Settings/ThreadPreferences.tsx:86
-#: src/view/com/post-thread/PostThread.tsx:676
-#: src/view/com/post-thread/PostThread.tsx:681
+#: src/view/com/post-thread/PostThread.tsx:675
+#: src/view/com/post-thread/PostThread.tsx:680
 msgid "Newest replies first"
 msgstr "เห็นการตอบกลับที่ใหม่ก่อน"
 
-#: src/screens/Onboarding/index.tsx:20
-#: src/screens/Onboarding/state.ts:108
+#: src/screens/Onboarding/index.tsx:21
+#: src/screens/Onboarding/state.ts:120
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:237
 msgid "News"
 msgstr "ข่าวสาร"
 
 #: src/screens/Login/ForgotPasswordForm.tsx:137
 #: src/screens/Login/ForgotPasswordForm.tsx:143
-#: src/screens/Login/LoginForm.tsx:343
-#: src/screens/Login/LoginForm.tsx:350
+#: src/screens/Login/LoginForm.tsx:491
+#: src/screens/Login/LoginForm.tsx:498
 #: src/screens/Login/SetNewPasswordForm.tsx:178
 #: src/screens/Login/SetNewPasswordForm.tsx:184
 #: src/screens/Settings/components/AddAppPasswordDialog.tsx:157
@@ -4670,13 +4964,13 @@ msgstr "ไม่พบฟีต ลองค้นหาอย่างอื�
 msgid "No likes yet"
 msgstr "ยังไม่มีสิ่งที่ชอบ"
 
-#: src/components/ProfileCard.tsx:344
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:119
+#: src/components/ProfileCard.tsx:351
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:155
 msgid "No longer following {0}"
 msgstr "ไม่ติดตาม {0} อีกต่อไป"
 
-#: src/screens/Signup/StepHandle.tsx:176
-msgid "No longer than {MAX_SERVICE_HANDLE_LENGTH} characters"
+#: src/screens/Signup/StepHandle.tsx:184
+msgid "No longer than {MAX_SERVICE_HANDLE_LENGTH, plural, other {# characters}}"
 msgstr ""
 
 #: src/screens/Messages/components/ChatListItem.tsx:134
@@ -4714,9 +5008,13 @@ msgid "No result"
 msgstr "ไม่มีผลลัพธ์"
 
 #: src/components/dms/dialogs/SearchablePeopleList.tsx:204
-#: src/components/ProgressGuide/FollowDialog.tsx:235
+#: src/components/ProgressGuide/FollowDialog.tsx:211
 msgid "No results"
 msgstr "ไม่มีผลลัพธ์"
+
+#: src/screens/Search/Explore.tsx:677
+msgid "No results for \"{selectedInterest}\"."
+msgstr ""
 
 #: src/components/Lists.tsx:189
 msgid "No results found"
@@ -4726,10 +5024,10 @@ msgstr "ไม่พบผลลัพธ์"
 msgid "No results found for \"{query}\""
 msgstr "ไม่พบผลลัพธ์สำหรับ \"{query}\""
 
+#: src/screens/Search/SearchResults.tsx:248
+#: src/screens/Search/SearchResults.tsx:286
+#: src/screens/Search/SearchResults.tsx:331
 #: src/view/com/modals/ListAddRemoveUsers.tsx:128
-#: src/view/screens/Search/Search.tsx:231
-#: src/view/screens/Search/Search.tsx:269
-#: src/view/screens/Search/Search.tsx:314
 msgid "No results found for {query}"
 msgstr "ไม่พบผลลัพธ์สำหรับ {query}"
 
@@ -4772,7 +5070,7 @@ msgstr "การเปลือยกายที่ไม่เกี่ยว
 msgid "Not followed by anyone you're following"
 msgstr ""
 
-#: src/Navigation.tsx:135
+#: src/Navigation.tsx:139
 #: src/view/screens/Profile.tsx:122
 msgid "Not Found"
 msgstr "ไม่พบ"
@@ -4792,7 +5090,8 @@ msgstr "โน้ตเกี่ยวกับการแชร์"
 msgid "Note: Bluesky is an open and public network. This setting only limits the visibility of your content on the Bluesky app and website, and other apps may not respect this setting. Your content may still be shown to logged-out users by other apps and websites."
 msgstr "หมายเหตุ : Bluesky เป็นเครือข่ายแบบเปิดและสาธารณะ การตั้งค่านี้จำกัดเพียงการมองเห็นเนื้อหาของคุณในแอปและเว็บไซต์ของ Bluesky เท่านั้น และแอปอื่นอาจไม่เคารพการตั้งค่านี้ เนื้อหาของคุณอาจยังถูกแสดงให้ผู้ใช้ที่ไม่ได้เข้าสู่ระบบโดยแอปและเว็บไซต์อื่นๆ"
 
-#: src/screens/Messages/ChatList.tsx:264
+#: src/screens/Messages/ChatList.tsx:277
+#: src/screens/Xmtp/index.tsx:123
 msgid "Nothing here"
 msgstr "ไม่มีอะไรที่นี่"
 
@@ -4800,7 +5099,7 @@ msgstr "ไม่มีอะไรที่นี่"
 msgid "Notification filters"
 msgstr "ตัวกรองการแจ้งเตือน"
 
-#: src/Navigation.tsx:423
+#: src/Navigation.tsx:445
 #: src/view/screens/Notifications.tsx:134
 msgid "Notification settings"
 msgstr "การตั้งค่าการแจ้งเตือน"
@@ -4817,10 +5116,10 @@ msgstr "เสียงการแจ้งเตือน"
 msgid "Notification Sounds"
 msgstr "เสียงการแจ้งเตือน"
 
-#: src/Navigation.tsx:637
+#: src/Navigation.tsx:661
 #: src/view/screens/Notifications.tsx:128
 #: src/view/shell/bottom-bar/BottomBar.tsx:236
-#: src/view/shell/desktop/LeftNav.tsx:632
+#: src/view/shell/desktop/LeftNav.tsx:636
 #: src/view/shell/Drawer.tsx:449
 msgid "Notifications"
 msgstr "การแจ้งเตือน"
@@ -4829,12 +5128,12 @@ msgstr "การแจ้งเตือน"
 msgid "now"
 msgstr "ตอนนี้"
 
-#: src/components/dms/MessageItem.tsx:198
+#: src/components/dms/MessageItem.tsx:274
 msgid "Now"
 msgstr "ตอนนี้"
 
-#: src/view/com/composer/labels/LabelsBtn.tsx:151
-#: src/view/com/composer/labels/LabelsBtn.tsx:154
+#: src/view/com/composer/labels/LabelsBtn.tsx:150
+#: src/view/com/composer/labels/LabelsBtn.tsx:153
 msgid "Nudity"
 msgstr "การโป๊เปลือย"
 
@@ -4856,7 +5155,9 @@ msgstr "ไม่น้าาา!"
 msgid "Oh no! Something went wrong."
 msgstr "ไม่น้าา~! เกิดข้อผิดพลาดขึ้น"
 
+#. Confirm button text.
 #: src/screens/Profile/Header/ProfileHeaderLabeler.tsx:362
+#: src/screens/Search/modules/ExploreInterestsCard.tsx:48
 #: src/screens/Settings/AppIconSettings/index.tsx:48
 #: src/screens/Settings/AppIconSettings/index.tsx:229
 msgid "OK"
@@ -4869,8 +5170,8 @@ msgstr "ตกลง"
 
 #: src/screens/Settings/ThreadPreferences.tsx:75
 #: src/screens/Settings/ThreadPreferences.tsx:78
-#: src/view/com/post-thread/PostThread.tsx:666
-#: src/view/com/post-thread/PostThread.tsx:671
+#: src/view/com/post-thread/PostThread.tsx:665
+#: src/view/com/post-thread/PostThread.tsx:670
 msgid "Oldest replies first"
 msgstr "การตอบกลับเก่าก่อน"
 
@@ -4882,15 +5183,15 @@ msgstr "เปิด<0><1/><2><3/></2></0>"
 msgid "Onboarding reset"
 msgstr "รีเซ็ตออนบอร์ด"
 
-#: src/view/com/composer/Composer.tsx:346
+#: src/view/com/composer/Composer.tsx:354
 msgid "One or more GIFs is missing alt text."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:343
+#: src/view/com/composer/Composer.tsx:351
 msgid "One or more images is missing alt text."
 msgstr "ภาพหนึ่งหรือมากกว่าขาดข้อความแทน"
 
-#: src/view/com/composer/Composer.tsx:353
+#: src/view/com/composer/Composer.tsx:361
 msgid "One or more videos is missing alt text."
 msgstr ""
 
@@ -4902,7 +5203,7 @@ msgstr "สามารถลงได้แค่ไฟล์นามสกุ
 msgid "Only {0} can reply."
 msgstr "{0} สามารถตอบกลับได้เท่านั้น"
 
-#: src/screens/Signup/StepHandle.tsx:158
+#: src/screens/Signup/StepHandle.tsx:166
 msgid "Only contains letters, numbers, and hyphens"
 msgstr "อนุญาตใช้ตัวอักษร ตัวเลข และเครื่องหมายขีดกลางเท่านั้น"
 
@@ -4919,8 +5220,8 @@ msgid "Oops, something went wrong!"
 msgstr "อุ้ย~ เกิดข้อผิดพลาดจ้า"
 
 #: src/components/Lists.tsx:173
-#: src/components/StarterPack/ProfileStarterPacks.tsx:320
-#: src/components/StarterPack/ProfileStarterPacks.tsx:329
+#: src/components/StarterPack/ProfileStarterPacks.tsx:325
+#: src/components/StarterPack/ProfileStarterPacks.tsx:334
 #: src/screens/Settings/AppPasswords.tsx:59
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:104
 #: src/screens/Settings/NotificationSettings.tsx:54
@@ -4940,17 +5241,17 @@ msgstr "เปิดเมนูทางลัดบัญชีของ {name
 msgid "Open avatar creator"
 msgstr "เปิดการสร้างอวาตาร์"
 
-#: src/screens/Messages/components/ChatListItem.tsx:302
-#: src/screens/Messages/components/ChatListItem.tsx:303
+#: src/screens/Messages/components/ChatListItem.tsx:363
+#: src/screens/Messages/components/ChatListItem.tsx:364
 msgid "Open conversation options"
 msgstr "เปิดการตั้งค่าการสนทนา"
 
-#: src/components/Layout/Header/index.tsx:158
+#: src/components/Layout/Header/index.tsx:159
 msgid "Open drawer menu"
 msgstr ""
 
 #: src/screens/Messages/components/MessageInput.web.tsx:181
-#: src/view/com/composer/Composer.tsx:1244
+#: src/view/com/composer/Composer.tsx:1292
 msgid "Open emoji picker"
 msgstr "เปิดการเลือกอีโมจิ"
 
@@ -4963,11 +5264,15 @@ msgstr ""
 msgid "Open feed options menu"
 msgstr "เปิดการตั้งค่าฟีต"
 
-#: src/view/com/util/post-embeds/ExternalLinkEmbed.tsx:71
+#: src/components/dms/EmojiPopup.android.tsx:28
+msgid "Open full emoji list"
+msgstr ""
+
+#: src/view/com/util/post-embeds/ExternalLinkEmbed.tsx:79
 msgid "Open link to {niceUrl}"
 msgstr ""
 
-#: src/components/dms/ActionsWrapper.tsx:90
+#: src/components/dms/ActionsWrapper.tsx:35
 msgid "Open message options"
 msgstr "เปิดการตั้งค่าข้อความ"
 
@@ -4979,11 +5284,15 @@ msgstr ""
 msgid "Open muted words and tags settings"
 msgstr "เปิดการปิดการมองเห็นคำและแท็ก"
 
+#: src/screens/Search/components/StarterPackCard.tsx:119
+msgid "Open pack"
+msgstr ""
+
 #: src/view/com/util/forms/PostDropdownBtn.tsx:70
 msgid "Open post options menu"
 msgstr "เปิดเมนูการตั้งค่าโพสต์"
 
-#: src/screens/StarterPack/StarterPackScreen.tsx:558
+#: src/screens/StarterPack/StarterPackScreen.tsx:561
 msgid "Open starter pack menu"
 msgstr "เปิดเมนูชุดเริ่มต้น"
 
@@ -5036,19 +5345,25 @@ msgstr "เปิด composer"
 msgid "Opens device photo gallery"
 msgstr "เปิดรูปแกลลอรี่ในอุปกรณ์"
 
-#: src/view/com/composer/Composer.tsx:1245
+#: src/view/com/composer/Composer.tsx:1293
 msgid "Opens emoji picker"
 msgstr ""
 
-#: src/view/com/auth/SplashScreen.tsx:49
-#: src/view/com/auth/SplashScreen.web.tsx:111
+#: src/view/com/auth/SplashScreen.web.tsx:115
 msgid "Opens flow to create a new Bluesky account"
 msgstr "เปิดขั้นตอนเพื่อสร้างบัญชี Bluesky ใหม่"
 
-#: src/view/com/auth/SplashScreen.tsx:63
-#: src/view/com/auth/SplashScreen.web.tsx:125
+#: src/view/com/auth/SplashScreen.tsx:49
+msgid "Opens flow to create a new Creaton account"
+msgstr ""
+
+#: src/view/com/auth/SplashScreen.web.tsx:129
 msgid "Opens flow to sign in to your existing Bluesky account"
 msgstr "เปิดเพื่อสร้างบัญชี Bluesky ที่มีอยู่แล้ว"
+
+#: src/view/com/auth/SplashScreen.tsx:63
+msgid "Opens flow to sign into your existing Creaton account"
+msgstr ""
 
 #: src/view/com/composer/photos/SelectGifBtn.tsx:36
 msgid "Opens GIF select dialog"
@@ -5062,7 +5377,7 @@ msgstr ""
 msgid "Opens list of invite codes"
 msgstr "เปิดลิสต์ของโค้ดเชิญ"
 
-#: src/screens/Login/LoginForm.tsx:249
+#: src/screens/Login/LoginForm.tsx:364
 msgid "Opens password reset form"
 msgstr "เปิดการรีเซ็ตรหัสผ่าน"
 
@@ -5071,7 +5386,7 @@ msgid "Opens the linked website"
 msgstr "เปิดเว็บไซต์ที่เชื่อมโยง"
 
 #: src/view/com/notifications/NotificationFeedItem.tsx:683
-#: src/view/com/util/UserAvatar.tsx:446
+#: src/view/com/util/UserAvatar.tsx:465
 msgid "Opens this profile"
 msgstr "เปิดโปรไฟล์นี้"
 
@@ -5118,7 +5433,7 @@ msgstr ""
 
 #: src/components/moderation/ReportDialog/utils/useReportOptions.ts:27
 #: src/lib/moderation/useReportOptions.ts:27
-#: src/view/com/composer/labels/LabelsBtn.tsx:186
+#: src/view/com/composer/labels/LabelsBtn.tsx:185
 msgid "Other"
 msgstr "อื่น ๆ"
 
@@ -5147,10 +5462,11 @@ msgstr "ไม่พบหน้านี้"
 msgid "Page Not Found"
 msgstr "ไม่พบหน้านี้"
 
-#: src/screens/Login/LoginForm.tsx:228
+#: src/screens/Login/LoginForm.tsx:343
 #: src/screens/Settings/AccountSettings.tsx:117
 #: src/screens/Settings/AccountSettings.tsx:121
-#: src/screens/Signup/StepInfo/index.tsx:225
+#: src/screens/Signup/StepInfo/index.tsx:336
+#: src/screens/Signup/StepInfo/index.tsx:504
 #: src/view/com/modals/DeleteAccount.tsx:239
 #: src/view/com/modals/DeleteAccount.tsx:246
 msgid "Password"
@@ -5164,13 +5480,21 @@ msgstr "รหัสผ่านถูกเปลี่ยน"
 msgid "Password must be at least 8 characters long."
 msgstr ""
 
-#: src/screens/Login/index.tsx:181
+#: src/screens/Signup/StepInfo/index.tsx:142
+msgid "Password must be at least 8 characters."
+msgstr ""
+
+#: src/screens/Login/index.tsx:208
 msgid "Password updated"
 msgstr "อัพเดตรหัสผ่าน"
 
 #: src/screens/Login/PasswordUpdatedForm.tsx:23
 msgid "Password updated!"
 msgstr "อัพเดตรหัสผ่านแล้ว!"
+
+#: src/screens/Signup/StepInfo/index.tsx:148
+msgid "Passwords do not match."
+msgstr ""
 
 #: src/view/com/util/post-embeds/GifEmbed.tsx:43
 #: src/view/com/util/post-embeds/VideoEmbedInner/VideoEmbedInnerNative.tsx:140
@@ -5182,16 +5506,17 @@ msgstr "พัก"
 msgid "Pause video"
 msgstr "พักวีดีโอ"
 
+#: src/screens/Search/SearchResults.tsx:62
 #: src/screens/StarterPack/StarterPackScreen.tsx:184
-#: src/view/screens/Search/Search.tsx:525
+#: src/view/screens/ProfileList.tsx:166
 msgid "People"
 msgstr "ผู้คน"
 
-#: src/Navigation.tsx:198
+#: src/Navigation.tsx:212
 msgid "People followed by @{0}"
 msgstr "ผู้คนที่ติดตามโดย @{0}"
 
-#: src/Navigation.tsx:191
+#: src/Navigation.tsx:205
 msgid "People following @{0}"
 msgstr "ผู้คนที่ติดตาม @{0}"
 
@@ -5207,34 +5532,29 @@ msgstr "การสิทธิ์ในการเข้าถึงแกล
 msgid "Person toggle"
 msgstr "สลับบุคคล"
 
-#: src/screens/Onboarding/index.tsx:28
-#: src/screens/Onboarding/state.ts:109
+#: src/screens/Onboarding/index.tsx:29
+#: src/screens/Onboarding/state.ts:121
 msgid "Pets"
 msgstr "เพ็ทซ์"
 
-#: src/screens/Onboarding/state.ts:110
+#: src/screens/Onboarding/state.ts:122
 msgid "Photography"
 msgstr "การถ่ายภาพ"
 
-#: src/view/com/composer/labels/LabelsBtn.tsx:170
+#: src/view/com/composer/labels/LabelsBtn.tsx:169
 msgid "Pictures meant for adults."
 msgstr "ภาพที่เหมาะสำหรับเนื้อหาผู้ใหญ่ (18+)"
-
-#: src/screens/Search/components/ExploreTrendingVideos.tsx:173
-#: src/screens/Search/components/ExploreTrendingVideos.tsx:178
-msgid "Pin"
-msgstr ""
 
 #: src/screens/Profile/components/ProfileFeedHeader.tsx:515
 #: src/screens/Profile/components/ProfileFeedHeader.tsx:522
 msgid "Pin feed"
 msgstr ""
 
-#: src/screens/Search/components/ExploreTrendingVideos.tsx:167
-msgid "Pin the trending videos feed to your home screen for easy access"
+#: src/components/FeedCard.tsx:329
+msgid "Pin Feed"
 msgstr ""
 
-#: src/view/screens/ProfileList.tsx:707
+#: src/view/screens/ProfileList.tsx:706
 msgid "Pin to home"
 msgstr "ปักหมุดไปที่หน้าแรก"
 
@@ -5260,7 +5580,7 @@ msgstr ""
 msgid "Pinned Feeds"
 msgstr "ฟีตที่ปักหมุด"
 
-#: src/view/screens/ProfileList.tsx:354
+#: src/view/screens/ProfileList.tsx:353
 msgid "Pinned to your feeds"
 msgstr "ปักหมุดไปที่ฟีต"
 
@@ -5299,16 +5619,19 @@ msgstr "เล่น GIF"
 msgid "Plays the video"
 msgstr ""
 
-#: src/screens/Signup/state.ts:235
+#: src/view/com/composer/labels/LabelsBtn.tsx:115
+msgid "Please add any content warning labels that are applicable for the media you are posting."
+msgstr ""
+
+#: src/screens/Signup/state.ts:301
 msgid "Please choose your handle."
 msgstr "กรุณาเลือกแฮนเดิลของคุณ"
 
-#: src/screens/Signup/state.ts:228
-#: src/screens/Signup/StepInfo/index.tsx:121
-msgid "Please choose your password."
-msgstr "โปรดเลือกรหัสผ่านของคุณ"
+#: src/screens/Signup/state.ts:292
+msgid "Please choose your password or connect a crypto wallet."
+msgstr ""
 
-#: src/screens/Signup/state.ts:249
+#: src/screens/Signup/state.ts:316
 msgid "Please complete the verification captcha."
 msgstr "โปรดทำการยืนยัน Captcha ให้เสร็จ"
 
@@ -5316,11 +5639,12 @@ msgstr "โปรดทำการยืนยัน Captcha ให้เสร
 msgid "Please confirm your email before changing it. This is a temporary requirement while email-updating tools are added, and it will soon be removed."
 msgstr "กรุณายืนยันอีเมลของคุณก่อนที่จะเปลี่ยน นี่เป็นข้อกำหนดชั่วคราวในขณะที่มีการเพิ่มเครื่องมือในการอัปเดตอีเมล และจะถูกลบออกในเร็วๆ นี้"
 
-#: src/screens/Signup/StepInfo/index.tsx:110
-msgid "Please double-check that you have entered your email address correctly."
+#: src/screens/Signup/StepInfo/index.tsx:127
+msgid "Please connect or create a wallet"
 msgstr ""
 
 #: src/screens/Login/SetNewPasswordForm.tsx:58
+#: src/screens/Signup/StepInfo/index.tsx:136
 msgid "Please enter a password."
 msgstr ""
 
@@ -5336,16 +5660,16 @@ msgstr ""
 msgid "Please enter a valid word, tag, or phrase to mute"
 msgstr "กรุณากรอกคำ แท็ก หรือวลี ที่ต้องการปิดการมองเห็น"
 
-#: src/screens/Signup/state.ts:214
-#: src/screens/Signup/StepInfo/index.tsx:92
+#: src/screens/Signup/state.ts:275
+#: src/screens/Signup/StepInfo/index.tsx:113
 msgid "Please enter your email."
 msgstr "กรุณากรอกอีเมลของคุณ"
 
-#: src/screens/Signup/StepInfo/index.tsx:85
+#: src/screens/Signup/StepInfo/index.tsx:107
 msgid "Please enter your invite code."
 msgstr "กรุณาใส่โค้ดเชิญ"
 
-#: src/screens/Login/LoginForm.tsx:99
+#: src/screens/Login/LoginForm.tsx:103
 msgid "Please enter your password"
 msgstr ""
 
@@ -5353,8 +5677,12 @@ msgstr ""
 msgid "Please enter your password as well:"
 msgstr "กรุณาใส่รหัสผ่าน"
 
-#: src/screens/Login/LoginForm.tsx:94
+#: src/screens/Login/LoginForm.tsx:98
 msgid "Please enter your username"
+msgstr ""
+
+#: src/screens/Login/LoginForm.tsx:464
+msgid "Please enter your username first"
 msgstr ""
 
 #: src/components/moderation/LabelsOnMeDialog.tsx:290
@@ -5378,24 +5706,25 @@ msgstr ""
 msgid "Please sign in as @{0}"
 msgstr "กรุณาลงชื่อเข้าใช้ @{0}"
 
+#: src/screens/Login/LoginForm.tsx:108
+msgid "Please sign with your wallet"
+msgstr ""
+
 #: src/view/com/modals/VerifyEmail.tsx:109
 msgid "Please Verify Your Email"
 msgstr "กรุณายืนยันอีเมลของคุณ"
 
-#: src/screens/Onboarding/index.tsx:34
-#: src/screens/Onboarding/state.ts:111
+#: src/screens/Onboarding/index.tsx:35
+#: src/screens/Onboarding/state.ts:123
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:231
 msgid "Politics"
 msgstr "การเมือง"
 
-#: src/screens/Search/components/ExploreTrendingVideos.tsx:116
-msgid "Popular videos in your network."
-msgstr ""
-
-#: src/view/com/composer/labels/LabelsBtn.tsx:157
+#: src/view/com/composer/labels/LabelsBtn.tsx:156
 msgid "Porn"
 msgstr "สื่ออนาจาร"
 
-#: src/view/com/composer/Composer.tsx:959
+#: src/view/com/composer/Composer.tsx:1008
 msgctxt "action"
 msgid "Post"
 msgstr "โพสต์"
@@ -5405,7 +5734,7 @@ msgctxt "description"
 msgid "Post"
 msgstr "โพสต์"
 
-#: src/view/com/composer/Composer.tsx:957
+#: src/view/com/composer/Composer.tsx:1006
 msgctxt "action"
 msgid "Post All"
 msgstr ""
@@ -5414,10 +5743,10 @@ msgstr ""
 msgid "Post by {0}"
 msgstr "โพสต์โดย {0}"
 
-#: src/Navigation.tsx:224
-#: src/Navigation.tsx:231
 #: src/Navigation.tsx:238
 #: src/Navigation.tsx:245
+#: src/Navigation.tsx:252
+#: src/Navigation.tsx:259
 msgid "Post by @{0}"
 msgstr "โพสต์โดย {0}"
 
@@ -5452,7 +5781,7 @@ msgstr "โพสต์ถูกซ่อนโดยคุณ"
 msgid "Post interaction settings"
 msgstr "การตั้งค่าการโต้ตอบโพสต์"
 
-#: src/Navigation.tsx:166
+#: src/Navigation.tsx:180
 #: src/screens/ModerationInteractionSettings/index.tsx:34
 msgid "Post Interaction Settings"
 msgstr ""
@@ -5482,6 +5811,7 @@ msgstr "ถอนหมุดโพสต์แล้ว"
 
 #: src/screens/StarterPack/StarterPackScreen.tsx:186
 #: src/view/screens/Profile.tsx:222
+#: src/view/screens/ProfileList.tsx:166
 msgid "Posts"
 msgstr "โพสต์"
 
@@ -5534,22 +5864,17 @@ msgstr ""
 msgid "Priority notifications"
 msgstr "จัดลำดับความสำคัญการแจ้งเตือน"
 
-#: src/view/shell/desktop/RightNav.tsx:105
-#: src/view/shell/desktop/RightNav.tsx:106
-msgid "Privacy"
-msgstr "ความเป็นส่วนตัว"
-
 #: src/screens/Settings/Settings.tsx:161
 #: src/screens/Settings/Settings.tsx:164
 msgid "Privacy and security"
 msgstr ""
 
-#: src/Navigation.tsx:367
+#: src/Navigation.tsx:381
 #: src/screens/Settings/PrivacyAndSecuritySettings.tsx:36
 msgid "Privacy and Security"
 msgstr ""
 
-#: src/Navigation.tsx:291
+#: src/Navigation.tsx:305
 #: src/screens/Settings/AboutSettings.tsx:51
 #: src/screens/Settings/AboutSettings.tsx:54
 #: src/view/screens/PrivacyPolicy.tsx:31
@@ -5558,7 +5883,7 @@ msgstr ""
 msgid "Privacy Policy"
 msgstr "นโยบายความเป็นส่วนตัว"
 
-#: src/view/com/composer/Composer.tsx:1658
+#: src/view/com/composer/Composer.tsx:1695
 msgid "Processing video..."
 msgstr ""
 
@@ -5573,7 +5898,7 @@ msgid "profile"
 msgstr "ข้อมูลส่วนตัว"
 
 #: src/view/shell/bottom-bar/BottomBar.tsx:286
-#: src/view/shell/desktop/LeftNav.tsx:687
+#: src/view/shell/desktop/LeftNav.tsx:691
 #: src/view/shell/Drawer.tsx:71
 #: src/view/shell/Drawer.tsx:526
 msgid "Profile"
@@ -5595,6 +5920,26 @@ msgstr ""
 
 #: src/view/com/lists/MyLists.tsx:72
 msgid "Public, sharable lists which can be used to drive feeds."
+msgstr ""
+
+#. Accessibility label for button to publish a single post
+#: src/view/com/composer/Composer.tsx:988
+msgid "Publish post"
+msgstr ""
+
+#. Accessibility label for button to publish multiple posts in a thread
+#: src/view/com/composer/Composer.tsx:981
+msgid "Publish posts"
+msgstr ""
+
+#. Accessibility label for button to publish multiple replies in a thread
+#: src/view/com/composer/Composer.tsx:966
+msgid "Publish replies"
+msgstr ""
+
+#. Accessibility label for button to publish a single reply
+#: src/view/com/composer/Composer.tsx:973
+msgid "Publish reply"
 msgstr ""
 
 #: src/components/StarterPack/QrCodeDialog.tsx:134
@@ -5645,8 +5990,8 @@ msgstr "โควทโพสต์นี้"
 
 #: src/screens/Settings/ThreadPreferences.tsx:99
 #: src/screens/Settings/ThreadPreferences.tsx:102
-#: src/view/com/post-thread/PostThread.tsx:696
-#: src/view/com/post-thread/PostThread.tsx:701
+#: src/view/com/post-thread/PostThread.tsx:695
+#: src/view/com/post-thread/PostThread.tsx:700
 msgid "Random (aka \"Poster's Roulette\")"
 msgstr "สุ่ม (หรือ \"Poster's Roulette\")"
 
@@ -5658,6 +6003,10 @@ msgstr ""
 #: src/view/com/util/forms/PostDropdownBtnMenuItems.tsx:622
 msgid "Re-attach quote"
 msgstr "แนบโพสต์ที่โควทอีกครั้ง"
+
+#: src/components/dms/EmojiReactionPicker.tsx:85
+msgid "React with {emoji}"
+msgstr ""
 
 #: src/screens/Deactivated.tsx:141
 msgid "Reactivate your account"
@@ -5671,7 +6020,7 @@ msgstr ""
 msgid "Read more"
 msgstr ""
 
-#: src/view/com/auth/SplashScreen.web.tsx:171
+#: src/view/com/auth/SplashScreen.web.tsx:175
 msgid "Read the Bluesky blog"
 msgstr "อ่าน Bluesky blog"
 
@@ -5694,11 +6043,11 @@ msgstr ""
 msgid "Reason:"
 msgstr "เหตุผล:"
 
-#: src/view/screens/Search/Search.tsx:1036
+#: src/screens/Search/components/SearchHistory.tsx:44
 msgid "Recent Searches"
 msgstr "ประวัติการค้นหา"
 
-#: src/screens/Search/components/ExploreRecommendations.tsx:52
+#: src/screens/Search/modules/ExploreRecommendations.tsx:54
 msgid "Recommended"
 msgstr ""
 
@@ -5715,13 +6064,13 @@ msgstr ""
 msgid "Reject chat request"
 msgstr ""
 
-#: src/screens/Messages/ChatList.tsx:247
-#: src/screens/Messages/Inbox.tsx:191
+#: src/screens/Messages/ChatList.tsx:260
+#: src/screens/Messages/Inbox.tsx:197
 msgid "Reload conversations"
 msgstr "โหลดการสนทนาใหม่"
 
 #: src/components/dialogs/MutedWords.tsx:438
-#: src/components/FeedCard.tsx:315
+#: src/components/FeedCard.tsx:343
 #: src/components/StarterPack/Wizard/WizardListCard.tsx:102
 #: src/components/StarterPack/Wizard/WizardListCard.tsx:109
 #: src/screens/Settings/Settings.tsx:468
@@ -5736,7 +6085,7 @@ msgstr "ลบ"
 msgid "Remove {displayName} from starter pack"
 msgstr "ลบ {displayName} จากชุดเริ่มต้นของคุณ"
 
-#: src/view/screens/Search/Search.tsx:1110
+#: src/screens/Search/components/SearchHistory.tsx:120
 msgid "Remove {historyItem}"
 msgstr ""
 
@@ -5749,8 +6098,8 @@ msgstr "ลบบัญชี"
 msgid "Remove attachment"
 msgstr "ลบไฟล์แนบ"
 
-#: src/view/com/util/UserAvatar.tsx:397
-#: src/view/com/util/UserAvatar.tsx:400
+#: src/view/com/util/UserAvatar.tsx:416
+#: src/view/com/util/UserAvatar.tsx:419
 msgid "Remove Avatar"
 msgstr "ลบอวาตาร์"
 
@@ -5777,7 +6126,7 @@ msgstr "ลบฟีตหรือไม่?"
 #: src/screens/Profile/components/ProfileFeedHeader.tsx:320
 #: src/view/com/feeds/FeedSourceCard.tsx:190
 #: src/view/com/feeds/FeedSourceCard.tsx:268
-#: src/view/screens/ProfileList.tsx:521
+#: src/view/screens/ProfileList.tsx:520
 #: src/view/screens/SavedFeeds.tsx:342
 msgid "Remove from my feeds"
 msgstr "ลบจากฟีตของฉัน"
@@ -5791,7 +6140,7 @@ msgstr "ลบการเข้าถึงด่วนใช่ไหม"
 msgid "Remove from saved feeds"
 msgstr "ลบจากฟีตที่เซฟไว้"
 
-#: src/components/FeedCard.tsx:310
+#: src/components/FeedCard.tsx:338
 #: src/view/com/feeds/FeedSourceCard.tsx:317
 msgid "Remove from your feeds?"
 msgstr ""
@@ -5804,7 +6153,7 @@ msgstr "ลบรูปภาพ"
 msgid "Remove mute word from your list"
 msgstr "ลบคำที่ปิดการมองเห็นจากลิสต์ของคุณ"
 
-#: src/view/screens/Search/Search.tsx:1084
+#: src/screens/Search/components/SearchHistory.tsx:93
 msgid "Remove profile"
 msgstr "ลบโปรไฟล์"
 
@@ -5848,11 +6197,11 @@ msgstr "ลบจากฟีตที่เซฟ"
 
 #: src/screens/Profile/components/ProfileFeedHeader.tsx:122
 #: src/view/com/posts/FeedShutdownMsg.tsx:44
-#: src/view/screens/ProfileList.tsx:385
+#: src/view/screens/ProfileList.tsx:384
 msgid "Removed from your feeds"
 msgstr "ลบจากฟีตของคุณ"
 
-#: src/view/screens/Search/Search.tsx:1086
+#: src/screens/Search/components/SearchHistory.tsx:95
 msgid "Removes profile from search history"
 msgstr ""
 
@@ -5877,7 +6226,7 @@ msgstr "ปิดการตอบกลับแล้ว"
 msgid "Replies to this post are disabled."
 msgstr "การตอบกลับโพสต์นี้ถูกปิด"
 
-#: src/view/com/composer/Composer.tsx:955
+#: src/view/com/composer/Composer.tsx:1004
 msgctxt "action"
 msgid "Reply"
 msgstr "การตอบกลับ"
@@ -5904,7 +6253,7 @@ msgstr "การตั้งค่าการตอบกลับ"
 msgid "Reply settings are chosen by the author of the thread"
 msgstr "การตั้งค่าการตอบกลับถูกเลือกโดยผู้เขียนกระทู้"
 
-#: src/view/com/post-thread/PostThread.tsx:652
+#: src/view/com/post-thread/PostThread.tsx:651
 msgid "Reply sorting"
 msgstr ""
 
@@ -5939,7 +6288,7 @@ msgstr "การมองเห็นการตอบกลับได้ร
 msgid "Reply was successfully hidden"
 msgstr "การตอบกลับถูกซ่อนเรียบร้อยแล้ว"
 
-#: src/components/dms/MessageMenu.tsx:134
+#: src/components/dms/MessageContextMenu.tsx:161
 #: src/components/dms/MessagesListBlockedFooter.tsx:85
 #: src/components/dms/MessagesListBlockedFooter.tsx:92
 msgid "Report"
@@ -5969,11 +6318,11 @@ msgstr "รายงานการสนทนา"
 msgid "Report feed"
 msgstr "รายงานฟีด"
 
-#: src/view/screens/ProfileList.tsx:563
-msgid "Report List"
-msgstr "รายงานลิสต์"
+#: src/view/screens/ProfileList.tsx:562
+msgid "Report list"
+msgstr ""
 
-#: src/components/dms/MessageMenu.tsx:132
+#: src/components/dms/MessageContextMenu.tsx:159
 msgid "Report message"
 msgstr "รายงานข้อความ"
 
@@ -5982,8 +6331,8 @@ msgstr "รายงานข้อความ"
 msgid "Report post"
 msgstr "รายงานโพสต์"
 
-#: src/screens/StarterPack/StarterPackScreen.tsx:611
 #: src/screens/StarterPack/StarterPackScreen.tsx:614
+#: src/screens/StarterPack/StarterPackScreen.tsx:617
 msgid "Report starter pack"
 msgstr "รายงานชุดเริ่มต้น"
 
@@ -6042,7 +6391,7 @@ msgstr "รีโพสต์"
 msgid "Repost ({0, plural, one {# repost} other {# reposts}})"
 msgstr ""
 
-#: src/screens/StarterPack/StarterPackScreen.tsx:553
+#: src/screens/StarterPack/StarterPackScreen.tsx:556
 #: src/view/com/util/post-ctrls/RepostButton.tsx:148
 #: src/view/com/util/post-ctrls/RepostButton.web.tsx:49
 #: src/view/com/util/post-ctrls/RepostButton.web.tsx:104
@@ -6089,7 +6438,7 @@ msgstr "ต้องมีข้อความแทนภาพก่อนโ
 msgid "Require an email code to sign in to your account."
 msgstr ""
 
-#: src/screens/Signup/StepInfo/index.tsx:174
+#: src/screens/Signup/StepInfo/index.tsx:213
 msgid "Required for this provider"
 msgstr "จำเป็นสำหรับผู้ให้บริการนี้"
 
@@ -6129,7 +6478,7 @@ msgstr "รีเซ็ตสถานะการเริ่มต้นใช
 msgid "Reset password"
 msgstr "รีเซ็ตรหัสผ่าน"
 
-#: src/screens/Login/LoginForm.tsx:324
+#: src/screens/Login/LoginForm.tsx:440
 msgid "Retries signing in"
 msgstr ""
 
@@ -6138,16 +6487,16 @@ msgstr ""
 msgid "Retries the last action, which errored out"
 msgstr "ลองทำกิจกรรมล่าสุดซึ่งเกิดข้อผิดพลาดอีกครั้ง"
 
-#: src/components/dms/MessageItem.tsx:245
+#: src/components/dms/MessageItem.tsx:321
 #: src/components/Error.tsx:65
 #: src/components/Lists.tsx:110
 #: src/components/moderation/ReportDialog/index.tsx:221
-#: src/components/StarterPack/ProfileStarterPacks.tsx:334
-#: src/screens/Login/LoginForm.tsx:323
-#: src/screens/Login/LoginForm.tsx:330
-#: src/screens/Messages/ChatList.tsx:253
+#: src/components/StarterPack/ProfileStarterPacks.tsx:339
+#: src/screens/Login/LoginForm.tsx:439
+#: src/screens/Login/LoginForm.tsx:446
+#: src/screens/Messages/ChatList.tsx:266
 #: src/screens/Messages/components/MessageListError.tsx:25
-#: src/screens/Messages/Inbox.tsx:197
+#: src/screens/Messages/Inbox.tsx:203
 #: src/screens/Onboarding/StepInterests/index.tsx:217
 #: src/screens/Onboarding/StepInterests/index.tsx:220
 #: src/screens/Signup/BackNextButtons.tsx:53
@@ -6164,7 +6513,7 @@ msgstr ""
 
 #: src/components/Error.tsx:73
 #: src/screens/List/ListHiddenScreen.tsx:219
-#: src/screens/StarterPack/StarterPackScreen.tsx:748
+#: src/screens/StarterPack/StarterPackScreen.tsx:751
 msgid "Return to previous page"
 msgstr "กลับไปยังหน้าก่อนหน้า"
 
@@ -6176,7 +6525,7 @@ msgstr "กลับไปยังหน้าแรก"
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:540
 #: src/screens/VideoFeed/index.tsx:1109
 #: src/view/screens/NotFound.tsx:60
-#: src/view/screens/ProfileList.tsx:1032
+#: src/view/screens/ProfileList.tsx:1031
 msgid "Returns to previous page"
 msgstr "กลับไปยังหน้าก่อนหน้า"
 
@@ -6191,12 +6540,12 @@ msgstr ""
 #: src/screens/Profile/Header/EditProfileDialog.tsx:238
 #: src/screens/Profile/Header/EditProfileDialog.tsx:252
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:243
-#: src/view/com/composer/GifAltText.tsx:190
-#: src/view/com/composer/GifAltText.tsx:199
+#: src/view/com/composer/GifAltText.tsx:193
+#: src/view/com/composer/GifAltText.tsx:202
 #: src/view/com/composer/photos/EditImageDialog.web.tsx:77
 #: src/view/com/composer/photos/EditImageDialog.web.tsx:83
-#: src/view/com/composer/photos/ImageAltTextDialog.tsx:150
-#: src/view/com/composer/photos/ImageAltTextDialog.tsx:160
+#: src/view/com/composer/photos/ImageAltTextDialog.tsx:153
+#: src/view/com/composer/photos/ImageAltTextDialog.tsx:163
 #: src/view/com/modals/CreateOrEditList.tsx:317
 #: src/view/com/modals/EditProfile.tsx:219
 #: src/view/screens/SavedFeeds.tsx:109
@@ -6253,7 +6602,7 @@ msgid "Saved to your camera roll"
 msgstr "บันทึกไปที่แกลลอรี่"
 
 #: src/screens/Profile/components/ProfileFeedHeader.tsx:131
-#: src/view/screens/ProfileList.tsx:365
+#: src/view/screens/ProfileList.tsx:364
 msgid "Saved to your feeds"
 msgstr "บันทึกไปที่ฟีตของคุณ"
 
@@ -6272,34 +6621,31 @@ msgstr "บันทึกการครอปรูปภาพ"
 msgid "Say hello!"
 msgstr "ทักทายสิ!"
 
-#: src/screens/Onboarding/index.tsx:33
-#: src/screens/Onboarding/state.ts:112
+#: src/screens/Onboarding/index.tsx:34
+#: src/screens/Onboarding/state.ts:124
 msgid "Science"
 msgstr "วิทยาศาสตร์"
 
-#: src/view/screens/ProfileList.tsx:989
+#: src/view/screens/ProfileList.tsx:988
 msgid "Scroll to top"
 msgstr "เลื่อนไปข้างบนสุด"
 
 #: src/components/dms/dialogs/SearchablePeopleList.tsx:491
 #: src/components/forms/SearchInput.tsx:34
 #: src/components/forms/SearchInput.tsx:36
-#: src/Navigation.tsx:632
+#: src/screens/Search/Shell.tsx:307
+#: src/screens/Search/Shell.tsx:464
 #: src/view/com/modals/ListAddRemoveUsers.tsx:76
-#: src/view/screens/Search/Search.tsx:570
-#: src/view/screens/Search/Search.tsx:848
 #: src/view/shell/bottom-bar/BottomBar.tsx:182
-#: src/view/shell/desktop/LeftNav.tsx:613
-#: src/view/shell/Drawer.tsx:370
 msgid "Search"
 msgstr "ค้นหา"
 
-#: src/Navigation.tsx:217
-#: src/screens/Profile/ProfileSearch.tsx:34
+#: src/Navigation.tsx:231
+#: src/screens/Profile/ProfileSearch.tsx:37
 msgid "Search @{0}'s posts"
 msgstr ""
 
-#: src/components/ProgressGuide/FollowDialog.tsx:745
+#: src/components/ProgressGuide/FollowDialog.tsx:682
 msgid "Search by name or interest"
 msgstr ""
 
@@ -6307,7 +6653,8 @@ msgstr ""
 msgid "Search feeds"
 msgstr ""
 
-#: src/components/ProgressGuide/FollowDialog.tsx:575
+#: src/components/ProgressGuide/FollowDialog.tsx:523
+#: src/screens/Search/modules/ExploreSuggestedAccounts.tsx:127
 msgid "Search for \"{interestsDisplayName}\"{activeText}"
 msgstr ""
 
@@ -6315,7 +6662,7 @@ msgstr ""
 msgid "Search for \"{query}\""
 msgstr "ค้นหาจาก \"{query}\""
 
-#: src/view/screens/Search/Search.tsx:982
+#: src/screens/Search/components/AutocompleteResults.tsx:44
 msgid "Search for \"{searchText}\""
 msgstr "การค้นหาสำหรับ \"{query}\""
 
@@ -6323,7 +6670,15 @@ msgstr "การค้นหาสำหรับ \"{query}\""
 msgid "Search for feeds that you want to suggest to others."
 msgstr "ค้นหาสำหรับฟีตที่คุณต้องการแนะนำให้คนอื่น"
 
-#: src/view/screens/Search/Search.tsx:875
+#: src/screens/Search/Explore.tsx:335
+msgid "Search for more accounts"
+msgstr ""
+
+#: src/screens/Search/Explore.tsx:409
+msgid "Search for more feeds"
+msgstr ""
+
+#: src/screens/Search/Shell.tsx:334
 msgid "Search for posts, users, or feeds"
 msgstr ""
 
@@ -6335,7 +6690,7 @@ msgstr "ค้นหาสำหรับผู้ใช้"
 msgid "Search GIFs"
 msgstr "ค้นหา GIF"
 
-#: src/screens/Profile/ProfileSearch.tsx:33
+#: src/screens/Profile/ProfileSearch.tsx:36
 msgid "Search my posts"
 msgstr ""
 
@@ -6345,7 +6700,7 @@ msgid "Search posts"
 msgstr ""
 
 #: src/components/dms/dialogs/SearchablePeopleList.tsx:511
-#: src/components/ProgressGuide/FollowDialog.tsx:764
+#: src/components/ProgressGuide/FollowDialog.tsx:701
 msgid "Search profiles"
 msgstr "ค้นหาโปรไฟล์"
 
@@ -6353,12 +6708,12 @@ msgstr "ค้นหาโปรไฟล์"
 msgid "Search Tenor"
 msgstr "ค้นหา Tenor"
 
-#: src/screens/Profile/ProfileSearch.tsx:35
+#: src/screens/Profile/ProfileSearch.tsx:38
 msgid "Search..."
 msgstr ""
 
 #: src/components/dms/dialogs/SearchablePeopleList.tsx:512
-#: src/components/ProgressGuide/FollowDialog.tsx:765
+#: src/components/ProgressGuide/FollowDialog.tsx:702
 msgid "Searches for profiles"
 msgstr ""
 
@@ -6382,7 +6737,7 @@ msgstr ""
 msgid "See #{tag} posts by user"
 msgstr ""
 
-#: src/view/com/auth/SplashScreen.web.tsx:176
+#: src/view/com/auth/SplashScreen.web.tsx:180
 msgid "See jobs at Bluesky"
 msgstr "มองหางานใน Bluesky"
 
@@ -6414,7 +6769,7 @@ msgstr "เลือกอีโมจิ"
 msgid "Select content languages"
 msgstr ""
 
-#: src/screens/Login/index.tsx:144
+#: src/screens/Login/index.tsx:171
 msgid "Select from an existing account"
 msgstr "เลือกจากบัญชีที่มีอยู่แล้ว"
 
@@ -6475,11 +6830,12 @@ msgstr ""
 msgid "Select which languages you want your subscribed feeds to include. If none are selected, all languages will be shown."
 msgstr "เลือกภาษาที่คุณต้องการให้ฟีดที่คุณติดตามรวมอยู่ หากไม่เลือกภาษาใดๆ จะมีการแสดงภาษาทั้งหมด"
 
-#: src/screens/Signup/StepInfo/index.tsx:267
+#: src/screens/Signup/StepInfo/index.tsx:555
 msgid "Select your date of birth"
 msgstr "เลือกเดือนที่เกิด"
 
 #: src/screens/Onboarding/StepInterests/index.tsx:192
+#: src/screens/Settings/SettingsInterests.tsx:162
 msgid "Select your interests from the options below"
 msgstr "เลือกสิ่งที่สนใจจากตัวเลือกด้านบน"
 
@@ -6489,6 +6845,16 @@ msgstr "เลือกภาษาที่คุณต้องการสำ
 
 #: src/view/com/util/forms/DropdownButton.tsx:297
 msgid "Selects option {0} of {numItems}"
+msgstr ""
+
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:245
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:252
+msgid "Sell"
+msgstr ""
+
+#: src/screens/Xmtp/Conversation.tsx:248
+#: src/screens/Xmtp/Conversation.tsx:257
+msgid "Send"
 msgstr ""
 
 #: src/components/dms/ChatEmptyPill.tsx:38
@@ -6575,6 +6941,10 @@ msgstr "ตั้งเดือนเกิด"
 msgid "Set new password"
 msgstr "ตั้งรหัสผ่านใหม่"
 
+#: src/screens/Signup/StepInfo/index.tsx:421
+msgid "Set up or sign in with your Base smart contract wallet"
+msgstr ""
+
 #: src/screens/Onboarding/Layout.tsx:47
 msgid "Set up your account"
 msgstr "ตั้งค่าบัญชีของคุณ"
@@ -6583,9 +6953,9 @@ msgstr "ตั้งค่าบัญชีของคุณ"
 msgid "Sets email for password reset"
 msgstr "ตั้งอีเมลเพื่อการรีเซตรหัสผ่าน"
 
-#: src/Navigation.tsx:173
+#: src/Navigation.tsx:187
 #: src/screens/Settings/Settings.tsx:80
-#: src/view/shell/desktop/LeftNav.tsx:705
+#: src/view/shell/desktop/LeftNav.tsx:709
 #: src/view/shell/Drawer.tsx:539
 msgid "Settings"
 msgstr "การตั้งค่า"
@@ -6595,7 +6965,7 @@ msgctxt "toast"
 msgid "Settings saved"
 msgstr ""
 
-#: src/view/com/composer/labels/LabelsBtn.tsx:174
+#: src/view/com/composer/labels/LabelsBtn.tsx:173
 msgid "Sexual activity or erotic nudity."
 msgstr "กิจกรรมทางเพศ หรือการเปลือยที่มีลักษณะทางเพศ"
 
@@ -6606,14 +6976,14 @@ msgstr "การชักชวนทางเพศ"
 #: src/components/StarterPack/QrCodeDialog.tsx:181
 #: src/screens/Hashtag.tsx:126
 #: src/screens/StarterPack/StarterPackScreen.tsx:428
-#: src/screens/StarterPack/StarterPackScreen.tsx:600
+#: src/screens/StarterPack/StarterPackScreen.tsx:603
 #: src/screens/Topic.tsx:102
 #: src/view/com/profile/ProfileMenu.tsx:216
 #: src/view/com/profile/ProfileMenu.tsx:225
 #: src/view/com/util/forms/PostDropdownBtnMenuItems.tsx:481
 #: src/view/com/util/forms/PostDropdownBtnMenuItems.tsx:490
 #: src/view/com/util/post-ctrls/PostCtrls.tsx:350
-#: src/view/screens/ProfileList.tsx:506
+#: src/view/screens/ProfileList.tsx:505
 msgid "Share"
 msgstr "แชร์"
 
@@ -6638,7 +7008,7 @@ msgstr "แชร์ตลอด"
 
 #: src/components/StarterPack/ShareDialog.tsx:123
 #: src/components/StarterPack/ShareDialog.tsx:130
-#: src/screens/StarterPack/StarterPackScreen.tsx:604
+#: src/screens/StarterPack/StarterPackScreen.tsx:607
 msgid "Share link"
 msgstr "แชร์ลิงก์"
 
@@ -6672,7 +7042,7 @@ msgstr "แชร์ชุดเริ่มต้นนี้และช่ว
 msgid "Share your favorite feed!"
 msgstr "แชร์ฟีดที่คุณชื่นชอบ!"
 
-#: src/Navigation.tsx:276
+#: src/Navigation.tsx:290
 msgid "Shared Preferences Tester"
 msgstr "โปรแกรมทดสอบการตั้งค่าแชร์"
 
@@ -6682,7 +7052,7 @@ msgstr "แชร์เว็บไซต์ที่เชื่อมโยง
 
 #: src/components/moderation/ContentHider.tsx:200
 #: src/components/moderation/LabelPreference.tsx:137
-#: src/components/moderation/PostHider.tsx:122
+#: src/components/moderation/PostHider.tsx:124
 msgid "Show"
 msgstr "แสดง"
 
@@ -6749,7 +7119,7 @@ msgstr ""
 msgid "Show replies"
 msgstr ""
 
-#: src/view/com/post-thread/PostThread.tsx:626
+#: src/view/com/post-thread/PostThread.tsx:625
 msgid "Show replies as"
 msgstr ""
 
@@ -6799,13 +7169,13 @@ msgstr ""
 
 #: src/components/dialogs/Signin.tsx:97
 #: src/components/dialogs/Signin.tsx:99
-#: src/screens/Login/index.tsx:122
-#: src/screens/Login/index.tsx:143
-#: src/screens/Login/LoginForm.tsx:181
+#: src/screens/Login/index.tsx:148
+#: src/screens/Login/index.tsx:170
+#: src/screens/Login/LoginForm.tsx:191
 #: src/view/com/auth/SplashScreen.tsx:61
 #: src/view/com/auth/SplashScreen.tsx:69
-#: src/view/com/auth/SplashScreen.web.tsx:123
-#: src/view/com/auth/SplashScreen.web.tsx:131
+#: src/view/com/auth/SplashScreen.web.tsx:127
+#: src/view/com/auth/SplashScreen.web.tsx:135
 #: src/view/shell/bottom-bar/BottomBar.tsx:325
 #: src/view/shell/bottom-bar/BottomBar.tsx:330
 #: src/view/shell/bottom-bar/BottomBarWeb.tsx:209
@@ -6823,14 +7193,14 @@ msgstr "เข้าสู่ระบบในชื่อ {0}"
 msgid "Sign in as..."
 msgstr "เข้าสู่ระบบในชื่อ..."
 
+#: src/screens/Deactivated.tsx:203
+#: src/screens/Deactivated.tsx:209
+msgid "Sign in or create an account"
+msgstr ""
+
 #: src/components/dialogs/Signin.tsx:75
 msgid "Sign in or create your account to join the conversation!"
 msgstr "เข้าสู่ระบบหรือสร้างบัญชีของคุณเพื่อเข้าร่วมการสนทนา!"
-
-#: src/screens/Deactivated.tsx:203
-#: src/screens/Deactivated.tsx:209
-msgid "Sign in or sign up"
-msgstr "เข้าสู่ระบบหรือสมัครสมาชิก"
 
 #: src/components/AccountList.tsx:65
 msgid "Sign in to account that is not listed"
@@ -6840,15 +7210,19 @@ msgstr "เข้าสู่ระบบด้วยบัญชีที่ไ
 msgid "Sign in to Bluesky or create a new account"
 msgstr "เข้าสู่ระบบ Bluesky หรือสร้างบัญชีใหม่"
 
+#: src/screens/Signup/StepInfo/index.tsx:303
+msgid "Sign in with your crypto wallet."
+msgstr ""
+
 #: src/screens/Settings/Settings.tsx:225
 #: src/screens/Settings/Settings.tsx:227
 #: src/screens/Settings/Settings.tsx:259
 #: src/screens/SignupQueued.tsx:93
 #: src/screens/SignupQueued.tsx:96
 #: src/screens/Takendown.tsx:85
-#: src/view/shell/desktop/LeftNav.tsx:207
-#: src/view/shell/desktop/LeftNav.tsx:287
-#: src/view/shell/desktop/LeftNav.tsx:290
+#: src/view/shell/desktop/LeftNav.tsx:208
+#: src/view/shell/desktop/LeftNav.tsx:288
+#: src/view/shell/desktop/LeftNav.tsx:291
 msgid "Sign out"
 msgstr "ออกจากระบบ"
 
@@ -6857,9 +7231,17 @@ msgid "Sign Out"
 msgstr "ออกจากระบบ"
 
 #: src/screens/Settings/Settings.tsx:256
-#: src/view/shell/desktop/LeftNav.tsx:204
+#: src/view/shell/desktop/LeftNav.tsx:205
 msgid "Sign out?"
 msgstr "ออกจากระบบ?"
+
+#: src/screens/Login/LoginForm.tsx:478
+msgid "Sign SIWE"
+msgstr ""
+
+#: src/screens/Login/LoginForm.tsx:479
+msgid "Sign SIWE to log in"
+msgstr ""
 
 #: src/components/moderation/ScreenHider.tsx:91
 #: src/lib/moderation/useGlobalLabelStrings.ts:28
@@ -6871,19 +7253,23 @@ msgstr "ต้องเข้าสู่ระบบ"
 msgid "Signed in as @{0}"
 msgstr "เข้าสู่ระบบในชื่อ @{0}"
 
-#: src/screens/StarterPack/StarterPackLandingScreen.tsx:303
-#: src/screens/StarterPack/StarterPackLandingScreen.tsx:310
-msgid "Signup without a starter pack"
-msgstr "สมัครสมาชิกโดยไม่ใช้ชุดเริ่มต้น"
-
 #: src/components/FeedInterstitials.tsx:337
 msgid "Similar accounts"
 msgstr "บัญชีที่คล้ายกัน"
+
+#: src/screens/Signup/StepInfo/index.tsx:352
+msgid "Simple"
+msgstr ""
 
 #: src/screens/Onboarding/StepInterests/index.tsx:231
 #: src/screens/StarterPack/Wizard/index.tsx:195
 msgid "Skip"
 msgstr "ข้าม"
+
+#: src/screens/Onboarding/StepEns/index.tsx:173
+#: src/screens/Onboarding/StepEns/index.tsx:176
+msgid "Skip for now"
+msgstr ""
 
 #: src/screens/Onboarding/StepInterests/index.tsx:228
 msgid "Skip this flow"
@@ -6893,12 +7279,12 @@ msgstr "ข้ามขั้นตอนนี้"
 msgid "Smaller"
 msgstr "เล็ก"
 
-#: src/screens/Onboarding/index.tsx:37
-#: src/screens/Onboarding/state.ts:100
+#: src/screens/Onboarding/index.tsx:38
+#: src/screens/Onboarding/state.ts:112
 msgid "Software Dev"
 msgstr "นักพัฒนาซอฟต์แวร์"
 
-#: src/components/FeedInterstitials.tsx:472
+#: src/components/FeedInterstitials.tsx:474
 msgid "Some other feeds you might like"
 msgstr "ฟีดอื่น ๆ ที่คุณอาจชอบ"
 
@@ -6906,11 +7292,19 @@ msgstr "ฟีดอื่น ๆ ที่คุณอาจชอบ"
 msgid "Some people can reply"
 msgstr "บางคนสามารถตอบได้"
 
+#: src/components/dms/MessageItem.tsx:148
+msgid "Someone reacted {0}"
+msgstr ""
+
+#: src/screens/Messages/components/ChatListItem.tsx:236
+msgid "Someone reacted {0} to {1}"
+msgstr ""
+
 #: src/components/moderation/ReportDialog/index.tsx:76
 msgid "Something wasn't quite right with the data you're trying to report. Please contact support."
 msgstr ""
 
-#: src/screens/Messages/Conversation.tsx:117
+#: src/screens/Messages/Conversation.tsx:126
 msgid "Something went wrong"
 msgstr "เกิดข้อผิดพลาดบางอย่าง"
 
@@ -6939,8 +7333,8 @@ msgstr ""
 msgid "Something wrong? Let us know."
 msgstr ""
 
-#: src/App.native.tsx:122
-#: src/App.web.tsx:98
+#: src/App.native.tsx:124
+#: src/App.web.tsx:105
 msgid "Sorry! Your session expired. Please sign in again."
 msgstr ""
 
@@ -6973,8 +7367,9 @@ msgstr "สแปม"
 msgid "Spam; excessive mentions or replies"
 msgstr "สแปม; การกล่าวถึงหรือการตอบกลับที่มากเกินไป"
 
-#: src/screens/Onboarding/index.tsx:27
-#: src/screens/Onboarding/state.ts:113
+#: src/screens/Onboarding/index.tsx:28
+#: src/screens/Onboarding/state.ts:125
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:229
 msgid "Sports"
 msgstr "กีฬา"
 
@@ -6982,27 +7377,31 @@ msgstr "กีฬา"
 msgid "Start a new chat"
 msgstr "เริ่มแชทใหม่"
 
-#: src/view/screens/ProfileList.tsx:839
-#: src/view/screens/ProfileList.tsx:960
+#: src/view/screens/ProfileList.tsx:838
+#: src/view/screens/ProfileList.tsx:959
 msgid "Start adding people"
 msgstr ""
 
-#: src/view/screens/ProfileList.tsx:846
-#: src/view/screens/ProfileList.tsx:967
+#: src/view/screens/ProfileList.tsx:845
+#: src/view/screens/ProfileList.tsx:966
 msgid "Start adding people!"
+msgstr ""
+
+#: src/screens/Xmtp/index.tsx:227
+msgid "Start Chat"
 msgstr ""
 
 #: src/components/dms/dialogs/SearchablePeopleList.tsx:357
 msgid "Start chat with {displayName}"
 msgstr "เริ่มแชทกับ {displayName}"
 
-#: src/Navigation.tsx:433
-#: src/Navigation.tsx:438
+#: src/Navigation.tsx:455
+#: src/Navigation.tsx:460
 #: src/screens/StarterPack/Wizard/index.tsx:186
 msgid "Starter Pack"
 msgstr "ชุดเริ่มต้น"
 
-#: src/components/StarterPack/StarterPackCard.tsx:87
+#: src/components/StarterPack/StarterPackCard.tsx:90
 msgid "Starter pack by {0}"
 msgstr "ชุดเริ่มต้นโดย {0}"
 
@@ -7010,20 +7409,21 @@ msgstr "ชุดเริ่มต้นโดย {0}"
 msgid "Starter pack by <0/>"
 msgstr ""
 
-#: src/components/StarterPack/StarterPackCard.tsx:86
+#: src/components/StarterPack/StarterPackCard.tsx:89
 #: src/view/com/profile/ProfileSubpageHeader.tsx:180
 msgid "Starter pack by you"
 msgstr "ชุดเริ่มต้นโดยคุณ"
 
-#: src/screens/StarterPack/StarterPackScreen.tsx:712
+#: src/screens/StarterPack/StarterPackScreen.tsx:715
 msgid "Starter pack is invalid"
 msgstr "ชุดเริ่มต้นไม่ถูกต้อง"
 
+#: src/screens/Search/Explore.tsx:508
 #: src/view/screens/Profile.tsx:228
 msgid "Starter Packs"
 msgstr "ชุดเริ่มต้น"
 
-#: src/components/StarterPack/ProfileStarterPacks.tsx:242
+#: src/components/StarterPack/ProfileStarterPacks.tsx:247
 msgid "Starter packs let you easily share your favorite feeds and people with your friends."
 msgstr "ชุดเริ่มต้นช่วยให้คุณแชร์ฟีดและผู้คนที่คุณชื่นชอบกับเพื่อนๆ ได้อย่างง่ายดาย"
 
@@ -7032,7 +7432,7 @@ msgstr "ชุดเริ่มต้นช่วยให้คุณแชร
 msgid "Status Page"
 msgstr "หน้าสถานะ"
 
-#: src/screens/Signup/index.tsx:134
+#: src/screens/Signup/index.tsx:148
 msgid "Step {0} of {1}"
 msgstr "ขั้นตอนที่ {0} จาก {1}"
 
@@ -7040,7 +7440,7 @@ msgstr "ขั้นตอนที่ {0} จาก {1}"
 msgid "Storage cleared, you need to restart the app now."
 msgstr "ล้างพื้นที่เก็บข้อมูลแล้ว คุณต้องเริ่มแอปใหม่ตอนนี้"
 
-#: src/Navigation.tsx:266
+#: src/Navigation.tsx:280
 #: src/screens/Settings/Settings.tsx:325
 msgid "Storybook"
 msgstr ""
@@ -7066,7 +7466,7 @@ msgstr ""
 msgid "Submit report"
 msgstr ""
 
-#: src/view/screens/ProfileList.tsx:734
+#: src/view/screens/ProfileList.tsx:733
 msgid "Subscribe"
 msgstr "สมัครสมาชิก"
 
@@ -7082,7 +7482,7 @@ msgstr "สมัครสมาชิกผู้สร้างป้ายก
 msgid "Subscribe to this labeler"
 msgstr "สมัครสมาชิกผู้สร้างป้ายกำกับนี้"
 
-#: src/view/screens/ProfileList.tsx:730
+#: src/view/screens/ProfileList.tsx:729
 msgid "Subscribe to this list"
 msgstr "สมัครสมาชิกในลิสต์นี้"
 
@@ -7090,16 +7490,16 @@ msgstr "สมัครสมาชิกในลิสต์นี้"
 msgid "Success!"
 msgstr "สำเร็จ!"
 
-#: src/view/screens/Search/Explore.tsx:368
-msgid "Suggested accounts"
-msgstr "บัญชีที่แนะนำ"
+#: src/screens/Search/Explore.tsx:332
+msgid "Suggested Accounts"
+msgstr ""
 
 #: src/components/FeedInterstitials.tsx:339
 msgid "Suggested for you"
 msgstr "แนะนำสำหรับคุณ"
 
-#: src/view/com/composer/labels/LabelsBtn.tsx:145
-#: src/view/com/composer/labels/LabelsBtn.tsx:148
+#: src/view/com/composer/labels/LabelsBtn.tsx:144
+#: src/view/com/composer/labels/LabelsBtn.tsx:147
 msgid "Suggestive"
 msgstr "ชี้นำ"
 
@@ -7113,16 +7513,21 @@ msgctxt "Name of app icon variant"
 msgid "Sunset"
 msgstr ""
 
-#: src/Navigation.tsx:286
+#: src/Navigation.tsx:300
 #: src/view/screens/Support.tsx:31
 #: src/view/screens/Support.tsx:34
 msgid "Support"
 msgstr "สนับสนุน"
 
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:296
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:299
+msgid "Swap"
+msgstr ""
+
 #: src/screens/Settings/Settings.tsx:102
 #: src/screens/Settings/Settings.tsx:116
 #: src/screens/Settings/Settings.tsx:412
-#: src/view/shell/desktop/LeftNav.tsx:242
+#: src/view/shell/desktop/LeftNav.tsx:243
 msgid "Switch account"
 msgstr ""
 
@@ -7131,12 +7536,22 @@ msgstr ""
 msgid "Switch Account"
 msgstr "เปลี่ยนบัญชี"
 
-#: src/view/shell/desktop/LeftNav.tsx:106
+#: src/view/shell/desktop/LeftNav.tsx:107
 msgid "Switch accounts"
 msgstr ""
 
-#: src/view/shell/desktop/LeftNav.tsx:250
+#: src/view/shell/desktop/LeftNav.tsx:251
 msgid "Switch to {0}"
+msgstr ""
+
+#: src/screens/Login/LoginForm.tsx:512
+#: src/screens/Login/LoginForm.tsx:515
+msgid "Switch to {0} login"
+msgstr ""
+
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:207
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:214
+msgid "Symbol"
 msgstr ""
 
 #: src/components/dialogs/Embed.tsx:157
@@ -7156,6 +7571,12 @@ msgstr "บันทึกกิจกรรมของระบบ"
 msgid "Tags only"
 msgstr "แท็กเท่านั้น"
 
+#: src/components/ContextMenu/Backdrop.ios.tsx:54
+#: src/components/ContextMenu/Backdrop.ios.tsx:80
+#: src/components/ContextMenu/Backdrop.tsx:46
+msgid "Tap to close context menu"
+msgstr ""
+
 #: src/components/ProgressGuide/Toast.tsx:156
 msgid "Tap to dismiss"
 msgstr "กดเพื่อลบ"
@@ -7172,8 +7593,8 @@ msgstr "ภารกิจสำเร็จ - การกดถูกใจ 10
 msgid "Teach our algorithm what you like"
 msgstr "สอนอัลกอริธึมของเราเกี่ยวกับสิ่งที่คุณชอบ"
 
-#: src/screens/Onboarding/index.tsx:36
-#: src/screens/Onboarding/state.ts:114
+#: src/screens/Onboarding/index.tsx:37
+#: src/screens/Onboarding/state.ts:126
 msgid "Tech"
 msgstr "เทค"
 
@@ -7181,7 +7602,7 @@ msgstr "เทค"
 msgid "Tell a joke!"
 msgstr "เล่าเรื่องตลก"
 
-#: src/screens/Profile/Header/EditProfileDialog.tsx:352
+#: src/screens/Profile/Header/EditProfileDialog.tsx:355
 msgid "Tell us a bit about yourself"
 msgstr ""
 
@@ -7189,12 +7610,7 @@ msgstr ""
 msgid "Tell us a little more"
 msgstr "เล่าให้เราฟังนิดนึง"
 
-#: src/view/shell/desktop/RightNav.tsx:111
-#: src/view/shell/desktop/RightNav.tsx:112
-msgid "Terms"
-msgstr "เงื่อนไข"
-
-#: src/Navigation.tsx:296
+#: src/Navigation.tsx:310
 #: src/screens/Settings/AboutSettings.tsx:43
 #: src/screens/Settings/AboutSettings.tsx:46
 #: src/view/screens/TermsOfService.tsx:31
@@ -7264,7 +7680,7 @@ msgstr "มีแค่นี้แหละท่านผู้ชม!!"
 msgid "That's everything!"
 msgstr ""
 
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:279
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:409
 #: src/view/com/profile/ProfileMenu.tsx:387
 msgid "The account will be able to interact with you after unblocking."
 msgstr "บัญชีจะสามารถโต้ตอบกับคุณได้หลังจากที่ปลดบล็อกแล้ว"
@@ -7336,9 +7752,13 @@ msgstr ""
 msgid "The server appears to be experiencing issues. Please try again in a few moments."
 msgstr ""
 
-#: src/screens/StarterPack/StarterPackScreen.tsx:722
+#: src/screens/StarterPack/StarterPackScreen.tsx:725
 msgid "The starter pack that you are trying to view is invalid. You may delete this starter pack instead."
 msgstr "ชุดเริ่มต้นที่คุณพยายามดูไม่ถูกต้อง คุณสามารถลบชุดเริ่มต้นนี้แทนได้"
+
+#: src/components/ContextMenu/index.tsx:433
+msgid "The subject of the context menu"
+msgstr ""
 
 #: src/view/screens/Support.tsx:37
 msgid "The support form has been moved. If you need help, please <0/> or visit {HELP_DESK_URL} to get in touch with us."
@@ -7365,8 +7785,8 @@ msgid "There was an issue connecting to Tenor."
 msgstr "เกิดปัญหาในการเชื่อมต่อกับ Tenor"
 
 #: src/screens/Profile/components/ProfileFeedHeader.tsx:173
-#: src/view/screens/ProfileList.tsx:368
-#: src/view/screens/ProfileList.tsx:387
+#: src/view/screens/ProfileList.tsx:367
+#: src/view/screens/ProfileList.tsx:386
 #: src/view/screens/SavedFeeds.tsx:85
 msgid "There was an issue contacting the server"
 msgstr "เกิดปัญหาในการติดต่อเซิร์ฟเวอร์"
@@ -7385,7 +7805,8 @@ msgstr "เกิดปัญหาในการติดต่อเซิร
 msgid "There was an issue fetching notifications. Tap here to try again."
 msgstr "เกิดปัญหาในการดึงการแจ้งเตือน คลิกที่นี่เพื่อลองอีกครั้ง"
 
-#: src/view/com/posts/PostFeed.tsx:592
+#: src/screens/Search/Explore.tsx:865
+#: src/view/com/posts/PostFeed.tsx:607
 msgid "There was an issue fetching posts. Tap here to try again."
 msgstr "เกิดปัญหาในการดึงโพสต์ คลิกที่นี่เพื่อลองอีกครั้ง"
 
@@ -7397,8 +7818,8 @@ msgstr "เกิดปัญหาในการดึงลิสต์ ค�
 msgid "There was an issue fetching your app passwords"
 msgstr ""
 
-#: src/view/com/feeds/ProfileFeedgens.tsx:155
-#: src/view/com/lists/ProfileLists.tsx:154
+#: src/view/com/feeds/ProfileFeedgens.tsx:151
+#: src/view/com/lists/ProfileLists.tsx:150
 msgid "There was an issue fetching your lists. Tap here to try again."
 msgstr "เกิดปัญหาในการดึงลิสต์ของคุณ คลิกที่นี่เพื่อลองอีกครั้ง"
 
@@ -7421,9 +7842,9 @@ msgstr "เกิดปัญหาในการส่งคำรายงา
 msgid "There was an issue updating your feeds, please check your internet connection and try again."
 msgstr ""
 
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:107
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:128
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:141
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:143
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:164
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:177
 #: src/view/com/post-thread/PostThreadFollowBtn.tsx:90
 #: src/view/com/post-thread/PostThreadFollowBtn.tsx:101
 #: src/view/com/profile/ProfileMenu.tsx:111
@@ -7442,10 +7863,10 @@ msgstr "เกิดปัญหาที่ {0}!"
 #: src/screens/List/ListHiddenScreen.tsx:63
 #: src/screens/List/ListHiddenScreen.tsx:77
 #: src/screens/List/ListHiddenScreen.tsx:99
-#: src/view/screens/ProfileList.tsx:404
-#: src/view/screens/ProfileList.tsx:422
-#: src/view/screens/ProfileList.tsx:440
-#: src/view/screens/ProfileList.tsx:458
+#: src/view/screens/ProfileList.tsx:403
+#: src/view/screens/ProfileList.tsx:421
+#: src/view/screens/ProfileList.tsx:439
+#: src/view/screens/ProfileList.tsx:457
 msgid "There was an issue. Please check your internet connection and try again."
 msgstr "เกิดปัญหาการเชื่อมต่อ กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณและลองอีกครั้ง"
 
@@ -7507,7 +7928,7 @@ msgstr ""
 msgid "This content is not viewable without a Bluesky account."
 msgstr ""
 
-#: src/screens/Messages/components/ChatListItem.tsx:296
+#: src/screens/Messages/components/ChatListItem.tsx:357
 msgid "This conversation is with a deleted or a deactivated account. Press for options"
 msgstr ""
 
@@ -7529,7 +7950,7 @@ msgstr ""
 
 #: src/components/StarterPack/Main/PostsList.tsx:36
 #: src/screens/Profile/ProfileFeed/index.tsx:189
-#: src/view/screens/ProfileList.tsx:836
+#: src/view/screens/ProfileList.tsx:835
 msgid "This feed is empty."
 msgstr ""
 
@@ -7573,7 +7994,7 @@ msgstr ""
 msgid "This list – created by you – contains possible violations of Bluesky's community guidelines in its name or description."
 msgstr ""
 
-#: src/view/screens/ProfileList.tsx:955
+#: src/view/screens/ProfileList.tsx:954
 msgid "This list is empty."
 msgstr ""
 
@@ -7602,7 +8023,7 @@ msgstr ""
 msgid "This post will be hidden from feeds and threads. This cannot be undone."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:428
+#: src/view/com/composer/Composer.tsx:436
 msgid "This post's author has disabled quote posts."
 msgstr ""
 
@@ -7667,13 +8088,13 @@ msgstr "นี่จะลบ @{0} ออกจากลิสต์เข้า
 msgid "This will remove your post from this quote post for all users, and replace it with a placeholder."
 msgstr "นี่จะลบโพสต์ของคุณออกจากโพสต์อ้างอิงนี้สำหรับผู้ใช้ทุกคน และแทนที่ด้วยข้อความแทน"
 
-#: src/view/com/post-thread/PostThread.tsx:610
-#: src/view/com/post-thread/PostThread.tsx:613
+#: src/view/com/post-thread/PostThread.tsx:609
+#: src/view/com/post-thread/PostThread.tsx:612
 msgid "Thread options"
 msgstr ""
 
-#: src/screens/Settings/ContentAndMediaSettings.tsx:67
-#: src/screens/Settings/ContentAndMediaSettings.tsx:70
+#: src/screens/Settings/ContentAndMediaSettings.tsx:68
+#: src/screens/Settings/ContentAndMediaSettings.tsx:71
 msgid "Thread preferences"
 msgstr "การตั้งค่าเธรด"
 
@@ -7681,8 +8102,8 @@ msgstr "การตั้งค่าเธรด"
 msgid "Thread Preferences"
 msgstr "การตั้งค่าเธรด"
 
-#: src/view/com/post-thread/PostThread.tsx:640
-#: src/view/com/post-thread/PostThread.tsx:645
+#: src/view/com/post-thread/PostThread.tsx:639
+#: src/view/com/post-thread/PostThread.tsx:644
 msgid "Threaded"
 msgstr ""
 
@@ -7690,7 +8111,7 @@ msgstr ""
 msgid "Threaded mode"
 msgstr ""
 
-#: src/Navigation.tsx:329
+#: src/Navigation.tsx:343
 msgid "Threads Preferences"
 msgstr ""
 
@@ -7730,18 +8151,50 @@ msgstr ""
 msgid "Toggles the sound"
 msgstr ""
 
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:99
+msgctxt "toast"
+msgid "Token created successfully"
+msgstr ""
+
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:140
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:146
+msgid "Token Details"
+msgstr ""
+
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:191
+#: src/screens/Profile/Header/CreateTokenDialog.tsx:198
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:167
+msgid "Token Name"
+msgstr ""
+
+#: src/Navigation.tsx:676
+msgid "Tokens"
+msgstr ""
+
 #: src/screens/Hashtag.tsx:84
+#: src/screens/Search/SearchResults.tsx:42
 #: src/screens/Topic.tsx:71
-#: src/view/screens/Search/Search.tsx:505
 msgid "Top"
 msgstr ""
 
-#: src/Navigation.tsx:403
+#: src/screens/Tokens.tsx:33
+msgid "Top Pools"
+msgstr ""
+
+#: src/Navigation.tsx:425
 msgid "Topic"
 msgstr ""
 
-#: src/components/dms/MessageMenu.tsx:105
-#: src/components/dms/MessageMenu.tsx:107
+#: src/screens/Profile/Header/TokenDetailsDialog.tsx:203
+msgid "Total Supply"
+msgstr ""
+
+#: src/screens/Signup/StepInfo/index.tsx:358
+msgid "Traditional email and password login."
+msgstr ""
+
+#: src/components/dms/MessageContextMenu.tsx:132
+#: src/components/dms/MessageContextMenu.tsx:134
 #: src/view/com/post-thread/PostThreadItem.tsx:778
 #: src/view/com/post-thread/PostThreadItem.tsx:781
 #: src/view/com/util/forms/PostDropdownBtnMenuItems.tsx:451
@@ -7749,13 +8202,15 @@ msgstr ""
 msgid "Translate"
 msgstr ""
 
-#: src/screens/Search/components/ExploreTrendingTopics.tsx:69
 #: src/view/shell/desktop/SidebarTrendingTopics.tsx:59
 msgid "Trending"
 msgstr ""
 
+#: src/screens/Search/Explore.tsx:576
+msgid "Trending topics"
+msgstr ""
+
 #: src/components/interstitials/TrendingVideos.tsx:88
-#: src/screens/Search/components/ExploreTrendingVideos.tsx:106
 msgid "Trending Videos"
 msgstr ""
 
@@ -7764,7 +8219,7 @@ msgctxt "action"
 msgid "Try again"
 msgstr ""
 
-#: src/screens/Onboarding/state.ts:115
+#: src/screens/Onboarding/state.ts:127
 msgid "TV"
 msgstr ""
 
@@ -7772,7 +8227,7 @@ msgstr ""
 msgid "Two-factor authentication (2FA)"
 msgstr ""
 
-#: src/screens/Signup/StepHandle.tsx:118
+#: src/screens/Signup/StepHandle.tsx:126
 msgid "Type your desired username"
 msgstr "กรอกชื่อผู้ใช้ของคุณ"
 
@@ -7784,21 +8239,13 @@ msgstr ""
 msgid "Type:"
 msgstr ""
 
-#: src/view/screens/ProfileList.tsx:613
-msgid "Un-block list"
-msgstr ""
-
-#: src/view/screens/ProfileList.tsx:598
-msgid "Un-mute list"
-msgstr ""
-
 #: src/lib/strings/errors.ts:11
 msgid "Unable to connect. Please check your internet connection and try again."
 msgstr ""
 
 #: src/screens/Login/ForgotPasswordForm.tsx:68
-#: src/screens/Login/index.tsx:79
-#: src/screens/Login/LoginForm.tsx:169
+#: src/screens/Login/index.tsx:84
+#: src/screens/Login/LoginForm.tsx:179
 #: src/screens/Login/SetNewPasswordForm.tsx:81
 #: src/screens/Signup/index.tsx:72
 #: src/view/com/modals/ChangePassword.tsx:71
@@ -7806,7 +8253,7 @@ msgstr ""
 msgid "Unable to contact your service. Please check your Internet connection."
 msgstr "ไม่สามารถติดต่อบริการของคุณได้ โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณ"
 
-#: src/screens/StarterPack/StarterPackScreen.tsx:654
+#: src/screens/StarterPack/StarterPackScreen.tsx:657
 msgid "Unable to delete"
 msgstr "ไม่สามารถลบได้"
 
@@ -7814,14 +8261,14 @@ msgstr "ไม่สามารถลบได้"
 #: src/components/dms/MessagesListBlockedFooter.tsx:104
 #: src/components/dms/MessagesListBlockedFooter.tsx:112
 #: src/components/dms/MessagesListBlockedFooter.tsx:119
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:197
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:283
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:315
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:413
 #: src/view/com/profile/ProfileMenu.tsx:399
-#: src/view/screens/ProfileList.tsx:716
+#: src/view/screens/ProfileList.tsx:715
 msgid "Unblock"
 msgstr "ปลดบล็อก"
 
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:202
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:320
 msgctxt "action"
 msgid "Unblock"
 msgstr "ปลดบล็อก"
@@ -7833,10 +8280,14 @@ msgstr "ปลดบล็อก"
 msgid "Unblock account"
 msgstr "ปลดบล็อกบัญชี"
 
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:277
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:407
 #: src/view/com/profile/ProfileMenu.tsx:381
 msgid "Unblock Account?"
 msgstr "ปลดบล็อกบัญชีหรือไม่?"
+
+#: src/view/screens/ProfileList.tsx:612
+msgid "Unblock list"
+msgstr ""
 
 #: src/view/com/util/post-ctrls/RepostButton.web.tsx:72
 #: src/view/com/util/post-ctrls/RepostButton.web.tsx:76
@@ -7852,7 +8303,7 @@ msgctxt "action"
 msgid "Unfollow"
 msgstr "เลิกติดตาม"
 
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:217
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:347
 msgid "Unfollow {0}"
 msgstr "เลิกติดตาม {0}"
 
@@ -7883,7 +8334,7 @@ msgctxt "video"
 msgid "Unmute"
 msgstr ""
 
-#: src/view/screens/ProfileList.tsx:723
+#: src/view/screens/ProfileList.tsx:722
 msgid "Unmute"
 msgstr "เปิดเสียง"
 
@@ -7903,6 +8354,10 @@ msgstr "เปิดเสียงบัญชี"
 msgid "Unmute conversation"
 msgstr "เปิดเสียงการสนทนา"
 
+#: src/view/screens/ProfileList.tsx:597
+msgid "Unmute list"
+msgstr ""
+
 #: src/view/com/util/forms/PostDropdownBtnMenuItems.tsx:536
 #: src/view/com/util/forms/PostDropdownBtnMenuItems.tsx:540
 msgid "Unmute thread"
@@ -7912,13 +8367,17 @@ msgstr "เปิดเสียงกระทู้"
 msgid "Unmute video"
 msgstr "เปิดเสียงวิดีโอ"
 
-#: src/view/screens/ProfileList.tsx:707
+#: src/view/screens/ProfileList.tsx:706
 msgid "Unpin"
 msgstr "เลิกปักหมุด"
 
 #: src/screens/Profile/components/ProfileFeedHeader.tsx:515
 #: src/screens/Profile/components/ProfileFeedHeader.tsx:522
 msgid "Unpin feed"
+msgstr ""
+
+#: src/components/FeedCard.tsx:320
+msgid "Unpin Feed"
 msgstr ""
 
 #: src/screens/Profile/components/ProfileFeedHeader.tsx:305
@@ -7931,7 +8390,7 @@ msgstr "เลิกปักหมุดจากหน้าแรก"
 msgid "Unpin from profile"
 msgstr "เลิกปักหมุดจากโปรไฟล์"
 
-#: src/view/screens/ProfileList.tsx:578
+#: src/view/screens/ProfileList.tsx:577
 msgid "Unpin moderation list"
 msgstr "เลิกปักหมุดจากลิสต์การModerate"
 
@@ -7939,7 +8398,7 @@ msgstr "เลิกปักหมุดจากลิสต์การModera
 msgid "Unpinned {0} from Home"
 msgstr ""
 
-#: src/view/screens/ProfileList.tsx:355
+#: src/view/screens/ProfileList.tsx:354
 msgid "Unpinned from your feeds"
 msgstr "เลิกปักหมุดจากฟีดของคุณ"
 
@@ -7960,7 +8419,7 @@ msgstr "เลิกสมัครรับข้อมูลจากผู้
 msgid "Unsubscribed from list"
 msgstr "เลิกสมัครรับข้อมูลจากลิสต์แล้ว"
 
-#: src/view/com/composer/Composer.tsx:781
+#: src/view/com/composer/Composer.tsx:790
 msgid "Unsupported video type"
 msgstr ""
 
@@ -8011,20 +8470,20 @@ msgstr "อัปโหลดรูปภาพแทน"
 msgid "Upload a text file to:"
 msgstr "อัปโหลดไฟล์ข้อความไปที่:"
 
-#: src/view/com/util/UserAvatar.tsx:368
-#: src/view/com/util/UserAvatar.tsx:371
+#: src/view/com/util/UserAvatar.tsx:387
+#: src/view/com/util/UserAvatar.tsx:390
 #: src/view/com/util/UserBanner.tsx:123
 #: src/view/com/util/UserBanner.tsx:126
 msgid "Upload from Camera"
 msgstr "อัปโหลดจากกล้อง"
 
-#: src/view/com/util/UserAvatar.tsx:385
+#: src/view/com/util/UserAvatar.tsx:404
 #: src/view/com/util/UserBanner.tsx:140
 msgid "Upload from Files"
 msgstr "อัปโหลดจากไฟล์"
 
-#: src/view/com/util/UserAvatar.tsx:379
-#: src/view/com/util/UserAvatar.tsx:383
+#: src/view/com/util/UserAvatar.tsx:398
+#: src/view/com/util/UserAvatar.tsx:402
 #: src/view/com/util/UserBanner.tsx:134
 #: src/view/com/util/UserBanner.tsx:138
 msgid "Upload from Library"
@@ -8039,7 +8498,7 @@ msgstr ""
 msgid "Uploading link thumbnail..."
 msgstr ""
 
-#: src/view/com/composer/Composer.tsx:1655
+#: src/view/com/composer/Composer.tsx:1692
 msgid "Uploading video..."
 msgstr ""
 
@@ -8056,8 +8515,8 @@ msgstr "ใช้ผู้ให้บริการเริ่มต้น"
 msgid "Use in-app browser"
 msgstr "ใช้เบราว์เซอร์ในแอป"
 
-#: src/screens/Settings/ContentAndMediaSettings.tsx:93
-#: src/screens/Settings/ContentAndMediaSettings.tsx:99
+#: src/screens/Settings/ContentAndMediaSettings.tsx:102
+#: src/screens/Settings/ContentAndMediaSettings.tsx:108
 msgid "Use in-app browser to open links"
 msgstr ""
 
@@ -8126,7 +8585,7 @@ msgctxt "toast"
 msgid "User list updated"
 msgstr "ลิสต์ผู้ใช้ถูกปรับปรุง"
 
-#: src/screens/Login/LoginForm.tsx:201
+#: src/screens/Login/LoginForm.tsx:313
 msgid "Username or email address"
 msgstr "ชื่อผู้ใช้หรือที่อยู่อีเมล"
 
@@ -8211,7 +8670,7 @@ msgstr "วิดีโอ"
 msgid "Video failed to process"
 msgstr "การประมวลผลวิดีโอไม่สำเร็จ"
 
-#: src/Navigation.tsx:454
+#: src/Navigation.tsx:476
 msgid "Video Feed"
 msgstr ""
 
@@ -8219,8 +8678,9 @@ msgstr ""
 msgid "Video from {0}: {text}"
 msgstr ""
 
-#: src/screens/Onboarding/index.tsx:39
-#: src/screens/Onboarding/state.ts:103
+#: src/screens/Onboarding/index.tsx:40
+#: src/screens/Onboarding/state.ts:115
+#: src/screens/Search/modules/ExploreTrendingTopics.tsx:233
 msgid "Video Games"
 msgstr "เกมวิดีโอ"
 
@@ -8240,7 +8700,7 @@ msgstr "ไม่พบวิดีโอ"
 msgid "Video settings"
 msgstr "การตั้งค่าวิดีโอ"
 
-#: src/view/com/composer/Composer.tsx:1665
+#: src/view/com/composer/Composer.tsx:1702
 msgid "Video uploaded"
 msgstr ""
 
@@ -8261,7 +8721,7 @@ msgstr ""
 msgid "View {0}'s avatar"
 msgstr "ดูอวตาร์ของ {0}"
 
-#: src/components/ProfileCard.tsx:110
+#: src/components/ProfileCard.tsx:115
 #: src/screens/Profile/components/ProfileFeedHeader.tsx:446
 #: src/screens/VideoFeed/index.tsx:769
 #: src/view/com/notifications/NotificationFeedItem.tsx:413
@@ -8305,8 +8765,8 @@ msgstr "ดูข้อมูลเกี่ยวกับป้ายกำก
 
 #: src/components/interstitials/TrendingVideos.tsx:191
 #: src/components/interstitials/TrendingVideos.tsx:210
-#: src/screens/Search/components/ExploreTrendingVideos.tsx:231
-#: src/screens/Search/components/ExploreTrendingVideos.tsx:250
+#: src/screens/Search/modules/ExploreTrendingVideos.tsx:194
+#: src/screens/Search/modules/ExploreTrendingVideos.tsx:213
 msgid "View more"
 msgstr ""
 
@@ -8375,6 +8835,10 @@ msgstr "เยี่ยมชมเว็บไซต์"
 msgid "Volume"
 msgstr ""
 
+#: src/screens/Login/LoginForm.tsx:195
+msgid "Wallet"
+msgstr ""
+
 #: src/components/moderation/LabelPreference.tsx:136
 #: src/lib/moderation/useLabelBehaviorDescription.ts:17
 #: src/lib/moderation/useLabelBehaviorDescription.ts:22
@@ -8397,7 +8861,7 @@ msgstr "เราไม่สามารถค้นหาผลลัพธ์
 msgid "We couldn't find any results for that topic."
 msgstr ""
 
-#: src/screens/Messages/Conversation.tsx:118
+#: src/screens/Messages/Conversation.tsx:127
 msgid "We couldn't load this conversation"
 msgstr "เราไม่สามารถโหลดการสนทนานี้ได้"
 
@@ -8410,12 +8874,16 @@ msgid "We have sent another verification email to <0>{0}</0>."
 msgstr "เราได้ส่งอีเมลยืนยันอีกฉบับไปยัง <0>{0}</0>."
 
 #: src/screens/Onboarding/StepFinished.tsx:256
-msgid "We hope you have a wonderful time. Remember, Bluesky is:"
-msgstr "เราหวังว่าคุณจะมีช่วงเวลาที่ดีเยี่ยม จำไว้ว่า Bluesky คือ:"
+msgid "We hope you have a wonderful time. Remember, Creaton is:"
+msgstr ""
 
 #: src/view/com/posts/DiscoverFallbackHeader.tsx:29
 msgid "We ran out of posts from your follows. Here's the latest from <0/>."
 msgstr "เราหมดโพสต์จากผู้ติดตามของคุณแล้ว นี่คือโพสต์ล่าสุดจาก <0/>."
+
+#: src/screens/Settings/SettingsInterests.tsx:155
+msgid "We recommend selecting at least two interests."
+msgstr ""
 
 #: src/view/com/composer/state/video.ts:417
 msgid "We were unable to determine if you are allowed to upload videos. Please try again."
@@ -8442,15 +8910,15 @@ msgid "We'll use this to help customize your experience."
 msgstr "เราจะใช้สิ่งนี้เพื่อช่วยปรับแต่งประสบการณ์ของคุณ"
 
 #: src/components/dms/dialogs/SearchablePeopleList.tsx:92
-#: src/components/ProgressGuide/FollowDialog.tsx:157
+#: src/components/ProgressGuide/FollowDialog.tsx:171
 msgid "We're having network issues, try again"
 msgstr "เรากำลังประสบปัญหาเครือข่าย โปรดลองอีกครั้ง"
 
-#: src/screens/Signup/index.tsx:95
+#: src/screens/Signup/index.tsx:109
 msgid "We're so excited to have you join us!"
 msgstr "เราตื่นเต้นมากที่คุณมาร่วมกับเรา!"
 
-#: src/view/screens/ProfileList.tsx:115
+#: src/view/screens/ProfileList.tsx:113
 msgid "We're sorry, but we were unable to resolve this list. If this persists, please contact the list creator, @{handleOrDid}."
 msgstr "ขออภัย เราไม่สามารถแก้ไขลิสต์นี้ได้ หากปัญหายังคงอยู่ กรุณาติดต่อผู้สร้างลิสต์ @{handleOrDid}"
 
@@ -8458,11 +8926,11 @@ msgstr "ขออภัย เราไม่สามารถแก้ไข�
 msgid "We're sorry, but we weren't able to load your muted words at this time. Please try again."
 msgstr "ขออภัย เราไม่สามารถโหลดคำที่คุณปิดเสียงในขณะนี้ โปรดลองอีกครั้ง"
 
-#: src/view/screens/Search/Search.tsx:205
+#: src/screens/Search/SearchResults.tsx:222
 msgid "We're sorry, but your search could not be completed. Please try again in a few minutes."
 msgstr "ขออภัย การค้นหาของคุณไม่สามารถเสร็จสมบูรณ์ได้ โปรดลองอีกครั้งในไม่กี่นาที"
 
-#: src/view/com/composer/Composer.tsx:425
+#: src/view/com/composer/Composer.tsx:433
 msgid "We're sorry! The post you are replying to has been deleted."
 msgstr "ขออภัย! โพสต์ที่คุณตอบกลับถูกลบไปแล้ว"
 
@@ -8474,6 +8942,10 @@ msgstr "เราขอโทษ! เราไม่สามารถค้น�
 #: src/screens/Profile/Header/ProfileHeaderLabeler.tsx:356
 msgid "We're sorry! You can only subscribe to twenty labelers, and you've reached your limit of twenty."
 msgstr "เราขอโทษ! คุณสามารถสมัครสมาชิกได้เพียงยี่สิบผู้ติดป้าย และคุณได้ถึงขีดจำกัดยี่สิบแล้ว."
+
+#: src/screens/Signup/StepInfo/index.tsx:297
+msgid "Web3"
+msgstr ""
 
 #: src/screens/Deactivated.tsx:125
 msgid "Welcome back!"
@@ -8491,13 +8963,8 @@ msgstr "ความสนใจของคุณคืออะไร?"
 msgid "What do you want to call your starter pack?"
 msgstr "คุณต้องการตั้งชื่อชุดเริ่มต้นของคุณว่าอะไร?"
 
-#: src/screens/Search/components/ExploreTrendingTopics.tsx:79
-msgid "What people are posting about."
-msgstr ""
-
 #: src/view/com/auth/SplashScreen.tsx:38
-#: src/view/com/auth/SplashScreen.web.tsx:99
-#: src/view/com/composer/Composer.tsx:744
+#: src/view/com/composer/Composer.tsx:753
 msgid "What's up?"
 msgstr "มีอะไรใหม่?"
 
@@ -8518,13 +8985,13 @@ msgid "Who can reply"
 msgstr "ใครสามารถตอบได้"
 
 #: src/screens/Home/NoFeedsPinned.tsx:79
-#: src/screens/Messages/ChatList.tsx:231
-#: src/screens/Messages/Inbox.tsx:176
+#: src/screens/Messages/ChatList.tsx:244
+#: src/screens/Messages/Inbox.tsx:182
 msgid "Whoops!"
 msgstr "อุ๊ย!"
 
 #: src/components/interstitials/TrendingVideos.tsx:127
-#: src/screens/Search/components/ExploreTrendingVideos.tsx:147
+#: src/screens/Search/modules/ExploreTrendingVideos.tsx:108
 msgid "Whoops! Trending videos failed to load."
 msgstr ""
 
@@ -8571,22 +9038,32 @@ msgstr "ทำไมผู้ใช้คนนี้จึงควรได้
 msgid "Write a message"
 msgstr "เขียนข้อความ"
 
-#: src/view/com/composer/Composer.tsx:832
+#: src/view/com/composer/Composer.tsx:844
 msgid "Write post"
 msgstr "เขียนโพสต์"
 
-#: src/view/com/composer/Composer.tsx:742
+#: src/view/com/composer/Composer.tsx:751
 #: src/view/com/post-thread/PostThreadComposePrompt.tsx:69
 msgid "Write your reply"
 msgstr "เขียนคำตอบของคุณ"
 
-#: src/screens/Onboarding/index.tsx:25
-#: src/screens/Onboarding/state.ts:116
+#: src/screens/Onboarding/index.tsx:26
+#: src/screens/Onboarding/state.ts:128
 msgid "Writers"
 msgstr "นักเขียน"
 
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:337
 msgid "Wrong DID returned from server. Received: {0}"
+msgstr ""
+
+#: src/Navigation.tsx:149
+#: src/screens/Xmtp/Conversation.tsx:154
+msgid "XMTP Chat"
+msgstr ""
+
+#: src/Navigation.tsx:144
+#: src/screens/Xmtp/index.tsx:100
+msgid "XMTP Messages"
 msgstr ""
 
 #: src/view/com/composer/select-language/SuggestedLanguage.tsx:86
@@ -8598,7 +9075,7 @@ msgstr "ใช่"
 msgid "Yes, deactivate"
 msgstr "ใช่, ปิดการใช้งาน"
 
-#: src/screens/StarterPack/StarterPackScreen.tsx:666
+#: src/screens/StarterPack/StarterPackScreen.tsx:669
 msgid "Yes, delete this starter pack"
 msgstr "ใช่, ลบชุดเริ่มต้นนี้"
 
@@ -8623,7 +9100,7 @@ msgid "You"
 msgstr "คุณ"
 
 #: src/components/forms/HostingProvider.tsx:46
-msgid "You are creating an account on"
+msgid "You are creating an account on <0><1>{0}</1><2/></0>"
 msgstr ""
 
 #: src/screens/SignupQueued.tsx:157
@@ -8638,6 +9115,10 @@ msgstr "คุณไม่ได้รับอนุญาตให้อัป
 msgid "You are not following anyone."
 msgstr "คุณไม่ได้ติดตามใครเลย."
 
+#: src/screens/Search/modules/ExploreInterestsCard.tsx:45
+msgid "You can adjust your interests at any time from \"Content and media\" settings."
+msgstr ""
+
 #: src/view/com/posts/FollowingEmptyState.tsx:63
 #: src/view/com/posts/FollowingEndOfFeed.tsx:64
 msgid "You can also discover new Custom Feeds to follow."
@@ -8651,7 +9132,7 @@ msgstr "คุณยังสามารถปิดการใช้งาน
 msgid "You can continue ongoing conversations regardless of which setting you choose."
 msgstr "คุณสามารถดำเนินการสนทนาที่กำลังดำเนินอยู่ต่อไปได้ไม่ว่าจะเลือกการตั้งค่าใด"
 
-#: src/screens/Login/index.tsx:182
+#: src/screens/Login/index.tsx:209
 #: src/screens/Login/PasswordUpdatedForm.tsx:26
 msgid "You can now sign in with your new password."
 msgstr "คุณสามารถลงชื่อเข้าใช้ด้วยรหัสผ่านใหม่ของคุณได้แล้ว"
@@ -8666,7 +9147,6 @@ msgstr ""
 
 #: src/components/interstitials/Trending.tsx:130
 #: src/components/interstitials/TrendingVideos.tsx:139
-#: src/screens/Search/components/ExploreTrendingTopics.tsx:136
 #: src/view/shell/desktop/SidebarTrendingTopics.tsx:109
 msgid "You can update this later from your settings."
 msgstr ""
@@ -8679,7 +9159,7 @@ msgstr "คุณไม่มีผู้ติดตาม"
 msgid "You don't follow any users who follow @{name}."
 msgstr "คุณไม่ได้ติดตามผู้ใช้ที่ติดตาม @{name}."
 
-#: src/screens/Messages/Inbox.tsx:220
+#: src/screens/Messages/Inbox.tsx:226
 msgid "You don't have any chat requests at the moment."
 msgstr ""
 
@@ -8733,18 +9213,22 @@ msgstr "คุณได้ปิดเสียงบัญชีนี้"
 msgid "You have muted this user"
 msgstr "คุณได้ปิดเสียงผู้ใช้คนนี้"
 
-#: src/screens/Messages/ChatList.tsx:274
+#: src/screens/Messages/ChatList.tsx:287
 msgid "You have no conversations yet. Start one!"
 msgstr "คุณยังไม่มีการสนทนาเริ่มต้น! เริ่มต้นหนึ่งเลย!"
 
-#: src/view/com/feeds/ProfileFeedgens.tsx:143
+#: src/view/com/feeds/ProfileFeedgens.tsx:139
 msgid "You have no feeds."
 msgstr "คุณไม่มีฟีด"
 
 #: src/view/com/lists/MyLists.tsx:81
-#: src/view/com/lists/ProfileLists.tsx:139
+#: src/view/com/lists/ProfileLists.tsx:135
 msgid "You have no lists."
 msgstr "คุณไม่มีลิสต์"
+
+#: src/screens/Xmtp/index.tsx:133
+msgid "You have no XMTP conversations yet."
+msgstr ""
 
 #: src/view/screens/ModerationBlockedAccounts.tsx:129
 msgid "You have not blocked any accounts yet. To block an account, go to their profile and select \"Block account\" from the menu on their account."
@@ -8762,7 +9246,7 @@ msgstr "คุณถึงจุดสิ้นสุดแล้ว"
 msgid "You have temporarily reached the limit for video uploads. Please try again later."
 msgstr "คุณถึงขีดจำกัดการอัปโหลดวิดีโอชั่วคราวแล้ว กรุณาลองอีกครั้งในภายหลัง"
 
-#: src/components/StarterPack/ProfileStarterPacks.tsx:239
+#: src/components/StarterPack/ProfileStarterPacks.tsx:244
 msgid "You haven't created a starter pack yet!"
 msgstr "คุณยังไม่ได้สร้างชุดเริ่มต้น!"
 
@@ -8784,10 +9268,10 @@ msgid "You may appeal these labels if you feel they were placed in error."
 msgstr "คุณสามารถอุทธรณ์ป้ายเหล่านี้ได้หากคุณรู้สึกว่ามันถูกติดตั้งโดยผิดพลาด"
 
 #: src/screens/StarterPack/Wizard/State.tsx:76
-msgid "You may only add up to {STARTER_PACK_MAX_SIZE} profiles"
-msgstr "คุณสามารถเพิ่มได้สูงสุด {STARTER_PACK_MAX_SIZE} โปรไฟล์"
+msgid "You may only add up to {STARTER_PACK_MAX_SIZE, plural, other {{STARTER_PACK_MAX_SIZE} profiles}}"
+msgstr ""
 
-#: src/screens/StarterPack/Wizard/State.tsx:94
+#: src/screens/StarterPack/Wizard/State.tsx:95
 msgid "You may only add up to 3 feeds"
 msgstr "คุณสามารถเพิ่มได้สูงสุด 3 ฟีด"
 
@@ -8796,10 +9280,10 @@ msgid "You may only select up to 4 images"
 msgstr ""
 
 #: src/screens/Signup/StepInfo/Policies.tsx:106
-msgid "You must be 13 years of age or older to sign up."
-msgstr "คุณต้องมีอายุ 13 ปีขึ้นไปจึงจะสามารถสมัครสมาชิกได้"
+msgid "You must be 13 years of age or older to create an account."
+msgstr ""
 
-#: src/components/StarterPack/ProfileStarterPacks.tsx:322
+#: src/components/StarterPack/ProfileStarterPacks.tsx:327
 msgid "You must be following at least seven other people to generate a starter pack."
 msgstr "คุณต้องติดตามผู้อื่นอย่างน้อย 7 คนจึงจะสามารถสร้างชุดเริ่มต้นได้"
 
@@ -8819,8 +9303,16 @@ msgstr "คุณต้องเลือกผู้ติดฉลากอย
 msgid "You previously deactivated @{0}."
 msgstr "คุณได้ทำการปิดการใช้งาน @{0} ก่อนหน้านี้"
 
+#: src/components/dms/MessageItem.tsx:135
+msgid "You reacted {0}"
+msgstr ""
+
+#: src/screens/Messages/components/ChatListItem.tsx:213
+msgid "You reacted {0} to {1}"
+msgstr ""
+
 #: src/screens/Settings/Settings.tsx:257
-#: src/view/shell/desktop/LeftNav.tsx:205
+#: src/view/shell/desktop/LeftNav.tsx:206
 msgid "You will be signed out of all your accounts."
 msgstr ""
 
@@ -8848,11 +9340,11 @@ msgstr "คุณ: {defaultEmbeddedContentMessage}"
 msgid "You: {short}"
 msgstr "คุณ: {short}"
 
-#: src/screens/Signup/index.tsx:111
+#: src/screens/Signup/index.tsx:125
 msgid "You'll follow the suggested users and feeds once you finish creating your account!"
 msgstr "คุณจะติดตามผู้ใช้และฟีดที่แนะนำทันทีที่สร้างบัญชีเสร็จ!"
 
-#: src/screens/Signup/index.tsx:116
+#: src/screens/Signup/index.tsx:130
 msgid "You'll follow the suggested users once you finish creating your account!"
 msgstr "คุณจะติดตามผู้ใช้ที่แนะนำทันทีที่สร้างบัญชีเสร็จ!"
 
@@ -8910,7 +9402,7 @@ msgstr "คุณถึงขีดจำกัดการอัพโหลด
 msgid "You've run out of videos to watch. Maybe it's a good time to take a break?"
 msgstr ""
 
-#: src/screens/Signup/index.tsx:144
+#: src/screens/Signup/index.tsx:158
 msgid "Your account"
 msgstr "บัญชีของคุณ"
 
@@ -8938,7 +9430,7 @@ msgstr ""
 msgid "Your appeal has been submitted. If your appeal succeeds, you will receive an email."
 msgstr ""
 
-#: src/screens/Signup/StepInfo/index.tsx:254
+#: src/screens/Signup/StepInfo/index.tsx:543
 msgid "Your birth date"
 msgstr "วันเกิดของคุณ"
 
@@ -8959,8 +9451,8 @@ msgid "Your current handle <0>{0}</0> will automatically remain reserved for you
 msgstr ""
 
 #: src/screens/Login/ForgotPasswordForm.tsx:51
-#: src/screens/Signup/state.ts:221
-#: src/screens/Signup/StepInfo/index.tsx:99
+#: src/screens/Signup/state.ts:283
+#: src/screens/Signup/StepInfo/index.tsx:119
 #: src/view/com/modals/ChangePassword.tsx:55
 msgid "Your email appears to be invalid."
 msgstr "อีเมลของคุณดูเหมือนจะไม่ถูกต้อง"
@@ -8972,6 +9464,10 @@ msgstr "อีเมลของคุณได้รับการอัปเ
 #: src/view/com/modals/VerifyEmail.tsx:122
 msgid "Your email has not yet been verified. This is an important security step which we recommend."
 msgstr "อีเมลของคุณยังไม่ได้รับการยืนยัน นี่เป็นขั้นตอนด้านความปลอดภัยที่สำคัญซึ่งเราแนะนำ"
+
+#: src/screens/Onboarding/StepEns/index.tsx:147
+msgid "Your ENS subdomain"
+msgstr ""
 
 #: src/state/shell/progress-guide.tsx:213
 msgid "Your first like!"
@@ -8989,8 +9485,25 @@ msgstr "ฟีดผู้ติดตามของคุณว่างเป
 msgid "Your full handle will be <0>@{0}</0>"
 msgstr "ชื่อผู้ใช้เต็มของคุณจะเป็น <0>@{0}</0>"
 
-#: src/screens/Signup/StepHandle.tsx:129
+#: src/screens/Signup/StepHandle.tsx:137
 msgid "Your full username will be <0>@{0}</0>"
+msgstr ""
+
+#: src/Navigation.tsx:397
+#: src/screens/Search/modules/ExploreInterestsCard.tsx:67
+#: src/screens/Settings/ContentAndMediaSettings.tsx:92
+#: src/screens/Settings/ContentAndMediaSettings.tsx:95
+#: src/screens/Settings/SettingsInterests.tsx:39
+msgid "Your interests"
+msgstr ""
+
+#: src/screens/Settings/SettingsInterests.tsx:124
+msgctxt "toast"
+msgid "Your interests have been updated!"
+msgstr ""
+
+#: src/screens/Search/modules/ExploreInterestsCard.tsx:94
+msgid "Your interests help us find what you like!"
 msgstr ""
 
 #: src/components/dialogs/MutedWords.tsx:369
@@ -9001,15 +9514,11 @@ msgstr "คำที่คุณปิดเสียง"
 msgid "Your password has been changed successfully!"
 msgstr "รหัสผ่านของคุณถูกเปลี่ยนเรียบร้อยแล้ว!"
 
-#: src/screens/Signup/StepInfo/index.tsx:128
-msgid "Your password must be at least 8 characters long."
-msgstr ""
-
-#: src/view/com/composer/Composer.tsx:485
+#: src/view/com/composer/Composer.tsx:493
 msgid "Your post has been published"
 msgstr "โพสต์ของคุณได้รับการเผยแพร่แล้ว"
 
-#: src/view/com/composer/Composer.tsx:482
+#: src/view/com/composer/Composer.tsx:490
 msgid "Your posts have been published"
 msgstr ""
 
@@ -9021,7 +9530,7 @@ msgstr "โพสต์ การถูกใจ และการบล็อ�
 msgid "Your profile, posts, feeds, and lists will no longer be visible to other Bluesky users. You can reactivate your account at any time by logging in."
 msgstr "โปรไฟล์ โพสต์ ฟีด และลิสต์ของคุณจะไม่ปรากฏให้ผู้ใช้ Bluesky คนอื่นเห็นอีกต่อไป คุณสามารถเปิดใช้งานบัญชีของคุณอีกครั้งได้ตลอดเวลาโดยการเข้าสู่ระบบ"
 
-#: src/view/com/composer/Composer.tsx:484
+#: src/view/com/composer/Composer.tsx:492
 msgid "Your reply has been published"
 msgstr "การตอบกลับของคุณได้รับการเผยแพร่แล้ว"
 
@@ -9032,3 +9541,7 @@ msgstr ""
 #: src/components/dms/ReportDialog.tsx:200
 msgid "Your report will be sent to the Bluesky Moderation Service"
 msgstr "รายงานของคุณจะถูกส่งไปยัง Bluesky Moderation Service"
+
+#: src/screens/Settings/SettingsInterests.tsx:53
+msgid "Your selected interests help us serve you content you care about."
+msgstr ""

@@ -17,7 +17,6 @@ import {atoms as a, useTheme} from '#/alf'
 import {AppLanguageDropdown} from '#/components/AppLanguageDropdown'
 import {Button, ButtonText} from '#/components/Button'
 import * as Layout from '#/components/Layout'
-import {InlineLinkText} from '#/components/Link'
 import {Text} from '#/components/Typography'
 
 export const SplashScreen = ({
@@ -166,7 +165,7 @@ function Footer() {
         a.flex_1,
         t.atoms.border_contrast_medium,
       ]}>
-      <InlineLinkText
+      {/* <InlineLinkText
         label={_(msg`Learn more about Bluesky`)}
         to="https://bsky.social">
         <Trans>Business</Trans>
@@ -182,7 +181,7 @@ function Footer() {
         <Trans comment="Link to a page with job openings at Bluesky">
           Jobs
         </Trans>
-      </InlineLinkText>
+      </InlineLinkText> */}
 
       <View style={a.flex_1} />
 

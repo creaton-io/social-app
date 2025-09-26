@@ -3,7 +3,7 @@ import {KeyboardAvoidingView} from 'react-native'
 import {LayoutAnimationConfig} from 'react-native-reanimated'
 import {msg} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
-import {signMessage} from '@wagmi/core'
+import {useSignMessage} from 'wagmi'
 
 import {DEFAULT_SERVICE} from '#/lib/constants'
 import {logEvent} from '#/lib/statsig/statsig'
@@ -17,7 +17,6 @@ import {LoginForm} from '#/screens/Login/LoginForm'
 import {PasswordUpdatedForm} from '#/screens/Login/PasswordUpdatedForm'
 import {SetNewPasswordForm} from '#/screens/Login/SetNewPasswordForm'
 import {atoms as a} from '#/alf'
-import {wagmiConfig} from '#/wagmi'
 import {ChooseAccountForm} from './ChooseAccountForm'
 import {ScreenTransition} from './ScreenTransition'
 
@@ -33,6 +32,7 @@ export const Login = ({onPressBack}: {onPressBack: () => void}) => {
   const {_} = useLingui()
   const failedAttemptCountRef = useRef(0)
   const startTimeRef = useRef(Date.now())
+  const {signMessageAsync} = useSignMessage()
 
   const agent = useAgent()
 
@@ -97,18 +97,27 @@ export const Login = ({onPressBack}: {onPressBack: () => void}) => {
     logEvent('signin:forgotPasswordPressed', {})
   }
 
-  const onPressSignSIWE = async (): Promise<string> => {
-    console.log('initialHandle: ', initialHandle)
+  const onPressSignSIWE = async (
+    currentIdentifier: string,
+  ): Promise<string> => {
+    console.log('currentIdentifier: ', currentIdentifier)
 
-    const siweResult = await agent.com.atproto.server.createSIWELogin({
-      identifier: initialHandle,
-    })
+    try {
+      const siweResult = await agent.com.atproto.server.createSIWELogin({
+        identifier: currentIdentifier,
+      })
 
-    const siweMessage = siweResult.data.siweMessage
+      const siweMessage = siweResult.data.siweMessage
 
-    const siweSigned = await signMessage(wagmiConfig, {message: siweMessage})
+      const siweSigned = await signMessageAsync({
+        message: siweMessage,
+      })
 
-    return siweSigned
+      return siweSigned
+    } catch (error) {
+      console.error('SIWE signing error:', error)
+      throw new Error('Login failed. Please try again.')
+    }
   }
 
   const handlePressBack = () => {

@@ -8,7 +8,7 @@ import {useNavigationState} from '@react-navigation/native'
 import {useMinimalShellFooterTransform} from '#/lib/hooks/useMinimalShellTransform'
 import {getCurrentRoute, isTab} from '#/lib/routes/helpers'
 import {makeProfileLink} from '#/lib/routes/links'
-import {CommonNavigatorParams} from '#/lib/routes/types'
+import {type CommonNavigatorParams} from '#/lib/routes/types'
 import {useGate} from '#/lib/statsig/statsig'
 import {useHomeBadge} from '#/state/home-badge'
 import {useUnreadMessageCount} from '#/state/queries/messages/list-conversations'
@@ -18,7 +18,6 @@ import {useLoggedOutViewControls} from '#/state/shell/logged-out'
 import {useCloseAllActiveElements} from '#/state/util'
 import {Link} from '#/view/com/util/Link'
 import {Logo} from '#/view/icons/Logo'
-import {Logotype} from '#/view/icons/Logotype'
 import {atoms as a, useTheme} from '#/alf'
 import {Button, ButtonText} from '#/components/Button'
 import {
@@ -188,9 +187,6 @@ export function BottomBarWeb() {
             }}>
             <View style={{flexDirection: 'row', alignItems: 'center', gap: 12}}>
               <Logo width={32} />
-              <View style={{paddingTop: 4}}>
-                <Logotype width={80} fill={t.atoms.text.color} />
-              </View>
             </View>
 
             <View style={[a.flex_row, a.flex_wrap, a.gap_sm]}>

@@ -475,27 +475,6 @@ export function usePinnedFeedsInfos() {
         } else if (pinnedItem.type === 'timeline') {
           result.push({
             type: 'feed',
-            displayName: 'Creaton',
-            uri: 'at://did:plc:2zlzmv2xujgpohsvay3xhpbr/app.bsky.feed.generator/aaaoletwpo5ga',
-            feedDescriptor:
-              'feedgen|at://did:plc:2zlzmv2xujgpohsvay3xhpbr/app.bsky.feed.generator/aaaoletwpo5ga',
-            route: {
-              href: '/',
-              name: 'Home',
-              params: {},
-            },
-            cid: '',
-            avatar: '',
-            description: new RichText({text: ''}),
-            creatorDid: '',
-            creatorHandle: '',
-            likeCount: 0,
-            likeUri: '',
-            savedFeed: pinnedItem,
-            contentMode: undefined,
-          })
-          result.push({
-            type: 'feed',
             displayName: 'Following',
             uri: pinnedItem.value,
             feedDescriptor: 'following',
