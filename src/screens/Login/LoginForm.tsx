@@ -332,6 +332,11 @@ export function LoginForm({
                 msg`Enter the username or email address you used when you created your account`,
               )}
             />
+            <TextField.SuffixText
+              label={_(msg`Domain suffix`)}
+              accessibilityHint={_(msg`The domain suffix for your account`)}>
+              .creaton.social
+            </TextField.SuffixText>
           </TextField.Root>
 
           {!useSiweLogin && (

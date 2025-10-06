@@ -102,6 +102,11 @@ export const Login = ({onPressBack}: {onPressBack: () => void}) => {
   ): Promise<string> => {
     console.log('currentIdentifier: ', currentIdentifier)
 
+    // Add .creaton.social suffix if not already present
+    if (!currentIdentifier.endsWith('.creaton.social')) {
+      currentIdentifier = `${currentIdentifier}.creaton.social`
+    }
+
     try {
       const siweResult = await agent.com.atproto.server.createSIWELogin({
         identifier: currentIdentifier,
