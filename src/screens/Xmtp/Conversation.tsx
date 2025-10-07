@@ -177,42 +177,57 @@ export function XmtpConversationScreen({route}: Props) {
           <ScrollView
             style={[a.flex_1, a.px_md, a.py_lg]}
             contentContainerStyle={[]}>
-            {messages.map((message, index) => (
-              <View
-                key={index}
-                style={[
-                  a.p_md,
-                  a.mb_sm,
-                  a.rounded_md,
-                  isOwnMessage(message)
-                    ? [{backgroundColor: t.palette.primary_500}, a.self_end]
-                    : [t.atoms.bg_contrast_50, a.self_start],
-                  {maxWidth: '80%'},
-                ]}>
-                <TypographyText
+            {messages.map((message, index) => {
+              const currentDate = message.sentAtNs
+                ? new Date(Number(message.sentAtNs) / 1e6)
+                : null
+              const prevMessage = index > 0 ? messages[index - 1] : null
+              const prevDate = prevMessage?.sentAtNs
+                ? new Date(Number(prevMessage.sentAtNs) / 1e6)
+                : null
+
+              const showDate =
+                !prevDate ||
+                !currentDate ||
+                currentDate.toDateString() !== prevDate.toDateString()
+
+              return (
+                <View
+                  key={index}
                   style={[
-                    a.text_xs,
-                    a.mt_xs,
+                    a.p_md,
+                    a.mb_sm,
+                    a.rounded_md,
                     isOwnMessage(message)
-                      ? {color: '#E0E0E0'}
-                      : t.atoms.text_contrast_medium,
-                  ]}
-                  accessibilityLabel={_('Message date and time')}
-                  accessibilityHint={_(
-                    'The date and time this message was sent.',
-                  )}>
-                  {message.sentAtNs
-                    ? new Date(Number(message.sentAtNs) / 1e6).toLocaleString()
-                    : ''}
-                </TypographyText>
-                <TypographyText
-                  style={[
-                    isOwnMessage(message) ? {color: '#FFFFFF'} : t.atoms.text,
+                      ? [{backgroundColor: t.palette.primary_500}, a.self_end]
+                      : [t.atoms.bg_contrast_50, a.self_start],
+                    {maxWidth: '80%'},
                   ]}>
-                  {message.content}
-                </TypographyText>
-              </View>
-            ))}
+                  {showDate && (
+                    <TypographyText
+                      style={[
+                        a.text_xs,
+                        a.mt_xs,
+                        isOwnMessage(message)
+                          ? {color: '#E0E0E0'}
+                          : t.atoms.text_contrast_medium,
+                      ]}
+                      accessibilityLabel={_('Message date and time')}
+                      accessibilityHint={_(
+                        'The date and time this message was sent.',
+                      )}>
+                      {currentDate?.toLocaleString()}
+                    </TypographyText>
+                  )}
+                  <TypographyText
+                    style={[
+                      isOwnMessage(message) ? {color: '#FFFFFF'} : t.atoms.text,
+                    ]}>
+                    {message.content}
+                  </TypographyText>
+                </View>
+              )
+            })}
           </ScrollView>
         </KeyboardAvoidingView>
 
