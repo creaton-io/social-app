@@ -2,6 +2,7 @@ import 'react-native-url-polyfill/auto'
 import '#/logger/sentry/setup'
 import '#/logger/bitdrift/setup'
 import '#/view/icons'
+import '@walletconnect/react-native-compat'
 
 import React, {useEffect, useState} from 'react'
 import {GestureHandlerRootView} from 'react-native-gesture-handler'
@@ -15,7 +16,10 @@ import * as SplashScreen from 'expo-splash-screen'
 import * as SystemUI from 'expo-system-ui'
 import {msg} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
+import {AppKitProvider} from '@reown/appkit-react-native'
 import * as Sentry from '@sentry/react-native'
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query'
+import {WagmiProvider} from 'wagmi'
 
 import {KeyboardControllerProvider} from '#/lib/hooks/useEnableKeyboardController'
 import {QueryProvider} from '#/lib/react-query'
@@ -75,6 +79,9 @@ import {Splash} from '#/Splash'
 import {BottomSheetProvider} from '../modules/bottom-sheet'
 import {BackgroundNotificationPreferencesProvider} from '../modules/expo-background-notification-handler/src/BackgroundNotificationHandlerProvider'
 import {XMTPProvider} from './screens/Xmtp/useXmtp'
+import {appKit, wagmiAdapter} from './wagmi.native'
+
+const queryClient = new QueryClient()
 
 SplashScreen.preventAutoHideAsync()
 if (isIOS) {
@@ -156,10 +163,21 @@ function InnerApp() {
                                                 <GestureHandlerRootView
                                                   style={s.h100pct}>
                                                   <IntentDialogProvider>
-                                                    <XMTPProvider>
-                                                      <TestCtrls />
-                                                      <Shell />
-                                                    </XMTPProvider>
+                                                    <WagmiProvider
+                                                      config={
+                                                        wagmiAdapter.wagmiConfig
+                                                      }>
+                                                      <AppKitProvider
+                                                        instance={appKit}>
+                                                        <QueryClientProvider
+                                                          client={queryClient}>
+                                                          <XMTPProvider>
+                                                            <TestCtrls />
+                                                            <Shell />
+                                                          </XMTPProvider>
+                                                        </QueryClientProvider>
+                                                      </AppKitProvider>
+                                                    </WagmiProvider>
                                                     <NuxDialogs />
                                                   </IntentDialogProvider>
                                                 </GestureHandlerRootView>

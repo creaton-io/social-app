@@ -1,8 +1,9 @@
-import React from 'react'
 import {View} from 'react-native'
 import Animated from 'react-native-reanimated'
 import {msg} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
+import {AppKitButton} from '@reown/appkit-react-native'
+import type React from 'react'
 
 import {HITSLOP_10} from '#/lib/constants'
 import {PressableScale} from '#/lib/custom-animations/PressableScale'
@@ -11,7 +12,6 @@ import {useMinimalShellHeaderTransform} from '#/lib/hooks/useMinimalShellTransfo
 import {emitSoftReset} from '#/state/events'
 import {useSession} from '#/state/session'
 import {useShellLayout} from '#/state/shell/shell-layout'
-import {Logo} from '#/view/icons/Logo'
 import {atoms as a, useTheme} from '#/alf'
 import {ButtonIcon} from '#/components/Button'
 import {Hashtag_Stroke2_Corner0_Rounded as FeedsIcon} from '#/components/icons/Hashtag'
@@ -64,7 +64,7 @@ export function HomeHeaderLayoutMobile({
             onPressOut={() => {
               playHaptic('Light')
             }}>
-            <Logo width={30} />
+            <AppKitButton />
           </PressableScale>
         </View>
 

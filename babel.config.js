@@ -12,11 +12,13 @@ module.exports = function (api) {
             // However, we need it in Jest tests since those run without Metro.
             disableImportExportTransform: !isTestEnv,
           },
+          unstable_transformImportMeta: true,
         },
       ],
     ],
     plugins: [
       'macros',
+      '@babel/plugin-transform-class-static-block',
       ['babel-plugin-react-compiler', {target: '18'}],
       [
         'module:react-native-dotenv',
@@ -42,6 +44,7 @@ module.exports = function (api) {
             state: './src/state',
             view: './src/view',
             crypto: './src/platform/crypto.ts',
+            'node:crypto': 'react-native-quick-crypto',
           },
         },
       ],

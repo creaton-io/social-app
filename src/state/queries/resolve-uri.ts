@@ -63,7 +63,7 @@ export function useResolveDidDocQuery(did: any | undefined) {
     queryFn: async () => {
       if (!did) return ''
 
-      const url = IS_DEV ? 'http://localhost:2582/' : 'https://plc.directory/'
+      const url = IS_DEV ? 'https://plc.directory/' : 'https://plc.directory/'
       try {
         const response = await fetch(url + did)
         if (!response.ok) {

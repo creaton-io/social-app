@@ -1,0 +1,12 @@
+diff --git a/node_modules/react-native-keyboard-controller/ios/extensions/NSObject.swift b/node_modules/react-native-keyboard-controller/ios/extensions/NSObject.swift
+index d4fd929..dca7799 100644
+--- a/node_modules/react-native-keyboard-controller/ios/extensions/NSObject.swift
++++ b/node_modules/react-native-keyboard-controller/ios/extensions/NSObject.swift
+@@ -7,6 +7,6 @@
+ 
+ public extension NSObject {
+   func safeValue(forKey key: String) -> Any? {
+-    return _safeValue(forKey: key)
++    return _safeValueForKey(key)
+   }
+ }

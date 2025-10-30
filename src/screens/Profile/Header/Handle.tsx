@@ -24,10 +24,11 @@ export function ProfileHeaderHandle({
   const invalidHandle = isInvalidHandle(profile.handle)
   const blockHide = profile.viewer?.blocking || profile.viewer?.blockedBy
   const useResolveDidQueryResult = useResolveDidDocQuery(profile.did)
+  console.log('useResolveDidQueryResult', useResolveDidQueryResult)
   let ethAddress = ''
   if (
     useResolveDidQueryResult.data &&
-    useResolveDidQueryResult.data.alsoKnownAs[1]
+    useResolveDidQueryResult.data.alsoKnownAs !== undefined
   ) {
     const parts = useResolveDidQueryResult.data.alsoKnownAs[1].split(':')
     const ethereumAddress = parts[2]

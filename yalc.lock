@@ -1,0 +1,11 @@
+{
+  "version": "v1",
+  "packages": {
+    "@atproto/api": {
+      "version": "10.15.11",
+      "signature": "c5053d66ad64866b615d45d99b402193",
+      "file": true,
+      "replaced": "link:./../cproto/packages/api"
+    }
+  }
+}

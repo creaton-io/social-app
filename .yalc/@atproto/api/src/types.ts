@@ -112,4 +112,5 @@ export interface BskyPreferences {
     nuxs: AppBskyActorDefs.Nux[]
   }
   postInteractionSettings: AppBskyActorDefs.PostInteractionSettingsPref
+  verificationPrefs: AppBskyActorDefs.VerificationPrefs
 }

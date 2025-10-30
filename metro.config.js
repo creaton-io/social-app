@@ -17,6 +17,14 @@ if (process.env.BSKY_PROFILE) {
 cfg.resolver.assetExts = [...cfg.resolver.assetExts, 'woff2']
 
 cfg.resolver.resolveRequest = (context, moduleName, platform) => {
+  if (moduleName === 'crypto') {
+    // when importing crypto, resolve to react-native-quick-crypto
+    return context.resolveRequest(
+      context,
+      'react-native-quick-crypto',
+      platform,
+    )
+  }
   // HACK: manually resolve a few packages that use `exports` in `package.json`.
   // A proper solution is to enable `unstable_enablePackageExports` but this needs careful testing.
   if (moduleName.startsWith('multiformats/hashes/hasher')) {

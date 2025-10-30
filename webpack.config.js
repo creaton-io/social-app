@@ -30,6 +30,23 @@ module.exports = async function (env, argv) {
     crypto: false,
   }
 
+  // Exclude problematic connectors and packages that aren't used in web builds
+  config.resolve.alias = {
+    ...config.resolve.alias,
+    // Fix zod mini export issue - redirect to v3 which is compatible
+    'zod/mini': require.resolve('zod'),
+    // Exclude porto connector that has dependency issues
+    porto: false,
+    '@wagmi/connectors/dist/esm/porto.js': false,
+    // Exclude React Native-specific packages
+    '@walletconnect/react-native-compat': false,
+    '@reown/appkit-react-native': false,
+    '@reown/appkit-wagmi-react-native': false,
+    '@reown/appkit-common-react-native': false,
+    '@mobile-wallet-protocol/client': false,
+    '@mobile-wallet-protocol/wagmi-connectors': false,
+  }
+
   config.module.rules = [
     ...(config.module.rules || []),
     reactNativeWebWebviewConfiguration,

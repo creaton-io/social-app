@@ -200,8 +200,8 @@ export function LoginForm({
               style={[
                 a.flex_1,
                 a.p_md,
-                a.border_1,
-                a.border_contrast_low,
+                a.border,
+                t.atoms.border_contrast_low,
                 {
                   backgroundColor: t.atoms.bg_contrast_25.backgroundColor,
                   borderRadius: 12,

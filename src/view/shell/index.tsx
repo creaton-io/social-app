@@ -5,6 +5,7 @@ import {Gesture} from 'react-native-gesture-handler'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {StatusBar} from 'expo-status-bar'
 import {useNavigation, useNavigationState} from '@react-navigation/native'
+import {AppKit} from '@reown/appkit-react-native'
 
 import {useDedupe} from '#/lib/hooks/useDedupe'
 import {useIntentHandler} from '#/lib/hooks/useIntentHandler'
@@ -155,6 +156,7 @@ function ShellInner() {
       <Lightbox />
       <PortalOutlet />
       <BottomSheetOutlet />
+      <AppKit />
     </>
   )
 }

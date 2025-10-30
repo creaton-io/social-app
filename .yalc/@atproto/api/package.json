@@ -1,6 +1,6 @@
 {
   "name": "@atproto/api",
-  "version": "0.14.19",
+  "version": "10.15.11",
   "license": "MIT",
   "description": "Client library for atproto and Bluesky",
   "keywords": [
@@ -31,5 +31,5 @@
     "tlds": "^1.234.0",
     "zod": "^3.23.8"
   },
-  "yalcSig": "be7e0cf5c10a880cc49cc830b4578ecb"
+  "yalcSig": "c5053d66ad64866b615d45d99b402193"
 }

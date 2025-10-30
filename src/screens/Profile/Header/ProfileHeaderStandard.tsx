@@ -114,9 +114,10 @@ let ProfileHeaderStandard = ({
 
   const useResolveDidQueryResult = useResolveDidDocQuery(profile.did)
   let fullEthAddress = ''
+  console.log('profile crypto:', useResolveDidQueryResult)
   if (
     useResolveDidQueryResult.data &&
-    useResolveDidQueryResult.data.alsoKnownAs[1]
+    useResolveDidQueryResult.data.alsoKnownAs !== undefined
   ) {
     const parts = useResolveDidQueryResult.data.alsoKnownAs[1].split(':')
     const ethereumAddress = parts[2]
